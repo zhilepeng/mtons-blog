@@ -1,16 +1,17 @@
 /**
  * 
  */
-package mblog.web.controller.blog;
+package mblog.web.controller.posts;
 
 import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 import mblog.core.context.AppContext;
+import mblog.core.planet.PostPlanet;
 import mblog.core.pojos.Attach;
-import mblog.core.pojos.Mblog;
-import mblog.core.service.MblogService;
+import mblog.core.pojos.Post;
+import mblog.core.service.PostService;
 import mblog.web.controller.BaseController;
 import mtons.commons.pojos.Data;
 import mtons.commons.utils.GMagickUtils;
@@ -32,7 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/blog")
 public class PostController extends BaseController {
 	@Autowired
-	private MblogService mblogService;
+	private PostService postService;
+	@Autowired
+	private PostPlanet postPlanet;
 	@Autowired
 	private AppContext appContext;
 	
@@ -43,10 +46,10 @@ public class PostController extends BaseController {
 	}
 
 	@RequestMapping(value = "/post", method = RequestMethod.POST)
-	public String post(Mblog blog) {
+	public String post(Post blog) {
 		if (blog != null) {
 			handleAlbums(blog.getAlbums());
-			mblogService.add(blog);
+			postService.post(blog);
 		}
 		return "redirect:/home";
 	}
@@ -56,7 +59,7 @@ public class PostController extends BaseController {
 		Data data = Data.failure("操作失败");
 		if (id != null) {
 			try {
-				mblogService.delete(id);
+				postPlanet.delete(id);
 				data = Data.success("操作成功");
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

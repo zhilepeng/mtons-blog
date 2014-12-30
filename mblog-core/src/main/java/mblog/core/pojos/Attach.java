@@ -3,11 +3,15 @@
  */
 package mblog.core.pojos;
 
+import java.io.Serializable;
+
 /**
  * @author langhsu
- *
+ * 
  */
-public class Attach {
+public class Attach implements Serializable {
+	private static final long serialVersionUID = -5858530547049180410L;
+
 	private long id;
 	private long toId;
 	private String original;
@@ -15,7 +19,7 @@ public class Attach {
 	private int width;
 	private int height;
 	private int status;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -71,5 +75,5 @@ public class Attach {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 }

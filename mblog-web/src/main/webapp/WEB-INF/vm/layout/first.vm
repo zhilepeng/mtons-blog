@@ -28,7 +28,7 @@
 	
 </head>
 <body class="default">
-	<nav class="navbar navbar-static-top" role="navigation">
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		#parse("/inc/browse_tips.vm")
 		<div class="container-fluid">
 			<div class="navbar-header">
