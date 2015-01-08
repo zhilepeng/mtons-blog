@@ -43,7 +43,7 @@
 				</table>
                 <!-- /.table-responsive -->
 				<div class="text-center">
-                	#page("home" $page 5)
+                	#page("list" $page 5)
                 </div>
             </div>
             <!-- /.panel-body -->
