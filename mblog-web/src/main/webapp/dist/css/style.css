@@ -147,11 +147,6 @@ a.trash {color: #F50A0A!important;}
     border-radius: 3px;
     background-color: #fafafa;
 }
-.search input[type="text"] {
-    width: 79%;
-    float: left;
-    margin-right: 2px;
-}
     
 .sidebox, .widget {
 	margin-bottom: 25px;
@@ -501,7 +496,7 @@ Tags
 }
 .tags_grid figure {
 	margin: 0;
-	height: 240px;
+	height: 200px;
 	background-color: #fff;
 	position: relative;
 	border-radius: 3px;

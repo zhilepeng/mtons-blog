@@ -1,0 +1,63 @@
+#set($title=$!{ret.title})
+#set($tags=$!{ret.tags})
+#set($layout = "/default/layout/seo.vm")
+
+<div class="sidebar-left">
+	<div class="posts-head">
+		<div class="ava">
+			<img src="$base${ret.author.avater}"/>
+		</div>
+		<div class="author-info">
+			<h1>#showName(${ret.author})</h1>
+			<div class="author_icon">
+				<span><a href="$base/user/${ret.author.id}">查看Ta发布的文章</a></span>
+			</div>
+		</div>
+	</div>
+	<div class="posts">
+		<article class="loop clearfix">
+			<section class="loop-content">
+				#if($ret.title)
+				<header class="post-title ">
+					<h2>${ret.title}</h2>
+				</header>
+				#end
+				<div class="entry">
+					#if($ret.albums)
+    					#foreach($row in $ret.albums)
+    					<div class="single-post-media">
+    						<img src="$base/dist/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
+    					</div><!-- .post-thumbnail -->	
+    					#end
+    				#end
+					<div class="zan-outline">
+						${ret.content}
+					</div>
+				</div>
+				<div class="post-meta">
+					<div class="post-like">
+						<span><a href="#" class="btn btn-primary">喜欢</a></span>
+					</div>
+					<span><i class="fa fa-calendar-o"></i>&nbsp;$date.format('yyyy-MM-dd', $ret.created)</span>
+				</div>
+			</section>
+			
+			<!-- 大型设备文章显示结束 -->
+		</article>
+	</div>
+	<!-- post/end -->
+</div>
+
+<div class="sidebar-right bounceInRight animated">
+	#parse("/default/inc/right/public.vm")
+</div>
+
+<script type="text/javascript">
+$(function(){
+	$("img").lazyload({
+		 placeholder : "$base/dist/images/spinner.gif",
+		 effect      : "fadeIn"
+	});
+	
+});
+</script>
