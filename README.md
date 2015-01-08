@@ -9,7 +9,7 @@
 * Hibernate
 * Hibernate search
 
-## 数据库连接配置
+## 数据库配置
 > src/main/resources/init.properties
 
 ```
@@ -17,6 +17,7 @@ jdbc.url=jdbc:mysql://localhost:3306/db_mblog?autoReconnect=true&useUnicode=true
 jdbc.username=your username
 jdbc.password=your password
 ```
+> 初始数据库文件位置(sql/db_mblog.sql), 管理员账号:admin/12345
 
 ## 索引文件存放目录
 > src/main/resources/init.properties
@@ -39,4 +40,3 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 ## 实际应用站点
 http://mtons.com
-
