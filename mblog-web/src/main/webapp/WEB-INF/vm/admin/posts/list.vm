@@ -23,19 +23,18 @@
                     <tr>
 						<th>文章标题</th>
 						<th style="width: 100px;">发表日期</th>
-                        <th class="text-center" style="width: 60px;">操作</th>
+                        <th class="text-center" style="width: 95px;">操作</th>
 					</tr>
 					#foreach($row in $page.results)
 					<tr>
                         <td>
-							$!{row.title}
+							$string.abbreviate("$!{row.title}", 22)
 						</td>
 						<td>
 							$date.format('yyyy-MM-dd', $row.created)
 						</td>
                         <td class="text-center">
 							<a href="$base/admin/posts/view?id=${row.id}" target="postView" class="btn btn-primary btn-xs">查看</a>
-                            <hr class="split-line"/>
 							<a href="javascript:void(0);" class="btn btn-danger btn-xs" data-id="${row.id}" data-action="delete">删除</a>
 						</td>
                     </tr>
@@ -53,8 +52,8 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">文章查看</div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 680px;">
-                <iframe id="postView" name="postView" src=""></iframe>
+            <div class="panel-body" style="height: 500px;">
+                <iframe id="postView" name="postView" src="$base/error/preview.html"></iframe>
 			</div>
 		</div>
 	</div>
@@ -78,7 +77,7 @@ $(function() {
 	// 删除
     $('#dataGrid a[data-action="delete"]').bind('click', function(){
         if(confirm('删除后将不可撤销, 确定要继续吗？')){
-            J.getJSON('$base/admin/posts/delete', {id: $(this).attr('data-id'), active: false}, ajaxReload);
+            J.getJSON('$base/admin/posts/delete', {id: $(this).attr('data-id')}, ajaxReload);
         }
         return false;
     });
