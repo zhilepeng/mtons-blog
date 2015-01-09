@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 /**
  * @author langhsu
  *
@@ -29,6 +31,7 @@ public class CommentPO {
 	@Column(name = "to_id")
 	private long toId;
 	
+	@Type(type="text")
 	@Column(name = "content")
 	private String content;
 	
