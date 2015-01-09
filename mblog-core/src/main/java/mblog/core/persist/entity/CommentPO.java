@@ -31,7 +31,6 @@ public class CommentPO {
 	@Column(name = "to_id")
 	private long toId;
 	
-	@Type(type="text")
 	@Column(name = "content")
 	private String content;
 	
