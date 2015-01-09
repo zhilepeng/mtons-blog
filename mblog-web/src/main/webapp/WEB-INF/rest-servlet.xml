@@ -39,6 +39,7 @@
 	<mvc:resources mapping="/error/**" location="/error/" />
 	<mvc:resources mapping="/store/**" location="/store/" />
 	<mvc:resources mapping="/ueditor/**" location="/ueditor/" />
+	<mvc:resources mapping="/markdown/**" location="/markdown/" />
 	
 	<!-- Web层基于注解的扫描路径 -->
 	<context:component-scan base-package="mblog.web.controller" />
@@ -76,11 +77,13 @@
 	</bean>
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-        <property name="defaultEncoding" value="utf-8"></property>
-        <property name="maxUploadSize" value="10485760000"></property>
-        <property name="maxInMemorySize" value="40960"></property>
-   </bean>
-   
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
+	
+	<bean id="exceptionResolver" class="mblog.web.exceptions.DefaultExceptionHandler" />
+	
 	<mvc:interceptors>
         <mvc:interceptor>
             <!-- 需拦截的地址 -->
