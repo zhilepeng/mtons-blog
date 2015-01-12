@@ -51,7 +51,7 @@ public class PostPlanetImpl implements PostPlanet {
 	public void delete(long id, long authorId) {
 		postsService.delete(id, authorId);
 	}
-	
+
 	@Override
 	@CacheEvict(value = "postsCaches", key = "#id", allEntries = true)
 	public void delete(long id) {

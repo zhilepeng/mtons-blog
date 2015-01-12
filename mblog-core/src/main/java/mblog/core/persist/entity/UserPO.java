@@ -28,9 +28,11 @@ public class UserPO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name = "username", unique = true)
 	private String username;
 	private String password;
-	private String avater;
+	private String avatar;
 	private String name;
 	private String email;
 	private String mobile;
@@ -112,12 +114,12 @@ public class UserPO {
 		this.lastLogin = lastLogin;
 	}
 
-	public String getAvater() {
-		return avater;
+	public String getAvatar() {
+		return avatar;
 	}
 
-	public void setAvater(String avater) {
-		this.avater = avater;
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public Date getUpdated() {
