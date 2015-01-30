@@ -41,3 +41,5 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 ## 实际应用站点
 http://mtons.com
+
+QQ交流群：378433412
