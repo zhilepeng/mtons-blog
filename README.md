@@ -1,6 +1,6 @@
 #Mblog
 
-> mblog 是一个用Java实现的多人博客, 使用 mysql 数据库.
+> mblog(mini blog) 是一个用Java实现的多人博客, 使用 mysql 数据库.
 
 ##使用的框架：
 * Bootstrap 3
@@ -41,3 +41,5 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 ## 实际应用站点
 http://mtons.com
+
+QQ交流群：378433412
