@@ -138,7 +138,7 @@ function chatPost() {
 		success: function(ret){
 			if(ret){
 				alert(ret.message);
-				
+				$('#chat_text').val('');
 				if (ret.code >= 0) {
 					chatLoad(1);
 				}
