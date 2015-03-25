@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<meta charset="utf-8" />
+
+<meta name="Robots" content="all" />
+
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+<meta name="thumbnail" content="https://global.bunkr.me/img/website/home/bunkr-home-thumbnail.jpg" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="application-name" content="Bunkr" />
+<link rel="apple-touch-icon" href="https://global.bunkr.me/icon-bunkr.png" />
+<title>Mtons.com</title>
+<!-- v3 -->
+
+<link rel="stylesheet" href="./dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./dist/css/first.css">
+
+</head>
+<body class="default">
+	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+	
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button id="main_nav_btn" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo" href="http://www.mtons.com"><img src="http://mtons.com/dist/images/logo/m.png"></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/browse/gallery" class="highlight">走廊</a></li>
+					<li><a href="/browse/explore" class="highlight">发现</a></li>
+					<li><a href="/reg" class="highlight">注册</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<section class="hero-unit">
+		<div class="vegas-overlay" style="opacity: 0.4; margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url(http://surfmandu.com/demo/slidefolio/img/overlay.png);"></div>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0  signupForm">
+					<h2 class="fontlato">Mtons, 轻松分享你的兴趣</h2>
+					<form action="https://www.bunkr.me/en/signup" method="post"
+						id="signupform">
+						<input type="hidden" name="source" value="Homepage Main">
+						<fieldset>
+							<div class="signup-form-block">
+								<div class="row">
+									<div class="col-md-4 col-sm-4 ">
+										<input type="text" placeholder="Email"
+											class="form-control input-lg input-bigger" name="mail"
+											id="mail" value="" autofocus="">
+									</div>
+									<div class="col-md-4 col-sm-4 ">
+										<input type="password" placeholder="Password"
+											class="form-control input-lg input-bigger" name="password"
+											id="password" value="">
+										<div id="password_icon" class="checkpswd"></div>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<button type="submit" id="validation"
+											class="btn btn-lg btn-block btn-success btn-uppercase btn-bigger">登录 Use it</button>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<a class="getmore" href="#footer">
+			<span class="icon-bar icon-bar-left"></span>
+			<span class="icon-bar icon-bar-right"></span>
+		</a>
+	</section>
+	<footer id="footer">
+		<div class="container">
+			<div class="row copyright">
+				<div class="col-md-12 col-sm-12">
+					<div class="row">
+						<div class="col-md-4 col-sm-5">Copyright 2014 Bunkr. All rights reserved.</div>
+						<div class="col-md-6 col-sm-5">
+							<a href="https://www.bunkr.me/en/terms">Terms &amp; Conditions</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- JavaScript -->
+	<script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+	<script type="text/javascript" src="./dist/js/bootstrap.min.js"></script>
+	<script>
+	$(function() {
+		$("#main_nav_btn").on("click",function(){return $(".navbar").toggleClass("navbar-default")})
+	})
+	</script>
+</body>
+</html>

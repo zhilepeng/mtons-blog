@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Mtons.com</title>
+
+<link rel="stylesheet" href="./dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./dist/css/style.css">
+<link rel="stylesheet" href="./dist/css/layout.css">
+
+<!-- JavaScript -->
+<script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="./dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo" href="#"><img
+					src="http://mtons.com/dist/images/logo/m.png"></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/home">我的首页</a></li>
+					<li><a href="/browse/explore">发现</a></li>
+					<li><a href="/browse/gallery">走廊</a></li>
+
+					<li><a href="/account/profile" class="ava" title="settings">
+							<img class="img-circle"
+							src="http://mtons.com/store/ava/1/0/0/100.jpg">
+					</a></li>
+					<li><a href="/logout" class="btn btn-link logout"
+						title="Sign out"> <span class="fa fa-power-off"></span>
+					</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" method="get"
+					action="/browse/search">
+					<input type="text" class="form-control" name="q"
+						placeholder="搜索...">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<section class="site-main container">
+
+		<div class="sidebar-left">
+			<div class="posts-head">
+				<div class="ava">
+					<img src="http://mtons.com/store/ava/1/0/0/100.jpg" />
+				</div>
+				<div class="author-info">
+					<h1>每一种创伤都是一种成熟</h1>
+					<div class="author_icon">
+						<span><a href="/user/1" title="查看TA的主页"> 愤怒的土豆 </a></span>
+					</div>
+				</div>
+			</div>
+			<div class="posts">
+				<article class="loop clearfix">
+					<section class="loop-content">
+						<div class="entry">
+							<div class="single-post-media">
+								<img src="http://mtons.com/store/orig/2015/0114/14162523tufi.jpg" style="display: block;">
+							</div>
+							<!-- .post-thumbnail -->
+							<div class="zan-outline">
+								<p>每一种创伤都是一种成熟，它使人思索，使人更懂珍惜。如果一个人没有品过苦，就难以知道甜的滋味。勇敢的面对苦难，乐观的克服苦难，也是一种修行。</p>
+
+							</div>
+						</div>
+						<div class="post-meta">
+							<div class="post-like">
+								<span><a href="javascript:void(0)" data-evt="heart"
+									data-id="82" class="btn btn-primary">喜欢</a></span>
+							</div>
+							<span><i class="fa fa-calendar-o"></i>&nbsp;2015-01-14</span>
+						</div>
+					</section>
+
+					<!-- 大型设备文章显示结束 -->
+				</article>
+			</div>
+			<!-- post/end -->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i class="fa fa-comments fa-fw"></i> 评论 (<i id="chat_count">0</i>)
+				</div>
+				<div class="panel-body">
+					<ul class="chat" id="chat_container">
+						<li><p>空空如也, 快来占沙发吧!</p></li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<div class="input-group">
+						<input id="chat_text" type="text" class="form-control input-sm"
+							placeholder="在这写点什么吧..."> <span class="input-group-btn">
+							<button class="btn btn-warning btn-sm" id="btn-chat">发送</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- content/end -->
+
+		<div class="sidebar-right">
+			<div class="list-group">
+				<a href="#" class="list-group-item"><i
+					class="glyphicon glyphicon-home"></i> 首页</a> <a href="#"
+					class="list-group-item">分类演示</a> <a href="#"
+					class="list-group-item">存档文档</a>
+			</div>
+
+			<div class="sidebox sidebar-social-icon">
+				<img
+					src="http://demo.suxing.me/wp-content/uploads/2014/11/erweima.png"
+					class="weixin" width="100%" height="auto">
+				<ul class="sidebar-social">
+					<li class="sidebar-social-icons"><a class="weibo hint--bottom"
+						data-hint="微博" href=""></a></li>
+					<li class="sidebar-social-icons"><a class="qq hint--bottom"
+						data-hint="QQ" href="" target="_blank" rel="nofollow"></a></li>
+					<li class="sidebar-social-icons"><a class="rss hint--bottom"
+						data-hint="订阅" href=""></a></li>
+				</ul>
+			</div>
+
+		</div>
+		<!-- right/end -->
+	</section>
+</body>
+</html>
