@@ -42,23 +42,36 @@
 					src="http://mtons.com/dist/images/logo/m.png"></a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav">
 					<li><a href="/home">我的首页</a></li>
 					<li><a href="/browse/explore">发现</a></li>
 					<li><a href="/browse/gallery">走廊</a></li>
-
-					<li><a href="/account/profile" class="ava" title="settings">
-							<img class="img-circle" src="http://mtons.com/store/ava/1/0/0/100.jpg">
-					</a></li>
-					<li><a href="/logout" class="btn btn-link logout"
-						title="Sign out"> <span class="fa fa-power-off"></span>
-					</a></li>
 				</ul>
-				<form class="navbar-form navbar-right" method="get"
-					action="/browse/search">
-					<input type="text" class="form-control" name="q"
-						placeholder="搜索...">
-				</form>
+				
+				<div class="navbar-left">
+					<form class="navbar-form" method="get"
+						action="/browse/search">
+						<input type="text" class="form-control" name="q"
+							placeholder="搜索...">
+					</form>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
+							<img class="img-circle" src="http://mtons.com/store/ava/1/0/0/100.jpg">
+						</a>
+						<ul class="dropdown-menu" role="menu">
+			                <li>
+			                	<a href="/account/profile" class="ava">
+			                		<img class="img-circle" src="http://mtons.com/store/ava/1/0/0/100.jpg">
+			                		<span>admin</span>
+			                	</a>
+			               	</li>
+			                <li class="divider"></li>
+			                <li><a href="/logout">退出</a></li>
+			              </ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -140,15 +153,59 @@
 					</div>
 				</article>
 				<!-- 文章显示结束 -->
+
+
+			</div>
+
+			<div class="text-center clr">
+
+				<ul class="pagination">
+
+					<li class="active"><a href="javascript:void(0);"><span>1</span></a></li>
+					<li><a href="home?pn=2">2</a></li>
+					<li><a href="home?pn=3">3</a></li>
+
+					<li><a href="home?pn=2" pageNo="2">></a></li>
+				</ul>
 			</div>
 		</div>
 
 		<div class="sidebar-right bounceInRight animated">
+
 			<div class="list-group">
 				<a href="#" class="list-group-item"><i
 					class="glyphicon glyphicon-home"></i> 首页</a> <a href="#"
 					class="list-group-item">分类演示</a> <a href="#"
 					class="list-group-item">存档文档</a>
+			</div>
+			<!-- #secondary -->
+
+			<div id="sidebox" class="sidebox">
+				<div id="tab-title">
+					<span class="selected"><i class="icon-arrows-cw"></i>最热文章</span> <span><i
+						class="icon-clock"></i>最新发布</span>
+				</div>
+				<div id="tab-content">
+					<div>
+						<ul id="hots" class="tab_post_links">
+							<li><a href="/browse/detail/92" class="tab_post_title"><span
+									class="post_i">1</span>bong2</a>
+							<div class="clear"></div></li>
+							<li><a href="/browse/detail/92" class="tab_post_title"><span
+									class="post_i">1</span>bong2</a>
+							<div class="clear"></div></li>
+						</ul>
+					</div>
+					<div style="display: none;">
+						<ul id="recents" class="tab_post_links">
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="sidebox sidebar-social-icon">
+				<img src="./dist/images/erweima.png" class="weixin" width="100%"
+					height="auto">
 			</div>
 		</div>
 
@@ -191,5 +248,6 @@
 		</div>
 	</footer>
 	<a href="#" class="site-scroll-top"></a>
+
 </body>
 </html>
