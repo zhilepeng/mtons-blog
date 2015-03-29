@@ -23,7 +23,7 @@
 <div class="sidebar-left">
     <div class="posts">
     	#foreach($row in $page.results)
-    	<article class="loop clearfix">
+    	<article class="loop shadow-box clearfix">
     		<section class="loop-content">
     			#if($row.title)
     			<header>

@@ -11,20 +11,20 @@ $user.username
 #macro(showmb $row)
 	#if($row.type == 'image' && ${row.snapshot.preview})
 		<div class="col-md-5">
-			<figure class="thumbnail zan-thumb">
+			<figure class="loop-thumb">
 				<a href="$base/browse/detail/${row.id}">
 					<img src="$base/dist/images/spinner.gif" data-original="$base${row.snapshot.preview}"/>
 				</a>
 			</figure>  
 		</div>        
-		<div class="col-md-7 zan-outline">
-			<div class="loop-entry-excerpt entry clr">
+		<div class="col-md-7 loop-outline">
+			<div class="entry">
 				$!{row.summary}
 			</div>
 		</div>
 	#else
 		<div class="col-md-12">
-			<div class="loop-entry-excerpt entry clr">
+			<div class="entry">
 				$!{row.summary}
 			</div>
 		</div>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Mtons.com</title>
+
+<link rel="stylesheet" href="./dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="./dist/css/style.css">
+<link rel="stylesheet" href="./dist/css/layout.css">
+
+<!-- JavaScript -->
+<script type="text/javascript" src="./dist/js/jquery.min.js"></script>
+<script type="text/javascript" src="./dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo" href="#"><img
+					src="http://mtons.com/dist/images/logo/m.png"></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/home">我的首页</a></li>
+					<li><a href="/browse/explore">发现</a></li>
+					<li><a href="/browse/gallery">走廊</a></li>
+
+					<li><a href="/account/profile" class="ava" title="settings">
+							<img class="img-circle"
+							src="http://mtons.com/store/ava/1/0/0/100.jpg">
+					</a></li>
+					<li><a href="/logout" class="btn btn-link logout"
+						title="Sign out"> <span class="fa fa-power-off"></span>
+					</a></li>
+				</ul>
+				<form class="navbar-form navbar-right" method="get"
+					action="/browse/search">
+					<input type="text" class="form-control" name="q"
+						placeholder="搜索...">
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<section class="site-main container">
+
+		<div class="sidebar-left">
+			<div class="shadow-box">
+				<h1 class="m-h1">李彦宏主持与盖茨、马斯克的博鳌早餐会，从成功学谈到人工智能、从治国之道谈到无人驾驶</h1>
+				<div class="clearfix post-other">
+					<span class="pull-left author"> <a class="author-name"
+						href="#" target="_blank">作者</a>
+					</span>
+					<time class="pull-left time">2015-03-29 11:05</time>
+					<ul class="pull-left list-inline tag-box">
+						<li><a href="#" target="_blank">李彦宏</a></li>
+					</ul>
+					<span class="pull-right action-box"> </span>
+				</div>
+				<div class="post-frame">
+					<div class="single-post-media">
+						<img src="http://mtons.com/store/orig/2015/0114/14162523tufi.jpg"
+							style="display: block;">
+					</div>
+					<div class="post-content">
+						<p>
+							<span class="text-hxzhu" label="虎嗅注">虎嗅注</span><span
+								class="text-remarks" label="备注">：今天早上，百度CEO李彦宏在博鳌主持了一场与微软CEO盖茨（Bill
+								Gates）、特斯拉CEO马斯克（Elon
+								Musk）的早餐会，三个人讨论了一番科技发展、人工智能和成功学，虎嗅君按照李彦宏君的主持节奏对谈话内容进行简单梳理：</span>
+						</p>
+						<p>
+							<br>
+						</p>
+						<p>李彦宏：大家上午好！我是百度创始人兼CEO李彦宏。比尔·盖茨先生是比尔和梅琳达·盖茨基金会（Bill &amp;
+							Melinda Gates Foundation）联席主席。左边是Elon
+							Musk先生，特斯拉的CEO和CTO，我们以热烈的掌声欢迎二位！</p>
+						<p>
+							<br>
+						</p>
+						<p>大概两个礼拜之前，我答应要担任这个阶段主持人的时候，我在百度贴吧上面贴了一条信息，收集大家的问题，发现在百度贴吧上有五百多个问题提交上来。我想在这里面选两个问题提给两位，每人问一个。</p>
+						<p>
+							<br>
+						</p>
+						<p label="大标题" class="text-big-title">早餐鸡汤：大佬们的成功学</p>
+						<p>
+							<br>
+						</p>
+						<p>请问比尔·盖茨，有一个非常有雄心的人这样说：我是一个年轻人，我希望能够超越你成为世界上最为富有的人。我需要用什么样具体的资质，您给我什么建议？</p>
+					</div>
+				</div>
+			</div>
+			<!-- post/end -->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<i class="fa fa-comments fa-fw"></i> 评论 (<i id="chat_count">0</i>)
+				</div>
+				<div class="panel-body">
+					<ul class="chat" id="chat_container">
+						<li><p>空空如也, 快来占沙发吧!</p></li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<div class="input-group">
+						<input id="chat_text" type="text" class="form-control input-sm"
+							placeholder="在这写点什么吧..."> <span class="input-group-btn">
+							<button class="btn btn-warning btn-sm" id="btn-chat">发送</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- content/end -->
+
+		<div class="sidebar-right">
+			<div class="list-group">
+				<a href="#" class="list-group-item"><i
+					class="glyphicon glyphicon-home"></i> 首页</a> <a href="#"
+					class="list-group-item">分类演示</a> <a href="#"
+					class="list-group-item">存档文档</a>
+			</div>
+
+			<div class="sidebox sidebar-social-icon">
+				<img
+					src="http://demo.suxing.me/wp-content/uploads/2014/11/erweima.png"
+					class="weixin" width="100%" height="auto">
+			</div>
+
+		</div>
+		<!-- right/end -->
+	</section>
+</body>
+</html>
