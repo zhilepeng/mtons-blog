@@ -23,11 +23,11 @@ import mblog.core.service.AttachService;
 import mblog.core.service.PostService;
 import mblog.core.service.TagService;
 import mblog.core.utils.BeanMapUtils;
+import mblog.core.utils.PreviewTextUtils;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Page;
 import mtons.modules.pojos.UserContextHolder;
 import mtons.modules.pojos.UserProfile;
-import mtons.modules.utils.PreviewHtmlUtils;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -308,7 +308,7 @@ public class PostServiceImpl implements PostService {
      * @return
      */
     private String trimSummary(String text){
-        return PreviewHtmlUtils.truncateHTML(text, 126);
+        return PreviewTextUtils.truncateText(text, 126);
     }
 
 }
