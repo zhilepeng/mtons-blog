@@ -1,6 +1,6 @@
 #Mblog
 
-> mblog(mini blog) 是一个用Java实现的多人博客, 使用 mysql 数据库.
+> mblog 是一个简单的内容分享社区, 使用 mysql 数据库.
 
 ##使用的框架：
 * Bootstrap 3
