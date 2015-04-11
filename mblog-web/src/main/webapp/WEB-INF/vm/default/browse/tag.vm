@@ -4,7 +4,9 @@
 <div class="col-xs-12 col-md-9 side-left">
 	<div class="shadow-box">
 		<div class="filter">
-    		<i class="fa fa-tag fa-lg"></i> $!{tag}
+			<div class="alert" style="margin-bottom:0">
+    		    <i class="fa fa-tag fa-lg"></i> $!{tag}
+    		</div>
     	</div>
         <div class="stream-list">
         	#foreach($row in $page.results)
@@ -18,13 +20,11 @@
 			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
 			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
 			    	<div class="foot-block clearfix">
-						<!--
-			    		<ul class="tags">
+						<ul class="tags">
 			    			<li>
-			    				<a class="tag tag-sm" href="#">javascript</a>
+			    				<!--<a class="tag tag-sm" href="#">javascript</a>-->
 							</li>
 			    		</ul>
-						-->
 			    		<div class="pull-right hidden-xs">
 							<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
 							<span>评论(${row.comments})</span>

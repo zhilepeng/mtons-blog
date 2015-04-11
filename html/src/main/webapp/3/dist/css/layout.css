@@ -8,7 +8,7 @@
 /* header */
 .top-wrap {position: relative;}
 
-.logo { float: left; padding: 5px 8px 8px 0; font-size: 18px; line-height: 20px; height: 50px; }
+.logo { float: left; padding: 5px 8px 8px 15px; font-size: 18px; line-height: 20px; height: 50px; }
 .logo img { width: 40px; height: 40px; }
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
@@ -19,8 +19,8 @@
 
 /* main */
 .wrap { padding-bottom: 30px; position: relative;}
-.main { margin: 0 15px;}
-.side-left {padding: 0 15px;}
+.main { margin: 0;}
+.side-left {}
 .side-right {padding:0; }
 
 /* footer */
@@ -43,3 +43,33 @@ footer .footer-nav  ul li { border-right: 1px solid #26292e; padding: 0; float: 
 footer .footer-nav  ul li:first-child { border-left: 1px solid #26292e; }
 footer .footer-nav  ul li:hover { background-color: #3a3e47; }
 footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 14px; }
+
+
+/* Tablet (Portrait)
+================================================== */
+@media only screen and (min-width: 768px) and (max-width: 959px) { 
+	/*grids*/
+	.masonry-grid .masonry-entry.span_1_of_3,
+	.masonry-grid .masonry-entry.span_1_of_4 { width: 47.6% }
+	
+	.site-content {width: 100%; max-width: 100%;}
+}
+/* Mobile (Portrait & Landscape)
+================================================== */
+@media only screen and (max-width: 767px) { 
+	.col { width: 100%; margin-left: 0; margin-bottom: 25px; }
+	.masonry-grid { margin-left: 0; margin-right: 0; }
+	.masonry-entry { width: 47.5% !important; margin-bottom: 25px !important; }
+}
+/* Mobile (Landscape)
+================================================== */
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+	.masonry-grid { max-width: 480px; width: 80% !important; margin-left: auto; margin-right: auto; }
+	.masonry-entry { width:100% !important; }
+	
+}
+/* Mobile (Portrait only)
+================================================== */
+@media only screen and (max-width: 479px) {
+	.masonry-entry { width: 100% !important; margin-bottom: 25px !important; }
+}

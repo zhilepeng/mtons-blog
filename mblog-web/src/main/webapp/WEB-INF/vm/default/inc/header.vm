@@ -25,7 +25,7 @@
     					<a href="$base/browse/gallery">走廊</a>
     				</li>
     			</ul>
-    			<div class="search-box navbar-left">
+    			<div class="search-box navbar-left hidden-xs">
     				<form class="navbar-form" method="get" action="$base/browse/search">
     					<input type="text" class="form-control" name="q" placeholder="搜索...">
 						<span class="search-btn"><i class="fa fa-search"></i></span>

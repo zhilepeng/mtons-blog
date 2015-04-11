@@ -34,13 +34,11 @@
             			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
             			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
             			    	<div class="foot-block clearfix">
-            						<!--
-            			    		<ul class="tags">
+            						<ul class="tags">
             			    			<li>
-            			    				<a class="tag tag-sm" href="#">javascript</a>
+            			    				<!--<a class="tag tag-sm" href="#">javascript</a>-->
             							</li>
             			    		</ul>
-            						-->
             			    		<div class="pull-right hidden-xs">
 										<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
             			    			<span><a href="javascript:void(0);" onclick="onHeart('${row.id}')" data-id="${row.id}">喜欢&nbsp;(${row.hearts})</a></span>
