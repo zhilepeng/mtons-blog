@@ -18,12 +18,14 @@
             onLoadHot : function (i, data) {}
         },
         bindEvents : function () {
+        	/*
         	$('#tab-title > span').on('click', function() {
         		if (!$(this).hasClass('selected')) {
         			$(this).addClass('selected').siblings().removeClass('selected');
         			$("#tab-content > div").eq($('#tab-title span').index(this)).show().siblings().hide();
         		}
         	});
+        	*/
         },
         
         onLoad : function () {

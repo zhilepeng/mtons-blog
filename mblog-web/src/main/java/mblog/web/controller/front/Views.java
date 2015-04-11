@@ -22,8 +22,8 @@ public interface Views {
 	String ACCOUNT_PASSWORD = "/account/password";
 	String ACCOUNT_PROFILE = "/account/profile";
 	
-	String BLOG_POST = "/blog/post_";
-	String BLOG_UPLOAD = "/blog/upload";
+	String BLOG_POST = "/post/post_";
+	String BLOG_UPLOAD = "/post/upload";
 	
 	String BROWSE_EXPLORE = "/browse/explore";
 	String BROWSE_TAG = "/browse/tag";

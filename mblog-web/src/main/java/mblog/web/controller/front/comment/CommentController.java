@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.HtmlUtils;
 
 /**
  * @author langhsu
@@ -39,7 +40,7 @@ public class CommentController extends BaseController {
 		if (toId > 0 && StringUtils.isNotEmpty(text)) {
 			Comment c = new Comment();
 			c.setToId(toId);
-			c.setContent(text);
+			c.setContent(HtmlUtils.htmlEscape(text));
 			commentService.post(c);
 			data = Data.success("发表成功!");
 		}

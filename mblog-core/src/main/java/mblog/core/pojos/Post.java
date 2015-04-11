@@ -19,7 +19,6 @@ public class Post implements Serializable {
 	private String title;
 	private String summary;
 	private String content;
-	private String markdown;
 	private String tags;
 	private Attach snapshot;
 	private Date created;
@@ -160,14 +159,6 @@ public class Post implements Serializable {
 
 	public void setViews(int views) {
 		this.views = views;
-	}
-
-	public String getMarkdown() {
-		return markdown;
-	}
-
-	public void setMarkdown(String markdown) {
-		this.markdown = markdown;
 	}
 
 }

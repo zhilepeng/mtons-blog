@@ -2,44 +2,31 @@
 #set($tags=$!{ret.tags})
 #set($layout = "/default/layout/seo.vm")
 
-<div class="sidebar-left">
-	<div class="posts-head">
-		<div class="ava">
-			<img src="$base${ret.author.avatar}"/>
+<div class="col-xs-12 col-md-9 side-left">
+    <div class="shadow-box">
+		<h1 class="post-title">$!{ret.title}</h1>
+		<div class="clearfix post-other">
+			<span class="pull-left author">
+				<a class="author-name" href="$base/user/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
+			</span>
+			<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
+			<ul class="pull-left list-inline tag-box">
+				<li>$!{ret.tags}</li>
+			</ul>
+			<span class="pull-right action-box"> </span>
 		</div>
-		<div class="author-info">
-			<h1>$!{ret.title}</h1>
-			<div class="author_icon">
-				<span><a href="$base/user/${ret.author.id}" title="查看TA的主页">#showName(${ret.author})</a></span>
-				<span><i class="fa fa-calendar-o"></i>&nbsp;$date.format('yyyy-MM-dd', $ret.created)</span>
+		<div class="post-frame">
+			#if($ret.albums)
+    			#foreach($row in $ret.albums)
+    				<div class="single-post-media">
+    					<img src="$base/dist/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
+    				</div><!-- .post-thumbnail -->	
+    			#end
+    		#end
+			<div class="post-content">
+				${ret.content}
 			</div>
 		</div>
-	</div>
-	<div class="posts">
-		<article class="loop clearfix">
-			<section class="loop-content">
-				<div class="entry">
-					#if($ret.albums)
-    					#foreach($row in $ret.albums)
-    					<div class="single-post-media">
-    						<img src="$base/dist/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
-    					</div><!-- .post-thumbnail -->	
-    					#end
-    				#end
-					<div class="zan-outline">
-						${ret.content}
-					</div>
-				</div>
-				<div class="post-meta">
-					<div class="post-like">
-						<span><a href="javascript:void(0)" data-evt="heart" data-id="${ret.id}" class="btn btn-primary">喜欢</a></span>
-					</div>
-					
-				</div>
-			</section>
-			
-			<!-- 大型设备文章显示结束 -->
-		</article>
 	</div>
 	<!-- post/end -->
 	
@@ -61,8 +48,8 @@
 	</div>
 </div>
 
-<div class="sidebar-right bounceInRight animated">
-	#parse("/default/inc/right/public.vm")
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+	#parse("/default/inc/right.vm")
 </div>
 
 <script type="text/plain" id="chat">

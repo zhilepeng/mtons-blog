@@ -1,34 +1,27 @@
 #set($layout="default/layout/noop.vm")
 
 #foreach($row in $page.results)
-<article class="loop masonry-entry span_1_of_3 col ">
+<div class="shadow-box g-item span_1_of_3 col">
 	#if($row.type == 'image' && ${row.snapshot.preview})
-	<figure class="loop-entry-thumbnail">
+	<div class="g-thumb">
 		<a href="$base/browse/detail/${row.id}">
-			<img src="$base${row.snapshot.preview}"/>
+			<img src="$base${row.snapshot.preview}">
 		</a>
-	</figure>
+	</div>
 	#end
-	<!-- .post-entry-thumbnail -->
-	<div class="loop-outline">
-		#if($row.title)
-		<header>
-			<h4 class="loop-entry-title"">
-				<a href="$base/browse/detail/${row.id}">${row.title}</a>
-			</h4>
-		</header>
-		#end
-		${row.summary}
+	<h3 class="title">
+		<a href="$base/browse/detail/${row.id}">${row.title}</a>
+	</h3>
+	<div class="g-outline">
+		<p>${row.summary}</p>
 	</div>
-	<!-- .loop-entry-content -->
-	<div class="loop-meta">
-		<span><a href="$base/user/${row.author.id}">#showName(${row.author})</a></span>
-		<span>评论&nbsp;(${row.comments})</span>
-		<div class="pull-right">
-			<span><a href="javascript:void(0)" onclick="onHeart('${row.id}')">喜欢&nbsp;(${row.hearts})</a></span>
+	
+	<div class="g-btm">
+		<div class="pull-left">
+			<span class="author">#showName(${row.author})</span>
+			<time class="time">$date.format('yyyy-MM-dd', $row.created)</time>
 		</div>
+		<a class="cmt pull-right" href="javascript:void(0)" onclick="onHeart('${row.id}')">喜欢&nbsp;(${row.hearts})</a>
 	</div>
-	<!-- .loop-entry-meta -->
-</article>
-<!-- .loop-entry -->
+</div>
 #end

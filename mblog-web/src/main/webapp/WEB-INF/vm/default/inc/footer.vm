@@ -1,11 +1,11 @@
-<footer id="footer">
-	<div class="container">
-		#parse("/default/inc/links.vm")
-		<hr>
-		<div class="row footer-bottom">
-			<ul class="list-inline text-center">
-                <li>©2014 Mtons</li>
-				<li>京ICP备13042759号</li>
+<footer>
+	<div class="footer-nav">
+		<div class="container">
+			<ul class="about-ul list-inline clearfix">
+				<li><a href="#" target="_blank">关于我们</a></li>
+				<li><a href="#" target="_blank">加入我们</a></li>
+				<li><a href="#" target="_blank">广告及服务</a></li>
+				<li><a href="#" target="_blank">常见问题解答</a></li>
                 <li>
 					<script type="text/javascript">
 						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -13,7 +13,11 @@
         			</script>
 				</li>
 			</ul>
-			
 		</div>
+	</div>
+	<div class="container copy-right">
+		<span>Copyright © <a href="#">Mtons</a> （<a
+			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+		</span>
 	</div>
 </footer>

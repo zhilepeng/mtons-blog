@@ -1,62 +1,61 @@
 #set($title = "首页")
 
-<style>
-.overlay {
-	margin: 0px; 
-	padding: 0px; 
-	position: fixed; 
-	left: 0px; 
-	top: 0px; 
-	width: 100%; 
-	height: 100%; 
-	background-image: url("./dist/images/first/portrait2.jpg");
-    background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    background-position: center;
-	z-index: -1;
-}
-</style>
-<div class="overlay" style=""></div>
-<div class="sidebar-left">
-    <div class="posts">
-    	#foreach($row in $page.results)
-    	<article class="loop shadow-box clearfix">
-    		<section class="loop-content">
-    			#if($row.title)
-    			<header>
-    				<h3 class="loop-title">
-    					<a href="$base/browse/detail/${row.id}">${row.title}</a>
-    				</h3>
-    			</header>
-    			#end
-    			<div class="row">
-    				#showmb($row)
-    			</div>
-            </section>
-    		
-    		<div class="loop-meta">
-				<span><a href="$base/user/${row.author.id}"><i class="fa fa-user"></i>&nbsp;#showName(${row.author})</a></span>
-    			<span class="hidden-xs"><i class="fa fa-calendar-o"></i>&nbsp;$date.format('yyyy-MM-dd', $row.created)</span>
-    			<span>喜欢&nbsp;(${row.hearts})</span>
-    			<span>评论&nbsp;(${row.comments})</span>
-    			<div class="pull-right">
-    				<span><a href="$base/browse/detail/${row.id}">阅读全文<i class="fa fa-send-o"></i></a></span>
-    			</div>
-    		</div>
-        </article>
-    	<!-- 文章显示结束 -->
-    	#end
-    </div>
-    		
-    <div class="text-center clr">
-    	#page("index" $page 5)
-    </div>
+<!-- left -->
+<div class="col-xs-12 col-md-9 side-left">
+    <div class="shadow-box">
+		<!-- tab -->
+		<div class="filter">
+			<ul class="">
+           		<li><a class="active" href="/blogs">推荐的</a></li>
+            	<li><a href="/blogs/newest">全部的</a></li>
+            	<li><a href="/blogs/hottest">热门的</a></li>
+        	</ul>
+		</div>
+		<!-- tab end -->
+		<!-- tab panes -->
+        <div class="stream-list">
+			#foreach($row in $page.results)
+        	<div class="stream-item" id="loop-${row.id}">
+        		<div class="blog-rank">
+					<div class="user" title="${row.author.name}">
+			            <img class="img-circle" src="$base${row.author.avatar}">
+			        </div>
+			    </div>
+			    <div class="summary">
+			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
+			    	<div class="foot-block clearfix">
+						<!--
+			    		<ul class="tags">
+			    			<li>
+			    				<a class="tag tag-sm" href="#">javascript</a>
+							</li>
+			    		</ul>
+						-->
+			    		<div class="pull-right hidden-xs">
+							<span>浏览(${row.views})</span>
+							<span>评论(${row.comments})</span>
+			    		</div>
+			    	</div>
+			    </div>
+        	</div>
+			#end
+			
+			#if($page.results.size() == 0)
+    		<div class="stream-item">
+    				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
+            </div>
+			#end
+			
+		</div>
+		
+		<div class="text-center clr">
+        	#page("home" $page 5)
+        </div>
+	</div>
 </div>
 
-<div class="sidebar-right bounceInRight animated">
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
 	<!--
 	<div class="search">
 		<form class="form-inline clearfix" method="get" id="searchform" action="$base/browse/search">
@@ -69,5 +68,5 @@
 		</form>
 	</div>
 	-->
-	#parse("/default/inc/right/public.vm")
+	#parse("/default/inc/right.vm")
 </div>

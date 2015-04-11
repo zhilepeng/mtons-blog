@@ -1,51 +1,65 @@
 #set($title = "Home")
 
-<div class="sidebar-left">
-    <div class="posts">
-    	#foreach($row in $page.results)
-    	<article id="loop-${row.id}" class="loop clearfix">
-    		<section class="loop-content">
-    			#if($row.title)
-    			<header>
-    				<h3 class="loop-title">
-    					<a href="$base/browse/detail/${row.id}">${row.title}</a>
-    				</h3>
-    			</header>
-    			#end
-    			<div class="row">
-    				#showmb($row)
-    			</div>
-            </section>
-    		
-    		<div class="loop-meta">
-    			<span><i class="fa fa-calendar-o"></i>&nbsp;$date.format('yyyy-MM-dd', $row.created)</span>
-    			<span>喜欢&nbsp;(${row.hearts})</span>
-    			<span>评论&nbsp;(${row.comments})</span>
-    			<div class="pull-right">
-					<span><a href="javascript:void(0);" data-evt="trash" data-id="${row.id}" class="trash"><i class="fa fa-trash-o"></i>&nbsp;删除</a></span>
-    			</div>
-    		</div>
-        </article>
-    	<!-- 文章显示结束 -->
-		#end
+<!-- left -->
+<div class="col-xs-12 col-md-9 side-left">
+	<div class="shadow-box">
+		<!-- tab -->
+		<div class="filter">
+			<ul class="">
+           		<li><a class="active" href="/blogs">推荐的</a></li>
+            	<li><a href="/blogs/newest">全部的</a></li>
+            	<li><a href="/blogs/hottest">热门的</a></li>
+        	</ul>
+		</div>
+		<!-- tab end -->
+		<!-- tab panes -->
+        <div class="stream-list">
+			#foreach($row in $page.results)
+        	<div class="stream-item" id="loop-${row.id}">
+        		<div class="blog-rank">
+			        <div class="votes">
+			            ${row.hearts}<small>推荐</small>
+			        </div>
+			        <div class="views hidden-xs">
+			            ${row.comments}<small>评论</small>
+			        </div>
+			    </div>
+			    <div class="summary">
+			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
+			    	<div class="foot-block clearfix">
+						<!--
+			    		<ul class="tags">
+			    			<li>
+			    				<a class="tag tag-sm" href="#">javascript</a>
+							</li>
+			    		</ul>
+						-->
+			    		<div class="pull-right hidden-xs">
+			    			<a href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
+			    		</div>
+			    	</div>
+			    </div>
+        	</div>
+			#end
+			
+			#if($page.results.size() == 0)
+    		<div class="stream-item">
+    				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
+            </div>
+			#end
+			
+		</div>
 		
-		#if($page.results.size() == 0)
-		<article class="loop clearfix">
-			<section class="loop-content">
-				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
-            </section>
-        </article>
-		#end
-		
-    </div>
-    		
-    <div class="text-center clr">
-    	#page("home" $page 5)
-    </div>
+		<div class="text-center clr">
+        	#page("home" $page 5)
+        </div>
+	</div>
 </div>
 
-<div class="sidebar-right bounceInRight animated">
-	#parse("/default/inc/right/my.vm")
+
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+	#parse("/default/inc/right.vm")
 </div>
 
 <script type="text/javascript">
