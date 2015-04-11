@@ -2,7 +2,7 @@
 
 <div id="blog-wrap" class="g-box masonry-grid">
 	#foreach($row in $page.results)
-	<div class="shadow-box g-item span_1_of_3 col">
+	<div class="shadow-box g-item span_1_of_3 col masonry-entry">
 		#if($row.type == 'image' && ${row.snapshot.preview})
     	<div class="g-thumb">
     		<a href="$base/browse/detail/${row.id}">

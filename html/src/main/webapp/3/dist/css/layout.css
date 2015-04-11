@@ -1,6 +1,10 @@
 /*.container */
-.container {width: 1010px; max-width: 90%;}
- 
+@media (min-width: 1200px) {
+	.container {
+	  width: 1010px;
+	}
+}
+
 /* header */
 .top-wrap {position: relative;}
 
@@ -15,7 +19,7 @@
 
 /* main */
 .wrap { padding-bottom: 30px; position: relative;}
-.main { margin: 0 15px; background-color: #fff; }
+.main { margin: 0 15px;}
 .side-left {padding: 0 15px;}
 .side-right {padding:0; }
 

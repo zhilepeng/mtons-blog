@@ -14,40 +14,60 @@
 	</div>
 </div>
 
-<section class="site-main container">
-	<div class="site-content">
-	    <div class="posts">
-        	#foreach($row in $page.results)
-        	<article id="loop-${row.id}" class="loop clearfix">
-        		<section class="loop-content">
-        			#if($row.title)
-        			<header>
-        				<h3 class="loop-title">
-        					<a href="$base/browse/detail/${row.id}">${row.title}</a>
-        				</h3>
-        			</header>
-        			#end
-        			<div class="row">
-        				#showmb($row)
-        			</div>
-                </section>
+<div class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="main clearfix">
+        	    <div class="shadow-box mt20">
+    				<div class="stream-list">
+                    	#foreach($row in $page.results)
+                    	<div class="stream-item" id="loop-${row.id}">
+                    		<div class="blog-rank">
+            			        <div class="votes">
+            			            ${row.hearts}<small>推荐</small>
+            			        </div>
+            			        <div class="views hidden-xs">
+            			            ${row.comments}<small>评论</small>
+            			        </div>
+            			    </div>
+            			    <div class="summary">
+            			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+            			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
+            			    	<div class="foot-block clearfix">
+            						<!--
+            			    		<ul class="tags">
+            			    			<li>
+            			    				<a class="tag tag-sm" href="#">javascript</a>
+            							</li>
+            			    		</ul>
+            						-->
+            			    		<div class="pull-right hidden-xs">
+            			    			<a href="javascript:void(0);" onclick="onHeart('${row.id}')" data-id="${row.id}">喜欢&nbsp;(${row.hearts})</a>
+            			    		</div>
+            			    	</div>
+            			    </div>
+                    	</div>
+            			#end
+    				</div>
+                </div>
         		
-        		<div class="loop-meta">
-        			<span><i class="fa fa-calendar-o"></i>&nbsp;$date.format('yyyy-MM-dd', $row.created)</span>
-        			<span><i class="fa fa-heart-o"></i>&nbsp;${row.hearts}</span>
-        			<span><i class="fa fa-comment-o"></i>&nbsp;${row.comments}</span>
-        			<div class="pull-right">
-        				<span><a href="$base/browse/detail/${row.id}">阅读全文<i class="fa fa-send-o"></i></a></span>
-    					
-        			</div>
-        		</div>
-            </article>
-        	<!-- 文章显示结束 -->
-        	#end
-        </div>
-        		
-        <div class="text-center clr">
-        	#page("$base/user/$!{user.id}" $page 5)
-        </div>
+                <div class="text-center clr">
+                	#page("$base/user/$!{user.id}" $page 5)
+                </div>
+			</div>
+		</div>
 	</div>
-</section>
+</div>
+
+<script type="text/javascript">
+
+function onHeart(id) {
+	if (parseInt(id) > 0) {
+		jQuery.getJSON('$base/blog/heart', {'id': id}, function (ret) {
+			alert(ret.message);
+			if (ret.code >=0) {
+			}
+		});
+	}
+}
+</script>

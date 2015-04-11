@@ -2,16 +2,31 @@
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">
-	<div class="shadow-box">
-		<!-- tab -->
-		<div class="filter">
-			<ul class="">
-           		<li><a class="active" href="/blogs">推荐的</a></li>
-            	<li><a href="/blogs/newest">全部的</a></li>
-            	<li><a href="/blogs/hottest">热门的</a></li>
-        	</ul>
+	<!-- tab -->
+	<div class="stream-head clearfix">
+		<div class="user-info">
+			<span class="avatar-80">
+				<img class="img-circle" src="$base${profile.avatar}">
+			</span>
 		</div>
-		<!-- tab end -->
+		<ul class="user-post">
+			<li>
+				<a href="$base/blog/post?type=text" class="act-icon">
+					<i class="fa fa-pencil-square"></i>
+					<span class="tip">写文章</span>
+				</a>
+			</li>
+			<li>
+				<a href="$base/blog/post?type=image" class="act-icon act-img">
+					<i class="fa fa-camera-retro"></i>
+					<span class="tip">发图片</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- tab end -->
+	
+	<div class="shadow-box">
 		<!-- tab panes -->
         <div class="stream-list">
 			#foreach($row in $page.results)
@@ -50,11 +65,10 @@
 			#end
 			
 		</div>
-		
-		<div class="text-center clr">
-        	#page("home" $page 5)
-        </div>
 	</div>
+	<div class="text-center clr">
+    	#page("home" $page 5)
+    </div>
 </div>
 
 

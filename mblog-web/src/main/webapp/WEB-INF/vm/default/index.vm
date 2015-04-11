@@ -48,11 +48,10 @@
 			#end
 			
 		</div>
-		
-		<div class="text-center clr">
-        	#page("home" $page 5)
-        </div>
 	</div>
+	<div class="text-center clr">
+    	#page("home" $page 5)
+    </div>
 </div>
 
 <div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">

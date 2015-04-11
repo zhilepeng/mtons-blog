@@ -1,6 +1,6 @@
 #set($title = "发现")
 
-<div class="posts">
+<!-- left -->
 	<ul class="tags_grid tags_effecs clearfix">
 	#foreach($row in $tags)
 		<li class="col-xs-6 col-sm-4 col-lg-3">
@@ -21,5 +21,4 @@
 		</li>
 	#end
 	</ul>
-</div>
     		
