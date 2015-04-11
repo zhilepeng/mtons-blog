@@ -3,7 +3,7 @@ body {  background-image: url("../images/noise.png");}
 /* common */
 
 img { height: auto; max-width: 100%; }
-a { text-decoration: none; }
+a { color: #000; text-decoration: none; }
 a:hover { text-decoration: none; }
 ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .mt20 { margin-top: 20px;}
@@ -38,6 +38,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-head .user-post .act-icon i { display: block; text-align: center; padding-top: 25px; font-size: 35px; }
 .stream-head .user-post .act-icon .tip { width: 60px; height: 16px; margin: 10px 0 0 38px; }
 .stream-head .user-post .act-img { color: #A576F7; }
+.stream-head .user-post .act-text { color: #5EBCF2; }
 
 .stream-list {margin-bottom: 10px;}
 .stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 10px; }

@@ -13,7 +13,7 @@ import mtons.modules.pojos.Page;
  *
  */
 public interface PostPlanet {
-	Page paging(Page page);
+	Page paging(Page page, String ord);
 	Page pagingByUserId(Page page, long uid);
 	Post getPost(long id);
 	void post(Post post);

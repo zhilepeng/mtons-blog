@@ -26,7 +26,7 @@
 			    		</ul>
 						-->
 			    		<div class="pull-right hidden-xs">
-							<span>浏览(${row.views})</span>
+							<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
 							<span>评论(${row.comments})</span>
 			    		</div>
 			    	</div>

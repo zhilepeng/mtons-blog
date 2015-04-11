@@ -11,7 +11,7 @@
 		</div>
 		<ul class="user-post">
 			<li>
-				<a href="$base/blog/post?type=text" class="act-icon">
+				<a href="$base/blog/post?type=text" class="act-icon act-text">
 					<i class="fa fa-pencil-square"></i>
 					<span class="tip">写文章</span>
 				</a>

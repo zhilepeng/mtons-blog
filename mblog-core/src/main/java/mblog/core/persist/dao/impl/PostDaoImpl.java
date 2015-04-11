@@ -31,8 +31,12 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 	}
 
 	@Override
-	public List<PostPO> paging(Page page) {
+	public List<PostPO> paging(Page page, String ord) {
 		PagingQuery<PostPO> q = pagingQuery(page);
+		
+		if ("hottest".equals(ord)) {
+			q.desc("views");
+		}
 		q.desc("created");
 		return q.list();
 	}

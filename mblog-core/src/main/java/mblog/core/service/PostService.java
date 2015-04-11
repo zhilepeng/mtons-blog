@@ -22,7 +22,7 @@ public interface PostService {
 	 * 分页查询所有文章
 	 * @param page
 	 */
-	void paging(Page page);
+	void paging(Page page, String ord);
 	
 	/**
 	 * 查询个人发布文章

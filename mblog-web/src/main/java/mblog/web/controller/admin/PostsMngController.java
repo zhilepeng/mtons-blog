@@ -31,7 +31,7 @@ public class PostsMngController extends BaseController {
 	@RequestMapping("/list")
 	public String list(Integer pn, ModelMap model) {
 		Page page = wrapPage(pn);
-		postService.paging(page);
+		postService.paging(page, "newest");
 		model.put("page", page);
 		return "/admin/posts/list";
 	}

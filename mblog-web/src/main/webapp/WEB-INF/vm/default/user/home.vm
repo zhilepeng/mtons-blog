@@ -42,7 +42,8 @@
             			    		</ul>
             						-->
             			    		<div class="pull-right hidden-xs">
-            			    			<a href="javascript:void(0);" onclick="onHeart('${row.id}')" data-id="${row.id}">喜欢&nbsp;(${row.hearts})</a>
+										<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
+            			    			<span><a href="javascript:void(0);" onclick="onHeart('${row.id}')" data-id="${row.id}">喜欢&nbsp;(${row.hearts})</a></span>
             			    		</div>
             			    	</div>
             			    </div>

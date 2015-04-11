@@ -31,7 +31,7 @@ public class GalleryController extends BaseController {
 	public String view(Integer pn, ModelMap model) {
 		Page page = wrapPage(pn);
 		page.setMaxResults(jsonMaxResults);
-		page = postPlanet.paging(page);
+		page = postPlanet.paging(page, "newest");
 		model.put("page", page);
 		return getView(Views.BROWSE_GALLERY);
 	}
@@ -40,7 +40,7 @@ public class GalleryController extends BaseController {
 	public String snippet(@PathVariable Integer pn, ModelMap model) {
 		Page page = wrapPage(pn);
 		page.setMaxResults(jsonMaxResults);
-		page = postPlanet.paging(page);
+		page = postPlanet.paging(page, "newest");
 		model.put("page", page);
 		return getView(Views.BROWSE_GALLERY_SNIPPET);
 	}

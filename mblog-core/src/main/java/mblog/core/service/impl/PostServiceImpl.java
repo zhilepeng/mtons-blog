@@ -62,8 +62,8 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public void paging(Page page) {
-		List<PostPO> list = postDao.paging(page);
+	public void paging(Page page, String ord) {
+		List<PostPO> list = postDao.paging(page, ord);
 		List<Post> rets = new ArrayList<Post>();
 		for (PostPO po : list) {
 			rets.add(BeanMapUtils.copy(po, 0));

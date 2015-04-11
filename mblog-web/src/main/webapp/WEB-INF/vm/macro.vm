@@ -7,30 +7,6 @@ $user.username
 	#end
 #end
 
-## 文章显示
-#macro(showmb $row)
-	#if($row.type == 'image' && ${row.snapshot.preview})
-		<div class="col-md-5">
-			<figure class="loop-thumb">
-				<a href="$base/browse/detail/${row.id}">
-					<img src="$base/dist/images/spinner.gif" data-original="$base${row.snapshot.preview}"/>
-				</a>
-			</figure>  
-		</div>        
-		<div class="col-md-7 loop-outline">
-			<div class="entry">
-				$!{row.summary}
-			</div>
-		</div>
-	#else
-		<div class="col-md-12">
-			<div class="entry">
-				$!{row.summary}
-			</div>
-		</div>
-	#end
-#end
-
 ## 翻页代码
 #macro (page $url $p $maxList)
 	#set($span = (${maxList} - 3)/2)

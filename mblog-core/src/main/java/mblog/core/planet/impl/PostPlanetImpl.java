@@ -23,9 +23,9 @@ public class PostPlanetImpl implements PostPlanet {
 	private PostService postsService;
 
 	@Override
-	@Cacheable(value = "postsCaches", key = "'list_' + #page.getPageNo() + '_' + #page.getMaxResults()")
-	public Page paging(Page page) {
-		postsService.paging(page);
+	@Cacheable(value = "postsCaches", key = "'list_' + #ord + '_' + #page.getPageNo() + '_' + #page.getMaxResults()")
+	public Page paging(Page page, String ord) {
+		postsService.paging(page, ord);
 		return page;
 	}
 	

@@ -6,9 +6,11 @@
 		<!-- tab -->
 		<div class="filter">
 			<ul class="">
-           		<li><a class="active" href="/blogs">推荐的</a></li>
-            	<li><a href="/blogs/newest">全部的</a></li>
-            	<li><a href="/blogs/hottest">热门的</a></li>
+           		<li><a #if($ord == 'hottest') class="active" #end href="$base/?ord=hottest">热门的</a></li>
+            	<li><a #if($ord == 'newest') class="active" #end href="$base/?ord=newest">全部的</a></li>
+				<!--
+            	<li><a href="/blogs/hottest">全部的</a></li>
+				-->
         	</ul>
 		</div>
 		<!-- tab end -->
@@ -33,7 +35,7 @@
 			    		</ul>
 						-->
 			    		<div class="pull-right hidden-xs">
-							<span>浏览(${row.views})</span>
+							<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
 							<span>评论(${row.comments})</span>
 			    		</div>
 			    	</div>
@@ -50,7 +52,8 @@
 		</div>
 	</div>
 	<div class="text-center clr">
-    	#page("home" $page 5)
+		#set($url = "index?ord=" + ${ord})
+    	#page($url $page 5)
     </div>
 </div>
 
