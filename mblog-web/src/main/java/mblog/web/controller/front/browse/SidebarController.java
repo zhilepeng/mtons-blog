@@ -6,7 +6,9 @@ package mblog.web.controller.front.browse;
 import java.util.List;
 
 import mblog.core.planet.PostPlanet;
+import mblog.core.planet.TagPlanet;
 import mblog.core.pojos.Post;
+import mblog.core.pojos.Tag;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.UserContextHolder;
 import mtons.modules.pojos.UserProfile;
@@ -27,6 +29,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SidebarController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
+	@Autowired
+	private TagPlanet tagPlanet;
 	
 	@RequestMapping("/recents_json")
 	public @ResponseBody List<Post> recent() {
@@ -47,6 +51,12 @@ public class SidebarController extends BaseController {
 			ignoreUserId = up.getId();
 		}
 		List<Post> rets = postPlanet.findHots(8, ignoreUserId);
+		return rets;
+	}
+	
+	@RequestMapping("/hot_tags_json")
+	public @ResponseBody List<Tag> hotTags() {
+		List<Tag> rets = tagPlanet.topTags(12, false);
 		return rets;
 	}
 	

@@ -16,13 +16,22 @@
 	</ul>
 </div>
 
+<div class="widget-box shadow-box">
+    <div class="title"><h3>热门标签</h3></div>
+    <ul class="tags m10 text-center" id="hottags">
+    </ul>
+</div>
+
 <script type="text/javascript">
 var recent_li_template = '<li><div class="li-out"><span class="last"><i>{0}</i></span><span class="name"><a  href="{1}" target="_blank">{2}</a></span><span class="nums">{3}</span></div></li>'
-				
+var tag_li_template	= '<li class="mb6"><a href="$base/browse/tag/{0}" class="tag" title="有{1}篇文章">{2}</a></li>';
+
 $(function () {
 	var sidebox = new Sidebox($('#sidebox'), {
 		recentUrl : '$base/browse/recents_json',
     	hotUrl : '$base/browse/hots_json',
+		hotTagUrl : '$base/browse/hot_tags_json',
+		
     	maxResults :10,
         // callback
         onLoadHot : function (i, data) {
@@ -33,6 +42,10 @@ $(function () {
         onLoadRecent : function (i, data) {
         	var url = '$base/browse/detail/' + data.id;
       		var item = jQuery.format(recent_li_template, i + 1, url, data.title, data.views);
+      		return item;
+        },
+		onLoadHotTag : function (i, data) {
+      		var item = jQuery.format(tag_li_template, data.name, data.posts, data.name);
       		return item;
         }
 	});

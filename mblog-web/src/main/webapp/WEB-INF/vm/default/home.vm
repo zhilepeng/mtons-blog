@@ -6,7 +6,9 @@
 	<div class="stream-head clearfix">
 		<div class="user-info">
 			<span class="avatar-80">
-				<img class="img-circle" src="$base${profile.avatar}">
+    			<a href="$base/account/profile">
+    				<img class="img-circle" src="$base${profile.avatar}">
+    			</a>
 			</span>
 		</div>
 		<ul class="user-post">

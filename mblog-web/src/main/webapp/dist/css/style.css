@@ -6,7 +6,9 @@ img { height: auto; max-width: 100%; }
 a { color: #000; text-decoration: none; }
 a:hover { text-decoration: none; }
 ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
+.m10 { margin: 10px; }
 .mt20 { margin-top: 20px;}
+.mb6 { margin-bottom: 6px;}
 
 /* nav */
 .navbar-inverse { background-color: #3a3e47; border-color: #2e3138; border-radius: 0;}
@@ -56,13 +58,15 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .blog-rank .user {}
 .blog-rank small { display: block; font-size: 12px; }
 
+.tags { overflow: hidden; float: left;}
+.tags >li { display: inline-block; margin-right: 5px; }
+.tag { display: inline-block; padding: 0 12px; color: #888; background-color: #F5F5F5; height: 24px; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
+.tag-sm { padding: 0 8px; height: 18px; line-height: 18px; font-size: 12px; }
+.tag[href]:hover,.tag[href]:focus{background-color:#32a5e7;color:#fff;text-decoration:none}
+
 .foot-block {margin: 0; display: block; font-size: 12px;}
 .foot-block a {font-size: 12px;}
-.foot-block .tags { width: 232px; overflow: hidden; float: left;}
-.foot-block .tags >li { display: inline-block; margin-right: 5px; }
-.tag { display: inline-block; padding: 0 8px; color: #017e66; background-color: #E7F2ED; height: 24px; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
-.tag-sm { padding: 0 4px; height: 18px; line-height: 18px; font-size: 12px; }
-.tag[href]:hover,.tag[href]:focus{background-color:#017e66;color:#fff;text-decoration:none}
+.foot-block .tags {width: 232px;}
 
 /* right */
 .widget-box {margin-bottom: 20px; overflow: hidden;}
