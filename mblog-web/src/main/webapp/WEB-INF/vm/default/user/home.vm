@@ -24,7 +24,7 @@
                     	<div class="stream-item" id="loop-${row.id}">
                     		<div class="blog-rank">
             			        <div class="votes">
-            			            ${row.hearts}<small>推荐</small>
+            			            ${row.hearts}<small>喜欢</small>
             			        </div>
             			        <div class="views hidden-xs">
             			            ${row.comments}<small>评论</small>

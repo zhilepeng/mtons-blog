@@ -18,6 +18,7 @@ import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserContextHolder;
 import mtons.modules.pojos.UserProfile;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping("/blog")
+@RequestMapping("/post")
 public class PostController extends BaseController {
 	@Autowired
 	private PostService postService;
@@ -42,15 +43,15 @@ public class PostController extends BaseController {
 	@Autowired
 	private Repository fileRepository;
 	
-	@RequestMapping(value = "/post", method = RequestMethod.GET)
-	public String view(String type, ModelMap model) {
+	@RequestMapping(value = "/pub_{type}")
+	public String view(@PathVariable String type, ModelMap model) {
 		model.put("type", type);
 		return getView(Views.BLOG_POST + type);
 	}
 
-	@RequestMapping(value = "/post", method = RequestMethod.POST)
+	@RequestMapping(value = "/submit")
 	public String post(Post blog) {
-		if (blog != null) {
+		if (blog != null && StringUtils.isNotBlank(blog.getTitle())) {
 			handleAlbums(blog.getAlbums());
 			postPlanet.post(blog);
 		}

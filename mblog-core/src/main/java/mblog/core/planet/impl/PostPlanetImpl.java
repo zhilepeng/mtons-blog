@@ -49,13 +49,13 @@ public class PostPlanetImpl implements PostPlanet {
 	}
 	
 	@Override
-	@Cacheable(value = "postsCaches")
+	@Cacheable(value = "postsCaches", key = "'post_recents'")
 	public List<Post> findRecents(int maxResutls, long ignoreUserId) {
 		return postsService.findRecents(maxResutls, ignoreUserId);
 	}
 
 	@Override
-	@Cacheable(value = "postsCaches")
+	@Cacheable(value = "postsCaches", key = "'post_hots'")
 	public List<Post> findHots(int maxResutls, long ignoreUserId) {
 		return postsService.findHots(maxResutls, ignoreUserId);
 	}

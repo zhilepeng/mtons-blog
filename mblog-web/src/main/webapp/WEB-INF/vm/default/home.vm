@@ -13,13 +13,13 @@
 		</div>
 		<ul class="user-post">
 			<li>
-				<a href="$base/blog/post?type=text" class="act-icon act-text">
+				<a href="$base/post/pub_text" class="act-icon act-text">
 					<i class="fa fa-pencil-square"></i>
 					<span class="tip">写文章</span>
 				</a>
 			</li>
 			<li>
-				<a href="$base/blog/post?type=image" class="act-icon act-img">
+				<a href="$base/post/pub_image" class="act-icon act-img">
 					<i class="fa fa-camera-retro"></i>
 					<span class="tip">发图片</span>
 				</a>
@@ -35,7 +35,7 @@
         	<div class="stream-item" id="loop-${row.id}">
         		<div class="blog-rank">
 			        <div class="votes">
-			            ${row.hearts}<small>推荐</small>
+			            ${row.hearts}<small>喜欢</small>
 			        </div>
 			        <div class="views hidden-xs">
 			            ${row.comments}<small>评论</small>

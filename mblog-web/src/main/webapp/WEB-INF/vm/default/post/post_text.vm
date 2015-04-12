@@ -14,7 +14,7 @@
     	</div>
     	<div class="panel-body">
     		<div id="message"></div>
-    		<form class="form-horizontal" action="$base/blog/post" method="post" enctype="multipart/form-data">
+    		<form class="form-horizontal" action="$base/post/submit" method="post" enctype="multipart/form-data">
     			<input type="hidden" name="type" value="${type}"/>
     			<div class="form-group">
     				<label class="col-sm-2 control-label no-padding-right">标题</label>
