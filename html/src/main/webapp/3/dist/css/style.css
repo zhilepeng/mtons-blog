@@ -75,7 +75,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .widget-box .box-list li span.last { float: left; width: 24px; margin-right: 6px; }
 .widget-box .box-list li span.last i { background-color: #2e3138; font-style: normal; height: 20px; padding: 2px 6px; line-height: 20px; margin: 5px auto; color: #fff; }
 .widget-box .box-list li span.name {width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;} 
-.widget-box .box-list li span.nums { float: right; text-align: right; width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
+.widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
 
 /* detail */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }

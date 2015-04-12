@@ -41,9 +41,9 @@
         	</div>
 			#end
         </div>
-		<div class="text-center clr">
-        	#page("search?q=$!{q}" $page 5)
-        </div>
+    </div>
+	<div class="text-center clr">
+    	#page("search?q=$!{q}" $page 5)
     </div>
 </div>
 
