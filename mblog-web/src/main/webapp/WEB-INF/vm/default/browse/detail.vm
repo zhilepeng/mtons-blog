@@ -148,7 +148,7 @@ $(function(){
 		var id = $(this).attr('data-id');
 		
 		if (parseInt(id) > 0) {
-			jQuery.getJSON('$base/blog/heart', {'id': id}, function (ret) {
+			jQuery.getJSON('$base/post/heart', {'id': id}, function (ret) {
 				if (ret.code >=0) {
 					var sideLiked = $('#sideLiked').text();
 					$('#sideLiked').text(parseInt(sideLiked) + 1);
