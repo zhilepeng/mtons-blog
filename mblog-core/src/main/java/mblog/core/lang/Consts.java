@@ -3,11 +3,14 @@
  */
 package mblog.core.lang;
 
+
 /**
  * @author langhsu
  *
  */
 public interface Consts {
+	String separator = ",";
+	
 	String avatar = "/dist/images/ava/default.png";
 	int FILE_PATH_SEED = 997;  // 文件目录步进
 	
@@ -21,4 +24,10 @@ public interface Consts {
 	String ERROR_PAGE_404 = "/error/404.html";
 	
 	int IDENTITY_STEP = 1;
+	
+	String order_featured = "featured";
+	
+	String order_newest = "newest";
+	
+	String order_hottest = "hottest";
 }

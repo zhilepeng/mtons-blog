@@ -49,6 +49,12 @@
 </div>
 
 <div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+	<ul class="list-group">
+		<li class="list-group-item">
+			<a class="btn btn-success btn-sm" href="javascript:void(0);" data-id="${ret.id}" id="sideLike">喜欢</a>
+			<strong id="sideLiked">${ret.hearts}</strong> 喜欢
+		</li>
+	</ul>
 	#parse("/default/inc/right.vm")
 </div>
 
@@ -138,13 +144,14 @@ $(function(){
 		 effect      : "fadeIn"
 	});
 	
-	$('a[data-evt=heart]').click(function () {
+	$('#sideLike').click(function () {
 		var id = $(this).attr('data-id');
 		
 		if (parseInt(id) > 0) {
 			jQuery.getJSON('$base/blog/heart', {'id': id}, function (ret) {
-				alert(ret.message);
 				if (ret.code >=0) {
+					var sideLiked = $('#sideLiked').text();
+					$('#sideLiked').text(parseInt(sideLiked) + 1);
 				}
 			});
 		}

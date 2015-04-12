@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import mblog.core.lang.Consts;
+
 /**
  * @author langhsu
  * 
@@ -24,7 +28,7 @@ public class Post implements Serializable {
 	private Date created;
 	private Date updated;
 	private User author;
-	private int featured; // 是否推荐
+	private int featured; // 推荐状态
 	private int hearts; // 喜欢
 	private int comments;
 	private int views; // 阅读
@@ -83,6 +87,13 @@ public class Post implements Serializable {
 
 	public String getTags() {
 		return tags;
+	}
+	
+	public String[] getTagsArray() {
+		if (StringUtils.isNotBlank(tags)) {
+			return tags.split(Consts.separator);
+		}
+		return null;
 	}
 
 	public void setTags(String tags) {

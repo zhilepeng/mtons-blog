@@ -75,7 +75,7 @@ public class PostPO {
 	@JoinColumn(name = "author_id")
 	private UserPO author;
 
-	private int featured; // 是否推荐
+	private int featured; // 推荐
 	private int hearts; // 喜欢
 	private int comments;
 	private int views; // 阅读

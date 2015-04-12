@@ -7,6 +7,34 @@ $user.username
 	#end
 #end
 
+## 博文列表显示
+#macro(showBlog $row)
+<div class="stream-item" id="loop-${row.id}">
+	<div class="blog-rank">
+		<div class="user" title="${row.author.name}">
+            <img class="img-circle" src="$base${row.author.avatar}">
+        </div>
+    </div>
+    <div class="summary">
+        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
+    	<div class="foot-block clearfix">
+    		<ul class="tags">
+				#foreach($tag in $row.tagsArray)
+    			<li>
+    				<a class="tag tag-sm" href="#">$tag</a>
+				</li>
+				#end
+    		</ul>
+    		<div class="pull-right hidden-xs">
+				<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
+				<span>评论(${row.comments})</span>
+    		</div>
+    	</div>
+    </div>
+</div>
+#end
+
 ## 翻页代码
 #macro (page $url $p $maxList)
 	#set($span = (${maxList} - 3)/2)

@@ -17,28 +17,7 @@
 		<!-- tab panes -->
         <div class="stream-list">
 			#foreach($row in $page.results)
-        	<div class="stream-item" id="loop-${row.id}">
-        		<div class="blog-rank">
-					<div class="user" title="${row.author.name}">
-			            <img class="img-circle" src="$base${row.author.avatar}">
-			        </div>
-			    </div>
-			    <div class="summary">
-			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
-			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
-			    	<div class="foot-block clearfix">
-						<ul class="tags">
-			    			<li>
-			    				<!--<a class="tag tag-sm" href="#">javascript</a>-->
-							</li>
-			    		</ul>
-			    		<div class="pull-right hidden-xs">
-							<span><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
-							<span>评论(${row.comments})</span>
-			    		</div>
-			    	</div>
-			    </div>
-        	</div>
+				#showBlog($row)
 			#end
         </div>
     </div>
