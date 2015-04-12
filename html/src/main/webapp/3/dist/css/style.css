@@ -178,7 +178,7 @@ Tags
 .tags_grid li { display: inline-block; overflow: hidden; padding: 5px; text-align: left; position: relative; }
 .tags_grid figure {
 	margin: 0;
-	height: 200px;
+	height: 160px;
 	background-color: #fff;
 	position: relative;
 	border-radius: 3px;

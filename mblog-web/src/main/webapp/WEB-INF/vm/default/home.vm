@@ -46,9 +46,11 @@
 			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
 			    	<div class="foot-block clearfix">
 						<ul class="tags">
-			    			<li>
-			    				<!--<a class="tag tag-sm" href="#">javascript</a>-->
-							</li>
+			    			#foreach($tag in $row.tagsArray)
+                			<li>
+                				<a class="tag tag-sm" href="$base/browse/tag/${tag}">$tag</a>
+            				</li>
+            				#end
 			    		</ul>
 			    		<div class="pull-right hidden-xs">
 			    			<a href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>

@@ -170,7 +170,6 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .page-jump { display: none; }
 .infinite-scroll-loader {text-align: center; z-index: 100; position: absolute; left: 45%; bottom: 40px; width: 150px; padding: 20px 0; font-size: 32px; background: #000; background: rgba(0,0,0,0.85); color: #a0a0a0; text-shadow: 1px 1px 1px rgba(0,0,0,0.6); border-radius: 10px; }
 
-
 /* 
 Tags
 */
@@ -178,7 +177,7 @@ Tags
 .tags_grid li { display: inline-block; overflow: hidden; padding: 5px; text-align: left; position: relative; }
 .tags_grid figure {
 	margin: 0;
-	height: 200px;
+	height: 160px;
 	background-color: #fff;
 	position: relative;
 	border-radius: 3px;
