@@ -21,6 +21,16 @@
 	
 	this.App = App;
 	
+	function pageLink(curNo, pageNo){
+		if(curNo == -1){
+			return '<li class="pass"><span>......</span></li>';
+		}
+		if(pageNo == curNo){
+			return $.format('<li class="active"><a href="javascript:void(0)" pn="{0}">{0}</a></li>', pageNo);
+		}
+		return $.format('<li><a href="javascript:void(0);" pn="{0}">{0}</a></li>', pageNo);
+	}
+	
 	// 注册上传插件
 	jQuery.fn.extend({
 		upload: function(url, callback){
@@ -79,6 +89,80 @@
 	    	});
 	    	return source;
 	    },
+	    /**
+		 * 分页函数
+		 * p: paging
+		 * callback: 点击分页时调用的函数，参数为pageNo
+		 * mini: 是否为迷你型，如果true，则只有"上一页"和"下一页"的按钮
+		 */
+		page: function(p, callback, mini){
+			var pc = parseInt(p.pageCount); 	// 总页数
+			if (pc == 0) {
+				this.html('');
+				return this;
+			}
+			
+			var	c = 3,				// 左右各需要显示的分页数量
+				tc = c * 2 + 3, 	// 显示的分页总数
+				cp = parseInt(p.pageNo),		//当前页号
+				h = [];
+			h.push('<ul class="pagination">');
+			// 上一页
+			if(cp > 1){
+				h.push($.format('<li class="previous"><a href="javascript:void(0);" pn="{0}"><span class="arrow">&lt;</span><span class="text">上一页</span></a></li>', cp - 1));
+			}
+			
+			// 分页
+			if(!mini){
+				if(pc > tc){
+					if(cp <= c + 2){
+						for(var i = 1; i < tc - 1; i++){
+							h.push(pageLink(cp, i));
+						}
+						h.push(pageLink(-1, 0));
+						h.push(pageLink(cp, pc));
+					}else{
+						h.push(pageLink(cp, 1));
+						h.push(pageLink(-1, 0));
+
+						if(cp > (pc - (c + 2))){
+							for(var i = pc - tc + 2; i <= pc; i++){
+								h.push(pageLink(cp, i));
+							}
+						}else{
+							for(var i = cp - c; i < cp + c; i++){
+								h.push(pageLink(cp, i));
+							}
+							h.push(pageLink(-1, 0));
+							h.push(pageLink(cp, pc));
+						}
+					}
+				}else{
+					for(var i = 1; i <= pc; i++){
+						h.push(pageLink(cp, i));
+					}
+				}
+			}
+			
+			// 下一页
+			if(cp < pc){
+				h.push($.format('<li class="next"><a href="javascript:void(0);" pn="{0}"><span class="arrow">&gt;</span><span class="text">下一页</span></a></li>', cp + 1));
+			}
+			
+			h.push('</ul>');
+			
+			// 添加事件
+			this.html(h.join(''));
+			this.find('a').bind('click', function(){
+				var pn = $(this).attr('pn');
+				if(0 < pn && pn <= pc){
+					callback(pn);
+				}
+				return false;
+			});
+			
+			return this;
+		}
 	});
 	
 })(window.jQuery);
