@@ -2,6 +2,8 @@
 #set($tags=$!{ret.tags})
 #set($layout = "/default/layout/seo.vm")
 
+<script type="text/javascript" src="$base/dist/js/app/comment.js"></script>
+
 <div class="col-xs-12 col-md-9 side-left">
     <div class="shadow-box">
 		<h1 class="post-title">$!{ret.title}</h1>
@@ -36,6 +38,7 @@
 		</div>
 		<div class="panel-body">
 			<ul class="chat" id="chat_container"><li><p>空空如也, 快来占沙发吧!</p></li></ul>
+			<div id="pager" class="text-center"></div>
 		</div>
 		<div class="panel-footer">
 			<div class="input-group">
@@ -76,72 +79,24 @@
 </script>
 
 <script type="text/javascript">
-var toId = '${ret.id}';
 
 var container = $("#chat_container");
 var template = $('#chat')[0].text;
-
-function render(template, data) {
-	var item = jQuery.format(template, data.author.avatar, data.author.name, data.created, data.content);
-	container.append(item);
-}
-
-// 加载评论
-function chatLoad(pn) {
-	container.empty();
-	jQuery.getJSON('${base}/comment/list/${ret.id}', {'pn': pn}, function(ret){
-		if(ret){
-			$('#chat_count').text(ret.totalCount);
-			var retSize = 0;
-      		jQuery.each(ret.results, function(i, n) {
-      			render(template, n);
-				retSize = 1;
-      		});
-			if (retSize == 0) {
-				container.append('<li><p>空空如也, 快来占沙发吧!</p></li>');
-			}
-      	}
-	});
-}
-
-function chatPost() {
-	var text = $('#chat_text').val();
-	if (text.length == 0) {
-		alert('请输入内容再提交!');
-		return false;
-	}
-	if (text.length > 255) {
-		alert('内容过长，请输入140以内个字符');
-		return false;
-	}
-	
-	jQuery.ajax({
-		url: '$base/comment/j_post', 
-		data: {'toId': toId, 'text': text},
-		dataType: "json",
-		type :  "POST",
-		cache : false,
-		error : function(i, g, h) {
-			alert("发生错误");
-		},
-		success: function(ret){
-			if(ret){
-				alert(ret.message);
-				
-				if (ret.code >= 0) {
-					$('#chat_text').val('');
-					
-					chatLoad(1);
-				}
-			}
-      	}
-	});
-}
 
 $(function(){
 	$("img").lazyload({
 		 placeholder : "$base/dist/images/spinner.gif",
 		 effect      : "fadeIn"
+	});
+	
+	var comment = new Comment(container, {
+		load_url : '$base/comment/list/${ret.id}.json',
+		post_url : '$base/comment/post.json',
+		toId : '${ret.id}',
+		onLoad : function (i, data) {
+        	var item = jQuery.format(template, data.author.avatar, data.author.name, data.created, data.content);
+      		return item;
+        }
 	});
 	
 	$('#sideLike').click(function () {
@@ -156,10 +111,6 @@ $(function(){
 			});
 		}
 	});
-	
-	chatLoad(1);
-	
-	$('#btn-chat').click(chatPost);
 
 });
 </script>

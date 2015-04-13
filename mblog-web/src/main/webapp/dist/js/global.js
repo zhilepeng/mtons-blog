@@ -62,34 +62,9 @@
 				return true;
 			}).submit();
 			return this;
-		}
-	});
-	
-	jQuery.extend({
+		},
+		
 		/**
-	     * 使用参数格式化字符串
-	     * source：字符串模式 abcdef{0}-{1}，
-	     * params：参数数组，参数序号对应模式中的下标
-	     */
-        format: function(source, params) {
-	    	if ( arguments.length == 1 ) 
-	    		return function() {
-	    			var args = $.makeArray(arguments);
-	    			args.unshift(source);
-	    			return $.format.apply( this, args );
-	    		};
-	    	if ( arguments.length > 2 && params.constructor != Array  ) {
-	    		params = $.makeArray(arguments).slice(1);
-	    	}
-	    	if ( params.constructor != Array ) {
-	    		params = [ params ];
-	    	}
-	    	$.each(params, function(i, n) {
-	    		source = source.replace(new RegExp('\\{' + i + '\\}', 'g'), n);
-	    	});
-	    	return source;
-	    },
-	    /**
 		 * 分页函数
 		 * p: paging
 		 * callback: 点击分页时调用的函数，参数为pageNo
@@ -97,7 +72,7 @@
 		 */
 		page: function(p, callback, mini){
 			var pc = parseInt(p.pageCount); 	// 总页数
-			if (pc == 0) {
+			if(pc == 0){
 				this.html('');
 				return this;
 			}
@@ -106,10 +81,10 @@
 				tc = c * 2 + 3, 	// 显示的分页总数
 				cp = parseInt(p.pageNo),		//当前页号
 				h = [];
-			h.push('<ul class="pagination">');
+			h.push('<ul class="pagination pagination-sm">');
 			// 上一页
 			if(cp > 1){
-				h.push($.format('<li class="previous"><a href="javascript:void(0);" pn="{0}"><span class="arrow">&lt;</span><span class="text">上一页</span></a></li>', cp - 1));
+				h.push($.format('<li class="previous"><a href="javascript:void(0);" pn="{0}"><span class="arrow" title="上一页">&lt;</span></a></li>', cp - 1));
 			}
 			
 			// 分页
@@ -146,7 +121,7 @@
 			
 			// 下一页
 			if(cp < pc){
-				h.push($.format('<li class="next"><a href="javascript:void(0);" pn="{0}"><span class="arrow">&gt;</span><span class="text">下一页</span></a></li>', cp + 1));
+				h.push($.format('<li class="next"><a href="javascript:void(0);" pn="{0}"><span class="arrow" title="下一页">&gt;</span></a></li>', cp + 1));
 			}
 			
 			h.push('</ul>');
@@ -163,6 +138,33 @@
 			
 			return this;
 		}
+	});
+	
+	jQuery.extend({
+		/**
+	     * 使用参数格式化字符串
+	     * source：字符串模式 abcdef{0}-{1}，
+	     * params：参数数组，参数序号对应模式中的下标
+	     */
+        format: function(source, params) {
+	    	if ( arguments.length == 1 ) 
+	    		return function() {
+	    			var args = $.makeArray(arguments);
+	    			args.unshift(source);
+	    			return $.format.apply( this, args );
+	    		};
+	    	if ( arguments.length > 2 && params.constructor != Array  ) {
+	    		params = $.makeArray(arguments).slice(1);
+	    	}
+	    	if ( params.constructor != Array ) {
+	    		params = [ params ];
+	    	}
+	    	$.each(params, function(i, n) {
+	    		source = source.replace(new RegExp('\\{' + i + '\\}', 'g'), n);
+	    	});
+	    	return source;
+	    }
+	    
 	});
 	
 })(window.jQuery);
