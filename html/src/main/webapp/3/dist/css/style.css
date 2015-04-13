@@ -42,7 +42,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-head .user-post .act-img { color: #A576F7; }
 .stream-head .user-post .act-text { color: #5EBCF2; }
 
-.stream-list {margin-bottom: 10px;}
+.stream-list { }
 .stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 10px; }
 .stream-item:hover { background-color: #f2f2f2;}
 .stream-item .summary { overflow: auto; }
