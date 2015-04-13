@@ -69,7 +69,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 
 .foot-block {margin: 0; display: block; font-size: 12px;}
 .foot-block a {font-size: 12px;}
-.foot-block .tags {width: 232px;}
+.foot-block .tags {max-width: 232px;}
 
 /* right */
 .widget-box {margin-bottom: 20px; overflow: hidden;}

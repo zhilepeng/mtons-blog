@@ -12,7 +12,9 @@ $user.username
 <div class="stream-item" id="loop-${row.id}">
 	<div class="blog-rank">
 		<div class="user" title="${row.author.name}">
-            <img class="img-circle" src="$base${row.author.avatar}">
+			<a href="$base/user/${row.author.id}">
+            	<img class="img-circle" src="$base${row.author.avatar}">
+            </a>
         </div>
     </div>
     <div class="summary">
