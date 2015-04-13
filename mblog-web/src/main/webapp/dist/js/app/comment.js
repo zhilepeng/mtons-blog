@@ -39,6 +39,9 @@
         	var html = '';
 
         	J.getJSON(opts.load_url, {maxResults : opts.maxResults, pn: pn}, function (ret) {
+        		
+        		$('#chat_count').html(ret.totalCount);
+        		
           		jQuery.each(ret.results, function(i, n) {
     				var item = opts.onLoad.call(this, i, n);
     				html += item;
