@@ -43,13 +43,13 @@ public class PostController extends BaseController {
 	@Autowired
 	private Repository fileRepository;
 	
-	@RequestMapping(value = "/pub_{type}")
+	@RequestMapping(value = "/pub_{type}", method = RequestMethod.GET)
 	public String view(@PathVariable String type, ModelMap model) {
 		model.put("type", type);
 		return getView(Views.BLOG_POST + type);
 	}
 
-	@RequestMapping(value = "/submit")
+	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String post(Post blog) {
 		if (blog != null && StringUtils.isNotBlank(blog.getTitle())) {
 			handleAlbums(blog.getAlbums());

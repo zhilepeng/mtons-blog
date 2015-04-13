@@ -21,7 +21,7 @@
 			<span class="author">#showName(${row.author})</span>
 			<time class="time">$date.format('yyyy-MM-dd', $row.created)</time>
 		</div>
-		<a class="cmt pull-right" href="javascript:void(0)" onclick="onHeart('${row.id}')">喜欢&nbsp;(${row.hearts})</a>
+		<a class="cmt pull-right" href="javascript:void(0)" onclick="onHeart(this, '${row.id}')">喜欢&nbsp;(<i>${row.hearts}</i>)</a>
 	</div>
 </div>
 #end

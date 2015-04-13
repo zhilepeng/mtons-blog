@@ -23,7 +23,7 @@
         			<span class="author">#showName(${row.author})</span>
         			<time class="time">$date.format('yyyy-MM-dd', $row.created)</time>
         		</div>
-    			<a class="cmt pull-right" href="javascript:void(0)" onclick="onHeart('${row.id}')">喜欢&nbsp;(${row.hearts})</a>
+    			<a class="cmt pull-right" href="javascript:void(0)" onclick="onHeart(this, '${row.id}')">喜欢&nbsp;(<i>${row.hearts}</i>)</a>
         	</div>
         </div>
     	#end
@@ -39,11 +39,13 @@
 
 <script type="text/javascript">
 
-function onHeart(id) {
+function onHeart(event, id) {
+	var that = $(event);
 	if (parseInt(id) > 0) {
-		jQuery.getJSON('$base/blog/heart', {'id': id}, function (ret) {
-			alert(ret.message);
+		jQuery.getJSON('$base/post/heart', {'id': id}, function (ret) {
 			if (ret.code >=0) {
+				var sideLiked = that.find('i').text();
+				that.find('i').text(parseInt(sideLiked) + 1);
 			}
 		});
 	}
