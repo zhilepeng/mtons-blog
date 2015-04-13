@@ -17,6 +17,10 @@ $user.username
     </div>
     <div class="summary">
         <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+        <div class="author">
+        	<span><a href="$base/user/${row.author.id}">#showName($row.author)</a></span>
+        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+        </div>
         <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
     	<div class="foot-block clearfix">
     		<ul class="tags">
