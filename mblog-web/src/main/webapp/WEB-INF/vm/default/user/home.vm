@@ -32,12 +32,12 @@
             			    </div>
             			    <div class="summary">
             			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
-            			        <div class="author">
-						        	<span><a href="$base/user/${row.author.id}">#showName($row.author)</a></span>
-						        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
-						        </div>
+            			        
             			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
             			    	<div class="foot-block clearfix">
+            			    		<div class="author">
+							        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+							        </div>
             						<ul class="tags">
             			    			#foreach($tag in $row.tagsArray)
                             			<li>
@@ -46,8 +46,8 @@
                         				#end
             			    		</ul>
             			    		<div class="pull-right hidden-xs">
-										<span><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
-            			    			<span><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.hearts}</i>)</a></span>
+										<span class="act"><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
+            			    			<span class="act"><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.hearts}</i>)</a></span>
             			    		</div>
             			    	</div>
             			    </div>
