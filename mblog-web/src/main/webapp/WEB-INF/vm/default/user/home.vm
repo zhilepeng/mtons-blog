@@ -18,46 +18,48 @@
 	<div class="container">
 		<div class="row">
 			<div class="main clearfix">
-        	    <div class="shadow-box mt20">
-    				<div class="stream-list">
-                    	#foreach($row in $page.results)
-                    	<div class="stream-item" id="loop-${row.id}">
-                    		<div class="blog-rank">
-            			        <div class="votes #if(${row.hearts} > 0) plus #end">
-            			            ${row.hearts}<small>喜欢</small>
-            			        </div>
-            			        <div class="views hidden-xs">
-            			            ${row.comments}<small>评论</small>
-            			        </div>
-            			    </div>
-            			    <div class="summary">
-            			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
-            			        
-            			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
-            			    	<div class="foot-block clearfix">
-            			    		<div class="author">
-							        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
-							        </div>
-            						<ul class="tags">
-            			    			#foreach($tag in $row.tagsArray)
-                            			<li>
-                            				<a class="tag tag-sm" href="$base/browse/tag/${tag}">$tag</a>
-                        				</li>
-                        				#end
-            			    		</ul>
-            			    		<div class="pull-right hidden-xs">
-										<span class="act"><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
-            			    			<span class="act"><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.hearts}</i>)</a></span>
-            			    		</div>
-            			    	</div>
-            			    </div>
-                    	</div>
-            			#end
-    				</div>
-                </div>
-        		
-                <div class="text-center clr">
-                	#page("$base/user/$!{user.id}" $page 5)
+				<div class="col-xs-12 col-md-12">
+	        	    <div class="shadow-box mt20">
+	    				<div class="stream-list">
+	                    	#foreach($row in $page.results)
+	                    	<div class="stream-item" id="loop-${row.id}">
+	                    		<div class="blog-rank">
+	            			        <div class="votes #if(${row.hearts} > 0) plus #end">
+	            			            ${row.hearts}<small>喜欢</small>
+	            			        </div>
+	            			        <div class="views hidden-xs">
+	            			            ${row.comments}<small>评论</small>
+	            			        </div>
+	            			    </div>
+	            			    <div class="summary">
+	            			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+	            			        
+	            			        <div class="excerpt wordbreak hidden-xs">$!{row.summary}</div>
+	            			    	<div class="foot-block clearfix">
+	            			    		<div class="author">
+								        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+								        </div>
+	            						<ul class="tags">
+	            			    			#foreach($tag in $row.tagsArray)
+	                            			<li>
+	                            				<a class="tag tag-sm" href="$base/browse/tag/${tag}">$tag</a>
+	                        				</li>
+	                        				#end
+	            			    		</ul>
+	            			    		<div class="pull-right hidden-xs">
+											<span class="act"><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
+	            			    			<span class="act"><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.hearts}</i>)</a></span>
+	            			    		</div>
+	            			    	</div>
+	            			    </div>
+	                    	</div>
+	            			#end
+	    				</div>
+	                </div>
+	        		
+	                <div class="text-center clr">
+	                	#page("$base/user/$!{user.id}" $page 5)
+	                </div>
                 </div>
 			</div>
 		</div>
