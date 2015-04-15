@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name = "tb_event_log")
-public class EventLogPO {
+@Table(name = "tb_log")
+public class LogPO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
