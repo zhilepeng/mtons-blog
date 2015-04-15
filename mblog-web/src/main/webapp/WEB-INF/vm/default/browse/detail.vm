@@ -98,7 +98,7 @@ $(function(){
 	
 	var comment = new Comment(container, {
 		load_url : '$base/comment/list/${ret.id}.json',
-		post_url : '$base/comment/post.json',
+		post_url : '$base/comment/submit.json',
 		toId : '${ret.id}',
 		onLoad : function (i, data) {
         	var item = jQuery.format(template, data.author.avatar, data.author.name, data.created, data.content);
@@ -110,7 +110,7 @@ $(function(){
 		var id = $(this).attr('data-id');
 		
 		if (parseInt(id) > 0) {
-			jQuery.getJSON('$base/post/heart', {'id': id}, function (ret) {
+			jQuery.getJSON('$base/post/heart.json', {'id': id}, function (ret) {
 				if (ret.code >=0) {
 					var sideLiked = $('#sideLiked').text();
 					$('#sideLiked').text(parseInt(sideLiked) + 1);

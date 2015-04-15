@@ -34,7 +34,7 @@ public class CommentController extends BaseController {
 		return page;
 	}
 	
-	@RequestMapping("/post")
+	@RequestMapping("/submit")
 	public @ResponseBody Data post(Long toId, String text) {
 		Data data = Data.failure("操作失败");
 		if (toId > 0 && StringUtils.isNotEmpty(text)) {
