@@ -9,7 +9,6 @@
 		<module>mblog-core</module>
 		<module>mblog-web</module>
 		<module>html</module>
-		<module>mblog-account</module>
 	</modules>
 
 	<properties>
