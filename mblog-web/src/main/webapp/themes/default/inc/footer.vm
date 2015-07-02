@@ -7,8 +7,8 @@
 				<li><a href="#" target="_blank">常见问题解答</a></li>
                 <li>
 					<script type="text/javascript">
-						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        				document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa029e6c6dddf427f4cbfb2b00d7d5311' type='text/javascript'%3E%3C/script%3E"));
+						//var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        				//document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa029e6c6dddf427f4cbfb2b00d7d5311' type='text/javascript'%3E%3C/script%3E"));
         			</script>
 				</li>
 			</ul>

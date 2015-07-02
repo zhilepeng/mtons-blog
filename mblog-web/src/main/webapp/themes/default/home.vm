@@ -34,7 +34,7 @@
 			#foreach($row in $page.results)
         	<div class="stream-item" id="loop-${row.id}">
         		<div class="blog-rank">
-			        <div class="votes #if(${row.hearts} > 0) plus #end">
+			        <div class="votes #if(${row.favors} > 0) plus #end">
 			            ${row.favors}<small>喜欢</small>
 			        </div>
 			        <div class="views hidden-xs">
