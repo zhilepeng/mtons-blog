@@ -30,7 +30,7 @@ import mblog.lang.EnumLog;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
-import mblog.web.upload.Repository;
+import mblog.web.upload.FileRepo;
 
 /**
  * @author langhsu
@@ -46,7 +46,7 @@ public class PostController extends BaseController {
 	@Autowired
 	private AppContext appContext;
 	@Autowired
-	private Repository fileRepository;
+	private FileRepo fileRepository;
 	@Autowired
 	private ApplicationContext applicationContext;
 	

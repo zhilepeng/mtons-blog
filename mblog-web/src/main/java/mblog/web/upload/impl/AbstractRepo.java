@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author langhsu
  *
  */
-public abstract class AbstractFileRepository {
+public abstract class AbstractRepo {
 	// 文件允许格式
 	protected String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
 	

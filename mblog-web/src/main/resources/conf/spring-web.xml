@@ -20,10 +20,10 @@
     
     <!-- 文件绝对路径存储 -->
     <!-- 
-    <bean id="fileRepository" class="mblog.web.upload.impl.FileRealPathRepository" />
+    <bean id="fileRepository" class="mblog.web.upload.impl.FileRealPathRepoImpl" />
     -->
     
     <!-- 文件相对项目根路径存储 -->
-    <bean id="fileRepository" class="mblog.web.upload.impl.FileRepository" />
+    <bean id="fileRepo" class="mblog.web.upload.impl.FileRepoImpl" />
     
 </beans>

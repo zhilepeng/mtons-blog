@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import mblog.context.AppContext;
 import mblog.web.controller.BaseController;
-import mblog.web.upload.Repository;
+import mblog.web.upload.FileRepo;
 
 /**
  * @author langhsu
@@ -31,7 +31,7 @@ public class UploadController extends BaseController {
 	@Autowired
 	private AppContext appContext;
 	@Autowired
-	private Repository fileRepository;
+	private FileRepo fileRepo;
 	
 	private static Map<String, String> errors = new HashMap<String, String>();
 	
@@ -66,9 +66,9 @@ public class UploadController extends BaseController {
     		String path;
     		
 			if (scale != null && scale == true) {
-				path = fileRepository.tempScale(file, appContext.getTempDir(), size);
+				path = fileRepo.tempScale(file, appContext.getTempDir(), size);
 			} else {
-				path = fileRepository.temp(file, appContext.getTempDir());
+				path = fileRepo.temp(file, appContext.getTempDir());
 			}
 			data = Data.success("", path);
 		} catch (Exception e) {

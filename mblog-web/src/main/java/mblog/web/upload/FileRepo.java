@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author langhsu
  *
  */
-public interface Repository {
+public interface FileRepo {
 	/**
 	 * 保存临时图片
 	 * - 临时图片不会生成复杂的多级目录

@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import mblog.context.AppContext;
 import mblog.web.controller.BaseController;
 import mblog.web.data.UMEditorResult;
-import mblog.web.upload.Repository;
+import mblog.web.upload.FileRepo;
 
 import com.google.gson.Gson;
 
@@ -38,7 +38,7 @@ public class FileUploadController extends BaseController {
  	@Autowired
 	private AppContext appContext;
 	@Autowired
-	private Repository fileRepository;
+	private FileRepo fileRepo;
 	
  	static {
  		errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
@@ -63,7 +63,7 @@ public class FileUploadController extends BaseController {
 			
 			if (this.checkFileType(fileName)) {
 				try {
-					String path = fileRepository.storeScale(file, appContext.getThumbsDir(), 600);
+					String path = fileRepo.storeScale(file, appContext.getThumbsDir(), 600);
 					data.setName(fileName);
 					data.setOriginalName(fileName);
 					data.setType(getSuffix(fileName));
