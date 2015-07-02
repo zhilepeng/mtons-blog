@@ -8,15 +8,16 @@ import java.io.IOException;
 
 import javax.servlet.ServletContext;
 
-import mblog.core.context.AppContext;
-import mblog.core.utils.FileNameUtils;
-import mblog.web.upload.Repository;
 import mtons.modules.utils.GMagickUtils;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+
+import mblog.context.AppContext;
+import mblog.utils.FileNameUtils;
+import mblog.web.upload.Repository;
 
 /**
  * @author langhsu
@@ -39,7 +40,7 @@ public class FileRepository extends AbstractFileRepository implements Repository
 		
 		String root = context.getRealPath("/");
 		
-		String name = FileNameUtils.genFileName(getExt(file.getOriginalFilename()));
+		String name = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		String path = basePath + "/" + name;
 		File temp = new File(root + path);
 		checkDirAndCreate(temp);
@@ -53,7 +54,7 @@ public class FileRepository extends AbstractFileRepository implements Repository
 		
 		String root = context.getRealPath("/");
 		
-		String name = FileNameUtils.genFileName(getExt(file.getOriginalFilename()));
+		String name = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		String path = basePath + "/" + name;
 		
 		// 存储临时文件

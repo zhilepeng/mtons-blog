@@ -1,0 +1,86 @@
+#set($title = "$!{user.name}")
+#set($layout = "/default/layout/schema.vm")
+
+<div class="profile">
+	<div class="container">
+		<div class="avatar bounceInDown animated">
+			<img class="img-circle" src="$base${user.avatar}">
+		</div>
+		<h1>#showName(${user})</h1>
+        <h2>Ta发布的文章</h2>
+		<!--
+		<a class="btn btn-white" href="#">Back</a>
+		-->
+	</div>
+</div>
+
+<div class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="main clearfix">
+				<div class="col-xs-12 col-md-12">
+	        	    <div class="shadow-box mt20">
+	    				<div class="stream-list">
+	                    	#foreach($row in $page.results)
+	                    	<div class="stream-item" id="loop-${row.id}">
+	                    		<div class="blog-rank">
+	            			        <div class="votes #if(${row.hearts} > 0) plus #end">
+	            			            ${row.hearts}<small>喜欢</small>
+	            			        </div>
+	            			        <div class="views hidden-xs">
+	            			            ${row.comments}<small>评论</small>
+	            			        </div>
+	            			    </div>
+	            			    <div class="summary">
+	            			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+	            			        
+	            			        <div class="excerpt wordbreak hidden-xs">$!{row.summary} &nbsp;</div>
+	            			    	<div class="foot-block clearfix">
+	            			    		<div class="author">
+								        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+								        </div>
+	            						<ul class="tags">
+	            			    			#foreach($tag in $row.tagsArray)
+	                            			<li>
+	                            				<a class="tag tag-sm" href="$base/tag/${tag}/">$tag</a>
+	                        				</li>
+	                        				#end
+	            			    		</ul>
+	            			    		<div class="pull-right hidden-xs">
+											<span class="act"><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
+	            			    			<span class="act"><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.hearts}</i>)</a></span>
+	            			    		</div>
+	            			    	</div>
+	            			    </div>
+	                    	</div>
+	            			#end
+	    				</div>
+	                </div>
+	        		
+	                <div class="text-center clr">
+	                	#page("$base/user/$!{user.id}" $page 5)
+	                </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(function () {
+	$('a[data-event="like"]').click(function () {
+		var that = $(this)
+		var id = that.attr('data-id');
+		
+		if (parseInt(id) > 0) {
+			jQuery.getJSON('$base/post/heart', {'id': id}, function (ret) {
+				if (ret.code >=0) {
+					var sideLiked = that.find('i').text();
+					that.find('i').text(parseInt(sideLiked) + 1);
+				}
+			});
+		}
+	});
+})
+</script>

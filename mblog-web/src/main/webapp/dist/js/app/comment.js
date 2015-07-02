@@ -20,10 +20,10 @@
         bindEvents : function () {
         	var that = this;
         	that.pageCallback(1);
-        	
         	$('#btn-chat').click(function () {
         		var text = $('#chat_text').val();
-        		that.post(that.options.toId, text);
+        		var pid = $('#chat_pid').val();
+        		that.post(that.options.toId, pid, text);
         	});
         },
         
@@ -43,8 +43,17 @@
         		$('#chat_count').html(ret.totalCount);
         		
           		jQuery.each(ret.results, function(i, n) {
-    				var item = opts.onLoad.call(this, i, n);
+          			var reply = n.id;
+    				var item = opts.onLoad.call(this, i, n, reply, 'pat');
+
     				html += item;
+    				
+    				if (n.children.length > 0) {
+    					jQuery.each(n.children, function(j, child) {
+    	    				var sub = opts.onLoad.call(this, j, child, reply, 'child');
+    	    				html += sub;
+    					});
+    				}
           		});
         	
 	        	$list.empty().append(html);
@@ -58,36 +67,40 @@
         	});
         },
         
-        post: function (toId, text) {
+        post: function (toId, pid, text) {
         	var opts = this.options;
         	var that = this;
         	
         	if (text.length == 0) {
-        		alert('请输入内容再提交!');
+        		layer.msg('请输入内容再提交!', {icon: 2});
         		return false;
         	}
         	if (text.length > 255) {
-        		alert('内容过长，请输入140以内个字符');
+        		layer.msg('内容过长，请输入140以内个字符', {icon: 2});
         		return false;
         	}
         	
         	jQuery.ajax({
         		url: opts.post_url, 
-        		data: {'toId': toId, 'text': text},
+        		data: {'toId': toId,'pid': pid, 'text': text},
         		dataType: "json",
         		type :  "POST",
         		cache : false,
+        		async: false,
         		error : function(i, g, h) {
-        			alert("发生错误");
+        			layer.msg('发送错误', {icon: 2});
         		},
         		success: function(ret){
         			if(ret){
         				if (ret.code >= 0) {
+        					layer.msg(ret.message, {icon: 1});
         					$('#chat_text').val('');
-        					
+        					$('#chat_reply').hide();
+        					$('#chat_pid').val('0');
+        					//window.location.reload();
         					that.pageCallback(1);
         				} else {
-        					alert(ret.message);
+        					layer.msg(ret.message, {icon: 5});
         				}
         			}
               	}

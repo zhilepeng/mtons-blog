@@ -10,7 +10,20 @@
 		</property>
 	</bean>
     
+    <bean id="appContext" class="mblog.context.AppContext">
+    	<property name="root" value="/data/mblog"/>
+    </bean>
+    
     <bean id="jsonUtils" class="mblog.web.formatter.JsonUtils" />
+    
+    <bean id="startupListener" class="mblog.web.listener.StartupListener" />
+    
+    <!-- 文件绝对路径存储 -->
+    <!-- 
+    <bean id="fileRepository" class="mblog.web.upload.impl.FileRealPathRepository" />
+    -->
+    
+    <!-- 文件相对项目根路径存储 -->
     <bean id="fileRepository" class="mblog.web.upload.impl.FileRepository" />
     
 </beans>

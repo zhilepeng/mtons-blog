@@ -1,0 +1,50 @@
+<!-- header -->
+<header id="header" class="navbar">
+	<ul class="nav navbar-nav navbar-avatar pull-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">            
+				<span class="hidden-sm-only">${profile.username}</span>
+				<span class="thumb-small avatar inline"><img src="$base${profile.avatar}" class="img-circle"></span>
+				<b class="caret hidden-sm-only"></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="$base/account/profile">Profile</a></li>
+				<li class="divider"></li>
+				<li><a href="$base/logout">Logout</a></li>
+			</ul>
+		</li>
+	</ul>
+    <a class="navbar-brand" href="$base/index">Mtons</a>
+	<!--
+	<button type="button" class="btn btn-link pull-left nav-toggle hidden-lg" data-toggle="class:slide-nav slide-nav-left" data-target="body">
+		<i class="icon-reorder icon-xlarge text-default"></i>
+	</button>
+	-->
+	<ul class="nav navbar-nav hidden-sm">
+		<li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus"></i> POST <b class="caret hidden-sm-only"></b></a>
+    		<ul class="dropdown-menu">
+              <li>
+                <a href="$base/post/new/text" target="_blank">发文字</a>
+              </li>
+              <li>
+                <a href="$base/post/new/image" target="_blank">发图片</a>
+              </li>
+            </ul>
+      </li>
+	</ul>
+</header>
+<!-- / header -->
+
+<!-- nav -->
+<nav id="nav" class="nav-primary visible-lg nav-vertical">
+	<ul class="nav" data-spy="affix" data-offset-top="50">
+		<li class="active"><a href="$base/admin"><i class="fa fa-dashboard icon-xlarge"></i>Dashboard</a></li>
+		<li m='1'><a href="$base/admin/posts/list"><i class="fa fa-edit icon-xlarge"></i>文章管理</a></li>
+		<li m='3'><a href="$base/admin/tags/list"><i class="fa fa-tags icon-xlarge"></i>标签管理</a></li>
+		<li m='5'><a href="$base/admin/comments/list"><i class="fa fa-comments-o icon-xlarge"></i>评论管理</a></li>
+		<li m='2'><a href="$base/admin/users/list"><i class="fa fa-user icon-xlarge"></i>用户管理</a></li>
+		<li m='4'><a href="$base/admin/config/"><i class="fa fa-cog icon-xlarge"></i>系统配置</a></li>
+	</ul>
+</nav>
+<!-- / nav -->

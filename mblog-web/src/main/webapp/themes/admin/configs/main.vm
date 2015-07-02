@@ -1,0 +1,79 @@
+#set($layout = "/admin/layout/default.vm")
+
+<div class="row m-t-large m-b">
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">站点配置
+				<a href="$base/admin/config/view" class="btn btn-mini btn-success pull-right">
+					<i class="fa fa-edit"></i> 编辑
+				</a>
+			</div>
+			<div class="panel-body">
+				<table class="table table-bordered">
+					<tr>
+						<th>名称</th>
+						<th>属性值</th>
+					</tr>
+					#foreach($row int $siteConfigs)
+						#set($config = $configs[$row.key])
+					<tr>
+						<td>$!{row.name}</td>
+						<td>$!{config.value}</td>
+					</tr>
+					#end
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				缓存管理
+				<a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="cache_flush">
+					<i class="fa fa-refresh"></i> 刷新缓存
+				</a>
+			</div>
+			<div class="panel-body" style="height: 200px;">
+				<ul class="dropdown-menu pos-stc inline">
+					<li><a href="#">正在使用的缓存</a></li>
+					<li class="divider"></li>
+					#if($cacheNames.size() > 0)
+					#foreach($row in $cacheNames)
+						<li><a href="#">$row</a></li>
+					#end
+    				#else
+						<li>暂时没有缓存!</li>
+    				#end
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var J = jQuery;
+
+function ajaxReload(json){
+    if(json.code >= 0){
+        if(json.message != null && json.message != ''){
+            alert(json.message);
+        }
+        $('#qForm').submit();
+    }else{
+        alert(json.message);
+    }
+}
+
+$(function() {
+	selectNav(4);
+	
+	// 激活
+    $('a[data-action="cache_flush"]').bind('click', function(){
+        if(confirm('确定要清除系统中的缓存吗？')){
+            J.getJSON('$base/admin/config/cache_flush.json', ajaxReload);
+        }
+        return false;
+    });
+})
+</script>

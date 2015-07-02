@@ -36,10 +36,9 @@
 	
 	<!--对静态资源文件的访问 -->
 	<mvc:resources mapping="/dist/**" location="/dist/" />
-	<mvc:resources mapping="/html/**" location="/html/" />
 	<mvc:resources mapping="/error/**" location="/error/" />
 	<mvc:resources mapping="/store/**" location="/store/" />
-	<mvc:resources mapping="/markdown/**" location="/markdown/" />
+	<mvc:resources mapping="*.html" location="/" />
 	
 	<!-- Web层基于注解的扫描路径 -->
 	<context:component-scan base-package="mblog.web.controller" />
@@ -61,7 +60,7 @@
 	</bean>
 	
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/vm/" />
+		<property name="resourceLoaderPath" value="/themes/" />
 		<property name="velocityProperties">
 			<props>
 				<prop key="input.encoding">utf-8</prop>
@@ -80,30 +79,12 @@
 		<property name="defaultEncoding" value="utf-8"></property>
 		<property name="maxUploadSize" value="10485760000"></property>
 		<property name="maxInMemorySize" value="40960"></property>
+		<property name="uploadTempDir" value="upload/tmp"></property>
 	</bean>
 	
 	<bean id="exceptionResolver" class="mblog.web.exceptions.DefaultExceptionHandler" />
 	
 	<mvc:interceptors>
-        <mvc:interceptor>
-            <!-- 需拦截的地址 -->
-            <mvc:mapping path="/home*" />
-            <mvc:mapping path="/blog/*" />
-            <mvc:mapping path="/account/*" />
-            
-            <!-- 需排除拦截的地址 -->
-            <mvc:exclude-mapping path="/login"/>
-            <mvc:exclude-mapping path="/reg"/>
-            <bean class="mblog.web.interceptor.AccessInterceptor"/>
-        </mvc:interceptor>
-        
-        <mvc:interceptor>
-        	<mvc:mapping path="/admin" />
-            <mvc:mapping path="/admin/*" />
-            <mvc:mapping path="/admin/*/*" />
-            <bean class="mblog.web.interceptor.AdminAccessInterceptor"/>
-        </mvc:interceptor>
-        
         <bean class="mblog.web.interceptor.BaseInterceptor"/>  
     </mvc:interceptors>
     

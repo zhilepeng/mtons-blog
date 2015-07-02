@@ -1,0 +1,103 @@
+#set($title = "Home")
+
+<!-- left -->
+<div class="col-xs-12 col-md-9 side-left">
+	<!-- tab -->
+	<div class="stream-head clearfix">
+		<div class="user-info">
+			<span class="avatar-80">
+    			<a href="$base/account/profile">
+    				<img class="img-circle" src="$base${profile.avatar}">
+    			</a>
+			</span>
+		</div>
+		<ul class="user-post">
+			<li>
+				<a href="$base/post/new/text" class="act-icon act-text">
+					<i class="fa fa-pencil-square"></i>
+					<span class="tip">写文章</span>
+				</a>
+			</li>
+			<li>
+				<a href="$base/post/new/image" class="act-icon act-img">
+					<i class="fa fa-camera"></i>
+					<span class="tip">发图片</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- tab end -->
+	
+	<div class="shadow-box">
+		<!-- tab panes -->
+        <div class="stream-list">
+			#foreach($row in $page.results)
+        	<div class="stream-item" id="loop-${row.id}">
+        		<div class="blog-rank">
+			        <div class="votes #if(${row.hearts} > 0) plus #end">
+			            ${row.hearts}<small>喜欢</small>
+			        </div>
+			        <div class="views hidden-xs">
+			            ${row.comments}<small>评论</small>
+			        </div>
+			    </div>
+			    <div class="summary">
+			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+			        <div class="excerpt wordbreak hidden-xs">$!{row.summary} &nbsp;</div>
+			    	<div class="foot-block clearfix">
+						<ul class="tags">
+			    			#foreach($tag in $row.tagsArray)
+                			<li>
+                				<a class="tag tag-sm" href="$base/tag/${tag}/">$tag</a>
+            				</li>
+            				#end
+			    		</ul>
+			    		<div class="pull-right hidden-xs">
+			    			<a class="act" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
+			    		</div>
+			    	</div>
+			    </div>
+        	</div>
+			#end
+			
+			#if($page.results.size() == 0)
+    		<div class="stream-item">
+    				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
+            </div>
+			#end
+			
+		</div>
+	</div>
+	<div class="text-center clr">
+    	#page("home" $page 5)
+    </div>
+</div>
+
+
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+	#parse("/default/inc/right.vm")
+</div>
+
+<script type="text/javascript">
+$(function() {
+	$('a[data-evt=trash]').click(function () {
+		var id = $(this).attr('data-id');
+		
+		layer.confirm('确定删除此项吗?', {
+            btn: ['确定','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+			jQuery.getJSON('$base/post/delete/' + id, function (ret) {
+				layer.msg(ret.message, {icon: 1});
+				if (ret.code >=0) {
+					$('#loop-' + id).fadeOut();
+					$('#loop-' + id).remove();
+				}
+			});
+            
+        }, function(){
+			
+        });
+	});
+})
+</script>

@@ -1,0 +1,37 @@
+#set($layout = "/admin/layout/default.vm")
+
+<div class="col-lg-6">
+	<div class="panel m-t-large m-b"> 
+		<header class="panel-heading">修改角色</header>
+		<div class="panel-body">
+			<form id="qForm" class="form-horizontal" method="post" action="update">
+				#parse("/admin/message.vm")
+				
+				#foreach($row int $siteConfigs)
+				#set($config = $configs[$row.key])
+				#set($temp = $velocityCount - 1)
+				<div class="form-group">
+					<label class="col-lg-2 control-label">$!{row.name}</label>
+					<div class="col-lg-8">
+						<input type="hidden" name="configs[${temp}].id" value="$!{config.id}"/>
+						<input type="hidden" name="configs[${temp}].key" value="$!{config.key}"/>
+						<input type="text" name="configs[${temp}].value" class="form-control" value="$!{config.value}">
+                	</div>
+				</div>
+				#end
+				<div class="form-group">
+    				<div class="col-lg-9 col-lg-offset-3">
+    					<button type="submit" class="btn btn-primary btn-small">提交</button>
+    				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var J = jQuery;
+
+$(function() {
+	selectNav(4);
+})
+</script>

@@ -1,0 +1,52 @@
+#set($title="Blog")
+
+<script type="text/javascript" charset="utf-8" src="$base/dist/js/tag-it.js"></script>
+<script src="$base/dist/js/app/post.js"></script>
+
+<div class="col-xs-12 col-md-12">
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<i class="fa fa-pencil-square"></i> 发布文字
+    	</div>
+    	<div class="panel-body">
+    		<div id="message"></div>
+    		<form class="form-horizontal" action="$base/post/submit" method="post" enctype="multipart/form-data">
+    			<input type="hidden" name="type" value="${type}"/>
+    			<div class="form-group">
+    				<label class="col-sm-2 control-label no-padding-right">标题</label>
+    				<div class="col-sm-8">
+    					<input type="text" class="form-control" name="title" maxlength="32" data-required >
+    				</div>
+    			</div>
+    			<div class="form-group">
+    				<label for="desc" class="col-sm-2 control-label no-padding-right">内容:</label>
+    				<input type="hidden" name="editor" value="$!{setting_editor}"/>
+                    <div class="col-sm-8">
+						#parse("/default/post/editor/$!{setting_editor}.vm")
+                    </div>
+    			</div>
+    			<div class="form-group">
+    				<label class="col-sm-2 control-label no-padding-right">标签</label>
+    				<div class="col-sm-8">
+    					<input type="hidden" name="tags" id="fieldTags">
+    					<ul id="tags"></ul>
+    					<p class="help-block" style="font-size: 12px;">添加相关标签，用逗号或空格分隔.</p>
+    				</div>
+    			</div>
+    			<div class="row">
+    				<div class="form-group">
+            			<div class="text-center">
+            				<button type="submit" class="btn btn-primary">提交</button>
+            			</div>
+            		</div>
+    			</div>
+            </form>
+    		<!-- /form-actions -->
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function () {
+    var postView = new PostView($('#uedtior'), {});
+});
+</script>

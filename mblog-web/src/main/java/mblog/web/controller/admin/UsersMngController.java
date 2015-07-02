@@ -3,12 +3,9 @@
  */
 package mblog.web.controller.admin;
 
-import mblog.core.pojos.User;
-import mblog.core.service.UserService;
-import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Data;
-import mtons.modules.pojos.Page;
+import mtons.modules.pojos.Paging;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +13,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import mblog.data.User;
+import mblog.lang.EnumRole;
+import mblog.persist.service.UserService;
+import mblog.web.controller.BaseController;
 
 /**
  * @author langhsu
@@ -28,11 +30,26 @@ public class UsersMngController extends BaseController {
 	private UserService userService;
 	
 	@RequestMapping("/list")
-	public String list(Integer pn, ModelMap model) {
-		Page page = wrapPage(pn);
-		userService.paging(page);
+	public String list(Integer pn, String key, ModelMap model) {
+		Paging page = wrapPage(pn);
+		userService.paging(page, key);
 		model.put("page", page);
+		model.put("key", key);
 		return "/admin/users/list";
+	}
+	
+	@RequestMapping("/view")
+	public String view(Long id, ModelMap model) {
+		User view = userService.get(id);
+		model.put("view", view);
+		model.put("roles", EnumRole.values());
+		return "/admin/users/view";
+	}
+	
+	@RequestMapping("/update_role")
+	public String update(long id, int roleId) {
+		userService.updateRole(id, roleId);
+		return "redirect:/admin/users/list";
 	}
 	
 	@RequestMapping(value = "/pwd", method = RequestMethod.GET)
@@ -59,14 +76,14 @@ public class UsersMngController extends BaseController {
 	@RequestMapping("/open")
 	public @ResponseBody Data open(Long id) {
 		userService.updateStatus(id, Const.STATUS_NORMAL);
-		Data data = Data.success("操作成功");
+		Data data = Data.success("操作成功", Data.NOOP);
 		return data;
 	}
 	
 	@RequestMapping("/close")
 	public @ResponseBody Data close(Long id) {
 		userService.updateStatus(id, Const.STATUS_CLOSED);
-		Data data = Data.success("操作成功");
+		Data data = Data.success("操作成功", Data.NOOP);
 		return data;
 	}
 }

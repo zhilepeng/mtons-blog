@@ -2,8 +2,8 @@
 (function($){
 	var uuid = 0;
 	
-	var App = function() {};
-	App.browser = function() {
+	var mblog = function() {};
+	mblog.browser = function() {
        var u = navigator.userAgent;
        return {//移动终端浏览器版本信息 
             trident: u.indexOf('Trident') > -1, //IE内核
@@ -19,7 +19,7 @@
         };
     }();
 	
-	this.App = App;
+	this.mblog = mblog;
 	
 	function pageLink(curNo, pageNo){
 		if(curNo == -1){
@@ -191,18 +191,8 @@ jQuery( function($) {
 	   		 effect      : "fadeIn"
 	   	});
 		
-		// Lightbox
-		$('.wpex-lightbox').magnificPopup({ type: 'image' });
-		$('.wpex-gallery-lightbox').each(function() {
-			$(this).magnificPopup({
-				delegate: 'a',
-				type: 'image',
-				gallery: {
-					enabled:true
-				}
-			});
-		});
-
+		// Lightbox magnificPopup
+		
 		// Back to top link
 		$scrollTopLink = $( 'a.site-scroll-top' );
 		$window.scroll(function () {

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$!title - $!{site_name}</title>
+	<meta name="keywords" content="$!{site_keywords}">
+	<meta name="description" content="$!{site_description}">
+		
+	<link rel='stylesheet' media='all' href='$base/dist/vendors/font-awesome/css/font-awesome.min.css'/>
+	<link rel="stylesheet" media='all' href="$base/dist/vendors/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" media='all' href="$base/dist/vendors/animate/animate.min.css">
+	<link rel='stylesheet' media='all' href='$base/dist/css/style.css'/>
+	<link rel='stylesheet' media='all' href='$base/dist/css/layout.css'/>
+	<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
+	
+	<script type='text/javascript' src='$base/dist/js/jquery.min.js'></script>
+	<script type="text/javascript" src="$base/dist/js/jquery.lazyload.js"></script>
+	<script type="text/javascript" src="$base/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="$base/dist/js/plugins.js"></script>
+	<script type='text/javascript' src='$base/dist/js/jquery-validate.js'></script>
+	<script type='text/javascript' src='$base/dist/js/mtons.js'></script>
+	
+	#foreach($j in $js)
+	<script type="text/javascript" src="$j"></script>
+	#end
+	
+	<script type='text/javascript' src='$base/dist/js/global.js'></script>
+	
+	<!-- Favicons -->
+	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo/m.png"/>
+	<link rel="shortcut icon" href="http://mtons.com/dist/images/logo/m.png"/>
+	
+</head>
+<body>
+	#parse("/default/inc/header.vm")
+	
+	${screen_content}
+	<!--.site-main -->
+	
+	#parse("/default/inc/footer.vm")
+	
+	<a href="#" class="site-scroll-top"></a>
+</body>
+</html>

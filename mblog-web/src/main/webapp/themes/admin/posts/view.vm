@@ -1,0 +1,57 @@
+#set($layout = "/admin/layout/default.vm")
+
+<div class="panel m-t-large m-b">
+	<header class="panel-heading">文章查看</header>
+	<div class="panel-body">
+    	<section class="panel-content scrollbar scroll-y">
+    		<article class="media">
+    			<span class="pull-left thumb-small" style="width: 60px;"><img src="$base${view.author.avatar}" alt="${view.author.username}" class="img-circle"></span>
+    			<div class="media-body">
+    				<div class="pull-right media-mini text-center text-muted">
+    					<strong class="h4">$date.format('yyyy-MM-dd', $view.created)</strong><br>
+    				</div>
+    				<span class="h4">${view.title}</span>
+    				<span class="block">
+    					<a href="$base/user/${row.author.id}" class="">${view.author.username}</a>
+    					#foreach($tag in $row.tagsArray)
+            			<span class="label label-success">$tag</span>
+        				#end
+    				</span>
+    				<div class="block">${view.content}</div>
+    			</div>
+    		</article>
+    	</section>
+    	
+    	<div class="comment-action m-t-small">
+    		<a href="javascript:void(0);" class="btn btn-white btn-mini" data-id="${view.id}" data-action="delete">
+    			<i class="icon-trash text-muted"></i>删除
+    		</a>
+    	</div>
+	</div>
+</div>
+<script type="text/javascript">
+var J = jQuery;
+
+function ajaxReload(json){
+    if(json.code >= 0){
+        if(json.message != null && json.message != ''){
+            alert(json.message);
+        }
+        location.href = '$base/admin/posts/list';
+    }else{
+        alert(json.message);
+    }
+}
+
+$(function() {
+	selectNav(1);
+	
+	// 删除
+    $('a[data-action="delete"]').bind('click', function(){
+        if(confirm('删除后将不可撤销, 确定要继续吗？')){
+            J.getJSON('$base/admin/posts/delete', {id: $(this).attr('data-id')}, ajaxReload);
+        }
+        return false;
+    });
+})
+</script>

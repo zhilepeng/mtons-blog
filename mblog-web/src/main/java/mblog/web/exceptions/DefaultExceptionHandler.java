@@ -63,9 +63,13 @@ public class DefaultExceptionHandler implements HandlerExceptionResolver {
 	}
 	
 	private boolean isAjax(Object handler) {
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		ResponseBody responseBodyAnn = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), ResponseBody.class);  
-		return responseBodyAnn != null;
+		if (handler != null && handler instanceof HandlerMethod) {
+			HandlerMethod handlerMethod = (HandlerMethod) handler;
+			ResponseBody responseBodyAnn = AnnotationUtils.findAnnotation(handlerMethod.getMethod(), ResponseBody.class);  
+			return responseBodyAnn != null;
+		}
+		
+		return false;
 	}
 	
 }

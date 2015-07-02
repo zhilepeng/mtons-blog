@@ -42,7 +42,7 @@ footer .footer-nav ul { margin: 0 auto; display: inline-block; }
 footer .footer-nav  ul li { border-right: 1px solid #26292e; padding: 0; float: left; line-height: 39px; -webkit-transition: all .2s; -moz-transition: all .2s; -ms-transition: all .2s; -o-transition: all .2s; transition: all .2s; }
 footer .footer-nav  ul li:first-child { border-left: 1px solid #26292e; }
 footer .footer-nav  ul li:hover { background-color: #3a3e47; }
-footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 14px; }
+footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 
 
 /* Tablet (Portrait)
