@@ -1,6 +1,6 @@
 #Mblog
 
-> mblog 是一个简单的内容分享社区, 使用 mysql 数据库.
+> Mblog 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台.
 
 ##使用的框架：
 * Bootstrap 3
@@ -9,27 +9,27 @@
 * Hibernate
 * Hibernate search
 
-## 数据库配置
-> src/main/resources/init.properties
+## Mysql 数据库配置
+> 配置文件： src/main/resources/init.properties
 
 ```
 jdbc.url=jdbc:mysql://localhost:3306/db_mblog?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
-jdbc.username=your username
-jdbc.password=your password
+jdbc.username={username}
+jdbc.password={password}
 
-# 初始数据库文件位置(sql/db_mblog.sql), 默认用户: admin / 12345
+# 初始数据库文件位置(sql/db_init.sql), 默认用户: admin / 12345
 ```
 
 ## 索引文件存放目录
-> src/main/resources/init.properties
+> 配置文件：src/main/resources/init.properties
 
 ```
-# indexs path
+# 配置 lucene 索引文件存放目录
 hibernate.search.indexs=d:/data/indexs
 ```
 
-## 图片工具安装路径配置
-> src/main/resources/mtons.properties
+## 图片工具(GraphicsMagick)安装路径配置
+> 配置文件：src/main/resources/mtons.properties
 
 ```
 # graphicsmagick for windows
