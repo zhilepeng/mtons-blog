@@ -35,7 +35,7 @@
         	<div class="stream-item" id="loop-${row.id}">
         		<div class="blog-rank">
 			        <div class="votes #if(${row.hearts} > 0) plus #end">
-			            ${row.hearts}<small>喜欢</small>
+			            ${row.favors}<small>喜欢</small>
 			        </div>
 			        <div class="views hidden-xs">
 			            ${row.comments}<small>评论</small>
