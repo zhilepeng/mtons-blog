@@ -16,7 +16,9 @@
 	<!--fancybox样式-->
 	<link rel='stylesheet' media='all' href="$base/dist/vendors/picbox/css/style.css"/>
 
-	<script type='text/javascript' src='$base/dist/js/jquery.min.js'></script>
+	<script type="text/javascript" src="$base/dist/js/jquery.min.js"></script>
+	<script type="text/javascript" src="$base/dist/js/jquery-migrate-1.2.1.min.js"></script>
+	
 	<script type="text/javascript" src="$base/dist/js/jquery.lazyload.js"></script>
 	<script type="text/javascript" src="$base/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="$base/dist/js/plugins.js"></script>
