@@ -78,8 +78,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 
 .tags { overflow: hidden; float: left;}
 .tags > li { display: inline-block; margin-right: 5px; }
-.tag { display: inline-block; padding: 0 12px; color: #6f7d95; border: 1px solid #d9dfe9; background-color: #f3f5f9; height: 24px; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
-.tag-sm { padding: 0 8px; height: 20px; line-height: 20px; font-size: 12px; }
+.tags .tag { display: inline-block; padding: 0 12px; color: #6f7d95; border: 1px solid #d9dfe9; background-color: #f3f5f9; height: 24px; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
+.tags .tag-sm { padding: 0 8px; height: 20px; line-height: 20px; font-size: 12px; }
 .tag[href]:hover,.tag[href]:focus{background-color:#32a5e7;color:#fff;text-decoration:none}
 
 .foot-block {margin-top: 5px; display: block; font-size: 12px;}

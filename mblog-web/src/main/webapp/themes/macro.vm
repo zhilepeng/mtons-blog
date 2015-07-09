@@ -24,7 +24,7 @@ $user.username
 		<!--前端图片显示样式-->
 		#if($!{row.snapshot})
 		<!--Start-->
-		<div class="thumbs clearfix">
+		<div class="thumbs hidden-xs clearfix">
 			<div class="media col-xs-4 col-sm-4 col-md-4">
     			<a rel="lightbox" title="图片" href="$base${row.snapshot.original}">
     				<img src="$base/dist/images/spinner.gif" data-original="$base${row.snapshot.preview}"/>

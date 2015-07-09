@@ -24,9 +24,10 @@
 .pace .pace-progress {
   background-color: #29d;
   position: fixed;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
   top: 0;
   bottom: 0;
-  height:4px;
+  height: 3px;
   right: 100%;
   width: 100%;
   overflow: hidden;
@@ -38,7 +39,6 @@
   right: -32px;
   bottom: 0;
   left: 0;
-
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
