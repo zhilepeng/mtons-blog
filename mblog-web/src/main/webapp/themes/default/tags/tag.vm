@@ -16,7 +16,7 @@
     </div>
     		
     <div class="text-center clr">
-    	#page("$!{tag}" $page 5)
+    	#page("$base/tag/$!{tag}" $page 5)
     </div>
 </div>
 
