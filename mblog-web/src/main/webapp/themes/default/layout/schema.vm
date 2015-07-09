@@ -28,6 +28,9 @@
 	
 	<script type='text/javascript' src='$base/dist/js/global.js'></script>
 	
+	<script src="$base/dist/vendors/pace/pace.min.js"></script>
+	<link href="$base/dist/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+	
 	<!-- Favicons -->
 	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo/m.png"/>
 	<link rel="shortcut icon" href="http://mtons.com/dist/images/logo/m.png"/>
