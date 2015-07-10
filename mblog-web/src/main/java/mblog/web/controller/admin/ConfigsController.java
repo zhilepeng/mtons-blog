@@ -55,7 +55,7 @@ public class ConfigsController extends BaseController {
 	
 	@RequestMapping("/cache_flush")
 	public @ResponseBody Data cacheFlush() {
-		ehcacheManager.getCacheManager().removeAllCaches();
+		ehcacheManager.getCacheManager().clearAll();
 		return Data.success("操作成功", Data.NOOP);
 	}
 	
