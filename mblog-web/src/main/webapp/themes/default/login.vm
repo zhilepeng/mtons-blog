@@ -3,7 +3,7 @@
 <div class="login">
 	<div class="vegas-overlay" style="opacity: 0.2; margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url($base/dist/images/overlay.png); z-index: -1;"></div>
 	
-	<a href="$base">
+	<a href="${base}/index">
 		<img src="$base/dist/images/logo/m216.png" height="72" width="72">
 	</a>
 	<h1>登录你的 Mtons</h1>

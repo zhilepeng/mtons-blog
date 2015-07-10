@@ -33,7 +33,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .search-btn {position: absolute; right: 25px; top: 12px; font-size: 18px; color: #999;}
 
 /* main */
-.shadow-box { box-shadow: 0px 1px 1px rgba(0, 0, 0, .15); background-color: #fff; margin-bottom: 15px; border: 1px solid #cacaca;}
+.shadow-box {   box-shadow: 0px 1px 1px rgba(209, 212, 221, 0.15); background-color: #fff; margin-bottom: 15px; border: 1px solid #ddd;}
 
 .filter {border-bottom: 1px solid #cacaca;}
 .filter ul { display: block; }
