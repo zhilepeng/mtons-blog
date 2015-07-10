@@ -16,11 +16,11 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .mb6 { margin-bottom: 6px;}
 
 /* nav */
-.navbar-inverse { background-color: #3a3e47; border-color: #2e3138; border-radius: 0;}
+.navbar-inverse { background-color: #39424e; border-color: #39424e; border-radius: 0;}
 
 .navbar-inverse .navbar-nav > li > a { color: #DADFE8;}
 .navbar-inverse .navbar-nav > li > a:hover,
-.navbar-inverse .navbar-nav > li > a:focus { color: #fff; background-color: #4C4D4D; }
+.navbar-inverse .navbar-nav > li > a:focus { color: #fff; background-color: #232931; }
 
 .search-box { position: relative;}
 .search-box input {  background-color: #fff;
@@ -228,7 +228,7 @@ Tags
 	-moz-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0);
 	-webkit-transition: -webkit-transform .4s, opacity .1s; -moz-transition: -moz-transform .4s, opacity .1s; transition: transform .4s, opacity .1s
 }
-.tags_effecs .itag { position: absolute; padding: 4px 10px; left: 10px; bottom: 10px; background: #222; opacity: 0.8; font-size: 14px;
+.tags_effecs .itag { position: absolute; padding: 4px 10px; left: 10px; bottom: 10px; background: #39424e; opacity: 0.8; font-size: 14px;
 	color: #fff; _filter: alpha(opacity=80); max-width: 90%; position: absolute; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 /*markdown显示ul样式*/

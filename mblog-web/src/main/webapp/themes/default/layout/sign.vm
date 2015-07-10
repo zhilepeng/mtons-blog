@@ -27,38 +27,13 @@
 	<link rel="shortcut icon" href="http://mtons.com/dist/images/logo/m.png"/>
 	
 </head>
-<body class="default">
-	<nav class="navbar navbar-default navbar-static-top" role="navigation">
-		#parse("/default/inc/browse_tips.vm")
-		<div class="container">
-			<div class="navbar-header">
-				<button id="main_nav_btn" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand logo" href="http://www.mtons.com"><img src="$base/dist/images/logo/m216.png"></a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="$base/browse/gallery" class="highlight">走廊</a></li>
-					<li><a href="$base/explore" class="highlight">发现</a></li>
-					<li><a href="$base/reg" class="highlight">注册</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<body class="sign">
+	#parse("/default/inc/browse_tips.vm")
 	
 	${screen_content}
 		
-	#parse("/default/inc/footer.vm")
-	
-	<script type="text/javascript">
-	$(function() {
-		$("#main_nav_btn").on("click",function(){return $(".navbar").toggleClass("navbar-default")})
-	})
-	</script>
+	<p class="small">Copyright © Mtons（<a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+	</p>
 	
 </body>
 </html>
