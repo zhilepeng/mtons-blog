@@ -31,10 +31,10 @@ public class LogEventHandler implements ApplicationListener<LogEvent> {
 		Date now = new Date();
 		
 		switch (type) {
-			case LIKED:
+			case FAVORED:
 				int logs = logService.statsByDay(type.getIndex(), event.getUserId(), event.getTargetId(), event.getIp(), now);
 				if (logs > 0) {
-					throw new MtonsException("您今天已经支持过该文章了");
+					throw new MtonsException("您今天已经喜欢过该文章了");
 				}
 				postService.identityHearts(event.getTargetId());
 				logService.add(type.getIndex(), event.getUserId(), event.getTargetId(), event.getIp());

@@ -47,8 +47,8 @@ $user.username
 				#end
     		</ul>
     		<div class="pull-right hidden-xs">
-				<span class="act"><a href="$base/browse/detail/${row.id}">浏览(${row.views})</a></span>
-				<span class="act">评论(${row.comments})</span>
+				<span class="act">浏览 (${row.views})</span>
+				<span class="act">评论 (${row.comments})</span>
     		</div>
     	</div>
     </div>

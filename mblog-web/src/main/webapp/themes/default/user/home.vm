@@ -47,8 +47,8 @@
 	                        				#end
 	            			    		</ul>
 	            			    		<div class="pull-right hidden-xs">
-											<span class="act"><a href="$base/browse/detail/${row.id}">浏览(<i>${row.views}</i>)</a></span>
-	            			    			<span class="act"><a href="javascript:void(0);" data-event="like" data-id="${row.id}">喜欢&nbsp;(<i>${row.favors}</i>)</a></span>
+											<span class="act">浏览 (<i>${row.views}</i>)</span>
+	            			    			<span class="act">喜欢 (<i>${row.favors}</i>)</span>
 	            			    		</div>
 	            			    	</div>
 	            			    </div>
@@ -65,22 +65,3 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-
-$(function () {
-	$('a[data-event="like"]').click(function () {
-		var that = $(this)
-		var id = that.attr('data-id');
-		
-		if (parseInt(id) > 0) {
-			jQuery.getJSON('$base/post/heart', {'id': id}, function (ret) {
-				if (ret.code >=0) {
-					var sideLiked = that.find('i').text();
-					that.find('i').text(parseInt(sideLiked) + 1);
-				}
-			});
-		}
-	});
-})
-</script>

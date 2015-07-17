@@ -18,7 +18,7 @@
 			<span class="pull-right action-box"> </span>
 		</div>
 		<div class="post-frame">
-			#if($ret.albums)
+			#if($ret.albums && (${ret.type} != 'video'))
     			#foreach($row in $ret.albums)
     				<div class="single-post-media">
     					<img src="$base/dist/images/spinner.gif" data-original="$base${row.original}" style="display: block;">

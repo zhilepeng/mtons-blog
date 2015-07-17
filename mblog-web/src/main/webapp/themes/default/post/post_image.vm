@@ -1,4 +1,4 @@
-#set($title="Blog")
+#set($title="发布照片")
 
 <script type="text/javascript">
 	var _base_path = '$!{base}';
@@ -6,8 +6,6 @@
 
 <link href="$base/dist/vendors/uploader/uploader.css" type="text/css" rel="stylesheet" />
 	
-<script type="text/javascript" charset="utf-8" src="$base/dist/js/tag-it.js"></script>
-
 <script src="$base/dist/vendors/uploader/dmuploader.js"></script>
 <script src="$base/dist/vendors/uploader/image-upload.js"></script>
 

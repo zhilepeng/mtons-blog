@@ -22,4 +22,14 @@
 	<bean id="postPlanet" class="mblog.planet.impl.PostPlanetImpl" />
 	<bean id="tagPlanet" class="mblog.planet.impl.TagPlanetImpl" />
 	
+	<bean id="videoAnalysis" class="mblog.analysis.videos.VideoAnalysis">
+		<property name="strategies">
+			<map>
+				<entry key="v.youku.com">
+					<bean class="mblog.analysis.videos.support.Youku"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
 </beans>

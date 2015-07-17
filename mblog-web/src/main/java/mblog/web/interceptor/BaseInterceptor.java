@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * 
  */
 public class BaseInterceptor extends HandlerInterceptorAdapter {
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		return true;
@@ -23,8 +23,6 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		request.setAttribute("base", request.getContextPath());
-		
-		System.out.println(request.getRequestURI());
 	}
 
 }

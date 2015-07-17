@@ -6,15 +6,14 @@ package mblog.web.upload.impl;
 import java.io.File;
 import java.io.IOException;
 
+import mblog.context.AppContext;
+import mblog.utils.FileNameUtils;
+import mblog.web.upload.FileRepo;
 import mtons.modules.utils.GMagickUtils;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
-
-import mblog.context.AppContext;
-import mblog.utils.FileNameUtils;
-import mblog.web.upload.FileRepo;
 
 /**
  * @author langhsu

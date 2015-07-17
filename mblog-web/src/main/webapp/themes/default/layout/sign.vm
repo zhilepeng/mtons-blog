@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>$!{site_name} - 登录</title>
+	<meta name="keywords" content="mtons,blog,轻博客,博客,社区,前端,javascript,css, html5"/>
+	<meta name="description" content="Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择"/>
+	
+	<script src="$base/dist/vendors/pace/pace.min.js"></script>
+	<link href="$base/dist/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+	
+	<!-- v3 -->
+	<link rel="stylesheet" href="$base/dist/vendors/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="$base/dist/css/login.css">
+	<link rel="stylesheet" href="$base/dist/vendors/animate/animate.min.css">
+	
+	<!-- JavaScript -->
+	
+	<script type="text/javascript" src="$base/dist/js/jquery.min.js"></script>
+	<script type="text/javascript" src="$base/dist/js/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="$base/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="$base/dist/js/jquery-validate.js"></script>
+	
+	<!-- Favicons -->
+	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo/m.png"/>
+	<link rel="shortcut icon" href="http://mtons.com/dist/images/logo/m.png"/>
+	
+</head>
+<body class="sign">
+	#parse("/default/inc/browse_tips.vm")
+	
+	${screen_content}
+		
+	<p class="small">Copyright © Mtons（<a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+	</p>
+	
+</body>
+</html>

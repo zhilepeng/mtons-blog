@@ -2,7 +2,7 @@
 
 <div class="widget-box shadow-box">
 	<div class="title">
-		<h3>热门文章</h3>
+		<h3><i class="fa fa-area-chart"></i> 热门文章</h3>
 	</div>
 	<ul class="box-list" id="hots">
 	</ul>
@@ -10,14 +10,14 @@
 
 <div class="widget-box shadow-box">
 	<div class="title">
-		<h3>最新发布</h3>
+		<h3><i class="fa fa-bars"></i> 最新发布</h3>
 	</div>
 	<ul class="box-list" id="recents">
 	</ul>
 </div>
 
 <div class="widget-box shadow-box">
-    <div class="title"><h3>热门标签</h3></div>
+    <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
     <ul class="tags m10 text-center" id="hottags">
     </ul>
 </div>

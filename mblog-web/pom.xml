@@ -12,6 +12,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mtons.mblog</groupId>
+			<artifactId>mblog-persist</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mtons.mblog</groupId>
 			<artifactId>mblog-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

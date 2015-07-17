@@ -98,7 +98,7 @@ public class PostController extends BaseController {
 					evt.setUserId(up.getId());
 				}
 				evt.setTargetId(id);
-				evt.setType(EnumLog.LIKED);
+				evt.setType(EnumLog.FAVORED);
 				evt.setIp(getIpAddr(request));
 				applicationContext.publishEvent(evt);
 				

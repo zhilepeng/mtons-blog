@@ -9,7 +9,7 @@
 .top-wrap {position: relative;}
 
 .logo { float: left; padding: 5px 8px 8px 15px; font-size: 18px; line-height: 20px; height: 50px; }
-.logo img { width: 40px; height: 40px; }
+.logo img { height: 26px; margin-top: 6px;}
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }
@@ -26,12 +26,12 @@
 /* footer */
 
 footer { background-color: #3a3e47; }
-footer .mode-idx-link { margin: 15px auto 25px; }
-footer .mode-idx-link .t-h3 { font-size: 14px; color: #b7bac1; line-height: 24px; border-bottom: 1px solid #484c57; }
-footer .mode-idx-link .t-h3 a { color: #b7bac1; }
-footer .mode-idx-link ul.list-inline li { line-height: 26px; }
-footer .mode-idx-link ul.list-inline li a { color: #707682; font-size: 12px; }
-footer .mode-idx-link ul.list-inline li a:hover { color: #b3c3d6; text-decoration: underline; }
+footer .mode-link { margin: 15px auto 25px; }
+footer .mode-link .t-h3 { font-size: 14px; color: #b7bac1; line-height: 24px; border-bottom: 1px solid #484c57; }
+footer .mode-link .t-h3 a { color: #b7bac1; }
+footer .mode-link ul.list-inline li { line-height: 26px; }
+footer .mode-link ul.list-inline li a { color: #707682; font-size: 12px; }
+footer .mode-link ul.list-inline li a:hover { color: #b3c3d6; text-decoration: underline; }
 
 footer .copy-right { margin-top: 25px; position: relative; }
 footer .copy-right span { border-bottom: 1px solid #31353c; line-height: 28px; margin-bottom: 20px; display: block; }

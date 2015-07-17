@@ -23,6 +23,18 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>com.mtons.mblog</groupId>
+			<artifactId>mblog-persist</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
@@ -31,12 +43,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-			<scope>compile</scope>
 		</dependency>
 		
 		<!-- spring aop aspectj -->
@@ -58,29 +64,22 @@
 		<!-- spring aop aspectj /end -->
 		
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.0.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-highlighter</artifactId>
-			<version>4.10.2</version>
-		</dependency>
-		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.8.1</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+		
 	</dependencies>
 </project>

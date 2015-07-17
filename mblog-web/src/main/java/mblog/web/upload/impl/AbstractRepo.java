@@ -4,11 +4,17 @@
 package mblog.web.upload.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 
 import mtons.modules.exception.MtonsException;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -55,6 +61,19 @@ public abstract class AbstractRepo {
 		if (!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}
+	}
+	
+	protected byte[] getNetworkImage(String url) throws HttpException, IOException {
+		HttpClient client = new HttpClient();
+		client.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "utf-8"); 
+    	GetMethod post = new GetMethod(url);
+    	
+    	int status = client.executeMethod(post);
+    	
+    	if (status != HttpStatus.SC_OK) {
+    		throw new MtonsException("该地址请求失败");
+    	}
+    	return post.getResponseBody();
 	}
 	
 }

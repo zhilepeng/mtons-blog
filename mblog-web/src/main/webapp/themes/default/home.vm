@@ -1,4 +1,4 @@
-#set($title = "Home")
+#set($title = "我的主页")
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">
@@ -22,6 +22,12 @@
 				<a href="$base/post/new/image" class="act-icon act-img">
 					<i class="fa fa-camera"></i>
 					<span class="tip">发图片</span>
+				</a>
+			</li>
+			<li>
+				<a href="$base/post/new/video" class="act-icon act-img">
+					<i class="fa fa-toggle-right"></i>
+					<span class="tip">发视频</span>
 				</a>
 			</li>
 		</ul>

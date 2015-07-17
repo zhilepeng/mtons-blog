@@ -10,6 +10,12 @@
                                   data-describedby="message" data-description="content"></textarea>
 
 <script type="text/javascript">
+
+function setContent(content) {
+	if (content != null && content.length > 0) {
+    	$('#content').text(content);
+	}
+}
 $(function () {
 	if (mblog.browser.ios || mblog.browser.android) {
 		$('#content').addClass('form-control');

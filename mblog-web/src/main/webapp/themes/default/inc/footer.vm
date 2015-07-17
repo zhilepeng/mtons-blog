@@ -2,9 +2,9 @@
 	<div class="footer-nav">
 		<div class="container">
 			<ul class="about-ul list-inline clearfix">
-				<li><a href="#" target="_blank">关于我们</a></li>
-				<li><a href="#" target="_blank">加入我们</a></li>
-				<li><a href="#" target="_blank">常见问题解答</a></li>
+				<li><a href="$base/about" target="_blank">关于我们</a></li>
+				<li><a href="$base/joinus" target="_blank">联系我们</a></li>
+				<li><a href="$base/help" target="_blank">常见问题解答</a></li>
                 <li>
 					<script type="text/javascript">
 						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
@@ -14,6 +14,12 @@
 			</ul>
 		</div>
 	</div>
+	<div class="container mode-link">
+        <h3 class="t-h3">友情链接</h3>
+        <ul class="list-inline">
+			<li><a href="http://mtons.com" target="_blank" title="Mtons博客">Mtons博客</a></li>
+        </ul>
+    </div>
 	<div class="container copy-right">
 		<span>Copyright © <a href="#">Mtons</a> （<a
 			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)

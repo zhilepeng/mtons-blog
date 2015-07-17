@@ -9,7 +9,7 @@ package mblog.lang;
  */
 public enum EnumLog {
 	LOGIN(1, "logined"),
-	LIKED(2, "liked"),
+	FAVORED(2, "favored"),
 	POSTED(3, "posted"),
 	COMMENT(4, "comment"),
 	BROWSE(5, "browse");

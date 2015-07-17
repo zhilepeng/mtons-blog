@@ -22,7 +22,7 @@
     					<a href="$base/explore"><i class="fa fa-tags fa-lg"></i> 发现</a>
     				</li>
     				<li>
-    					<a href="$base/browse/gallery"><i class="fa fa-columns fa-lg"></i> 走廊</a>
+    					<a href="$base/browse/gallery"><i class="fa fa-trello fa-lg"></i> 走廊</a>
     				</li>
     			</ul>
     			<div class="search-box navbar-left hidden-xs">

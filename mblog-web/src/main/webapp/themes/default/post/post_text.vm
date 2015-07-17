@@ -1,6 +1,5 @@
-#set($title="Blog")
+#set($title="发布文字")
 
-<script type="text/javascript" charset="utf-8" src="$base/dist/js/tag-it.js"></script>
 <script src="$base/dist/js/app/post.js"></script>
 
 <div class="col-xs-12 col-md-12">
