@@ -38,5 +38,8 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 [Graphicsmagick 下载](http://www.graphicsmagick.org/download.html)
 
+##关于Tomcat部署
+> 请再Connector设置url编码 
+> <Connector port="8080" protocol="HTTP/1.1" ... URIEncoding="UTF-8"/>
 
 QQ交流群：378433412
