@@ -27,7 +27,7 @@ public class ConfigPO {
 	
 	private int type;
 	
-	@Column(name = "`key`", unique = true)
+	@Column(name = "key_", unique = true)
 	private String key;
 	
 	private String value;
