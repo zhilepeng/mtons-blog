@@ -4,15 +4,17 @@
     <div id="blog-wrap" class="g-box masonry-grid">
     	#foreach($row in $page.results)
     	<div class="shadow-box g-item span_1_of_3 col masonry-entry">
-    		#if($row.type == 'image' && ${row.snapshot.preview})
+    		#if($!{row.albums})
         	<div class="g-thumb">
-        		<a href="$base/browse/detail/${row.id}">
-    				<img src="$base${row.snapshot.preview}">
-    			</a>
+				#foreach($alb in ${row.albums})
+        			<a href="$base/view/${row.id}">
+        				<img src="$base${alb.preview}">
+        			</a>
+    			#end
         	</div>
     		#end
         	<h3 class="title">
-        		<a href="$base/browse/detail/${row.id}">${row.title}</a>
+				#postLink($row)
         	</h3>
         	<div class="g-outline">
         		<p>${row.summary}</p>
@@ -32,7 +34,7 @@
     <div class="page-jump clr">
     	<div class="newer-posts alignleft"></div>
     	<div class="older-posts alignright">
-    		<a href="$base/browse/gallery_snippet/2">Older Posts &rarr;</a>
+    		<a href="$base/gallery_snippet/2?g=$!{groupId}">Older Posts &rarr;</a>
     	</div>
     </div>
 </div>

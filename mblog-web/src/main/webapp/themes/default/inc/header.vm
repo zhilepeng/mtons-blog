@@ -13,17 +13,18 @@
     		</div>
     		<div id="navbar" class="navbar-collapse collapse">
     			<ul class="nav navbar-nav">
-    				#if($profile)
-    				<li>
-    					<a href="$base/home"><i class="fa fa-home fa-lg"></i> 我的首页</a>
+					#if($profile)
+    				<li data="home">
+    					<a href="$base/home" nav="home"><i class="fa fa-home fa-lg"></i> 我的首页</a>
     				</li>
-    				#end
-    				<li>
-    					<a href="$base/explore"><i class="fa fa-tags fa-lg"></i> 发现</a>
+					#end
+					
+					#foreach($m in $menus)
+					<li>
+    					<a href="$base/${m.url}" nav="${m.name}">${m.name}</a>
     				</li>
-    				<li>
-    					<a href="$base/browse/gallery"><i class="fa fa-trello fa-lg"></i> 走廊</a>
-    				</li>
+					#end
+					
     			</ul>
     			<div class="search-box navbar-left hidden-xs">
     				<form class="navbar-form" method="get" action="$base/browse/search">
@@ -63,3 +64,13 @@
     	</div>
     </nav>
 </div>
+<script type="text/javascript">
+$(function () {
+	$('a[nav]').each(function(){  
+        $this = $(this);
+        if($this[0].href == String(window.location)){  
+            $this.closest('li').addClass("active");  
+        }  
+    });
+});
+</script>

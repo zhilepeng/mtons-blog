@@ -44,6 +44,7 @@ footer .footer-nav  ul li:first-child { border-left: 1px solid #26292e; }
 footer .footer-nav  ul li:hover { background-color: #3a3e47; }
 footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 
+.player {width:480px; height:400px; margin-left:auto; margin-right:auto;}
 
 /* Tablet (Portrait)
 ================================================== */
@@ -67,9 +68,11 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 	.masonry-grid { max-width: 480px; width: 80% !important; margin-left: auto; margin-right: auto; }
 	.masonry-entry { width:100% !important; }
 	
+	.player {width:400px; height:334px;}
 }
 /* Mobile (Portrait only)
 ================================================== */
 @media only screen and (max-width: 479px) {
 	.masonry-entry { width: 100% !important; margin-bottom: 25px !important; }
+	.player {width:320px; height:267px;}
 }

@@ -98,8 +98,6 @@ function ajaxReload(json){
 }
 
 $(function() {
-	selectNav(3);
-	
 	// 删除
     $('#dataGrid a[data-action="delete"]').bind('click', function(){
 		var that = $(this);

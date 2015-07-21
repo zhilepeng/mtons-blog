@@ -23,7 +23,7 @@ public class UserFull extends User {
 	
 	private int follows; // 关注人数
 	
-	private int liked; // 被赞数
+	private int favors; // 被赞数
 	
 	public int getPosts() {
 		return posts;
@@ -65,12 +65,12 @@ public class UserFull extends User {
 		this.comments = comments;
 	}
 
-	public int getLiked() {
-		return liked;
+	public int getFavors() {
+		return favors;
 	}
 
-	public void setLiked(int liked) {
-		this.liked = liked;
+	public void setFavors(int favors) {
+		this.favors = favors;
 	}
-	
+
 }

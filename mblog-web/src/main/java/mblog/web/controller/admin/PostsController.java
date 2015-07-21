@@ -5,6 +5,7 @@ package mblog.web.controller.admin;
 
 import java.util.List;
 
+import mtons.modules.lang.Const;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;
 
@@ -36,7 +37,7 @@ public class PostsController extends BaseController {
 	@RequestMapping("/list")
 	public String list(Integer pn, ModelMap model) {
 		Paging page = wrapPage(pn);
-		postService.paging(page, "newest");
+		postService.paging(page, Const.ZERO, "newest", false);
 		model.put("page", page);
 		return "/admin/posts/list";
 	}

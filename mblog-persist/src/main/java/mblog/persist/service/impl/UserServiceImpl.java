@@ -5,6 +5,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import mblog.data.AccountProfile;
+import mblog.data.User;
+import mblog.persist.dao.UserDao;
+import mblog.persist.entity.UserExtendPO;
+import mblog.persist.entity.UserPO;
+import mblog.persist.service.UserService;
+import mblog.utils.BeanMapUtils;
 import mtons.modules.exception.MtonsException;
 import mtons.modules.lang.Const;
 import mtons.modules.lang.EntityStatus;
@@ -16,13 +23,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-import mblog.data.AccountProfile;
-import mblog.data.User;
-import mblog.persist.dao.UserDao;
-import mblog.persist.entity.UserPO;
-import mblog.persist.service.UserService;
-import mblog.utils.BeanMapUtils;
 
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -65,6 +65,13 @@ public class UserServiceImpl implements UserService {
 		po.setStatus(EntityStatus.ENABLED);
 		po.setCreated(current);
 		po.setUpdated(current);
+		
+		// 保存扩展
+		UserExtendPO extend = new UserExtendPO();
+		extend.setUser(po);
+
+		po.setExtend(extend);
+		
 		userDao.save(po);
 	}
 

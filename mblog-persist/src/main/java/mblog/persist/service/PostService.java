@@ -21,9 +21,13 @@ import mblog.data.Post;
 public interface PostService {
 	/**
 	 * 分页查询所有文章
-	 * @param page
+	 * 
+	 * @param paging
+	 * @param group 分组Id
+	 * @param ord
+	 * @param loadImages 是否加载图片
 	 */
-	void paging(Paging paging, String ord);
+	void paging(Paging paging, int group, String ord, boolean loadImages);
 	
 	/**
 	 * 查询个人发布文章

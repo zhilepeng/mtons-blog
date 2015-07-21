@@ -5,12 +5,26 @@ package mblog.persist.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import mblog.data.Attach;
+import mblog.data.Post;
+import mblog.data.Tag;
+import mblog.lang.Consts;
+import mblog.persist.dao.AttachDao;
+import mblog.persist.dao.PostDao;
+import mblog.persist.dao.UserDao;
+import mblog.persist.entity.PostPO;
+import mblog.persist.service.AttachService;
+import mblog.persist.service.PostService;
+import mblog.persist.service.TagService;
+import mblog.utils.BeanMapUtils;
+import mblog.utils.PreviewTextUtils;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Paging;
 
@@ -28,20 +42,6 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
-
-import mblog.data.Attach;
-import mblog.data.Post;
-import mblog.data.Tag;
-import mblog.lang.Consts;
-import mblog.persist.dao.AttachDao;
-import mblog.persist.dao.PostDao;
-import mblog.persist.dao.UserDao;
-import mblog.persist.entity.PostPO;
-import mblog.persist.service.AttachService;
-import mblog.persist.service.PostService;
-import mblog.persist.service.TagService;
-import mblog.utils.BeanMapUtils;
-import mblog.utils.PreviewTextUtils;
 
 /**
  * @author langhsu
@@ -61,12 +61,21 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public void paging(Paging paging, String ord) {
-		List<PostPO> list = postDao.paging(paging, ord);
+	public void paging(Paging paging, int group, String ord, boolean loadImages) {
+		List<PostPO> list = postDao.paging(paging, group, ord);
+		
 		List<Post> rets = new ArrayList<Post>();
+		List<Long> ids = new ArrayList<Long>();
+		
 		for (PostPO po : list) {
+			ids.add(po.getId());
 			rets.add(BeanMapUtils.copy(po, 0));
 		}
+		
+		if (loadImages) {
+			buildAttachs(rets, ids);
+		}
+		
 		paging.setResults(rets);
 	}
 	
@@ -74,10 +83,17 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void pagingByUserId(Paging paging, long userId) {
 		List<PostPO> list = postDao.pagingByUserId(paging, userId);
+		
 		List<Post> rets = new ArrayList<Post>();
+		List<Long> ids = new ArrayList<Long>();
+		
 		for (PostPO po : list) {
+			ids.add(po.getId());
 			rets.add(BeanMapUtils.copy(po ,0));
 		}
+		
+		buildAttachs(rets, ids);
+		
 		paging.setResults(rets);
 	}
 	
@@ -103,6 +119,8 @@ public class PostServiceImpl implements PostService {
 	    int resultSize = query.getResultSize();
 	    
 	    List<Post> rets = new ArrayList<Post>();
+	    List<Long> ids = new ArrayList<Long>();
+	    
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
 			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
@@ -118,7 +136,12 @@ public class PostServiceImpl implements PostService {
 				m.setTags(tags);
 			}
 			rets.add(m);
+			
+			ids.add(po.getId());
 		}
+		
+		buildAttachs(rets, ids);
+		
 		paging.setTotalCount(resultSize);
 		paging.setResults(rets);
 		return rets;
@@ -137,13 +160,20 @@ public class PostServiceImpl implements PostService {
 	    query.setMaxResults(paigng.getMaxResults());
 
 	    List<PostPO> list = query.list();
+	    List<Long> ids = new ArrayList<Long>();
+	    
 	    int resultSize = query.getResultSize();
 	    
 	    List<Post> rets = new ArrayList<Post>();
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
 			rets.add(m);
+			
+			ids.add(po.getId());
 		}
+		
+		buildAttachs(rets, ids);
+		
 		paigng.setTotalCount(resultSize);
 		paigng.setResults(rets);
 		return rets;
@@ -176,8 +206,24 @@ public class PostServiceImpl implements PostService {
 	public Map<Long, Post> findByIds(Set<Long> ids) {
 		List<PostPO> list = postDao.findByIds(ids);
 		Map<Long, Post> rets = new HashMap<Long, Post>();
+		
+		List<Long> imageIds = new ArrayList<Long>();
+		
 		for (PostPO po : list) {
 			rets.put(po.getId(), BeanMapUtils.copy(po, 0));
+			
+			if (po.getLastImageId() > 0) {
+				imageIds.add(po.getLastImageId());
+			}
+		}
+		
+		Map<Long, Attach> ats = attachService.findByIds(imageIds);
+		
+		for (Map.Entry<Long, Post> ent : rets.entrySet()) {
+			if (ent.getValue().getLastImageId() > 0) {
+				Attach a = ats.get(ent.getValue().getLastImageId());
+				ent.getValue().setAlbums(Collections.singletonList(a));
+			}
 		}
 		return rets;
 	}
@@ -187,7 +233,6 @@ public class PostServiceImpl implements PostService {
 	public void post(Post post) {
 		PostPO po = postDao.get(post.getId());
 		if (po != null) {
-			po.setUpdated(new Date());
 			po.setTitle(post.getTitle());
 			po.setContent(post.getContent());
 			po.setMarkdown(post.getMarkdown());
@@ -196,7 +241,7 @@ public class PostServiceImpl implements PostService {
 			if (StringUtils.isBlank(post.getSummary())) {
 				po.setSummary(trimSummary(post.getContent())); // summary handle
 			} else {
-				po.setSummary(post.getSummary());
+				po.setSummary(trimSummary(post.getSummary()));
 			}
 			po.setTags(post.getTags());
 		} else {
@@ -207,7 +252,7 @@ public class PostServiceImpl implements PostService {
 			po.setStatus(EntityStatus.ENABLED);
 			
 			// content
-			po.setType(post.getType());
+			po.setGroup(post.getGroup());
 			po.setTitle(post.getTitle());
 			po.setContent(post.getContent());
 			po.setMarkdown(post.getMarkdown());
@@ -225,29 +270,13 @@ public class PostServiceImpl implements PostService {
 		
 		// attach handle
 		if (post.getAlbums() != null) {
-			for (int i = 0; i < post.getAlbums().size(); i++) {
-				Attach a = post.getAlbums().get(i);
-				a.setToId(po.getId());
-				long id = attachService.add(a);
-				if (i == 0) {
-					po.setSnapshot(attachDao.get(id));
-				}
-			}
+			long lastImageId = attachService.batchAdd(po.getId(), post.getAlbums());
+			po.setLastImageId(lastImageId);
 		}
 		
 		// tag handle
 		if (StringUtils.isNotBlank(post.getTags())) {
-			List<Tag> tags = new ArrayList<Tag>();
-			String[] ts = StringUtils.split(post.getTags(), Consts.SEPARATOR);
-			
-			for (String t : ts) {
-				Tag tag = new Tag();
-				tag.setName(t);
-				tag.setLastPostId(po.getId());
-				tag.setPosts(1);
-				tags.add(tag);
-			}
-			
+			List<Tag> tags = BeanMapUtils.convertTags(po.getId(), post.getTags());
 			tagService.batchPost(tags);
 		}
 	}
@@ -260,7 +289,7 @@ public class PostServiceImpl implements PostService {
 		if (po != null) {
 			d = BeanMapUtils.copy(po, 1);
 			
-			List<Attach> albs = attachService.list(d.getId());
+			List<Attach> albs = attachService.findByTarget(d.getId());
 			d.setAlbums(albs);
 		}
 		return d;
@@ -339,4 +368,12 @@ public class PostServiceImpl implements PostService {
 	    	po.setTags(p.getTags());//标签
     	}
 	}
+    
+    private void buildAttachs(List<Post> posts, List<Long> postIds) {
+    	Map<Long, List<Attach>> attMap = attachService.findByTarget(postIds);
+    	
+    	for (Post p : posts) {
+    		p.setAlbums(attMap.get(p.getId()));
+    	}
+    }
 }

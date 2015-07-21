@@ -14,6 +14,9 @@
 	<bean id="attachDao" class="mblog.persist.dao.impl.AttachDaoImpl" />
 	<bean id="tagDao" class="mblog.persist.dao.impl.TagDaoImpl" />
 	
+	<bean id="groupDao" class="mblog.persist.dao.impl.GroupDaoImpl" />
+	<bean id="menuDao" class="mblog.persist.dao.impl.MenuDaoImpl" />
+	
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
 	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />
@@ -22,5 +25,8 @@
 	<bean id="postService" class="mblog.persist.service.impl.PostServiceImpl" />
 	<bean id="attachService" class="mblog.persist.service.impl.AttachServiceImpl" />
 	<bean id="tagService" class="mblog.persist.service.impl.TagServiceImpl" />
+	
+	<bean id="groupService" class="mblog.persist.service.impl.GroupServiceImpl" />
+	<bean id="menuService" class="mblog.persist.service.impl.MenuServiceImpl" />
 	
 </beans>

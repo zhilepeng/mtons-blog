@@ -19,17 +19,18 @@ public class Post implements Serializable {
 	private static final long serialVersionUID = -1144627551517707139L;
 
 	private long id;
-	private String type; // text,image,video
+	private int group; // text,image,video
 	private String title;
 	private String summary;
 	private String content;
 	private String markdown; // markdown 内容
 	private String editor; // 编辑器
-	private String tags;
-	private Attach snapshot;
-	private Date created;
-	private Date updated;
+	private String tags; // 标签字符串
+	private Date created; // 创建时间
 	private User author;
+	
+	private long lastImageId;
+	
 	private int featured; // 推荐状态
 	private int favors; // 喜欢
 	private int comments;
@@ -48,12 +49,12 @@ public class Post implements Serializable {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public int getGroup() {
+		return group;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setGroup(int group) {
+		this.group = group;
 	}
 
 	public String getTitle() {
@@ -80,14 +81,6 @@ public class Post implements Serializable {
 		this.content = content;
 	}
 
-	public Attach getSnapshot() {
-		return snapshot;
-	}
-
-	public void setSnapshot(Attach snapshot) {
-		this.snapshot = snapshot;
-	}
-
 	public String getTags() {
 		return tags;
 	}
@@ -111,12 +104,12 @@ public class Post implements Serializable {
 		this.created = created;
 	}
 
-	public Date getUpdated() {
-		return updated;
+	public long getLastImageId() {
+		return lastImageId;
 	}
 
-	public void setUpdated(Date updated) {
-		this.updated = updated;
+	public void setLastImageId(long lastImageId) {
+		this.lastImageId = lastImageId;
 	}
 
 	public User getAuthor() {

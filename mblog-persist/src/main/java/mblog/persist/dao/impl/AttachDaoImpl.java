@@ -3,14 +3,14 @@
  */
 package mblog.persist.dao.impl;
 
+import java.util.Collection;
 import java.util.List;
-
-import mtons.modules.persist.impl.DaoImpl;
-
-import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.AttachDao;
 import mblog.persist.entity.AttachPO;
+import mtons.modules.persist.impl.DaoImpl;
+
+import org.hibernate.criterion.Restrictions;
 
 /**
  * @author langhsu
@@ -24,9 +24,17 @@ public class AttachDaoImpl extends DaoImpl<AttachPO> implements AttachDao {
 	}
 
 	@Override
-	public List<AttachPO> list(long toId) {
-		TopQuery<AttachPO> q = topQuery(0);
-		q.add(Restrictions.eq("toId", toId));
-		return q.list();
+	public List<AttachPO> findByTarget(long toId) {
+		return find(Restrictions.eq("toId", toId));
+	}
+
+	@Override
+	public List<AttachPO> findByTarget(List<Long> toIds) {
+		return find(Restrictions.in("toId", toIds));
+	}
+
+	@Override
+	public List<AttachPO> findByIds(Collection<Long> ids) {
+		return find(Restrictions.in("id", ids));
 	}
 }

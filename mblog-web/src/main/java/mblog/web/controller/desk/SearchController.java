@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.web.controller.desk.browse;
+package mblog.web.controller.desk;
 
 import mtons.modules.pojos.Paging;
 
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mblog.persist.service.PostService;
 import mblog.persist.service.TagService;
 import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
 
 /**
  * 文章搜索

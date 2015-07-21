@@ -66,8 +66,6 @@ function ajaxReload(json){
 }
 
 $(function() {
-	selectNav(4);
-	
 	// 激活
     $('a[data-action="cache_flush"]').bind('click', function(){
         if(confirm('确定要清除系统中的缓存吗？')){

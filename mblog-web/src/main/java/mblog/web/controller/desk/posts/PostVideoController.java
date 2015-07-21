@@ -41,9 +41,8 @@ public class PostVideoController extends BaseController {
 			
 			Video video = videoAnalysis.take(url);
 			
-			Attach att = handleAlbums(video.getThumbnail());
+			Attach att = handleAlbums(video.getThumbnail_v2());
 			
-			post.setType("video");
 			post.setTitle(video.getTitle());
 			post.setSummary(video.getDescription());
 			post.setContent(video.getBody() + post.getContent());

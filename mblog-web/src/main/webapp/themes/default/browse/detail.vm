@@ -1,5 +1,6 @@
 #set($title=$!{ret.title})
 #set($tags=$!{ret.tags})
+#set($summary=$!{ret.summary})
 #set($layout = "/default/layout/seo.vm")
 
 <script type="text/javascript" src="$base/dist/js/app/comment.js"></script>

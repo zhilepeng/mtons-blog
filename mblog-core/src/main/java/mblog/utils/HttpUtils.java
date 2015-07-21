@@ -1,3 +1,8 @@
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.utils;
 
 import java.io.IOException;
@@ -11,6 +16,11 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
+/**
+ * 
+ * @author langhsu
+ *
+ */
 public class HttpUtils {
 
 	public static HttpClient getClient() {

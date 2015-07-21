@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.web.controller.desk;
+package mblog.web.controller.desk.user;
 
 import mtons.modules.pojos.Paging;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mblog.persist.service.PostService;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
 
 /**
  * @author langhsu

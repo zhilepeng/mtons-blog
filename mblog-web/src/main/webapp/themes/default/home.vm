@@ -12,24 +12,19 @@
 			</span>
 		</div>
 		<ul class="user-post">
+			#foreach($g in $groups)
 			<li>
-				<a href="$base/post/new/text" class="act-icon act-text">
-					<i class="fa fa-pencil-square"></i>
-					<span class="tip">写文章</span>
+				#if ($velocityCount % 2 == 0)
+					#set($color = 'act-text')
+				#else
+					#set($color = 'act-img')
+				#end
+				<a href="$base/post/new/${g.key}" class="act-icon ${color}">
+					<i class="${g.icon}"></i>
+					<span class="tip">${g.alias}</span>
 				</a>
 			</li>
-			<li>
-				<a href="$base/post/new/image" class="act-icon act-img">
-					<i class="fa fa-camera"></i>
-					<span class="tip">发图片</span>
-				</a>
-			</li>
-			<li>
-				<a href="$base/post/new/video" class="act-icon act-img">
-					<i class="fa fa-toggle-right"></i>
-					<span class="tip">发视频</span>
-				</a>
-			</li>
+			#end
 		</ul>
 	</div>
 	<!-- tab end -->
@@ -48,8 +43,26 @@
 			        </div>
 			    </div>
 			    <div class="summary">
-			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+			        <h2 class="title">#postLink($row)</h2>
 			        <div class="excerpt wordbreak hidden-xs">$!{row.summary} &nbsp;</div>
+					
+					<!--前端图片显示样式-->
+            		#if($!{row.albums})
+            		<!--Start-->
+            		<div class="thumbs clearfix">
+            			#foreach($alb in ${row.albums})
+							#if ($velocityCount <= 3)
+                			<div class="media col-xs-4 col-sm-4 col-md-4">
+                    			<a title="${row.title}" href="$base${alb.original}">
+                    				<img src="$base/dist/images/spinner.gif" data-original="$base${alb.preview}"/>
+                    			</a>
+                			</div>
+                			#end
+            			#end
+            		</div>
+            		<!--End-->
+            		#end
+            		
 			    	<div class="foot-block clearfix">
 						<ul class="tags">
 			    			#foreach($tag in $row.tagsArray)
@@ -68,7 +81,7 @@
 			
 			#if($page.results.size() == 0)
     		<div class="stream-item">
-    				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
+    				<i class="fa fa-exclamation fa-lg"></i> 您还没发表过文章!
             </div>
 			#end
 			

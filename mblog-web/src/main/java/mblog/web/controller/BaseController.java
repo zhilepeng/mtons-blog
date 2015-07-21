@@ -6,6 +6,7 @@ package mblog.web.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,10 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
+import mblog.context.AppContext;
+import mblog.data.Attach;
 import mblog.shiro.authc.AccountSubject;
+import mblog.web.upload.FileRepo;
 
 import com.google.gson.Gson;
 
@@ -30,6 +34,10 @@ import com.google.gson.Gson;
 public class BaseController {
 	@Autowired
 	protected HttpSession session;
+	@Autowired
+	protected AppContext appContext;
+	@Autowired
+	protected FileRepo fileRepo;
 
 	/**
 	 * 获取登录信息
@@ -100,6 +108,11 @@ public class BaseController {
 	protected String getView(String view) {
 		return "/default" + view;
 	}
+	
+	protected String routeView(String route, String group) {
+		String format = "/default" + route;
+		return String.format(format, group);
+	}
 
 	public static String getIpAddr(HttpServletRequest request) throws Exception {
 		String ip = request.getHeader("X-Real-IP");
@@ -119,4 +132,32 @@ public class BaseController {
 			return request.getRemoteAddr();
 		}
 	}
+	
+	protected void handleAlbums(List<Attach> albums) {
+		if (albums == null || albums.isEmpty()) {
+			return;
+		}
+		for (Attach alb : albums) {
+			String root = getRealPath("/");
+			File temp = new File(root + alb.getOriginal());
+			
+			try {
+				// 保存原图
+				String orig = fileRepo.storeScale(temp, appContext.getOrigDir(), 800);
+				alb.setOriginal(orig);
+				
+				// 创建缩放图片
+				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 360);
+				alb.setPreview(preview);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (temp != null) {
+					temp.delete();
+				}
+			}
+		}
+	}
+	
 }

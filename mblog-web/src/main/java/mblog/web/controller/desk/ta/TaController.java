@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.web.controller.desk.user;
+package mblog.web.controller.desk.ta;
 
 import mtons.modules.pojos.Paging;
 
@@ -22,13 +22,13 @@ import mblog.web.controller.desk.Views;
  *
  */
 @Controller
-public class UserHomeController extends BaseController {
+public class TaController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/user/{uid}")
+	@RequestMapping("/ta/{uid}")
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
 		User user = userService.get(uid);
 		Paging page = wrapPage(pn);
@@ -36,6 +36,6 @@ public class UserHomeController extends BaseController {
 		
 		model.put("user", user);
 		model.put("page", page);
-		return getView(Views.USER_HOME);
+		return getView(Views.TA_HOME);
 	}
 }

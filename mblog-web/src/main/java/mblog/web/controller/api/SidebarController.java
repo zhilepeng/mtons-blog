@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.web.controller.desk.browse;
+package mblog.web.controller.api;
 
 import java.util.List;
 
@@ -25,14 +25,14 @@ import mblog.web.controller.BaseController;
  *
  */
 @Controller
-@RequestMapping("/browse")
+@RequestMapping("/api")
 public class SidebarController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
 	@Autowired
 	private TagPlanet tagPlanet;
 	
-	@RequestMapping("/recents_json")
+	@RequestMapping("/recents.json")
 	public @ResponseBody List<Post> recent() {
 		UserProfile up = getSubject().getProfile();
 		long ignoreUserId = 0;
@@ -43,7 +43,7 @@ public class SidebarController extends BaseController {
 		return rets;
 	}
 	
-	@RequestMapping("/hots_json")
+	@RequestMapping("/hots.json")
 	public @ResponseBody List<Post> hots() {
 		UserProfile up = getSubject().getProfile();
 		long ignoreUserId = 0;
@@ -54,7 +54,7 @@ public class SidebarController extends BaseController {
 		return rets;
 	}
 	
-	@RequestMapping("/hot_tags_json")
+	@RequestMapping("/hot_tags.json")
 	public @ResponseBody List<Tag> hotTags() {
 		List<Tag> rets = tagPlanet.topTags(12, false);
 		return rets;

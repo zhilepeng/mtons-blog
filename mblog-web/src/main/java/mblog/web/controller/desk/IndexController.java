@@ -3,6 +3,9 @@
  */
 package mblog.web.controller.desk;
 
+import mblog.planet.PostPlanet;
+import mblog.web.controller.BaseController;
+import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 
 import org.apache.commons.lang.StringUtils;
@@ -10,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import mblog.planet.PostPlanet;
-import mblog.web.controller.BaseController;
 
 /**
  * @author langhsu
@@ -33,17 +32,10 @@ public class IndexController extends BaseController{
 		if (StringUtils.isNotBlank(ord)) {
 			order = ord;
 		}
-		page = postPlanet.paging(page, order);
+		page = postPlanet.paging(page, Const.ZERO, order);
 		model.put("page", page);
 		model.put("ord", order);
 		return getView(Views.INDEX);
-	}
-	
-	@RequestMapping("/post_list")
-	public @ResponseBody Paging indexJson(Integer pn) {
-		Paging page = wrapPage(pn);
-		page = postPlanet.paging(page, defaultOrder);
-		return page;
 	}
 	
 }

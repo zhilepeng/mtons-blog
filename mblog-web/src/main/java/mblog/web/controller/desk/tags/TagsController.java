@@ -37,11 +37,11 @@ public class TagsController extends BaseController {
 	
 	private int maxResults = 12;
 	
-	@RequestMapping("/explore")
+	@RequestMapping("/tags")
 	public String view(ModelMap model) {
 		List<Tag> tags = tagPlanet.topTags(maxResults, true);
 		model.put("tags", tags);
-		return getView(Views.TAGS_EXPLORE);
+		return getView(Views.TAGS_INDEX);
 	}
 	
 	@RequestMapping("/tag/{tag}")

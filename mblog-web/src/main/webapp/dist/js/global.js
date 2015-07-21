@@ -192,6 +192,11 @@ jQuery( function($) {
 	   	});
 		
 		// Lightbox magnificPopup
+		if (baguetteBox) {
+			baguetteBox.run('.thumbs', {
+				animation: 'slideIn'
+			});
+		}
 		
 		// Back to top link
 		$scrollTopLink = $( 'a.site-scroll-top' );

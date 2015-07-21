@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *******************************************************************************/
 package mblog.data;
 
 /**
@@ -13,6 +15,7 @@ public class Video {
 	private String id;
 	private String title;
 	private String thumbnail;
+	private String thumbnail_v2;
 	private String description;
 	private String player;
 	
@@ -72,6 +75,14 @@ public class Video {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getThumbnail_v2() {
+		return thumbnail_v2;
+	}
+
+	public void setThumbnail_v2(String thumbnail_v2) {
+		this.thumbnail_v2 = thumbnail_v2;
 	}
 
 }

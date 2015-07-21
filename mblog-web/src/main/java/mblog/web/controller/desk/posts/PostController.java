@@ -3,11 +3,17 @@
  */
 package mblog.web.controller.desk.posts;
 
-import java.io.File;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
+import mblog.data.Group;
+import mblog.data.Post;
+import mblog.event.LogEvent;
+import mblog.lang.EnumLog;
+import mblog.persist.service.GroupService;
+import mblog.persist.service.PostService;
+import mblog.planet.PostPlanet;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;
 
@@ -21,17 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.context.AppContext;
-import mblog.event.LogEvent;
-import mblog.planet.PostPlanet;
-import mblog.data.Attach;
-import mblog.data.Post;
-import mblog.lang.EnumLog;
-import mblog.persist.service.PostService;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-import mblog.web.upload.FileRepo;
-
 /**
  * @author langhsu
  *
@@ -44,16 +39,15 @@ public class PostController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
 	@Autowired
-	private AppContext appContext;
-	@Autowired
-	private FileRepo fileRepository;
+	private GroupService groupService;
 	@Autowired
 	private ApplicationContext applicationContext;
 	
-	@RequestMapping(value = "/new/{type}", method = RequestMethod.GET)
-	public String view(@PathVariable String type, ModelMap model) {
-		model.put("type", type);
-		return getView(Views.BLOG_POST + type);
+	@RequestMapping(value = "/new/{groupKey}", method = RequestMethod.GET)
+	public String view(@PathVariable String groupKey, ModelMap model) {
+		Group group = groupService.getByKey(groupKey);
+		model.put("group", group);
+		return routeView(Views.ROUTE_POST_PUBLISH, group.getTemplate());
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
@@ -108,37 +102,6 @@ public class PostController extends BaseController {
 			}
 		}
 		return data;
-	}
-	
-	private void handleAlbums(List<Attach> albums) {
-		if (albums == null) {
-			return;
-		}
-		for (Attach alb : albums) {
-			createPic(alb);
-		}
-	}
-
-	private void createPic(Attach album) {
-		String root = getRealPath("/");
-		File temp = new File(root + album.getOriginal());
-		
-		try {
-			// 保存原图
-			String orig = fileRepository.storeScale(temp, appContext.getOrigDir(), 700);
-			album.setOriginal(orig);
-			
-			// 创建缩放图片
-			String preview = fileRepository.storeScale(temp, appContext.getThumbsDir(), 360);
-			album.setPreview(preview);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (temp != null) {
-				temp.delete();
-			}
-		}
 	}
 	
 }

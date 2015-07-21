@@ -4,15 +4,17 @@
 
 #foreach($row in $page.results)
 <div class="shadow-box g-item span_1_of_3 col masonry-entry">
-	#if($row.type == 'image' && ${row.snapshot.preview})
+	#if($!{row.albums})
 	<div class="g-thumb">
-		<a href="$base/browse/detail/${row.id}">
-			<img src="$base${row.snapshot.preview}">
-		</a>
+		#foreach($alb in ${row.albums})
+			<a href="$base/view/${row.id}">
+				<img src="$base${alb.preview}">
+			</a>
+		#end
 	</div>
 	#end
 	<h3 class="title">
-		<a href="$base/browse/detail/${row.id}">${row.title}</a>
+		<a href="$base/view/${row.id}">${row.title}</a>
 	</h3>
 	<div class="g-outline">
 		<p>${row.summary}</p>

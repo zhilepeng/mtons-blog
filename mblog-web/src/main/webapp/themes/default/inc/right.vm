@@ -30,19 +30,19 @@ var tag_li_template	= '<li class="mb6"><a href="$base/tag/{0}/" class="tag" titl
 
 $(function () {
 	var sidebox = new Sidebox($('#sidebox'), {
-		recentUrl : '$base/browse/recents_json',
-    	hotUrl : '$base/browse/hots_json',
-		hotTagUrl : '$base/browse/hot_tags_json',
+		recentUrl : '$base/api/recents.json',
+    	hotUrl : '$base/api/hots.json',
+		hotTagUrl : '$base/api/hot_tags.json',
 		
     	maxResults :10,
         // callback
         onLoadHot : function (i, data) {
-        	var url = '$base/browse/detail/' + data.id;
+        	var url = '$base/view/' + data.id;
       		var item = jQuery.format(hot_li_template, i + 1, url, data.title, data.views);
       		return item;
         },
         onLoadRecent : function (i, data) {
-        	var url = '$base/browse/detail/' + data.id;
+        	var url = '$base/view/' + data.id;
       		var item = jQuery.format(recent_li_template, i + 1, url, data.title, data.views);
       		return item;
         },

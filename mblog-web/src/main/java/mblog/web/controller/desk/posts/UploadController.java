@@ -8,18 +8,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import mblog.context.AppContext;
-import mblog.web.controller.BaseController;
-import mblog.web.upload.FileRepo;
 
 /**
  * @author langhsu
@@ -28,11 +24,6 @@ import mblog.web.upload.FileRepo;
 @Controller
 @RequestMapping("/post")
 public class UploadController extends BaseController {
-	@Autowired
-	private AppContext appContext;
-	@Autowired
-	private FileRepo fileRepo;
-	
 	private static Map<String, String> errors = new HashMap<String, String>();
 	
 	// 文件允许格式

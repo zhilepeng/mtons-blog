@@ -94,3 +94,48 @@ INSERT INTO `mto_tags` VALUES ('9', '美图', '1', '0', '0', '0');
 INSERT INTO `mto_tags` VALUES ('10', '模特', '1', '0', '0', '0');
 INSERT INTO `mto_tags` VALUES ('11', '心情', '1', '0', '0', '0');
 INSERT INTO `mto_tags` VALUES ('12', '摄影', '1', '0', '0', '0');
+
+-- ----------------------------
+-- Table structure for mto_group
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_group`;
+CREATE TABLE `mto_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key_` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `template` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_group
+-- ----------------------------
+INSERT INTO `mto_group` VALUES ('1', 'blog', '文章', '写文章', 'fa fa-pencil-square', 'blog');
+INSERT INTO `mto_group` VALUES ('2', 'image', '图片', '发图片', 'fa fa-camera', 'image');
+INSERT INTO `mto_group` VALUES ('3', 'video', '视频', '分享视频', 'fa fa-toggle-right', 'video');
+INSERT INTO `mto_group` VALUES ('4', 'ask', '问答', '提问题', 'fa fa-question-circle', 'ask');
+
+-- ----------------------------
+-- Table structure for mto_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_menu`;
+CREATE TABLE `mto_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(18) DEFAULT NULL,
+  `target` varchar(18) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `weight` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_menu
+-- ----------------------------
+INSERT INTO `mto_menu` VALUES ('1', '博文', '_self', 'g/blog', '0');
+INSERT INTO `mto_menu` VALUES ('2', '视频', '_self', 'g/video', '0');
+INSERT INTO `mto_menu` VALUES ('3', '问答', '_self', 'g/ask', '0');
+INSERT INTO `mto_menu` VALUES ('4', '发现', '_self', 'explore', '0');
+INSERT INTO `mto_menu` VALUES ('5', '走廊', '_self', 'gallery?g=2', '0');
+

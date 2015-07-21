@@ -22,7 +22,7 @@
 			
 			#if($page.results.size() == 0)
     		<div class="stream-item">
-    				<i class="fa fa-frown-o fa-lg"></i> 您还没发表过文章!
+				该目录下还没有内容!
             </div>
 			#end
 			

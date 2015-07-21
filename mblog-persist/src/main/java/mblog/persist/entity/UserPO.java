@@ -169,4 +169,12 @@ public class UserPO {
 		this.roleId = roleId;
 	}
 
+	public UserExtendPO getExtend() {
+		return extend;
+	}
+
+	public void setExtend(UserExtendPO extend) {
+		this.extend = extend;
+	}
+
 }

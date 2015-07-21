@@ -29,7 +29,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;}
-.search-box input:hover {width: 260px;}
+.search-box input:hover {width: 216px;}
 .search-btn {position: absolute; right: 25px; top: 12px; font-size: 18px; color: #999;}
 
 /* main */
@@ -65,7 +65,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-item .author span { margin-right: 15px;}
 .stream-item .excerpt { margin: 8px 0 0; color: #777; font-size: 14px; line-height: 1.6; overflow: hidden; }
 .stream-item .thumbs {}
-.stream-item .thumbs .media { padding: 5px 5px 5px 0; margin: 0; max-height: 160px; overflow: hidden;}
+.stream-item .thumbs .media { padding: 5px 5px 5px 0; margin: 0; max-height: 140px; overflow: hidden;}
 
 .blog-stream {}
 .blog-stream .stream-item { padding: 12px 0; }

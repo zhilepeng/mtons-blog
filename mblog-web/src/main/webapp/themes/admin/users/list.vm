@@ -95,8 +95,6 @@ function ajaxReload(json){
 }
 
 $(function() {
-	selectNav(2);
-	
 	// 停用
     $('#dataGrid a[data-action="close"]').bind('click', function(){
 		var that = $(this);

@@ -3,19 +3,27 @@
  */
 package mblog.utils;
 
-import org.springframework.beans.BeanUtils;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import mblog.data.AccountProfile;
 import mblog.data.Attach;
 import mblog.data.Comment;
+import mblog.data.Group;
 import mblog.data.Post;
 import mblog.data.Tag;
 import mblog.data.User;
+import mblog.lang.Consts;
 import mblog.persist.entity.AttachPO;
 import mblog.persist.entity.CommentPO;
+import mblog.persist.entity.GroupPO;
 import mblog.persist.entity.PostPO;
 import mblog.persist.entity.TagPO;
 import mblog.persist.entity.UserPO;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 
 /**
  * @author langhsu
@@ -26,8 +34,8 @@ public class BeanMapUtils {
 	
 	private static String[] COMMENT_IGNORE = new String[]{"author"};
 	
-	private static String[] POST_IGNORE = new String[]{"author", "snapshot"};
-	private static String[] POST_IGNORE_LIST = new String[]{"author", "snapshot", "markdown", "content"};
+	private static String[] POST_IGNORE = new String[]{"author"};
+	private static String[] POST_IGNORE_LIST = new String[]{"author", "markdown", "content"};
 	
 	public static User copy(UserPO po) {
 		if (po == null) {
@@ -75,11 +83,6 @@ public class BeanMapUtils {
 			u.setAvatar(po.getAuthor().getAvatar());
 			d.setAuthor(u);
 		}
-		if (po.getSnapshot() != null) {
-			Attach a = new Attach();
-			BeanUtils.copyProperties(po.getSnapshot(), a);
-			d.setSnapshot(a);
-		}
 		return d;
 	}
 	
@@ -93,5 +96,29 @@ public class BeanMapUtils {
 		Tag ret = new Tag();
 		BeanUtils.copyProperties(po, ret);
 		return ret;
+	}
+	
+	public static List<Tag> convertTags(long postId, String tags) {
+		if (StringUtils.isBlank(tags)) {
+			return Collections.emptyList();
+		}
+		List<Tag> ret = new ArrayList<Tag>();
+		String[] ts = StringUtils.split(tags, Consts.SEPARATOR);
+		
+		for (String t : ts) {
+			Tag tag = new Tag();
+			tag.setName(t);
+			tag.setLastPostId(postId);
+			tag.setPosts(1);
+			ret.add(tag);
+		}
+		
+		return ret;
+	}
+	
+	public static Group copy(GroupPO po) {
+		Group r = new Group();
+		BeanUtils.copyProperties(po, r);
+		return r;
 	}
 }

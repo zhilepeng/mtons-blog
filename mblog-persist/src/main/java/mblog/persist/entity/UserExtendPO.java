@@ -45,7 +45,7 @@ public class UserExtendPO {
 	
 	private int follows; // 关注人数
 	
-	private int liked; // 被赞数
+	private int praises; // 被赞数
 	
 	public long getId() {
 		return id;
@@ -103,12 +103,12 @@ public class UserExtendPO {
 		this.comments = comments;
 	}
 
-	public int getLiked() {
-		return liked;
+	public int getPraises() {
+		return praises;
 	}
 
-	public void setLiked(int liked) {
-		this.liked = liked;
+	public void setPraises(int praises) {
+		this.praises = praises;
 	}
-	
+
 }

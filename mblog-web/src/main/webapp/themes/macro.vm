@@ -12,31 +12,35 @@ $user.username
 <div class="stream-item" id="loop-${row.id}">
 	<div class="blog-rank">
 		<div class="user" title="${row.author.name}">
-			<a href="$base/user/${row.author.id}">
+			<a href="$base/ta/${row.author.id}">
             	<img class="img-circle" src="$base${row.author.avatar}">
             </a>
         </div>
     </div>
     <div class="summary">
-        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+        <h2 class="title">#postLink($row)</h2>
         <div class="excerpt wordbreak hidden-xs">$!{row.summary} </div>
 			
 		<!--前端图片显示样式-->
-		#if($!{row.snapshot})
+		#if($!{row.albums})
 		<!--Start-->
-		<div class="thumbs hidden-xs clearfix">
-			<div class="media col-xs-4 col-sm-4 col-md-4">
-    			<a rel="lightbox" title="图片" href="$base${row.snapshot.original}">
-    				<img src="$base/dist/images/spinner.gif" data-original="$base${row.snapshot.preview}"/>
-    			</a>
-			</div>
+		<div class="thumbs clearfix">
+			#foreach($alb in ${row.albums})
+    			#if ($velocityCount <= 3)
+    			<div class="media col-xs-4 col-sm-4 col-md-4">
+        			<a title="${row.title}" href="$base${alb.original}">
+        				<img src="$base/dist/images/spinner.gif" data-original="$base${alb.preview}"/>
+        			</a>
+    			</div>
+    			#end
+			#end
 		</div>
 		<!--End-->
 		#end
 		
     	<div class="foot-block clearfix">
     		<div class="author">
-	        	<span><a href="$base/user/${row.author.id}">#showName($row.author)</a></span>
+	        	<span><a href="$base/ta/${row.author.id}">#showName($row.author)</a></span>
 	        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
 	        </div>
     		<ul class="tags">
@@ -123,4 +127,6 @@ $user.username
     #end
 #end
 
-
+#macro (postLink $view)
+	<a href="$base/view/${view.id}">${view.title}</a>
+#end

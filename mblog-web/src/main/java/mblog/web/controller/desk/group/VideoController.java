@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.web.controller.desk;
+package mblog.web.controller.desk.group;
 
 import java.net.MalformedURLException;
 

@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *******************************************************************************/
 package mblog.analysis.videos.support;
 
 import java.util.HashMap;
@@ -14,6 +16,8 @@ import mtons.modules.exception.MtonsException;
 import com.alibaba.fastjson.JSON;
 
 /**
+ * 优酷视频信息抓取
+ * 
  * @author langhsu
  *
  */
@@ -31,7 +35,7 @@ public class Youku implements VideoStrategy {
 		Video ret = null;
 		try {
 			String body = HttpUtils.post(api, params);
-			
+			System.out.println(body);
 			ret = JSON.parseObject(body, Video.class);
 			
 			ret.setSource(source);
@@ -55,7 +59,7 @@ public class Youku implements VideoStrategy {
 		 */
 		
 		StringBuffer buf = new StringBuffer();
-		buf.append("<div id='youkuplayer' style='width:480px;height:400px;margin-left:auto;margin-right:auto;'></div>");
+		buf.append("<div id='youkuplayer' class='player'></div>");
 		buf.append("<script type=\"text/javascript\" src=\"http://player.youku.com/jsapi\">");
 		buf.append("player = new YKU.Player('youkuplayer',{");
 		buf.append("styleid: '0',");

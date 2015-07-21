@@ -7,7 +7,9 @@
     <div class="shadow-box">
 		<div class="filter">
 			#if($results.size() == 0)
-			<i class="fa fa-frown-o fa-lg"></i> 没有相关记录!
+				<div class="alert" style="margin-bottom:0">
+					<i class="fa fa-exclamation fa-lg"></i> 没有相关记录!
+				</div>
     		#else
     			<div class="alert" style="margin-bottom:0">
     		     	 搜索 <strong>$!{q}</strong>, 共 ${page.totalCount} 个结果.

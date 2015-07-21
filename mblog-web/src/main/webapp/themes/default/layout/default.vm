@@ -6,6 +6,7 @@
 	<title>$!title - $!{site_name}</title>
 	<meta name="keywords" content="mtons,$!{site_keywords}">
 	<meta name="description" content="$!{site_description}">
+	<meta property="qc:admins" content="5145027547636375" />
 	
 	<script src="$base/dist/vendors/pace/pace.min.js"></script>
 	<link href="$base/dist/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
@@ -17,7 +18,7 @@
 	<link rel='stylesheet' media='all' href='$base/dist/css/layout.css'/>
 	<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
 	<!--fancybox样式-->
-	<link rel='stylesheet' media='all' href="$base/dist/vendors/picbox/css/style.css"/>
+	<link rel='stylesheet' media='all' href="$base/dist/vendors/baguette/baguetteBox.min.css"/>
 
 	<script type="text/javascript" src="$base/dist/js/jquery.min.js"></script>
 	<script type="text/javascript" src="$base/dist/js/jquery-migrate-1.2.1.min.js"></script>
@@ -32,11 +33,15 @@
 	<script type="text/javascript" src="$j"></script>
 	#end
 	
+	<script type='text/javascript' src="$base/dist/vendors/baguette/baguetteBox.min.js"></script>
 	<script type='text/javascript' src='$base/dist/vendors/layer/layer.js'></script>
 	<script type='text/javascript' src='$base/dist/js/global.js'></script>
 	
 	<!--picbox插件-->
-	<script type='text/javascript' src="$base/dist/vendors/picbox/js/picbox.js"></script>
+	
+	<!--[if lt IE 9]>
+    <script src="$base/dist/js/html5.js"></script>
+    <![endif]-->
 	
 	<!-- Favicons -->
 	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo/m.png"/>

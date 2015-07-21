@@ -78,8 +78,6 @@ function doDelete(ids) {
 }
 
 $(function() {
-	selectNav(5);
-	
 	// 删除
     $('#dataGrid a[data-action="delete"]').bind('click', function(){
         var that = $(this);

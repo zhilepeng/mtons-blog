@@ -6,6 +6,7 @@ package mblog.persist.dao.impl;
 import java.util.Collection;
 import java.util.List;
 
+import mtons.modules.lang.Const;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 
@@ -32,8 +33,12 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 	}
 
 	@Override
-	public List<PostPO> paging(Paging paging, String ord) {
+	public List<PostPO> paging(Paging paging, int group, String ord) {
 		PagingQuery<PostPO> q = pagingQuery(paging);
+		
+		if (group > Const.ZERO) {
+			q.add(Restrictions.eq("group", group));
+		}
 		
 		if ("hottest".equals(ord)) {
 			q.desc("views");

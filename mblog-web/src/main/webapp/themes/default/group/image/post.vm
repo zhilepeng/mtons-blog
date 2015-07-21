@@ -1,37 +1,26 @@
-#set($title="Blog")
+#set($title="发布照片")
 
-<link href="$base/dist/vendors/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+	var _base_path = '$!{base}';
+</script>
+
 <link href="$base/dist/vendors/uploader/uploader.css" type="text/css" rel="stylesheet" />
 	
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/umeditor/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/umeditor/umeditor.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/dist/js/tag-it.js"></script>
-
 <script src="$base/dist/vendors/uploader/dmuploader.js"></script>
 <script src="$base/dist/vendors/uploader/image-upload.js"></script>
 
 <script src="$base/dist/js/app/post.js"></script>
-
-<style type="text/css" scoped="scoped">
-	@import "$base/dist/vendors/think-mk/stylesheets/thinker-md.vendor.css";
-    @import "$base/dist/vendors/think-mk/emoji/nature.css";
-    @import "$base/dist/vendors/think-mk/emoji/object.css";
-    @import "$base/dist/vendors/think-mk/emoji/people.css";
-    @import "$base/dist/vendors/think-mk/emoji/place.css";
-    @import "$base/dist/vendors/think-mk/emoji/Sysmbols.css";
-    @import "$base/dist/vendors/think-mk/emoji/twemoji.css";
-</style>
 							
 <div class="col-xs-12 col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="fa fa-camera"></i> 发布图片
+            <i class="fa fa-camera"></i> ${group.alias}
         </div>
         <div class="panel-body">
             <div id="message"></div>
             <form class="form-horizontal" action="$base/post/submit" method="post"
                   enctype="multipart/form-data">
-                <input type="hidden" name="type" value="${type}" />
+                <input type="hidden" name="group" value="${group.id}" />
 
                 <div class="form-group">
                     <label for="desc" class="col-sm-2 control-label no-padding-right">标题</label>
@@ -63,28 +52,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">内容:</label>
-					<div class="filter col-sm-8">
-            			<ul class="editor-tab">
-                        	<li role="presentation"><a class="active" href="#uedtior">uedtior编辑器</a></li>
-                       		<li role="presentation"><a href="#markdown" >Markdown编辑器</a></li>
-                    	</ul>
-            		</div>
-                </div>
                 <div class="tab-content">
                     <div class="form-group" id="uedtior">
-                        <label for="desc" class="col-sm-2 control-label no-padding-right"></label>
-
+                        <label for="desc" class="col-sm-2 control-label no-padding-right">内容:</label>
+						<input type="hidden" name="editor" value="$!{setting_editor}"/>
                         <div class="col-sm-8">
-							<textarea id="content" name="content" rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group" id="markdown" style="display:none;">
-                        <label for="desc" class="col-sm-2 control-label no-padding-right"></label>
-
-                        <div class="col-sm-8">
-                            <textarea name="content" data-provide="markdown" rows="10" placeholder="这里输入内容,支持Markdown语法."></textarea>
+							#parse("/default/editor/$!{setting_editor}.vm")
                         </div>
                     </div>
                 </div>
@@ -109,14 +82,8 @@
     </div>
 </div>
 
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/think-mk/javascripts/thinker-md.vendor.min.js"></script>
-
 <script type="text/javascript">
-    var base_url = '$base';
-    var up_count = 1;
-    var up_max = 6;
-
-    $(function () {
-        var postView = new PostView($('#uedtior'), {});
-    });
+$(function () {
+    var postView = new PostView($('#uedtior'), {});
+});
 </script>

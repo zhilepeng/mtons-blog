@@ -32,10 +32,28 @@
 	            			        </div>
 	            			    </div>
 	            			    <div class="summary">
-	            			        <h2 class="title"><a href="$base/browse/detail/${row.id}">${row.title}</a></h2>
+	            			        <h2 class="title">#postLink($row)</h2>
 	            			        
 	            			        <div class="excerpt wordbreak hidden-xs">$!{row.summary} &nbsp;</div>
-	            			    	<div class="foot-block clearfix">
+	            			    	
+									<!--前端图片显示样式-->
+                            		#if($!{row.albums})
+                            		<!--Start-->
+                            		<div class="thumbs clearfix">
+                            			#foreach($alb in ${row.albums})
+                                			#if ($velocityCount <= 3)
+                                			<div class="media col-xs-4 col-sm-4 col-md-4">
+                                    			<a title="${row.title}" href="$base${alb.original}">
+                                    				<img src="$base/dist/images/spinner.gif" data-original="$base${alb.preview}"/>
+                                    			</a>
+                                			</div>
+                                			#end
+                            			#end
+                            		</div>
+                            		<!--End-->
+                            		#end
+                            		
+									<div class="foot-block clearfix">
 	            			    		<div class="author">
 								        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
 								        </div>
@@ -58,7 +76,7 @@
 	                </div>
 	        		
 	                <div class="text-center clr">
-	                	#page("$base/user/$!{user.id}" $page 5)
+	                	#page("$base/ta/$!{user.id}" $page 5)
 	                </div>
                 </div>
 			</div>

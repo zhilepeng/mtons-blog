@@ -342,9 +342,11 @@ $(document).ready(function() {
         }
     });
 	
+	$('a[nav]').each(function(){  
+        $this = $(this);
+        if($this[0].href == String(window.location)){  
+            $this.closest('li').addClass("active");  
+        }  
+    });
+	
 });
-
-function selectNav(id) {
-	var navs = $('#nav').find('ul');
-	navs.find('[m="' + id + '"]').addClass('active').siblings().removeClass('active');
-}

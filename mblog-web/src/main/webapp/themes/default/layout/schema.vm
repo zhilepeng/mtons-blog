@@ -18,6 +18,8 @@
 	<link rel='stylesheet' media='all' href='$base/dist/css/layout.css'/>
 	<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
 	
+	<link rel='stylesheet' media='all' href="$base/dist/vendors/baguette/baguetteBox.min.css"/>
+	
 	<script type='text/javascript' src='$base/dist/js/jquery.min.js'></script>
 	<script type="text/javascript" src="$base/dist/js/jquery.lazyload.js"></script>
 	<script type="text/javascript" src="$base/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
@@ -29,6 +31,7 @@
 	<script type="text/javascript" src="$j"></script>
 	#end
 	
+	<script type='text/javascript' src="$base/dist/vendors/baguette/baguetteBox.min.js"></script>
 	<script type='text/javascript' src='$base/dist/js/global.js'></script>
 	
 	<!-- Favicons -->

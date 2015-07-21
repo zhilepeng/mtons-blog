@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>$!title - $!{site_name}</title>
 	<meta name="keywords" content="mtons,$!{site_keywords},$!{tags}"/>
-	<meta name="description" content="$!{site_description}"/>
+	<meta name="description" content="$!{summary}"/>
 	
 	<script src="$base/dist/vendors/pace/pace.min.js"></script>
 	<link href="$base/dist/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
@@ -17,6 +17,8 @@
 	<link rel='stylesheet' media='all' href='$base/dist/css/style.css'/>
 	<link rel='stylesheet' media='all' href='$base/dist/css/layout.css'/>
 	<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
+	
+	<link rel='stylesheet' media='all' href="$base/dist/vendors/baguette/baguetteBox.min.css"/>
 	
 	<!--[if lt IE 9]>
     <script src="$base/dist/js/html5.js"></script>
@@ -33,6 +35,7 @@
 	<script type="text/javascript" src="$j"></script>
 	#end
 	
+	<script type='text/javascript' src="$base/dist/vendors/baguette/baguetteBox.min.js"></script>
 	<script type='text/javascript' src='$base/dist/vendors/layer/layer.js'></script>
 	<script type='text/javascript' src='$base/dist/js/global.js'></script>
 	

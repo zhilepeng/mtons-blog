@@ -43,21 +43,20 @@ public class PostPO {
 	@DocumentId
 	private long id;
 
-	@Column(name = "type", length = 18)
-	private String type;
+	@Column(name = "group_", length = 5)
+	private int group;
 
 	@Field(name = "title", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	@Column(name = "title", length = 64)
 	private String title; // 标题
 	
-	@Lob
-	@Basic(fetch = FetchType.LAZY) 
-	@Type(type="text")
 	@Field(name = "summary", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String summary; // 摘要
 
 	@Field(name = "tags", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
 	private String tags; // 标签
+	
+	private String editor; // 编辑器
 	
 	@Lob
 	@Basic(fetch = FetchType.LAZY) 
@@ -69,17 +68,11 @@ public class PostPO {
 	@Type(type="text")
 	private String markdown; // markdown 内容
 	
-	private String editor; // 编辑器
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "snapshot_id")
-	private AttachPO snapshot; // 图片快照
+	@Column(name = "last_image_id")
+	private long lastImageId;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date created;
-
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date updated;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "author_id")
@@ -99,12 +92,12 @@ public class PostPO {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public int getGroup() {
+		return group;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setGroup(int group) {
+		this.group = group;
 	}
 
 	public String getTitle() {
@@ -131,12 +124,12 @@ public class PostPO {
 		this.content = content;
 	}
 
-	public AttachPO getSnapshot() {
-		return snapshot;
+	public long getLastImageId() {
+		return lastImageId;
 	}
 
-	public void setSnapshot(AttachPO snapshot) {
-		this.snapshot = snapshot;
+	public void setLastImageId(long lastImageId) {
+		this.lastImageId = lastImageId;
 	}
 
 	public String getTags() {
@@ -153,14 +146,6 @@ public class PostPO {
 
 	public void setCreated(Date created) {
 		this.created = created;
-	}
-
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
 	}
 
 	public UserPO getAuthor() {
