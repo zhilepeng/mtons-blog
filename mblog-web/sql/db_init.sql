@@ -47,7 +47,7 @@ INSERT INTO `mto_users` VALUES ('1', null, null, null, null, '3TGCQF25BLHU9R7IQU
 DROP TABLE IF EXISTS `mto_config`;
 CREATE TABLE `mto_config` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) DEFAULT NULL,
+  `key_` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
