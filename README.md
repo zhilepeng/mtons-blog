@@ -39,7 +39,4 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 [Graphicsmagick 下载](http://www.graphicsmagick.org/download.html)
 
 
-## 官方博客
-http://mtons.com
-
 QQ交流群：378433412
