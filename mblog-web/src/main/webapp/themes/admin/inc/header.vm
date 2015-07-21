@@ -30,6 +30,9 @@
               <li>
                 <a href="$base/post/new/image" target="_blank">发图片</a>
               </li>
+              <li>
+                <a href="$base/post/new/video" target="_blank">分享视频</a>
+              </li>
             </ul>
       </li>
 	</ul>
