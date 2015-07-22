@@ -9,6 +9,6 @@
 	2. post summary 改为普通string, 缩小表空间
 	
 	3. post 删除 updated
-	4. post 快照Id 改完 lastImageId
+	4. post snapshoot_id 改为 lastImageId
 	
 		升级sql: UPDATE mto_posts SET last_image_id = 0 WHERE last_image_id IS NULL
