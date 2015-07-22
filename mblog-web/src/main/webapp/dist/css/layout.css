@@ -34,7 +34,7 @@ footer .mode-link ul.list-inline li a { color: #707682; font-size: 12px; }
 footer .mode-link ul.list-inline li a:hover { color: #b3c3d6; text-decoration: underline; }
 
 footer .copy-right { margin-top: 25px; position: relative; }
-footer .copy-right span { border-bottom: 1px solid #31353c; line-height: 28px; margin-bottom: 20px; display: block; }
+footer .copy-right { border-bottom: 1px solid #31353c; line-height: 28px; padding-bottom: 20px; display: block; }
 footer .copy-right,footer .copy-right span a { color: #707682; font-size: 12px;}
 
 footer .footer-nav { background-color: #2d3037; height: 40px; line-height: 40px; border-bottom: 1px solid #26292e; text-align: center; }
