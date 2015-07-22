@@ -67,10 +67,10 @@ public class UserServiceImpl implements UserService {
 		po.setUpdated(current);
 		
 		// 保存扩展
-		UserExtendPO extend = new UserExtendPO();
-		extend.setUser(po);
+		//UserExtendPO extend = new UserExtendPO();
+		//extend.setUser(po);
 
-		po.setExtend(extend);
+		//po.setExtend(extend);
 		
 		userDao.save(po);
 	}
