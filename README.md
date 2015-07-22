@@ -7,7 +7,7 @@
 * Spring mvc
 * Velocity
 * Hibernate
-* Hibernate search
+* Lucene
 
 ## Mysql 数据库配置
 > 配置文件： src/main/resources/init.properties
