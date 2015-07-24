@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.planet.impl;
+package mblog.core.planet.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,11 +9,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import mblog.core.planet.PostPlanet;
 import mblog.data.Attach;
 import mblog.data.Post;
 import mblog.persist.service.AttachService;
 import mblog.persist.service.PostService;
-import mblog.planet.PostPlanet;
 import mtons.modules.pojos.Paging;
 
 import org.springframework.beans.factory.annotation.Autowired;

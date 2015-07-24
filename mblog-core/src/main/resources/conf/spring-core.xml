@@ -19,14 +19,14 @@
 	<cache:annotation-driven cache-manager="ehcacheManager" />
 
 	<!-- Planet -->
-	<bean id="postPlanet" class="mblog.planet.impl.PostPlanetImpl" />
-	<bean id="tagPlanet" class="mblog.planet.impl.TagPlanetImpl" />
+	<bean id="postPlanet" class="mblog.core.planet.impl.PostPlanetImpl" />
+	<bean id="tagPlanet" class="mblog.core.planet.impl.TagPlanetImpl" />
 	
-	<bean id="videoAnalysis" class="mblog.analysis.videos.VideoAnalysis">
+	<bean id="videoAnalysis" class="mblog.core.analysis.videos.VideoAnalysis">
 		<property name="strategies">
 			<map>
 				<entry key="v.youku.com">
-					<bean class="mblog.analysis.videos.support.Youku"/>
+					<bean class="mblog.core.analysis.videos.support.Youku"/>
 				</entry>
 			</map>
 		</property>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.planet.impl;
+package mblog.core.planet.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
-import mblog.planet.TagPlanet;
+import mblog.core.planet.TagPlanet;
 import mblog.data.Tag;
 import mblog.persist.service.TagService;
 

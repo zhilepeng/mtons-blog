@@ -3,9 +3,9 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package mblog.analysis.videos;
+package mblog.core.analysis.videos;
 
-import mblog.data.Video;
+import mblog.core.data.Video;
 
 /**
  * @author langhsu

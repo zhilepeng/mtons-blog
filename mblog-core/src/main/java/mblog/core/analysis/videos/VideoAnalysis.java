@@ -3,16 +3,16 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *********************************************************************/
-package mblog.analysis.videos;
+package mblog.core.analysis.videos;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import mblog.data.Video;
-import mblog.utils.URLUtils;
-
 import org.springframework.util.Assert;
+
+import mblog.core.data.Video;
+import mblog.core.utils.URLUtils;
 
 /**
  * 视频分析

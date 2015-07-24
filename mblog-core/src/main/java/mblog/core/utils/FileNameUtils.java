@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *********************************************************************/
-package mblog.utils;
+package mblog.core.utils;
 
 import java.util.Date;
 

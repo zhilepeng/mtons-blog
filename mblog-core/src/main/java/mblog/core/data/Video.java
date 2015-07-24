@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package mblog.data;
+package mblog.core.data;
 
 /**
  * @author langhsu

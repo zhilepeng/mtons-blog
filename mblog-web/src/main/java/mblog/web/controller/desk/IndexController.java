@@ -3,7 +3,7 @@
  */
 package mblog.web.controller.desk;
 
-import mblog.planet.PostPlanet;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;

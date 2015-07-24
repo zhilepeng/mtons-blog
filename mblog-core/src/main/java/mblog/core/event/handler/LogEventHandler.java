@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *********************************************************************/
-package mblog.event.handler;
+package mblog.core.event.handler;
 
 import java.util.Date;
 
@@ -12,8 +12,8 @@ import mtons.modules.exception.MtonsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 
-import mblog.event.LogEvent;
-import mblog.lang.EnumLog;
+import mblog.core.event.LogEvent;
+import mblog.core.lang.EnumLog;
 import mblog.persist.service.LogService;
 import mblog.persist.service.PostService;
 

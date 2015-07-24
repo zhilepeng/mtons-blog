@@ -7,9 +7,9 @@ import java.net.MalformedURLException;
 
 import com.alibaba.fastjson.JSON;
 
-import mblog.analysis.videos.VideoAnalysis;
-import mblog.analysis.videos.support.Youku;
-import mblog.data.Video;
+import mblog.core.analysis.videos.VideoAnalysis;
+import mblog.core.analysis.videos.support.Youku;
+import mblog.core.data.Video;
 
 
 /**

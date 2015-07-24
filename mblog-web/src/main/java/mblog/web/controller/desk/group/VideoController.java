@@ -5,8 +5,6 @@ package mblog.web.controller.desk.group;
 
 import java.net.MalformedURLException;
 
-import mblog.analysis.videos.VideoAnalysis;
-import mblog.data.Video;
 import mtons.modules.pojos.Data;
 
 import org.apache.commons.lang.StringUtils;
@@ -14,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import mblog.core.analysis.videos.VideoAnalysis;
+import mblog.core.data.Video;
 
 /**
  * @author langhsu

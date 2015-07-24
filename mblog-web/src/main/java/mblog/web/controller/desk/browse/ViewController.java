@@ -3,9 +3,9 @@
  */
 package mblog.web.controller.desk.browse;
 
+import mblog.core.planet.PostPlanet;
 import mblog.data.Post;
 import mblog.persist.service.PostService;
-import mblog.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

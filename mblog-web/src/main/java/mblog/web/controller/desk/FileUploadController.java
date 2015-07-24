@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import mblog.context.AppContext;
+import mblog.core.context.AppContext;
 import mblog.web.controller.BaseController;
 import mblog.web.data.UMEditorResult;
 import mblog.web.upload.FileRepo;

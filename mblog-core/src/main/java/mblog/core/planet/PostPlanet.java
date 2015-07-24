@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.planet;
+package mblog.core.planet;
 
 import java.util.Collection;
 import java.util.List;

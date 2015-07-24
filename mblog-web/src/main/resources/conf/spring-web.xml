@@ -10,7 +10,7 @@
 		</property>
 	</bean>
     
-    <bean id="appContext" class="mblog.context.AppContext">
+    <bean id="appContext" class="mblog.core.context.AppContext">
     	<property name="root" value="/data/mblog"/>
     </bean>
     

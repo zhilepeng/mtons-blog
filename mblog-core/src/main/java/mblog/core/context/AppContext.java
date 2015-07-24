@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.context;
+package mblog.core.context;
 
 /**
  * @author langhsu

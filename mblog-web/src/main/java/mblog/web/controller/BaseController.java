@@ -20,7 +20,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
-import mblog.context.AppContext;
+import mblog.core.context.AppContext;
 import mblog.data.Attach;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.upload.FileRepo;

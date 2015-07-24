@@ -3,11 +3,11 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *********************************************************************/
-package mblog.event;
+package mblog.core.event;
 
 import org.springframework.context.ApplicationEvent;
 
-import mblog.lang.EnumLog;
+import mblog.core.lang.EnumLog;
 
 /**
  * @author langhsu

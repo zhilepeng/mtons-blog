@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.planet.PostPlanet;
-import mblog.planet.TagPlanet;
+import mblog.core.planet.PostPlanet;
+import mblog.core.planet.TagPlanet;
 import mblog.data.Post;
 import mblog.data.Tag;
 import mblog.web.controller.BaseController;

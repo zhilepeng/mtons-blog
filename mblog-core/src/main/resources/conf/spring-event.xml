@@ -23,6 +23,6 @@
 	<!--开启注解调度支持 @Async @Scheduled -->
 	<task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true" />
 	
-	<bean id="logEventHandler" class="mblog.event.handler.LogEventHandler" />
+	<bean id="logEventHandler" class="mblog.core.event.handler.LogEventHandler" />
 	
 </beans>

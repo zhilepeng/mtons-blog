@@ -1,7 +1,7 @@
 /**
  * 
  */
-package mblog.lang;
+package mblog.core.lang;
 
 /**
  * @author langhsu

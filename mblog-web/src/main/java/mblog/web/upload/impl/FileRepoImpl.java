@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
-import mblog.context.AppContext;
-import mblog.utils.FileNameUtils;
+import mblog.core.context.AppContext;
+import mblog.core.utils.FileNameUtils;
 import mblog.web.upload.FileRepo;
 
 /**

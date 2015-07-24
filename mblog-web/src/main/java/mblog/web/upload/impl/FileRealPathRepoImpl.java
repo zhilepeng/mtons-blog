@@ -8,8 +8,8 @@ package mblog.web.upload.impl;
 import java.io.File;
 import java.io.IOException;
 
-import mblog.context.AppContext;
-import mblog.utils.FileNameUtils;
+import mblog.core.context.AppContext;
+import mblog.core.utils.FileNameUtils;
 import mblog.web.upload.FileRepo;
 import mtons.modules.utils.GMagickUtils;
 

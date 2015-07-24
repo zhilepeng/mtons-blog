@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.planet.PostPlanet;
+import mblog.core.planet.PostPlanet;
 import mblog.data.Post;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;

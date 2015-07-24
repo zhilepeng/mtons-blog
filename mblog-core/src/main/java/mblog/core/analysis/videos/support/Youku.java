@@ -3,17 +3,18 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package mblog.analysis.videos.support;
+package mblog.core.analysis.videos.support;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import mblog.analysis.videos.VideoStrategy;
-import mblog.data.Video;
-import mblog.utils.HttpUtils;
 import mtons.modules.exception.MtonsException;
 
 import com.alibaba.fastjson.JSON;
+
+import mblog.core.analysis.videos.VideoStrategy;
+import mblog.core.data.Video;
+import mblog.core.utils.HttpUtils;
 
 /**
  * 优酷视频信息抓取

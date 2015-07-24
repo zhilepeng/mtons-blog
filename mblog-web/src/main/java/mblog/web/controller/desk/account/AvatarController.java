@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.context.AppContext;
+import mblog.core.context.AppContext;
 import mblog.data.AccountProfile;
 import mblog.lang.Consts;
 import mblog.persist.service.UserService;
