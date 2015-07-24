@@ -6,12 +6,12 @@ package mblog.web.controller.desk.posts;
 import java.net.MalformedURLException;
 import java.util.Collections;
 
-import mblog.commons.data.Attach;
-import mblog.commons.data.Post;
-import mblog.commons.lang.Consts;
 import mblog.core.analysis.videos.VideoAnalysis;
 import mblog.core.data.Video;
 import mblog.core.planet.PostPlanet;
+import mblog.data.Attach;
+import mblog.data.Post;
+import mblog.lang.Consts;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.UserProfile;
 

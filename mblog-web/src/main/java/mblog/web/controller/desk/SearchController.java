@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mblog.commons.persist.service.PostService;
-import mblog.commons.persist.service.TagService;
+import mblog.persist.service.PostService;
+import mblog.persist.service.TagService;
 import mblog.web.controller.BaseController;
 
 /**

@@ -16,10 +16,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.commons.data.AccountProfile;
-import mblog.commons.lang.Consts;
-import mblog.commons.persist.service.UserService;
 import mblog.core.context.AppContext;
+import mblog.data.AccountProfile;
+import mblog.lang.Consts;
+import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

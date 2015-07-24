@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
-import mblog.commons.data.Comment;
-import mblog.commons.persist.service.CommentService;
-import mblog.commons.persist.service.PostService;
+import mblog.data.Comment;
+import mblog.persist.service.CommentService;
+import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 
 /**

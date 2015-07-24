@@ -6,27 +6,27 @@
 	default-autowire="byName">
 
 	<!-- Dao -->
-	<bean id="configDao" class="mblog.commons.persist.dao.impl.ConfigDaoImpl" />
-	<bean id="userDao" class="mblog.commons.persist.dao.impl.UserDaoImpl" />
-	<bean id="logDao"  class="mblog.commons.persist.dao.impl.LogDaoImpl" />
-	<bean id="commentDao" class="mblog.commons.persist.dao.impl.CommentDaoImpl" />
-	<bean id="postDao" class="mblog.commons.persist.dao.impl.PostDaoImpl" />
-	<bean id="attachDao" class="mblog.commons.persist.dao.impl.AttachDaoImpl" />
-	<bean id="tagDao" class="mblog.commons.persist.dao.impl.TagDaoImpl" />
+	<bean id="configDao" class="mblog.persist.dao.impl.ConfigDaoImpl" />
+	<bean id="userDao" class="mblog.persist.dao.impl.UserDaoImpl" />
+	<bean id="logDao"  class="mblog.persist.dao.impl.LogDaoImpl" />
+	<bean id="commentDao" class="mblog.persist.dao.impl.CommentDaoImpl" />
+	<bean id="postDao" class="mblog.persist.dao.impl.PostDaoImpl" />
+	<bean id="attachDao" class="mblog.persist.dao.impl.AttachDaoImpl" />
+	<bean id="tagDao" class="mblog.persist.dao.impl.TagDaoImpl" />
 	
-	<bean id="groupDao" class="mblog.commons.persist.dao.impl.GroupDaoImpl" />
-	<bean id="menuDao" class="mblog.commons.persist.dao.impl.MenuDaoImpl" />
+	<bean id="groupDao" class="mblog.persist.dao.impl.GroupDaoImpl" />
+	<bean id="menuDao" class="mblog.persist.dao.impl.MenuDaoImpl" />
 	
 	<!-- Service -->
-	<bean id="configService" class="mblog.commons.persist.service.impl.ConfigServiceImpl" />
-	<bean id="userService" class="mblog.commons.persist.service.impl.UserServiceImpl" />
-	<bean id="logService" class="mblog.commons.persist.service.impl.LogServiceImpl" />
-	<bean id="commentService" class="mblog.commons.persist.service.impl.CommentServiceImpl" />
-	<bean id="postService" class="mblog.commons.persist.service.impl.PostServiceImpl" />
-	<bean id="attachService" class="mblog.commons.persist.service.impl.AttachServiceImpl" />
-	<bean id="tagService" class="mblog.commons.persist.service.impl.TagServiceImpl" />
+	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
+	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />
+	<bean id="logService" class="mblog.persist.service.impl.LogServiceImpl" />
+	<bean id="commentService" class="mblog.persist.service.impl.CommentServiceImpl" />
+	<bean id="postService" class="mblog.persist.service.impl.PostServiceImpl" />
+	<bean id="attachService" class="mblog.persist.service.impl.AttachServiceImpl" />
+	<bean id="tagService" class="mblog.persist.service.impl.TagServiceImpl" />
 	
-	<bean id="groupService" class="mblog.commons.persist.service.impl.GroupServiceImpl" />
-	<bean id="menuService" class="mblog.commons.persist.service.impl.MenuServiceImpl" />
+	<bean id="groupService" class="mblog.persist.service.impl.GroupServiceImpl" />
+	<bean id="menuService" class="mblog.persist.service.impl.MenuServiceImpl" />
 	
 </beans>

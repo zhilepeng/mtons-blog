@@ -6,7 +6,7 @@ package mblog.core.planet;
 import java.util.Collection;
 import java.util.List;
 
-import mblog.commons.data.Post;
+import mblog.data.Post;
 import mtons.modules.pojos.Paging;
 
 /**

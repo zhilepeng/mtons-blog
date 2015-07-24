@@ -5,7 +5,7 @@ package mblog.web.data;
 
 import java.util.List;
 
-import mblog.commons.data.Config;
+import mblog.data.Config;
 
 /**
  * @author langhsu

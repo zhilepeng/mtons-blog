@@ -13,10 +13,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import mblog.commons.data.AccountProfile;
-import mblog.commons.data.User;
-import mblog.commons.lang.EnumRole;
-import mblog.commons.persist.service.UserService;
+import mblog.data.AccountProfile;
+import mblog.data.User;
+import mblog.lang.EnumRole;
+import mblog.persist.service.UserService;
 import mblog.shiro.authc.AccountAuthenticationInfo;
 
 public class AccountRealm extends AuthorizingRealm {

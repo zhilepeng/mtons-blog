@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.commons.data.User;
-import mblog.commons.lang.EnumRole;
-import mblog.commons.persist.service.UserService;
+import mblog.data.User;
+import mblog.lang.EnumRole;
+import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 
 /**

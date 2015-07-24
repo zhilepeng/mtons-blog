@@ -4,7 +4,7 @@
 package test;
 
 import junit.framework.TestCase;
-import mblog.commons.utils.PreviewTextUtils;
+import mblog.utils.PreviewTextUtils;
 
 import org.junit.Test;
 

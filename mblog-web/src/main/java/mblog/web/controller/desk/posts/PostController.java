@@ -5,13 +5,13 @@ package mblog.web.controller.desk.posts;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mblog.commons.data.Group;
-import mblog.commons.data.Post;
-import mblog.commons.persist.service.GroupService;
-import mblog.commons.persist.service.PostService;
 import mblog.core.event.LogEvent;
 import mblog.core.lang.EnumLog;
 import mblog.core.planet.PostPlanet;
+import mblog.data.Group;
+import mblog.data.Post;
+import mblog.persist.service.GroupService;
+import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Data;

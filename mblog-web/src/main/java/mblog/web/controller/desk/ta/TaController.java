@@ -11,9 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mblog.commons.data.User;
-import mblog.commons.persist.service.UserService;
 import mblog.core.planet.PostPlanet;
+import mblog.data.User;
+import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

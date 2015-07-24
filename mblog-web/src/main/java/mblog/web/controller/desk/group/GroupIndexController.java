@@ -7,9 +7,9 @@ package mblog.web.controller.desk.group;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mblog.commons.data.Group;
-import mblog.commons.persist.service.GroupService;
 import mblog.core.planet.PostPlanet;
+import mblog.data.Group;
+import mblog.persist.service.GroupService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;

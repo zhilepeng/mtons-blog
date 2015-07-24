@@ -5,7 +5,7 @@ package mblog.core.planet;
 
 import java.util.List;
 
-import mblog.commons.data.Tag;
+import mblog.data.Tag;
 
 /**
  * 保卫层(cache), 根据业务需求调用
