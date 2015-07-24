@@ -9,15 +9,15 @@ import java.util.TimerTask;
 
 import javax.servlet.ServletContext;
 
-import mblog.data.Config;
-import mblog.lang.Consts;
-import mblog.persist.service.ConfigService;
-import mblog.persist.service.GroupService;
-import mblog.persist.service.MenuService;
-
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
+
+import mblog.commons.data.Config;
+import mblog.commons.lang.Consts;
+import mblog.commons.persist.service.ConfigService;
+import mblog.commons.persist.service.GroupService;
+import mblog.commons.persist.service.MenuService;
 
 /**
  * @author langhsu

@@ -7,7 +7,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.subject.WebSubjectContext;
 
-import mblog.data.AccountProfile;
+import mblog.commons.data.AccountProfile;
 
 public class AccountSubjectFactory implements SubjectFactory {
 

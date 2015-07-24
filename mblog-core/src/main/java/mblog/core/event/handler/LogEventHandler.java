@@ -12,10 +12,10 @@ import mtons.modules.exception.MtonsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 
+import mblog.commons.persist.service.LogService;
+import mblog.commons.persist.service.PostService;
 import mblog.core.event.LogEvent;
 import mblog.core.lang.EnumLog;
-import mblog.persist.service.LogService;
-import mblog.persist.service.PostService;
 
 /**
  * @author langhsu

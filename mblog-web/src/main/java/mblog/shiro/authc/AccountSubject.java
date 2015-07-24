@@ -8,7 +8,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.web.subject.support.WebDelegatingSubject;
 
-import mblog.data.AccountProfile;
+import mblog.commons.data.AccountProfile;
 
 public class AccountSubject extends WebDelegatingSubject{
 	private AccountProfile profile;

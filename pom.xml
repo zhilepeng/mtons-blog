@@ -6,9 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
+		<module>mblog-commons</module>
 		<module>mblog-core</module>
 		<module>mblog-web</module>
-		<module>mblog-persist</module>
 	</modules>
 
 	<properties>

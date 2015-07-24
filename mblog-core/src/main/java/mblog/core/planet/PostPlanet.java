@@ -6,8 +6,8 @@ package mblog.core.planet;
 import java.util.Collection;
 import java.util.List;
 
+import mblog.commons.data.Post;
 import mtons.modules.pojos.Paging;
-import mblog.data.Post;
 
 /**
  * 保卫层(cache), 根据业务需求调用

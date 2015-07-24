@@ -12,9 +12,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.data.User;
-import mblog.lang.Consts;
-import mblog.persist.service.UserService;
+import mblog.commons.data.User;
+import mblog.commons.lang.Consts;
+import mblog.commons.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

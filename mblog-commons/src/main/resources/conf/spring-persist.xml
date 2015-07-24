@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  	http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName">
+
+	<!-- Dao -->
+	<bean id="configDao" class="mblog.commons.persist.dao.impl.ConfigDaoImpl" />
+	<bean id="userDao" class="mblog.commons.persist.dao.impl.UserDaoImpl" />
+	<bean id="logDao"  class="mblog.commons.persist.dao.impl.LogDaoImpl" />
+	<bean id="commentDao" class="mblog.commons.persist.dao.impl.CommentDaoImpl" />
+	<bean id="postDao" class="mblog.commons.persist.dao.impl.PostDaoImpl" />
+	<bean id="attachDao" class="mblog.commons.persist.dao.impl.AttachDaoImpl" />
+	<bean id="tagDao" class="mblog.commons.persist.dao.impl.TagDaoImpl" />
+	
+	<bean id="groupDao" class="mblog.commons.persist.dao.impl.GroupDaoImpl" />
+	<bean id="menuDao" class="mblog.commons.persist.dao.impl.MenuDaoImpl" />
+	
+	<!-- Service -->
+	<bean id="configService" class="mblog.commons.persist.service.impl.ConfigServiceImpl" />
+	<bean id="userService" class="mblog.commons.persist.service.impl.UserServiceImpl" />
+	<bean id="logService" class="mblog.commons.persist.service.impl.LogServiceImpl" />
+	<bean id="commentService" class="mblog.commons.persist.service.impl.CommentServiceImpl" />
+	<bean id="postService" class="mblog.commons.persist.service.impl.PostServiceImpl" />
+	<bean id="attachService" class="mblog.commons.persist.service.impl.AttachServiceImpl" />
+	<bean id="tagService" class="mblog.commons.persist.service.impl.TagServiceImpl" />
+	
+	<bean id="groupService" class="mblog.commons.persist.service.impl.GroupServiceImpl" />
+	<bean id="menuService" class="mblog.commons.persist.service.impl.MenuServiceImpl" />
+	
+</beans>

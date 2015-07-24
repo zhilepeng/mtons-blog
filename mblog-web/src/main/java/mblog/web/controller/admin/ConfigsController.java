@@ -14,8 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.lang.EnumConfig;
-import mblog.persist.service.ConfigService;
+import mblog.commons.lang.EnumConfig;
+import mblog.commons.persist.service.ConfigService;
 import mblog.web.controller.BaseController;
 import mblog.web.data.ConfigModel;
 

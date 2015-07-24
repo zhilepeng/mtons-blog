@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
+import mblog.commons.data.Tag;
+import mblog.commons.persist.service.TagService;
 import mblog.core.planet.TagPlanet;
-import mblog.data.Tag;
-import mblog.persist.service.TagService;
 
 /**
  * @author langhsu

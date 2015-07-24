@@ -4,8 +4,8 @@
 package test;
 
 import junit.framework.TestCase;
-import mblog.data.User;
-import mblog.persist.entity.UserPO;
+import mblog.commons.data.User;
+import mblog.commons.persist.entity.UserPO;
 
 import org.junit.Test;
 import org.springframework.util.Assert;
