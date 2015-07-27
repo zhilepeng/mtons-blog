@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.web.exceptions;
 
 import java.io.IOException;
@@ -50,6 +52,7 @@ public class DefaultExceptionHandler implements HandlerExceptionResolver {
 				Gson gson = new Gson();
 				response.getWriter().print(gson.toJson(Data.failure(ret)));
 			} catch (IOException e) {
+				// do something
 			}
 			
 			view = new ModelAndView();
@@ -62,6 +65,12 @@ public class DefaultExceptionHandler implements HandlerExceptionResolver {
 		return view;
 	}
 	
+	/**
+	 * 判断是否 ajax 调用
+	 * 
+	 * @param handler
+	 * @return
+	 */
 	private boolean isAjax(Object handler) {
 		if (handler != null && handler instanceof HandlerMethod) {
 			HandlerMethod handlerMethod = (HandlerMethod) handler;

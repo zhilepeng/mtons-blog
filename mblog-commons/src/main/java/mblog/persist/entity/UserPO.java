@@ -65,6 +65,14 @@ public class UserPO {
 	@PrimaryKeyJoinColumn
 	private UserExtendPO extend;
 
+	public UserPO() {
+
+	}
+
+	public UserPO(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}

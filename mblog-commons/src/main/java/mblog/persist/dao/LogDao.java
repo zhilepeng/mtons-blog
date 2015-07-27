@@ -6,8 +6,8 @@ package mblog.persist.dao;
 import java.util.Date;
 import java.util.List;
 
-import mblog.persist.entity.LogPO;
 import mtons.modules.persist.Dao;
+import mblog.persist.entity.LogPO;
 
 /**
  * @author langhsu

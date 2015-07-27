@@ -1,14 +1,13 @@
-/**
- * 
- */
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *******************************************************************************/
 package mblog.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 
 import mblog.data.AccountProfile;
 import mblog.data.Attach;
@@ -25,17 +24,20 @@ import mblog.persist.entity.PostPO;
 import mblog.persist.entity.TagPO;
 import mblog.persist.entity.UserPO;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+
 /**
  * @author langhsu
  *
  */
 public class BeanMapUtils {
-	private static String[] USER_IGNORE = new String[]{"password"};
-	
-	private static String[] COMMENT_IGNORE = new String[]{"author"};
-	
-	private static String[] POST_IGNORE = new String[]{"author"};
-	private static String[] POST_IGNORE_LIST = new String[]{"author", "markdown", "content"};
+	public static String[] USER_IGNORE = new String[]{"password"};
+
+	public static String[] COMMENT_IGNORE = new String[]{"author"};
+
+	public static String[] POST_IGNORE = new String[]{"author"};
+	public static String[] POST_IGNORE_LIST = new String[]{"author", "markdown", "content"};
 	
 	public static User copy(UserPO po) {
 		if (po == null) {

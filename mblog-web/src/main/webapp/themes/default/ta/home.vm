@@ -44,7 +44,7 @@
                                 			#if ($velocityCount <= 3)
                                 			<div class="media col-xs-4 col-sm-4 col-md-4">
                                     			<a title="${row.title}" href="$base${alb.original}">
-                                    				<img src="$base/dist/images/spinner.gif" data-original="$base${alb.preview}"/>
+                                    				<img src="$base/assets/images/spinner.gif" data-original="$base${alb.preview}"/>
                                     			</a>
                                 			</div>
                                 			#end
@@ -72,6 +72,10 @@
 	            			    </div>
 	                    	</div>
 	            			#end
+
+							#if($page.results.size() == 0)
+								<i class="fa fa-info-circle fa-lg"></i> TA还没发表过文章!
+							#end
 	    				</div>
 	                </div>
 	        		

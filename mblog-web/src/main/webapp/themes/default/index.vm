@@ -1,4 +1,4 @@
-#set($title = "Mtons博客-前端博客-前端技术，记录web前端开发的技术博客")
+#set($title = "Mtons博客首页 - mtons.com")
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">

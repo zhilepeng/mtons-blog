@@ -30,7 +30,8 @@ public class Post implements Serializable {
 	private User author;
 	
 	private long lastImageId;
-	
+
+	private int images; // 图片统计
 	private int featured; // 推荐状态
 	private int favors; // 喜欢
 	private int comments;
@@ -39,6 +40,7 @@ public class Post implements Serializable {
 
 	// extends
 	private List<Attach> albums;
+	private Attach album;
 	private long authorId;
 	
 	public long getId() {
@@ -192,4 +194,19 @@ public class Post implements Serializable {
 		this.editor = editor;
 	}
 
+	public Attach getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Attach album) {
+		this.album = album;
+	}
+
+	public int getImages() {
+		return images;
+	}
+
+	public void setImages(int images) {
+		this.images = images;
+	}
 }

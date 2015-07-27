@@ -3,8 +3,8 @@
  */
 package mblog.persist.dao;
 
-import mblog.persist.entity.ConfigPO;
 import mtons.modules.persist.Dao;
+import mblog.persist.entity.ConfigPO;
 
 /**
  * @author langhsu

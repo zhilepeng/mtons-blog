@@ -3,7 +3,7 @@
 
 <div class="login">
 	<a href="$base/index">
-		<img src="$base/dist/images/logo/m.png" height="72" width="72">
+		<img src="$base/assets/images/logo/m.png" height="72" width="72">
 	</a>
 	<h1>注册你的 Mtons 账号</h1>
 	<a href="$base/login" class="signup-link gapps"><span>已有账号, 登录</span></a>

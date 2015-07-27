@@ -3,9 +3,9 @@
  */
 package mblog.persist.dao.impl;
 
+import mtons.modules.persist.impl.DaoImpl;
 import mblog.persist.dao.ConfigDao;
 import mblog.persist.entity.ConfigPO;
-import mtons.modules.persist.impl.DaoImpl;
 
 /**
  * @author langhsu

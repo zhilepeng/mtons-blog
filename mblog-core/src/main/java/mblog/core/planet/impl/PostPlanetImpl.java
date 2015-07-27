@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.core.planet.impl;
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import mblog.core.planet.PostPlanet;
+import mblog.core.upload.FileRepo;
 import mblog.data.Attach;
 import mblog.data.Post;
 import mblog.persist.service.AttachService;
@@ -29,7 +32,17 @@ public class PostPlanetImpl implements PostPlanet {
 	private PostService postService;
 	@Autowired
 	private AttachService attachService;
-	
+	@Autowired
+	private FileRepo fileRepo;
+
+	/**
+	 * 分页查询文章, 带缓存
+	 * - 缓存key规则: list_分组ID排序方式_页码_每页条数
+	 * @param paging
+	 * @param group
+	 * @param ord
+	 * @return
+	 */
 	@Override
 	@Cacheable(value = "postsCaches", key = "'list_' + #group + #ord + '_' + #paging.getPageNo() + '_' + #paging.getMaxResults()")
 	public Paging paging(Paging paging, int group, String ord) {
@@ -49,23 +62,24 @@ public class PostPlanetImpl implements PostPlanet {
 	public Paging gallery(Paging paging, int group, String ord) {
 		postService.paging(paging, group, ord, false);
 		
-		// 查询图片
+		// 查询图片, 这里只加载文章的最后一张图片
 		List<Post> results = (List<Post>) paging.getResults();
 		List<Long> imageIds = new ArrayList<Long>();
-		
-		for (Post p : results) {
+
+		results.forEach(p -> {
 			if (p.getLastImageId() > 0) {
 				imageIds.add(p.getLastImageId());
 			}
-		}
-		
-		Map<Long, Attach> ats = attachService.findByIds(imageIds);
-		
-		for (Post p : results) {
-			if (p.getLastImageId() > 0) {
-				Attach a = ats.get(p.getLastImageId());
-				p.setAlbums(Collections.singletonList(a));
-			}
+		});
+
+		if (!imageIds.isEmpty()) {
+			Map<Long, Attach> ats = attachService.findByIds(imageIds);
+
+			results.forEach(p -> {
+				if (p.getLastImageId() > 0) {
+					p.setAlbum(ats.get(p.getLastImageId()));
+				}
+			});
 		}
 		return paging;
 	}
@@ -97,21 +111,33 @@ public class PostPlanetImpl implements PostPlanet {
 	@Override
 	@CacheEvict(value = "postsCaches", allEntries = true)
 	public void delete(long id, long authorId) {
+		List<Attach> atts = attachService.findByTarget(id);
 		postService.delete(id, authorId);
+
+		// 时刻保持清洁, 物理删除图片
+		if (!atts.isEmpty()) {
+			atts.forEach(a -> {
+				fileRepo.deleteFile(a.getPreview());
+				fileRepo.deleteFile(a.getOriginal());
+			});
+		}
 	}
 
 	@Override
 	@CacheEvict(value = "postsCaches", allEntries = true)
 	public void delete(Collection<Long> ids) {
 		for (Long id : ids) {
+			List<Attach> atts = attachService.findByTarget(id);
 			postService.delete(id);
-		}
-	}
 
-	@Override
-	@CacheEvict(value = "postsCaches", allEntries = true)
-	public boolean cacheFlush() {
-		return Boolean.TRUE;
+			// 时刻保持清洁, 物理删除图片
+			if (!atts.isEmpty()) {
+				atts.forEach(a -> {
+					fileRepo.deleteFile(a.getPreview());
+					fileRepo.deleteFile(a.getOriginal());
+				});
+			}
+		}
 	}
 
 }

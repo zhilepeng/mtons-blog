@@ -3,28 +3,23 @@
  */
 package mblog.web.controller.desk;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import com.google.gson.Gson;
+import mblog.web.controller.BaseController;
+import mblog.web.from.UMEditorResult;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import mblog.core.context.AppContext;
-import mblog.web.controller.BaseController;
-import mblog.web.data.UMEditorResult;
-import mblog.web.upload.FileRepo;
-
-import com.google.gson.Gson;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
- * 文件上传
+ * Ueditor 文件上传
  * 
  * @author langhsu
  *
@@ -34,11 +29,6 @@ public class FileUploadController extends BaseController {
 	private static HashMap<String, String> errorInfo = new HashMap<String, String>();
     // 文件允许格式
  	private static String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
- 	
- 	@Autowired
-	private AppContext appContext;
-	@Autowired
-	private FileRepo fileRepo;
 	
  	static {
  		errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
@@ -77,7 +67,6 @@ public class FileUploadController extends BaseController {
 			} else {
 				data.setState(errorInfo.get("TYPE"));
 			}
-			
 			
 		} else {
 			data.setState(errorInfo.get("NOFILE"));

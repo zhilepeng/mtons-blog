@@ -48,10 +48,14 @@ public class ConfigServiceImpl implements ConfigService {
 		
 		for (Config st :  settings) {
 			ConfigPO entity = configDao.findByName(st.getKey());
+
+			// 修改
 			if (entity != null) {
 				entity.setValue(st.getValue());
 				configDao.update(entity);
-			} else {
+			}
+			// 添加
+			else {
 				entity = new ConfigPO();
 				BeanUtils.copyProperties(st, entity);
 				configDao.save(entity);

@@ -50,7 +50,7 @@ public class AvatarController extends BaseController {
 		}
 		
 		if (width != null && height != null) {
-			String root = getRealPath("/");
+			String root = fileRepo.getRoot();
 			File temp = new File(root + path);
 			File scale = null;
 			

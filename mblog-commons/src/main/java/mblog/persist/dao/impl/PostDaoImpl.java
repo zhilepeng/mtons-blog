@@ -10,6 +10,7 @@ import mtons.modules.lang.Const;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -82,5 +83,13 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 	@Override
 	public List<PostPO> findByIds(Collection<Long> ids) {
 		return find(Restrictions.in("id", ids));
+	}
+
+	@Override
+	public int updateImageId(long id, long lastImageId) {
+		Query query = createQuery("update PostPO set lastImageId = :lastImageId where id = :id");
+		query.setLong("lastImageId", lastImageId);
+		query.setLong("id", id);
+		return query.executeUpdate();
 	}
 }

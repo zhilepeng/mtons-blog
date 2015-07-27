@@ -133,8 +133,9 @@ CREATE TABLE `mto_menu` (
 -- ----------------------------
 -- Records of mto_menu
 -- ----------------------------
-INSERT INTO `mto_menu` VALUES ('1', '博文', '_self', 'g/blog', '0');
+INSERT INTO `mto_menu` VALUES ('1', '文章', '_self', 'g/blog', '0');
 INSERT INTO `mto_menu` VALUES ('2', '视频', '_self', 'g/video', '0');
 INSERT INTO `mto_menu` VALUES ('3', '问答', '_self', 'g/ask', '0');
 INSERT INTO `mto_menu` VALUES ('4', '发现', '_self', 'tags', '0');
 INSERT INTO `mto_menu` VALUES ('5', '走廊', '_self', 'gallery?g=2', '0');
+

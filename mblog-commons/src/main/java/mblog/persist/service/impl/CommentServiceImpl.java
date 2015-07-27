@@ -5,20 +5,20 @@ package mblog.persist.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-import mtons.modules.pojos.Paging;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import mblog.data.Comment;
-import mblog.lang.Consts;
 import mblog.persist.dao.CommentDao;
 import mblog.persist.dao.UserDao;
 import mblog.persist.entity.CommentPO;
 import mblog.persist.service.CommentService;
 import mblog.utils.BeanMapUtils;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -44,21 +44,42 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	@Transactional(readOnly = true)
 	public void paging(Paging paging, long toId) {
-		List<CommentPO> list = commentDao.paging(paging, toId, Consts.COMMENT_TOP_PID, true);
+		List<CommentPO> list = commentDao.paging(paging, toId, true);
 		
 		List<Comment> rets = new ArrayList<Comment>();
+		List<Long> pids = new ArrayList<>();
+
 		for (CommentPO po : list) {
 			Comment c = BeanMapUtils.copy(po);
-			
-			// 加载回复
-			c.setChildren(findChidren(toId, c.getId()));
-			
+
+			if (c.getPid() > 0) {
+				pids.add(c.getPid());
+			}
 			rets.add(c);
 		}
-		
+
+		if (!pids.isEmpty()) {
+			Map<Long, Comment> pm = findByIds(pids);
+
+			rets.forEach(c -> {
+				if (c.getPid() > 0) {
+					c.setParent(pm.get(c.getPid()));
+				}
+			});
+		}
 		paging.setResults(rets);
 	}
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<Long, Comment> findByIds(List<Long> ids) {
+		List<CommentPO> list = commentDao.findByIds(ids);
+		Map<Long, Comment> ret = new HashMap<Long, Comment>();
+
+		list.forEach(po -> ret.put(po.getId(), BeanMapUtils.copy(po)));
+		return ret;
+	}
+
 	@Override
 	@Transactional
 	public long post(Comment comment) {
@@ -80,23 +101,6 @@ public class CommentServiceImpl implements CommentService {
 		for (Long id : ids) {
 			commentDao.deleteById(id);
 		}
-	}
-	
-	private List<Comment> findChidren(long toId, long pid) {
-		List<Comment> rets = new ArrayList<Comment>();
-		
-		if (pid == 0) {
-			return rets;
-		}
-		
-		Paging paging = new Paging(0);
-		List<CommentPO> list = commentDao.paging(paging, toId, pid, false);
-		
-		for (CommentPO po : list) {
-			Comment c = BeanMapUtils.copy(po);
-			rets.add(c);
-		}
-		return rets;
 	}
 
 }

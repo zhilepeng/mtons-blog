@@ -111,7 +111,7 @@ public interface PostService {
 	 * 自增喜欢数
 	 * @param id
 	 */
-	void identityHearts(long id);
+	void identityFavors(long id);
 	
 	/**
 	 * 自增评论数
@@ -122,5 +122,13 @@ public interface PostService {
 	 * 更新文章方法
 	 * @param p
 	 */
-	public void update(Post p);
+	void update(Post p);
+
+	/**
+	 * 修改最后的图片Id
+	 *
+	 * @param id
+	 * @param lastImageId
+	 */
+	void updateImage(long id, long lastImageId);
 }

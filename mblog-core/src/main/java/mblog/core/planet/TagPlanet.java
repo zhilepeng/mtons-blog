@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.core.planet;
 
 import java.util.List;
@@ -8,8 +10,10 @@ import java.util.List;
 import mblog.data.Tag;
 
 /**
- * 保卫层(cache), 根据业务需求调用
- * 
+ * 标签保卫层, 带缓存策略
+ *
+ * - 如果不使用缓存, 则直接调用Service
+ *
  * @author langhsu
  *
  */

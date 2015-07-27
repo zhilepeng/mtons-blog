@@ -6,24 +6,33 @@
 		<property name="locations">
 			<list>
 				<value>classpath:init.properties</value>
+				<value>classpath:mtons.properties</value>
 			</list>
 		</property>
 	</bean>
     
     <bean id="appContext" class="mblog.core.context.AppContext">
-    	<property name="root" value="/data/mblog"/>
+    	<property name="root" value="${store.root}"/>
+    	<property name="origDir" value="${store.origin}"/>
+    	<property name="thumbsDir" value="${store.thumbs}"/>
+    	<property name="avaDir" value="${store.avatar}"/>
+    	<property name="tempDir" value="${store.temp}"/>
     </bean>
     
     <bean id="jsonUtils" class="mblog.web.formatter.JsonUtils" />
     
     <bean id="startupListener" class="mblog.web.listener.StartupListener" />
     
-    <!-- 文件绝对路径存储 -->
-    <!-- 
-    <bean id="fileRepository" class="mblog.web.upload.impl.FileRealPathRepoImpl" />
+    <!--
+	
+	文件绝对路径存储：
+    <bean id="fileRepo" class="mblog.core.upload.impl.FileRepoImpl" />
+    
+	文件相对项目根路径存储：
+	<bean id="fileRepo" class="mblog.core.upload.impl.FileRealPathRepoImpl" />
+	
     -->
     
-    <!-- 文件相对项目根路径存储 -->
-    <bean id="fileRepo" class="mblog.web.upload.impl.FileRepoImpl" />
+    <bean id="fileRepo" class="mblog.core.upload.impl.FileRealPathRepoImpl" />
     
 </beans>

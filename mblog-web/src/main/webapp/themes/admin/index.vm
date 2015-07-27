@@ -1,6 +1,6 @@
 #set($layout = "/admin/layout/default.vm")
 
-<script type='text/javascript' src='$base/dist/vendors/easypiechart/jquery.easy-pie-chart.js'></script>
+<script type='text/javascript' src='$base/assets/vendors/easypiechart/jquery.easy-pie-chart.js'></script>
 
 <div class="row m-t-large m-b">
 	<div class="col-lg-6">

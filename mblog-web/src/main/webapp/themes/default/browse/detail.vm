@@ -3,7 +3,7 @@
 #set($summary=$!{ret.summary})
 #set($layout = "/default/layout/seo.vm")
 
-<script type="text/javascript" src="$base/dist/js/app/comment.js"></script>
+<script type="text/javascript" src="$base/assets/js/app/comment.js"></script>
 
 <div class="col-xs-12 col-md-9 side-left">
     <div class="shadow-box">
@@ -22,7 +22,7 @@
 			#if($ret.albums && (${ret.type} != 'video'))
     			#foreach($row in $ret.albums)
     				<div class="single-post-media">
-    					<img src="$base/dist/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
+    					<img src="$base/assets/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
     				</div><!-- .post-thumbnail -->	
     			#end
     		#end
@@ -108,7 +108,7 @@ var template = $('#chat')[0].text;
 
 $(function(){
 	$("img").lazyload({
-		 placeholder : "$base/dist/images/spinner.gif",
+		 placeholder : "$base/assets/images/spinner.gif",
 		 effect      : "fadeIn"
 	});
 	

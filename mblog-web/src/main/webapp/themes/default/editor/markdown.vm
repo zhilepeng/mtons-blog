@@ -1,7 +1,7 @@
 
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/markdown/marked.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/markdown/CodeMirror.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/markdown/editor.js"></script>
+<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/markdown/marked.js"></script>
+<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/markdown/CodeMirror.js"></script>
+<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/markdown/editor.js"></script>
 
 <div style="display: none;">
 	<textarea id="content" name="content" rows="5"></textarea>

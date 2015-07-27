@@ -3,11 +3,11 @@
  */
 package mblog.persist.dao;
 
-import java.util.List;
-
 import mblog.persist.entity.CommentPO;
 import mtons.modules.persist.Dao;
 import mtons.modules.pojos.Paging;
+
+import java.util.List;
 
 /**
  * @author langhsu
@@ -15,5 +15,6 @@ import mtons.modules.pojos.Paging;
  */
 public interface CommentDao extends Dao<CommentPO> {
 	List<CommentPO> paging(Paging paging, String key);
-	List<CommentPO> paging(Paging paging, long toId, long pid, boolean desc);
+	List<CommentPO> paging(Paging paging, long toId, boolean desc);
+	List<CommentPO> findByIds(List<Long> ids);
 }

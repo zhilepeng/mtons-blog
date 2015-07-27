@@ -78,6 +78,7 @@ public class PostPO {
 	@JoinColumn(name = "author_id")
 	private UserPO author; // 作者
 
+	private int images; // 图片统计
 	private int featured; // 推荐
 	private int favors; // 喜欢数
 	private int comments; // 评论数
@@ -212,4 +213,11 @@ public class PostPO {
 		this.editor = editor;
 	}
 
+	public int getImages() {
+		return images;
+	}
+
+	public void setImages(int images) {
+		this.images = images;
+	}
 }

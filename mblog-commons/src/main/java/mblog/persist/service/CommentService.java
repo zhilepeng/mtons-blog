@@ -4,9 +4,10 @@
 package mblog.persist.service;
 
 import java.util.List;
+import java.util.Map;
 
-import mblog.data.Comment;
 import mtons.modules.pojos.Paging;
+import mblog.data.Comment;
 
 /**
  * @author langhsu
@@ -21,6 +22,8 @@ public interface CommentService {
 	 * @param toId
 	 */
 	void paging(Paging paging, long toId);
+
+	Map<Long, Comment> findByIds(List<Long> ids);
 	
 	/**
 	 * 发表评论

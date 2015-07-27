@@ -4,45 +4,50 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>$!title - $!{site_name}</title>
-	<meta name="keywords" content="mtons,$!{site_keywords},$!{tags}"/>
+    <title>$!{title} - $!{site_name}</title>
+	<meta name="keywords" content="Mtons博客,$!{tags}"/>
 	<meta name="description" content="$!{summary}"/>
+
+	#parse("/default/inc/metas.vm")
+
+	<script src="$base/assets/vendors/pace/pace.min.js"></script>
+	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 	
-	<script src="$base/dist/vendors/pace/pace.min.js"></script>
-	<link href="$base/dist/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+	<link rel='stylesheet' media='all' href='$base/assets/vendors/font-awesome/css/font-awesome.min.css'/>
+	<link rel="stylesheet" media='all' href="$base/assets/vendors/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" media='all' href="$base/assets/vendors/animate/animate.min.css">
+	<link rel='stylesheet' media='all' href='$base/assets/css/style.css'/>
+	<link rel='stylesheet' media='all' href='$base/assets/css/layout.css'/>
+	<link rel='stylesheet' media='all' href='$base/assets/css/plugins.css'/>
 	
-	<link rel='stylesheet' media='all' href='$base/dist/vendors/font-awesome/css/font-awesome.min.css'/>
-	<link rel="stylesheet" media='all' href="$base/dist/vendors/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" media='all' href="$base/dist/vendors/animate/animate.min.css">
-	<link rel='stylesheet' media='all' href='$base/dist/css/style.css'/>
-	<link rel='stylesheet' media='all' href='$base/dist/css/layout.css'/>
-	<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
-	
-	<link rel='stylesheet' media='all' href="$base/dist/vendors/baguette/baguetteBox.min.css"/>
+	<link rel='stylesheet' media='all' href="$base/assets/vendors/baguette/baguetteBox.min.css"/>
 	
 	<!--[if lt IE 9]>
-    <script src="$base/dist/js/html5.js"></script>
+    <script src="$base/assets/js/html5.js"></script>
     <![endif]-->
 	
-	<script type='text/javascript' src='$base/dist/js/jquery.min.js'></script>
-	<script type="text/javascript" src="$base/dist/js/jquery.lazyload.js"></script>
-	<script type="text/javascript" src="$base/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="$base/dist/js/plugins.js"></script>
-	<script type='text/javascript' src='$base/dist/js/jquery-validate.js'></script>
-	<script type='text/javascript' src='$base/dist/js/mtons.js'></script>
+	<script type="text/javascript" src="$base/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="$base/assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="$base/assets/js/utils.js"></script>
+	
+	<script type="text/javascript" src="$base/assets/vendors/layer/layer.js"></script>
+	
+	<script type="text/javascript" src="$base/assets/js/sea.js"></script>
+	<script type="text/javascript" src="$base/assets/js/sea.config.js"></script>
 	
 	#foreach($j in $js)
 	<script type="text/javascript" src="$j"></script>
 	#end
 	
-	<script type='text/javascript' src="$base/dist/vendors/baguette/baguetteBox.min.js"></script>
-	<script type='text/javascript' src='$base/dist/vendors/layer/layer.js'></script>
-	<script type='text/javascript' src='$base/dist/js/global.js'></script>
-	
 	<!-- Favicons -->
-	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo/m.png"/>
-	<link rel="shortcut icon" href="http://mtons.com/dist/images/logo/m.png"/>
+	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m.png"/>
+	<link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
 	
+	<script type="text/javascript">
+	window.app = {
+		base: '$base'
+	};
+	</script>
 </head>
 <body>
 	#parse("/default/inc/header.vm")
@@ -62,5 +67,10 @@
 	
 	<a href="#" class="site-scroll-top"></a>
 	
+	<script type="text/javascript">
+    seajs.use('main', function (main) {
+    	main.init();
+    });
+    </script>
 </body>
 </html>

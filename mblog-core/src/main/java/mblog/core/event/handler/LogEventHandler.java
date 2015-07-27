@@ -38,7 +38,7 @@ public class LogEventHandler implements ApplicationListener<LogEvent> {
 				if (logs > 0) {
 					throw new MtonsException("您今天已经喜欢过该文章了");
 				}
-				postService.identityHearts(event.getTargetId());
+				postService.identityFavors(event.getTargetId());
 				logService.add(type.getIndex(), event.getUserId(), event.getTargetId(), event.getIp());
 				break;
 			case BROWSE:

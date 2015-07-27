@@ -5,18 +5,16 @@ package mblog.persist.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import mtons.modules.lang.EntityStatus;
-import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.search.highlight.QueryScorer;
@@ -26,6 +24,7 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchFactory;
 import org.hibernate.search.query.dsl.QueryBuilder;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -34,15 +33,16 @@ import mblog.data.Attach;
 import mblog.data.Post;
 import mblog.data.Tag;
 import mblog.lang.Consts;
-import mblog.persist.dao.AttachDao;
 import mblog.persist.dao.PostDao;
-import mblog.persist.dao.UserDao;
 import mblog.persist.entity.PostPO;
+import mblog.persist.entity.UserPO;
 import mblog.persist.service.AttachService;
 import mblog.persist.service.PostService;
 import mblog.persist.service.TagService;
 import mblog.utils.BeanMapUtils;
 import mblog.utils.PreviewTextUtils;
+import mtons.modules.lang.EntityStatus;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -51,10 +51,6 @@ import mblog.utils.PreviewTextUtils;
 public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostDao postDao;
-	@Autowired
-	private AttachDao attachDao;
-	@Autowired
-	private UserDao userDao;
 	@Autowired
 	private AttachService attachService;
 	@Autowired
@@ -67,11 +63,11 @@ public class PostServiceImpl implements PostService {
 		
 		List<Post> rets = new ArrayList<Post>();
 		List<Long> ids = new ArrayList<Long>();
-		
-		for (PostPO po : list) {
+
+		list.forEach(po -> {
 			ids.add(po.getId());
 			rets.add(BeanMapUtils.copy(po, 0));
-		}
+		});
 		
 		if (loadImages) {
 			buildAttachs(rets, ids);
@@ -87,11 +83,11 @@ public class PostServiceImpl implements PostService {
 		
 		List<Post> rets = new ArrayList<Post>();
 		List<Long> ids = new ArrayList<Long>();
-		
-		for (PostPO po : list) {
+
+		list.forEach(po -> {
 			ids.add(po.getId());
 			rets.add(BeanMapUtils.copy(po ,0));
-		}
+		});
 		
 		buildAttachs(rets, ids);
 		
@@ -106,11 +102,17 @@ public class PostServiceImpl implements PostService {
 //	    fullTextSession.createIndexer().startAndWait();
 	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("title","summary","tags").matching(q).createQuery();
-	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
+
+		org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("title","summary","tags").matching(q).createQuery();
+
+		FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paging.getFirstResult());
 	    query.setMaxResults(paging.getMaxResults());
-	   
+
+		//按Id排倒序
+		Sort sort = new Sort(new SortField("id", SortField.Type.LONG, true));
+		query.setSort(sort);
+
 	    StandardAnalyzer standardAnalyzer = new StandardAnalyzer(); 
 	    SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
         QueryScorer queryScorer = new QueryScorer(luceneQuery);
@@ -124,9 +126,11 @@ public class PostServiceImpl implements PostService {
 	    
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
+
 			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
 			String summary = highlighter.getBestFragment(standardAnalyzer, "summary", m.getSummary());
 			String tags = highlighter.getBestFragment(standardAnalyzer, "tags", m.getTags());
+
 			if (StringUtils.isNotEmpty(title)) {
 				m.setTitle(title);
 			}
@@ -156,16 +160,22 @@ public class PostServiceImpl implements PostService {
 	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
 	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("tags").matching(tag).createQuery();
+
 	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paigng.getFirstResult());
 	    query.setMaxResults(paigng.getMaxResults());
 
-	    List<PostPO> list = query.list();
+		//按Id排倒序
+		Sort sort = new Sort(new SortField("id", SortField.Type.LONG, true));
+		query.setSort(sort);
+
+		List<PostPO> list = query.list();
 	    List<Long> ids = new ArrayList<Long>();
 	    
 	    int resultSize = query.getResultSize();
 	    
 	    List<Post> rets = new ArrayList<Post>();
+
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
 			rets.add(m);
@@ -185,9 +195,9 @@ public class PostServiceImpl implements PostService {
 	public List<Post> findRecents(int maxResutls, long ignoreUserId) {
 		List<PostPO> list = postDao.findRecents(maxResutls, ignoreUserId);
 		List<Post> rets = new ArrayList<Post>();
-		for (PostPO po : list) {
-			rets.add(BeanMapUtils.copy(po, 0));
-		}
+
+		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));
+
 		return rets;
 	}
 	
@@ -196,9 +206,8 @@ public class PostServiceImpl implements PostService {
 	public List<Post> findHots(int maxResutls, long ignoreUserId) {
 		List<PostPO> list = postDao.findHots(maxResutls, ignoreUserId);
 		List<Post> rets = new ArrayList<Post>();
-		for (PostPO po : list) {
-			rets.add(BeanMapUtils.copy(po, 0));
-		}
+
+		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));
 		return rets;
 	}
 	
@@ -209,70 +218,51 @@ public class PostServiceImpl implements PostService {
 		Map<Long, Post> rets = new HashMap<Long, Post>();
 		
 		List<Long> imageIds = new ArrayList<Long>();
-		
-		for (PostPO po : list) {
+
+		list.forEach(po -> {
 			rets.put(po.getId(), BeanMapUtils.copy(po, 0));
-			
+
 			if (po.getLastImageId() > 0) {
 				imageIds.add(po.getLastImageId());
 			}
-		}
+		});
 		
 		Map<Long, Attach> ats = attachService.findByIds(imageIds);
-		
-		for (Map.Entry<Long, Post> ent : rets.entrySet()) {
-			if (ent.getValue().getLastImageId() > 0) {
-				Attach a = ats.get(ent.getValue().getLastImageId());
-				ent.getValue().setAlbums(Collections.singletonList(a));
+
+		rets.forEach((k, v) -> {
+			if (v.getLastImageId() > 0) {
+				Attach a = ats.get(v.getLastImageId());
+				v.setAlbum(a);
 			}
-		}
+		});
 		return rets;
 	}
 	
 	@Override
 	@Transactional
 	public void post(Post post) {
-		PostPO po = postDao.get(post.getId());
-		if (po != null) {
-			po.setTitle(post.getTitle());
-			po.setContent(post.getContent());
-			po.setMarkdown(post.getMarkdown());
-			po.setEditor(post.getEditor());
-			
-			if (StringUtils.isBlank(post.getSummary())) {
-				po.setSummary(trimSummary(post.getContent())); // summary handle
-			} else {
-				po.setSummary(trimSummary(post.getSummary()));
-			}
-			po.setTags(post.getTags());
+		PostPO po = new PostPO();
+
+		BeanUtils.copyProperties(post, po, BeanMapUtils.POST_IGNORE);
+
+		po.setAuthor(new UserPO(post.getAuthorId()));
+		po.setCreated(new Date());
+		po.setStatus(EntityStatus.ENABLED);
+
+		// 处理摘要
+		if (StringUtils.isBlank(post.getSummary())) {
+			po.setSummary(trimSummary(post.getContent()));
 		} else {
-			po = new PostPO();
-			
-			po.setAuthor(userDao.get(post.getAuthorId()));
-			po.setCreated(new Date());
-			po.setStatus(EntityStatus.ENABLED);
-			
-			// content
-			po.setGroup(post.getGroup());
-			po.setTitle(post.getTitle());
-			po.setContent(post.getContent());
-			po.setMarkdown(post.getMarkdown());
-			po.setEditor(post.getEditor());
-			
-			if (StringUtils.isBlank(post.getSummary())) {
-				po.setSummary(trimSummary(post.getContent())); // summary handle
-			} else {
-				po.setSummary(post.getSummary());
-			}
-			po.setTags(post.getTags());
-			
-			postDao.save(po);
+			po.setSummary(post.getSummary());
 		}
+
+		postDao.save(po);
 		
 		// attach handle
 		if (post.getAlbums() != null) {
 			long lastImageId = attachService.batchAdd(po.getId(), post.getAlbums());
 			po.setLastImageId(lastImageId);
+			po.setImages(post.getAlbums().size());
 		}
 		
 		// tag handle
@@ -328,7 +318,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	@Transactional
-	public void identityHearts(long id) {
+	public void identityFavors(long id) {
 		PostPO po = postDao.get(id);
 		if (po != null) {
 			po.setFavors(po.getFavors() + Consts.IDENTITY_STEP);
@@ -369,12 +359,16 @@ public class PostServiceImpl implements PostService {
 	    	po.setTags(p.getTags());//标签
     	}
 	}
-    
-    private void buildAttachs(List<Post> posts, List<Long> postIds) {
+
+	@Override
+	@Transactional
+	public void updateImage(long id, long lastImageId) {
+		postDao.updateImageId(id, lastImageId);
+	}
+
+	private void buildAttachs(List<Post> posts, List<Long> postIds) {
     	Map<Long, List<Attach>> attMap = attachService.findByTarget(postIds);
-    	
-    	for (Post p : posts) {
-    		p.setAlbums(attMap.get(p.getId()));
-    	}
+
+		posts.forEach(p -> p.setAlbums(attMap.get(p.getId())));
     }
 }

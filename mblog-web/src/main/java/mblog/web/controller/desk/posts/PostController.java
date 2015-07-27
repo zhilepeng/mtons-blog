@@ -5,18 +5,6 @@ package mblog.web.controller.desk.posts;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mblog.core.event.LogEvent;
-import mblog.core.lang.EnumLog;
-import mblog.core.planet.PostPlanet;
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.persist.service.GroupService;
-import mblog.persist.service.PostService;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,6 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import mblog.core.event.LogEvent;
+import mblog.core.lang.EnumLog;
+import mblog.core.planet.PostPlanet;
+import mblog.data.Group;
+import mblog.data.Post;
+import mblog.persist.service.GroupService;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
+
 /**
  * @author langhsu
  *
@@ -34,8 +33,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/post")
 public class PostController extends BaseController {
-	@Autowired
-	private PostService postService;
 	@Autowired
 	private PostPlanet postPlanet;
 	@Autowired

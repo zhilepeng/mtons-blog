@@ -4,7 +4,6 @@
 package mblog.data;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -21,9 +20,10 @@ public class Comment {
 	private User author;
 	private int status;
 
-	// params
+	// extend parameter
+	
 	private long authorId;
-	private List<Comment> children;
+	private Comment parent;
 	
 	public long getId() {
 		return id;
@@ -90,12 +90,11 @@ public class Comment {
 		this.pid = pid;
 	}
 
-	public List<Comment> getChildren() {
-		return children;
+	public Comment getParent() {
+		return parent;
 	}
 
-	public void setChildren(List<Comment> children) {
-		this.children = children;
+	public void setParent(Comment parent) {
+		this.parent = parent;
 	}
-
 }

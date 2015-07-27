@@ -3,17 +3,15 @@
  */
 package mblog.persist.dao.impl;
 
-import java.util.List;
-
+import mblog.persist.dao.CommentDao;
+import mblog.persist.entity.CommentPO;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import mblog.persist.dao.CommentDao;
-import mblog.persist.entity.CommentPO;
+import java.util.List;
 
 /**
  * @author langhsu
@@ -37,12 +35,10 @@ public class CommentDaoImpl extends DaoImpl<CommentPO> implements CommentDao {
 	}
 	
 	@Override
-	public List<CommentPO> paging(Paging paging,long toId, long pid, boolean desc) {
+	public List<CommentPO> paging(Paging paging,long toId, boolean desc) {
 		PagingQuery<CommentPO> q = pagingQuery(paging);
 		q.add(Restrictions.eq("toId", toId));
 		q.add(Restrictions.eq("status", 0));
-		
-		q.add(Restrictions.eq("pid", pid));
 		
 		if (desc) {
 			q.desc("created");
@@ -51,5 +47,11 @@ public class CommentDaoImpl extends DaoImpl<CommentPO> implements CommentDao {
 		}
 		return q.list();
 	}
-	
+
+	@Override
+	public List<CommentPO> findByIds(List<Long> ids) {
+		return find(Restrictions.in("id", ids));
+	}
+
+
 }

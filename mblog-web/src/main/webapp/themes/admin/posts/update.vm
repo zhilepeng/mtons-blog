@@ -1,12 +1,12 @@
 #set($layout = "/admin/layout/default.vm")
 
-<link rel='stylesheet' media='all' href='$base/dist/css/plugins.css'/>
-<link href="$base/dist/vendors/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<link rel='stylesheet' media='all' href='$base/assets/css/plugins.css'/>
+<link href="$base/assets/vendors/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/umeditor/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/dist/vendors/umeditor/umeditor.min.js"></script>
-<script type="text/javascript" src="$base/dist/js/plugins.js"></script>
-<script type="text/javascript" src="$base/dist/js/tag-it.js"></script>
+<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="$base/assets/js/plugins.js"></script>
+<script type="text/javascript" src="$base/assets/js/tag-it.js"></script>
 
 <div class="panel m-t-large m-b">
 	<header class="panel-heading">文章编辑</header>

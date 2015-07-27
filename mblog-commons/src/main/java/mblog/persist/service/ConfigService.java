@@ -13,8 +13,22 @@ import mblog.data.Config;
  *
  */
 public interface ConfigService {
+	/**
+	 * 查询所有配置
+	 * @return list
+	 */
 	List<Config> findAll();
+
+	/**
+	 * 查询所有配置
+	 * @return map
+	 */
 	Map<String, Config> findAll2Map();
-	
+
+	/**
+	 * 添加或修改配置
+	 * - 修改时根据key判断唯一性
+	 * @param configs
+	 */
 	void update(List<Config> configs);
 }

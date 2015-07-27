@@ -6,10 +6,8 @@
 		<li class="col-xs-6 col-sm-4 col-lg-3">
 			<figure>
 				<a href="$base/tag/${row.name}">
-					#if($!{row.post.albums})
-						#foreach($alb in ${row.post.albums})
-							<img src="$base/dist/images/spinner.gif" data-original="$base${alb.preview}"/>
-						#end
+					#if($!{row.post.album})
+						<img src="$base/assets/images/spinner.gif" data-original="$base${row.post.album.preview}"/>
 					#else
                     <div class="txt">$!{row.post.summary}</div>
 					#end

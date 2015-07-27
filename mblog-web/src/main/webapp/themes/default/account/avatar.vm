@@ -1,8 +1,6 @@
 #set($title = "修改用户信息")
 #set($layout = "/default/layout/schema.vm")
 
-<script type="text/javascript" charset="utf-8" src="$base/dist/js/jquery.Jcrop.min.js"></script>
-
 #parse("/default/account/profile_snippet.vm")
 
 <nav id="profile-navigation" class="profile-navbar">
@@ -64,66 +62,7 @@
 		</div>
 	</div>
 </div>
-</section>
+
 <script type="text/javascript">
-var upload_url = '$base/post/upload?scale=true&size=400';
-var base_url = '$base';
-
-#[[
-	var jcrop_api;
-	var jcrop_init = false;
-	
-	function getRandom() {
-		var dim = jcrop_api.getBounds();
-		return [
-			Math.round(Math.random() * dim[0]),
-			Math.round(Math.random() * dim[1]),
-			Math.round(Math.random() * dim[0]),
-			Math.round(Math.random() * dim[1])
-		];
-    };
-	
-	function showCoords(c) {
-		$('#x').val(c.x);
-		$('#y').val(c.y);
-		$('#width').val(c.w);
-		$('#height').val(c.h);
-	};
-  
-	function initJcrop() {
-		$('#target').Jcrop({
-			boxWidth:400,
-      		aspectRatio: 100 / 100,
-			onChange:   showCoords,
-      		onSelect:   showCoords,
-			allowSelect: false
-		},function(){
-    		jcrop_api = this;
-    		jcrop_api.animateTo([100,100,400,300]);
-		});
-	}
-	jQuery(function($){
-		
-    	$('#upload_btn').change(function(){
-    		$(this).upload(upload_url, function(data){
-    			if (data.code >= 0) {
-    				var path = base_url + data.data;
-    				$("#target").attr("src", path);
-					$("#path").val(data.data);
-					
-					if (!jcrop_init) {
-						initJcrop();
-						jcrop_init = true;
-					} else {
-    					jcrop_api.setImage(path, function () {
-    						 this.animateTo(getRandom());
-    					});
-					}
-    			}
-    		});
-    	});
-	
-	});
-
-]]#
-</script>
+    seajs.use('avatar');
+    </script>

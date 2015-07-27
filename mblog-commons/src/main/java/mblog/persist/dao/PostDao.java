@@ -24,4 +24,6 @@ public interface PostDao extends Dao<PostPO> {
 	List<PostPO> findRecents(int maxResutls, long ignoreUserId);
 	List<PostPO> findHots(int maxResutls, long ignoreUserId);
 	List<PostPO> findByIds(Collection<Long> ids);
+
+	int updateImageId(long id, long lastImageId);
 }

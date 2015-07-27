@@ -1,6 +1,9 @@
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *******************************************************************************/
 package mblog.web.controller;
-
-import mtons.modules.utils.MD5Helper;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -9,14 +12,13 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.persist.service.UserService;
 import mblog.web.controller.desk.Views;
+import mtons.modules.utils.MD5Helper;
 
 /**
  * 
@@ -25,8 +27,6 @@ import mblog.web.controller.desk.Views;
  */
 @Controller
 public class LoginController extends BaseController {
-	@Autowired
-	private UserService userService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view() {

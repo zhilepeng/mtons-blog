@@ -9,12 +9,13 @@
 		<module>mblog-commons</module>
 		<module>mblog-core</module>
 		<module>mblog-web</module>
+		<module>html</module>
 	</modules>
 
 	<properties>
 		<spring.version>4.1.7.RELEASE</spring.version>
-		<jetty.version>7.6.10.v20130312</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jetty.version>7.6.10.v20130312</jetty.version>
 		<webserver.port>8080</webserver.port>
 	</properties>
 
@@ -42,7 +43,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
 			<!-- jetty插件  -->
 			<plugin>
                 <groupId>org.mortbay.jetty</groupId>

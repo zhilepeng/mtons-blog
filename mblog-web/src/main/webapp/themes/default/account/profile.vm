@@ -62,7 +62,7 @@
 </div>
 </section>
 <script type="text/javascript">
-$(function(){
+seajs.use('validate', function (validate) {
 	$('#pf').validate({
 		onKeyup : true,
 		onChange : true,
@@ -73,6 +73,5 @@ $(function(){
 			$(this).closest('div').removeClass('has-success').addClass('has-error');
 		}
 	});
-
-})
+});
 </script>

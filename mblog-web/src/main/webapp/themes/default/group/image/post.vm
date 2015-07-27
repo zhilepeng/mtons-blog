@@ -4,13 +4,8 @@
 	var _base_path = '$!{base}';
 </script>
 
-<link href="$base/dist/vendors/uploader/uploader.css" type="text/css" rel="stylesheet" />
+<link href="$base/assets/vendors/uploader/uploader.css" type="text/css" rel="stylesheet" />
 	
-<script src="$base/dist/vendors/uploader/dmuploader.js"></script>
-<script src="$base/dist/vendors/uploader/image-upload.js"></script>
-
-<script src="$base/dist/js/app/post.js"></script>
-							
 <div class="col-xs-12 col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -68,7 +63,7 @@
                     <div class="col-sm-8">
                         <input type="hidden" name="tags" id="fieldTags">
                         <ul id="tags"></ul>
-                        <p class="help-block" style="font-size: 12px;">添加相关标签，用逗号或空格分隔.</p>
+                        <p class="help-block" style="font-size: 12px;">添加相关标签，用逗号或空格分隔 (最多4个).</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -83,7 +78,8 @@
 </div>
 
 <script type="text/javascript">
-$(function () {
-    var postView = new PostView($('#uedtior'), {});
+seajs.use('post', function (post) {
+	post.init('uedtior');
 });
+seajs.use('upload');
 </script>

@@ -29,23 +29,49 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				缓存管理
-				<a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="cache_flush">
-					<i class="fa fa-refresh"></i> 刷新缓存
-				</a>
 			</div>
 			<div class="panel-body" style="height: 200px;">
-				<ul class="dropdown-menu pos-stc inline">
-					<li><a href="#">正在使用的缓存</a></li>
-					<li class="divider"></li>
-					#if($cacheNames.size() > 0)
-					#foreach($row in $cacheNames)
-						<li><a href="#">$row</a></li>
-					#end
-    				#else
-						<li>暂时没有缓存!</li>
-    				#end
-				</ul>
-				
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="media">
+                            <span class="pull-left thumb-small m-t-mini">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <div id="todo-1" class="pull-right text-primary m-t-small">
+                                <a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="flush_cache">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="h5">刷新Ehcache缓存</div>
+                                <small class="text-muted">
+                                    #foreach($row in $cacheNames)
+                                    <span>$row</span>
+                                    #end
+                                </small>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="media">
+                            <span class="pull-left thumb-small m-t-mini">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <div id="todo-1" class="pull-right text-primary m-t-small">
+                                <a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="flush_conf">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div class="h5">刷新系统变量缓存</div>
+                                <small class="text-muted">
+                                    <span>系统变量</span>
+                                    <span>导航菜单</span>
+                                </small>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
 			</div>
 		</div>
 	</div>
@@ -66,10 +92,18 @@ function ajaxReload(json){
 }
 
 $(function() {
-	// 激活
-    $('a[data-action="cache_flush"]').bind('click', function(){
-        if(confirm('确定要清除系统中的缓存吗？')){
-            J.getJSON('$base/admin/config/cache_flush.json', ajaxReload);
+	// 刷新缓存
+    $('a[data-action="flush_cache"]').bind('click', function(){
+        if(confirm('确定要刷新Ehcache的缓存吗？')){
+            J.getJSON('$base/admin/config/flush_cache.json', ajaxReload);
+        }
+        return false;
+    });
+
+    // 刷新系统变量
+    $('a[data-action="flush_conf"]').bind('click', function(){
+        if(confirm('确定要刷新系统变量的缓存吗？')){
+            J.getJSON('$base/admin/config/flush_conf.json', ajaxReload);
         }
         return false;
     });

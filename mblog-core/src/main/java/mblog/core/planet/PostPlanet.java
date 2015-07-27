@@ -1,16 +1,20 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.core.planet;
 
 import java.util.Collection;
 import java.util.List;
 
-import mblog.data.Post;
 import mtons.modules.pojos.Paging;
+import mblog.data.Post;
 
 /**
- * 保卫层(cache), 根据业务需求调用
+ * 文章保卫层, 带缓存策略
+ *
+ * - 如果不使用缓存, 则直接调用Service
  * 
  * @author langhsu
  *
@@ -59,12 +63,38 @@ public interface PostPlanet {
 	 * @param post
 	 */
 	void post(Post post);
-	
+
+	/**
+	 * 查询最近更新的文章
+	 *
+	 * @param maxResutls
+	 * @param ignoreUserId
+	 * @return
+	 */
 	List<Post> findRecents(int maxResutls, long ignoreUserId);
+
+	/**
+	 * 查询热门文章
+	 *
+	 * @param maxResutls
+	 * @param ignoreUserId
+	 * @return
+	 */
 	List<Post> findHots(int maxResutls, long ignoreUserId);
-	
+
+	/**
+	 * 删除文章, 且刷新缓存
+	 *
+	 * @param id
+	 * @param authorId
+	 */
 	void delete(long id, long authorId);
+
+	/**
+	 * 批量删除文章, 且刷新缓存
+	 *
+	 * @param ids
+	 */
 	void delete(Collection<Long> ids);
 	
-	boolean cacheFlush();
 }
