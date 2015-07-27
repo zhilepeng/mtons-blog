@@ -8,13 +8,12 @@ package mblog.web.upload.impl;
 import java.io.File;
 import java.io.IOException;
 
-import mblog.core.context.AppContext;
+import mblog.core.context.Global;
 import mblog.core.utils.FileNameUtils;
 import mblog.web.upload.FileRepo;
 import mtons.modules.utils.GMagickUtils;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -22,14 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
  *
  */
 public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
-	@Autowired
-	private AppContext appContext;
 	
 	@Override
 	public String temp(MultipartFile file, String basePath) throws IOException {
 		validateFile(file);
 		
-		String root = appContext.getRoot();
+		String root = Global.getRoot();
 		
 		String name = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		String path = basePath + "/" + name;
@@ -43,7 +40,7 @@ public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
 	public String tempScale(MultipartFile file, String basePath, int maxWidth) throws Exception {
 		validateFile(file);
 		
-		String root = appContext.getRoot();
+		String root = Global.getRoot();
 		
 		String name = FileNameUtils.genFileName(getExt(file.getOriginalFilename()));
 		String path = basePath + "/" + name;
@@ -75,7 +72,7 @@ public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
 	public String store(MultipartFile file, String basePath) throws IOException {
 		validateFile(file);
 		
-		String realPath = appContext.getRoot();
+		String realPath = Global.getRoot();
 		
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		
@@ -87,7 +84,7 @@ public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
 	
 	@Override
 	public String store(File file, String basePath) throws IOException {
-		String root = appContext.getRoot();
+		String root = Global.getRoot();
 		
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getName()));
 		
@@ -101,11 +98,11 @@ public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
 	public String storeScale(MultipartFile file, String basePath, int maxWidth) throws Exception {
 		validateFile(file);
 		
-		String realPath = appContext.getRoot();
+		String realPath = Global.getRoot();
 		
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		
-		File temp = new File(realPath + appContext.getTempDir() + path);
+		File temp = new File(realPath + Global.getTempDir() + path);
 		checkDirAndCreate(temp);
 		try {
 			file.transferTo(temp);
@@ -124,7 +121,7 @@ public class FileRealPathRepoImpl extends AbstractRepo implements FileRepo {
 
 	@Override
 	public String storeScale(File file, String basePath, int maxWidth) throws Exception {
-		String root = appContext.getRoot();
+		String root = Global.getRoot();
 		
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getName()));
 		

@@ -13,7 +13,9 @@
 
 	<properties>
 		<spring.version>4.1.7.RELEASE</spring.version>
+		<jetty.version>7.6.10.v20130312</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<webserver.port>8080</webserver.port>
 	</properties>
 
 	<build>
@@ -39,6 +41,29 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			
+			<!-- jetty插件  -->
+			<plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>${webserver.port}</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath>/${project.artifactId}</contextPath>
+					</webAppConfig>
+					<systemProperties>  
+			            <systemProperty>
+			            	<name>org.mortbay.util.URI.charset</name>
+			            	<value>${project.build.sourceEncoding}</value>
+			        	</systemProperty>
+			        </systemProperties>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
