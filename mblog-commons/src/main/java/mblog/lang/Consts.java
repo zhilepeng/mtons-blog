@@ -12,7 +12,7 @@ public interface Consts {
 	/**
 	 * 默认头像
 	 */
-	String AVATAR = "/dist/images/ava/default.png";
+	String AVATAR = "/assets/images/ava/default.png";
 	
 	/**
 	 * 文件目录步进
