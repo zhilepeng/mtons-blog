@@ -13,11 +13,10 @@ import javax.servlet.ServletContext;
 import mtons.modules.utils.GMagickUtils;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
-import mblog.core.context.AppContext;
+import mblog.core.context.Global;
 import mblog.core.utils.FileNameUtils;
 import mblog.web.upload.FileRepo;
 
@@ -26,8 +25,6 @@ import mblog.web.upload.FileRepo;
  *
  */
 public class FileRepoImpl extends AbstractRepo implements FileRepo, ServletContextAware {
-	@Autowired
-	private AppContext appContext;
 	
 	private ServletContext context;
 	
@@ -116,7 +113,7 @@ public class FileRepoImpl extends AbstractRepo implements FileRepo, ServletConte
 		
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getOriginalFilename()));
 		
-		File temp = new File(root + appContext.getTempDir() + path);
+		File temp = new File(root + Global.getTempDir() + path);
 		checkDirAndCreate(temp);
 		
 		try {
