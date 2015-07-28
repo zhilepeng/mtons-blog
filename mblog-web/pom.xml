@@ -12,12 +12,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mtons.mblog</groupId>
-			<artifactId>mblog-commons</artifactId>
+			<artifactId>mblog-data</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mtons.mblog</groupId>
-			<artifactId>mblog-core</artifactId>
+			<artifactId>mblog-extend</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

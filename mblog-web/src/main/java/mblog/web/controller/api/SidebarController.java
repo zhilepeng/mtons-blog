@@ -14,10 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.core.planet.PostPlanet;
-import mblog.core.planet.TagPlanet;
 import mblog.data.Post;
 import mblog.data.Tag;
+import mblog.extend.planet.PostPlanet;
+import mblog.extend.planet.TagPlanet;
 import mblog.web.controller.BaseController;
 
 /**

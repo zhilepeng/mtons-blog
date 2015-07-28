@@ -5,7 +5,7 @@
  *******************************************************************************/
 package mblog.web.controller.desk;
 
-import mblog.core.planet.PostPlanet;
+import mblog.extend.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;

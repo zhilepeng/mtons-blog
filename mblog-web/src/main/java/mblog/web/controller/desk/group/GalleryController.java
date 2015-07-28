@@ -5,7 +5,7 @@ package mblog.web.controller.desk.group;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mblog.core.planet.PostPlanet;
+import mblog.extend.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;

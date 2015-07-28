@@ -5,9 +5,9 @@
  *******************************************************************************/
 package mblog.web.controller.desk.migrate;
 
-import mblog.core.planet.PostPlanet;
 import mblog.data.Post;
 import mblog.data.User;
+import mblog.extend.planet.PostPlanet;
 import mblog.persist.service.PostService;
 import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;

@@ -6,8 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>mblog-commons</module>
-		<module>mblog-core</module>
+		<module>mblog-utils</module>
+		<module>mblog-data</module>
+		<module>mblog-extend</module>
 		<module>mblog-web</module>
 	</modules>
 
@@ -15,7 +16,7 @@
 		<spring.version>4.1.7.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>7.6.10.v20130312</jetty.version>
-		<webserver.port>8080</webserver.port>
+		<webserver.port>80</webserver.port>
 	</properties>
 
 	<build>

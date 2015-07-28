@@ -11,7 +11,7 @@
 		</property>
 	</bean>
     
-    <bean id="appContext" class="mblog.core.context.AppContext">
+    <bean id="appContext" class="mblog.extend.context.AppContext">
     	<property name="root" value="${store.root}"/>
     	<property name="origDir" value="${store.origin}"/>
     	<property name="thumbsDir" value="${store.thumbs}"/>
@@ -26,13 +26,13 @@
     <!--
 	
 	文件绝对路径存储：
-    <bean id="fileRepo" class="mblog.core.upload.impl.FileRepoImpl" />
+    <bean id="fileRepo" class="mblog.extend.upload.impl.FileRepoImpl" />
     
 	文件相对项目根路径存储：
-	<bean id="fileRepo" class="mblog.core.upload.impl.FileRealPathRepoImpl" />
+	<bean id="fileRepo" class="mblog.extend.upload.impl.FileRealPathRepoImpl" />
 	
     -->
     
-    <bean id="fileRepo" class="mblog.core.upload.impl.FileRealPathRepoImpl" />
+    <bean id="fileRepo" class="mblog.extend.upload.impl.FileRealPathRepoImpl" />
     
 </beans>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 
 import org.apache.log4j.Logger;
 
-import mblog.core.utils.PropertiesLoader;
+import mblog.utils.PropertiesLoader;
 import mtons.modules.utils.Exceptions;
 import mtons.modules.utils.GMagickUtils;
 

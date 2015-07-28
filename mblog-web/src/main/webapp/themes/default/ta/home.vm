@@ -1,4 +1,4 @@
-#set($title = "$!{user.name}")
+#set($title = "$!{user.name} 的Mtons")
 #set($layout = "/default/layout/schema.vm")
 
 <div class="profile">

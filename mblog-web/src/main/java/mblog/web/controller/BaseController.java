@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
 
-import mblog.core.context.AppContext;
-import mblog.core.upload.FileRepo;
 import mblog.data.Attach;
+import mblog.extend.context.AppContext;
+import mblog.extend.upload.FileRepo;
 import mblog.shiro.authc.AccountSubject;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;

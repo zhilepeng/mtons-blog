@@ -5,9 +5,9 @@
  *******************************************************************************/
 package mblog.web.controller.desk.group;
 
-import mblog.core.planet.PostPlanet;
 import mblog.data.Group;
 import mblog.data.Post;
+import mblog.extend.planet.PostPlanet;
 import mblog.persist.service.GroupService;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
