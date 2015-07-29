@@ -6,26 +6,31 @@
 package mblog.persist.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
+
 import mblog.data.AccountProfile;
 import mblog.data.Attach;
+import mblog.data.AuthMenu;
 import mblog.data.Comment;
 import mblog.data.Group;
 import mblog.data.Post;
+import mblog.data.Role;
 import mblog.data.Tag;
 import mblog.data.User;
 import mblog.lang.Consts;
 import mblog.persist.entity.AttachPO;
+import mblog.persist.entity.AuthMenuPO;
 import mblog.persist.entity.CommentPO;
 import mblog.persist.entity.GroupPO;
 import mblog.persist.entity.PostPO;
+import mblog.persist.entity.RolePO;
 import mblog.persist.entity.TagPO;
 import mblog.persist.entity.UserPO;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author langhsu
@@ -108,6 +113,35 @@ public class BeanMapUtils {
 	public static Group copy(GroupPO po) {
 		Group r = new Group();
 		BeanUtils.copyProperties(po, r);
+		return r;
+	}
+	
+	public static AuthMenu copy(AuthMenuPO po,String... ignore){
+		AuthMenu am = new AuthMenu();
+		List<AuthMenu> children = new ArrayList<AuthMenu>();
+		BeanUtils.copyProperties(po, am,"parent","children");
+		List<String> ignoreList = Arrays.asList(ignore);
+		if(po.getParent()!=null && !ignoreList.contains("parent")){
+			am.setParent(BeanMapUtils.copy(po.getParent()));
+		}
+		for(AuthMenuPO child :po.getChildren()){
+			AuthMenu childAuthMenu = BeanMapUtils.copy(child,"parent");
+			childAuthMenu.setParent(am);
+			children.add(childAuthMenu);
+		}
+		am.setChildren(children);
+		return am;
+	}
+	
+	public static Role copy(RolePO po){
+		Role r = new Role();
+		BeanUtils.copyProperties(po, r,"users","authMenus");
+		List<AuthMenu> authMenus = new ArrayList<AuthMenu>();
+		for(AuthMenuPO authMenuPO : po.getAuthMenus()){
+			AuthMenu authMenu = BeanMapUtils.copy(authMenuPO);
+			authMenus.add(authMenu);
+		}
+		r.setAuthMenus(authMenus);
 		return r;
 	}
 }

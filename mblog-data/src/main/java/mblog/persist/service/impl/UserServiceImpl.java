@@ -1,6 +1,13 @@
 package mblog.persist.service.impl;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -9,8 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import mblog.data.AccountProfile;
+import mblog.data.AuthMenu;
 import mblog.data.User;
 import mblog.persist.dao.UserDao;
+import mblog.persist.entity.AuthMenuPO;
+import mblog.persist.entity.RolePO;
 import mblog.persist.entity.UserExtendPO;
 import mblog.persist.entity.UserPO;
 import mblog.persist.service.UserService;
@@ -193,6 +203,24 @@ public class UserServiceImpl implements UserService {
 	public void updateExtend(User user) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<AuthMenu> getMenuList(long id) {
+		List<AuthMenu> menus = new ArrayList<AuthMenu>();
+		UserPO userPO = userDao.get(id);
+		List<RolePO> roles = userPO.getRoles();
+		for(RolePO role : roles){
+			List<AuthMenuPO> menuPOs = role.getAuthMenus();
+			for(AuthMenuPO menuPO : menuPOs){
+				AuthMenu menu = BeanMapUtils.copy(menuPO);
+				if(!menus.contains(menu)){
+					menus.add(menu);
+				}
+			}
+		}
+		return menus;
 	}
 
 }

@@ -17,4 +17,10 @@
         <class>org.apache.commons.lang.StringUtils</class>
     </tool>
     
+    <tool>
+        <key>shiro</key>
+        <scope>application</scope>
+        <class>mblog.shiro.support.Permission</class>
+    </tool>
+    
 </toolbox>

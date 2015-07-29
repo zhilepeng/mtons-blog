@@ -27,8 +27,8 @@
         		/home* = authc
                 /post/** = authc
                 /account/** = authc
-                /admin* = authc, roles[admin]
-                /admin/** = authc, roles[admin]
+                /admin* = authc,perms[admin]
+                /admin/** = authc,perms[admin]
             </value>
         </property>
     </bean>
@@ -36,5 +36,8 @@
     <bean id="authc" class="mblog.shiro.filter.AuthenticatedFilter">
         <property name="loginUrl" value="/login"/>
     </bean>
-
+    
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
 </beans>

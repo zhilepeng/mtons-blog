@@ -1,7 +1,9 @@
 package mblog.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class User implements Serializable {
 	private static final long serialVersionUID = 107193816173103116L;
@@ -18,6 +20,8 @@ public class User implements Serializable {
 	private Date lastLogin;
 	private int roleId;
 	private int status;
+	
+	private List<Role> roles = new ArrayList<Role>();
 
 	public long getId() {
 		return id;
@@ -113,6 +117,14 @@ public class User implements Serializable {
 
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 }

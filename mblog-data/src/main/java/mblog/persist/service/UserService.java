@@ -3,12 +3,14 @@
  */
 package mblog.persist.service;
 
-import mtons.modules.pojos.Paging;
-import mblog.data.AccountProfile;
-import mblog.data.User;
-
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import mblog.data.AccountProfile;
+import mblog.data.AuthMenu;
+import mblog.data.User;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -86,4 +88,6 @@ public interface UserService {
 	Map<Long, User> findMapByIds(Set<Long> ids);
 	
 	void updateExtend(User user);
+	
+	List<AuthMenu> getMenuList(long id);
 }
