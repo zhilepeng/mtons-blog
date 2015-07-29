@@ -3,14 +3,20 @@
  */
 package mblog.persist.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -58,6 +64,11 @@ public class UserPO {
 
 	@Column(name = "role_id")
 	private int roleId;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	private List<RolePO> roles = new ArrayList<RolePO>();
 	
 	private int status;
 
@@ -183,6 +194,14 @@ public class UserPO {
 
 	public void setExtend(UserExtendPO extend) {
 		this.extend = extend;
+	}
+
+	public List<RolePO> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RolePO> roles) {
+		this.roles = roles;
 	}
 
 }

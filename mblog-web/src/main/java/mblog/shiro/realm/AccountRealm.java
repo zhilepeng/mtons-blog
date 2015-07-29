@@ -1,12 +1,16 @@
-/*******************************************************************************
- * Copyright (c) 2014, 2015 mtons.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *******************************************************************************/
 package mblog.shiro.realm;
 
+import java.util.List;
+
+import mblog.data.AccountProfile;
+import mblog.data.AuthMenu;
+import mblog.data.User;
+import mblog.lang.EnumRole;
+import mblog.persist.service.UserService;
+import mblog.shiro.authc.AccountAuthenticationInfo;
 import mtons.modules.lang.Const;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -17,12 +21,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-
-import mblog.data.AccountProfile;
-import mblog.data.User;
-import mblog.lang.EnumRole;
-import mblog.persist.service.UserService;
-import mblog.shiro.authc.AccountAuthenticationInfo;
 
 public class AccountRealm extends AuthorizingRealm {
     private UserService userService;
@@ -43,8 +41,17 @@ public class AccountRealm extends AuthorizingRealm {
             if (user != null){
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 EnumRole role = EnumRole.getEnum(user.getRoleId());
-                
-                info.addRole(role.getKey());
+                List<AuthMenu> menuList = userService.getMenuList(user.getId());
+                for (AuthMenu menu : menuList){
+    				if (StringUtils.isNotBlank(menu.getPermission())){
+    					// 添加基于Permission的权限信息
+    					for (String permission : StringUtils.split(menu.getPermission(),",")){
+    						info.addStringPermission(permission);
+    						System.out.println(permission);
+    					}
+    				}
+    			}
+//                info.addRole(role.getKey());
 //                for (Role r : user.getRoles()) {
 //                    info.addRole(r.getName());
 //                    ArrayList<String> ps = new ArrayList<String>();
