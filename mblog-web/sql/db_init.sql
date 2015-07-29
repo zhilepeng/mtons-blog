@@ -139,3 +139,70 @@ INSERT INTO `mto_menu` VALUES ('3', '问答', '_self', 'g/ask', '0');
 INSERT INTO `mto_menu` VALUES ('4', '发现', '_self', 'tags', '0');
 INSERT INTO `mto_menu` VALUES ('5', '走廊', '_self', 'gallery?g=2', '0');
 
+-- ----------------------------
+-- Table structure for mto_auth_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_auth_menu`;
+CREATE TABLE `mto_auth_menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `parent_ids` varchar(255) DEFAULT NULL,
+  `permission` varchar(255) DEFAULT NULL,
+  `sort` int(11) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_auth_menu
+-- ----------------------------
+INSERT INTO `mto_auth_menu` VALUES ('1', '后台管理', '', 'admin', '1', '/admin', null);
+
+-- ----------------------------
+-- Table structure for mto_role
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_role`;
+CREATE TABLE `mto_role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_role
+-- ----------------------------
+INSERT INTO `mto_role` VALUES ('1', '管理员');
+INSERT INTO `mto_role` VALUES ('2', '普通用户');
+
+-- ----------------------------
+-- Table structure for mto_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_role_menu`;
+CREATE TABLE `mto_role_menu` (
+  `role_id` bigint(20) NOT NULL,
+  `menu_id` bigint(20) NOT NULL,
+  KEY `FK_td8ih8aorlkpyop3gemfqxmbt` (`menu_id`),
+  KEY `FK_5o5vaxfyg0d1qa0142dnkruiv` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_role_menu
+-- ----------------------------
+INSERT INTO `mto_role_menu` VALUES ('1', '1');
+
+-- ----------------------------
+-- Table structure for mto_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `mto_user_role`;
+CREATE TABLE `mto_user_role` (
+  `user_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  KEY `FK_fhtla2vc199mv0ru2r2kvakha` (`role_id`),
+  KEY `FK_b4m7ef0uvkr4efrscf8r1ehy2` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mto_user_role
+-- ----------------------------
+INSERT INTO `mto_user_role` VALUES ('1', '1');
