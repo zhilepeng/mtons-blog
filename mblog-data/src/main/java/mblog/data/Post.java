@@ -27,8 +27,8 @@ public class Post implements Serializable {
 	private String editor; // 编辑器
 	private String tags; // 标签字符串
 	private Date created; // 创建时间
-	private User author;
-	
+	private long authorId;
+
 	private long lastImageId;
 
 	private int images; // 图片统计
@@ -41,7 +41,7 @@ public class Post implements Serializable {
 	// extends
 	private List<Attach> albums;
 	private Attach album;
-	private long authorId;
+	private User author;
 	
 	public long getId() {
 		return id;

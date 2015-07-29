@@ -8,10 +8,13 @@ import mblog.persist.entity.CommentPO;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author langhsu
@@ -49,8 +52,15 @@ public class CommentDaoImpl extends DaoImpl<CommentPO> implements CommentDao {
 	}
 
 	@Override
-	public List<CommentPO> findByIds(List<Long> ids) {
+	public List<CommentPO> findByIds(Set<Long> ids) {
 		return find(Restrictions.in("id", ids));
+	}
+
+	@Override
+	public int deleteByIds(Collection<Long> ids) {
+		Query query = createQuery("delete from CommentPO where id in (:ids)");
+		query.setParameterList("ids", ids);
+		return query.executeUpdate();
 	}
 
 

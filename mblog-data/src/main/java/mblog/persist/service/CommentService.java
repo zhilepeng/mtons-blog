@@ -5,6 +5,7 @@ package mblog.persist.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import mtons.modules.pojos.Paging;
 import mblog.data.Comment;
@@ -18,12 +19,12 @@ public interface CommentService {
 	
 	/**
 	 * 查询评论列表
-	 * @param page
+	 * @param paging
 	 * @param toId
 	 */
 	void paging(Paging paging, long toId);
 
-	Map<Long, Comment> findByIds(List<Long> ids);
+	Map<Long, Comment> findByIds(Set<Long> ids);
 	
 	/**
 	 * 发表评论

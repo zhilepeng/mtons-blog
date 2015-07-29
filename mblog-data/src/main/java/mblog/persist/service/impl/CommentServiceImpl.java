@@ -3,12 +3,12 @@
  */
 package mblog.persist.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import mblog.data.Post;
+import mblog.data.User;
+import mblog.persist.entity.UserPO;
+import mblog.persist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,16 +28,23 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentDao commentDao;
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
 	
 	@Override
 	@Transactional(readOnly = true)
 	public void paging4Admin(Paging paging, String key) {
 		List<CommentPO> list = commentDao.paging(paging, key);
-		List<Comment> rets = new ArrayList<Comment>();
-		for (CommentPO po : list) {
+		List<Comment> rets = new ArrayList<>();
+
+		HashSet<Long> uids= new HashSet<>();
+
+		list.forEach(po -> {
+			uids.add(po.getAuthorId());
 			rets.add(BeanMapUtils.copy(po));
-		}
+		});
+
+		buildUsers(rets, uids);
+
 		paging.setResults(rets);
 	}
 	
@@ -46,20 +53,24 @@ public class CommentServiceImpl implements CommentService {
 	public void paging(Paging paging, long toId) {
 		List<CommentPO> list = commentDao.paging(paging, toId, true);
 		
-		List<Comment> rets = new ArrayList<Comment>();
-		List<Long> pids = new ArrayList<>();
+		List<Comment> rets = new ArrayList<>();
+		Set<Long> parentIds = new HashSet<>();
+		Set<Long> uids = new HashSet<>();
 
-		for (CommentPO po : list) {
+		list.forEach(po -> {
 			Comment c = BeanMapUtils.copy(po);
 
 			if (c.getPid() > 0) {
-				pids.add(c.getPid());
+				parentIds.add(c.getPid());
 			}
-			rets.add(c);
-		}
+			uids.add(c.getAuthorId());
 
-		if (!pids.isEmpty()) {
-			Map<Long, Comment> pm = findByIds(pids);
+			rets.add(c);
+		});
+
+		// 加载父节点
+		if (!parentIds.isEmpty()) {
+			Map<Long, Comment> pm = findByIds(parentIds);
 
 			rets.forEach(c -> {
 				if (c.getPid() > 0) {
@@ -67,16 +78,25 @@ public class CommentServiceImpl implements CommentService {
 				}
 			});
 		}
+
+		buildUsers(rets, uids);
+
 		paging.setResults(rets);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Map<Long, Comment> findByIds(List<Long> ids) {
+	public Map<Long, Comment> findByIds(Set<Long> ids) {
 		List<CommentPO> list = commentDao.findByIds(ids);
-		Map<Long, Comment> ret = new HashMap<Long, Comment>();
+		Map<Long, Comment> ret = new HashMap<>();
+		Set<Long> uids = new HashSet<>();
 
-		list.forEach(po -> ret.put(po.getId(), BeanMapUtils.copy(po)));
+		list.forEach(po -> {
+			uids.add(po.getAuthorId());
+			ret.put(po.getId(), BeanMapUtils.copy(po));
+		});
+
+		buildUsers(ret.values(), uids);
 		return ret;
 	}
 
@@ -85,7 +105,7 @@ public class CommentServiceImpl implements CommentService {
 	public long post(Comment comment) {
 		CommentPO po = new CommentPO();
 		
-		po.setAuthor(userDao.get(comment.getAuthorId()));
+		po.setAuthorId(comment.getAuthorId());
 		po.setToId(comment.getToId());
 		po.setContent(comment.getContent());
 		po.setCreated(new Date());
@@ -98,9 +118,12 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	@Transactional
 	public void delete(List<Long> ids) {
-		for (Long id : ids) {
-			commentDao.deleteById(id);
-		}
+		commentDao.deleteByIds(ids);
 	}
 
+	private void buildUsers(Collection<Comment> posts, Set<Long> uids) {
+		Map<Long, User> userMap = userService.findMapByIds(uids);
+
+		posts.forEach(p -> p.setAuthor(userMap.get(p.getAuthorId())));
+	}
 }

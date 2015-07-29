@@ -11,13 +11,13 @@ define(function(require, exports, module) {
         	hotUrl : null,
         	maxResults :6,
             // callback
-            onLoadRecent : function (i, data) {},
+            onLoadLatest : function (i, data) {},
             onLoadHot : function (i, data) {}
         },
         
         onLoad : function () {
         	var opts = this.options;
-        	// load recents
+        	// load hots
         	J.getJSON(opts.hotUrl, {maxResults : opts.maxResults}, function (ret) {
         		if(ret && ret.length > 0){
         			$('#hots').empty();
@@ -30,15 +30,15 @@ define(function(require, exports, module) {
               	}
         	});
         	
-        	J.getJSON(opts.recentUrl, {maxResults : opts.maxResults}, function (ret) {
+        	J.getJSON(opts.latestUrl, {maxResults : opts.maxResults}, function (ret) {
         		if(ret && ret.length > 0){
-        			$('#recents').empty();
+        			$('#latests').empty();
               		jQuery.each(ret, function(i, n) {
-        				var item = opts.onLoadRecent.call(this, i, n);
-              			$('#recents').append(item);
+        				var item = opts.onLoadLatest.call(this, i, n);
+              			$('#latests').append(item);
               		});
               	} else {
-              		$('#recents').append('<li class="cat-item cat-item-6"><span>沒有相关记录</span></li>');
+              		$('#latests').append('<li class="cat-item cat-item-6"><span>沒有相关记录</span></li>');
               	}
         	});
         	

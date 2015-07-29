@@ -29,10 +29,9 @@ public class GroupServiceImpl implements GroupService {
 	@Transactional(readOnly = true)
 	public List<Group> findAll() {
 		List<GroupPO> list = groupDao.list();
-		List<Group> rets = new ArrayList<Group>();
-		for (GroupPO po : list) {
-			rets.add(BeanMapUtils.copy(po));
-		}
+		List<Group> rets = new ArrayList<>();
+
+		list.forEach(po -> rets.add(BeanMapUtils.copy(po)));
 		return rets;
 	}
 

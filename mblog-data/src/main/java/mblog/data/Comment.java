@@ -17,12 +17,12 @@ public class Comment {
 	private long pid;
 	private String content;
 	private Date created;
-	private User author;
+	private long authorId;
 	private int status;
 
 	// extend parameter
-	
-	private long authorId;
+
+	private User author;
 	private Comment parent;
 	
 	public long getId() {

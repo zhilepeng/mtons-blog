@@ -26,7 +26,7 @@ public class TagPO {
 	
 	@Column(name = "last_post_id")
 	private long lastPostId;
-	
+
 	private int featured; // 是否推荐
 	
 	private int posts;   // 文章数

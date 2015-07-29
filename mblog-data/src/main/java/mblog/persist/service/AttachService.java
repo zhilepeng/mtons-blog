@@ -6,6 +6,7 @@ package mblog.persist.service;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import mblog.data.Attach;
 
@@ -27,14 +28,14 @@ public interface AttachService {
 	 * @param toIds 目录对象Id列表
 	 * @return Map<toId, List<Attach>>
 	 */
-	Map<Long, List<Attach>> findByTarget(List<Long> toIds);
+	Map<Long, List<Attach>> findByTarget(Set<Long> toIds);
 	
 	/**
 	 * 批量查询
 	 * @param ids
 	 * @return Map<attachId, List<Attach>>
 	 */
-	Map<Long, Attach> findByIds(Collection<Long> ids);
+	Map<Long, Attach> findByIds(Set<Long> ids);
 	
 	/**
 	 * 添加附件
@@ -48,7 +49,7 @@ public interface AttachService {
 	 * @param album
 	 * @return last id
 	 */
-	long batchAdd(long toId, List<Attach> albums);
+	long batchPost(long toId, List<Attach> albums);
 	
 	/**
 	 * 删除文章附件

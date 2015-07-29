@@ -37,9 +37,8 @@ public class CommentPO {
 	@Column(name = "created")
 	private Date created;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "author_id")
-	private UserPO author;
+	@Column(name = "author_id")
+	private long authorId;
 	
 	private int status;
 
@@ -75,12 +74,12 @@ public class CommentPO {
 		this.created = created;
 	}
 
-	public UserPO getAuthor() {
-		return author;
+	public long getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor(UserPO author) {
-		this.author = author;
+	public void setAuthorId(long authorId) {
+		this.authorId = authorId;
 	}
 
 	public int getStatus() {

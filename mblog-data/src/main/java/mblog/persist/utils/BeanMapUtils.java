@@ -34,10 +34,7 @@ import org.springframework.beans.BeanUtils;
 public class BeanMapUtils {
 	public static String[] USER_IGNORE = new String[]{"password"};
 
-	public static String[] COMMENT_IGNORE = new String[]{"author"};
-
-	public static String[] POST_IGNORE = new String[]{"author"};
-	public static String[] POST_IGNORE_LIST = new String[]{"author", "markdown", "content"};
+	public static String[] POST_IGNORE_LIST = new String[]{"markdown", "content"};
 	
 	public static User copy(UserPO po) {
 		if (po == null) {
@@ -61,29 +58,16 @@ public class BeanMapUtils {
 	
 	public static Comment copy(CommentPO po) {
 		Comment ret = new Comment();
-		BeanUtils.copyProperties(po, ret, COMMENT_IGNORE);
-		
-		if (po.getAuthor() != null) {
-			ret.setAuthor(copy(po.getAuthor()));
-		}
+		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
 	
 	public static Post copy(PostPO po, int level) {
 		Post d = new Post();
 		if (level > 0) {
-			BeanUtils.copyProperties(po, d, POST_IGNORE);
+			BeanUtils.copyProperties(po, d);
 		} else {
 			BeanUtils.copyProperties(po, d, POST_IGNORE_LIST);
-		}
-		
-		if (po.getAuthor() != null) {
-			User u = new User();
-			u.setId(po.getAuthor().getId());
-			u.setUsername(po.getAuthor().getUsername());
-			u.setName(po.getAuthor().getName());
-			u.setAvatar(po.getAuthor().getAvatar());
-			d.setAuthor(u);
 		}
 		return d;
 	}
@@ -95,6 +79,9 @@ public class BeanMapUtils {
 	}
 	
 	public static Tag copy(TagPO po) {
+		if (po == null) {
+			return null;
+		}
 		Tag ret = new Tag();
 		BeanUtils.copyProperties(po, ret);
 		return ret;
@@ -104,7 +91,7 @@ public class BeanMapUtils {
 		if (StringUtils.isBlank(tags)) {
 			return Collections.emptyList();
 		}
-		List<Tag> ret = new ArrayList<Tag>();
+		List<Tag> ret = new ArrayList<>();
 		String[] ts = StringUtils.split(tags, Consts.SEPARATOR);
 		
 		for (String t : ts) {

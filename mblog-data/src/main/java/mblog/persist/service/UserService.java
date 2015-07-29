@@ -7,6 +7,9 @@ import mtons.modules.pojos.Paging;
 import mblog.data.AccountProfile;
 import mblog.data.User;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author langhsu
  *
@@ -76,9 +79,11 @@ public interface UserService {
 	
 	/**
 	 * 分页查询
-	 * @param page
+	 * @param paging
 	 */
 	void paging(Paging paging, String key);
+
+	Map<Long, User> findMapByIds(Set<Long> ids);
 	
 	void updateExtend(User user);
 }

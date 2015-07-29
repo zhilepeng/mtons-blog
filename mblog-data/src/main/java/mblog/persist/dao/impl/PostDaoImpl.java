@@ -52,18 +52,18 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 	public List<PostPO> pagingByUserId(Paging paging, long userId) {
 		PagingQuery<PostPO> q = pagingQuery(paging);
 		if (userId > 0) {
-			q.add(Restrictions.eq("author.id", userId));
+			q.add(Restrictions.eq("authorId", userId));
 		}
 		q.desc("created");
 		return q.list();
 	}
 
 	@Override
-	public List<PostPO> findRecents(int maxResutls, long ignoreUserId) {
+	public List<PostPO> findLatests(int maxResutls, long ignoreUserId) {
 		TopQuery<PostPO> q = topQuery(maxResutls);
 		q.add(Restrictions.neOrIsNotNull("title", ""));
 		if (ignoreUserId > 0) {
-			q.add(Restrictions.ne("author.id", ignoreUserId));
+			q.add(Restrictions.ne("authorId", ignoreUserId));
 		}
 		q.desc("created");
 		return q.list();

@@ -38,9 +38,9 @@ public class TagServiceImpl implements TagService {
 	@Transactional(readOnly = true)
 	public List<Tag> topTags(int maxResutls, boolean loadPost) {
 		List<TagPO> list = tagDao.tops(maxResutls);
-		List<Tag> rets = new ArrayList<Tag>();
+		List<Tag> rets = new ArrayList<>();
 		
-		Set<Long> postIds = new HashSet<Long>();
+		Set<Long> postIds = new HashSet<>();
 		for (TagPO po : list) {
 			rets.add(BeanMapUtils.copy(po));
 			postIds.add(po.getLastPostId());
@@ -60,12 +60,7 @@ public class TagServiceImpl implements TagService {
 	@Override
 	@Transactional(readOnly = true)
 	public Tag get(long id) {
-		TagPO po = tagDao.get(id);
-		Tag ret = null;
-		if (po != null) {
-			ret = BeanMapUtils.copy(po);
-		}
-		return ret;
+		return BeanMapUtils.copy(tagDao.get(id));
 	}
 	
 	@Override
@@ -74,25 +69,25 @@ public class TagServiceImpl implements TagService {
 		if (tags == null || tags.size() == 0) {
 			return;
 		}
-		
-		for (Tag t : tags) {
-			if (StringUtils.isBlank(t.getName())) {
-				continue;
-			}
-			TagPO po = tagDao.getByName(t.getName());
-			if (po != null) {
-				
-				// 如果不锁定则更新文章ID
-				if (po.getLocked() != Consts.status_locked) {
-					po.setLastPostId(t.getLastPostId());
+
+		tags.forEach(t -> {
+			if (StringUtils.isNotBlank(t.getName())) {
+				TagPO po = tagDao.getByName(t.getName());
+				if (po != null) {
+
+					// 如果不锁定则更新文章ID
+					if (po.getLocked() != Consts.status_locked) {
+						po.setLastPostId(t.getLastPostId());
+					}
+					po.setPosts(po.getPosts() + 1);
+				} else {
+					po = new TagPO();
+					BeanUtils.copyProperties(t, po);
+					tagDao.save(po);
 				}
-				po.setPosts(po.getPosts() + 1);
-			} else {
-				po = new TagPO();
-				BeanUtils.copyProperties(t, po);
-				tagDao.save(po);
 			}
-		}
+
+		});
 	}
 
 	@Override
@@ -117,13 +112,15 @@ public class TagServiceImpl implements TagService {
 	@Transactional(readOnly = true)
 	public void paging(Paging paging, String key, String order) {
 		List<TagPO> list = tagDao.paging(paging, key, order);
-		List<Tag> rets = new ArrayList<Tag>();
+		List<Tag> rets = new ArrayList<>();
 		
-		Set<Long> postIds = new HashSet<Long>();
-		for (TagPO po : list) {
+		Set<Long> postIds = new HashSet<>();
+
+		list.forEach(po -> {
 			rets.add(BeanMapUtils.copy(po));
 			postIds.add(po.getLastPostId());
-		}
+		});
+
 		paging.setResults(rets);
 	}
 

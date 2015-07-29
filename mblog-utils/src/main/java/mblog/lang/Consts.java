@@ -19,13 +19,8 @@ public interface Consts {
 	 */
 	int FILE_PATH_SEED = 997;
 	
-	String TYPE_TEXT = "text";
-	String TYPE_IMAGE = "image";
-	
 	String SEPARATOR = ",";
-	
-	String UPLOAD_ROOT = "/store";
-	
+
 	int IDENTITY_STEP = 1;
 	
 	int TIME_MIN = 1000;
@@ -37,15 +32,19 @@ public interface Consts {
 	
 	int status_locked = 1;
 	
-	String order_featured = "featured";
+	interface order {
+		String FEATURED = "featured";
+		String NEWEST = "newest";
+		String HOTTEST = "hottest";
+	}
 	
-	String order_newest = "newest";
-	
-	String order_hottest = "hottest";
-	
-	long COMMENT_TOP_PID = 0;
-	
+	/**
+	 * 附件-存储-本地
+	 */
 	int ATTACH_STORE_LOCAL = 0;
-	
+
+	/**
+	 * 附件-存储-网络
+	 */
 	int ATTACH_STORE_NETWORK = 1;
 }

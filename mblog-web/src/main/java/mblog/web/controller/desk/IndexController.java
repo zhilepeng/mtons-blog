@@ -6,6 +6,7 @@
 package mblog.web.controller.desk;
 
 import mblog.extend.planet.PostPlanet;
+import mblog.lang.Consts;
 import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
@@ -25,12 +26,10 @@ public class IndexController extends BaseController{
 	@Autowired
 	private PostPlanet postPlanet;
 	
-	private String defaultOrder = "newest";
-	
 	@RequestMapping(value= {"/", "/index"})
 	public String root(Integer pn, String ord, ModelMap model) {
 		Paging page = wrapPage(pn);
-		String order = defaultOrder;
+		String order = Consts.order.NEWEST;
 		if (StringUtils.isNotBlank(ord)) {
 			order = ord;
 		}

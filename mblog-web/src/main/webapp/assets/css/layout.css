@@ -11,6 +11,15 @@
 .logo { float: left; padding: 5px 8px 8px 15px; font-size: 18px; line-height: 20px; height: 50px; }
 .logo img { height: 26px; margin-top: 6px;}
 
+.navbar .nav .sign {
+
+}
+.navbar .nav .login, .navbar .nav .reg {
+	padding: 7px 12px; margin: 8px 0 8px 8px; border-radius: 2px; color: #fff; text-align: center;
+}
+.navbar .nav .login { background-color: #5cb85c; }
+.navbar .nav .reg { background-color: #4285F4; }
+
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }
 
@@ -48,7 +57,10 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 
 /* Tablet (Portrait)
 ================================================== */
-@media only screen and (min-width: 768px) and (max-width: 959px) { 
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.navbar .sign {
+		margin-right: -30px;
+	}
 	/*grids*/
 	.masonry-grid .masonry-entry.span_1_of_3,
 	.masonry-grid .masonry-entry.span_1_of_4 { width: 47.6% }

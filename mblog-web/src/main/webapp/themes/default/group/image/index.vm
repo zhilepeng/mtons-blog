@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="text-center clr">
-		#set($url = "index?ord=" + ${ord})
+		#set($url = "$!{group.key}?ord=" + ${ord})
     	#page($url $page 5)
     </div>
 </div>

@@ -25,38 +25,36 @@ public interface PostService {
 	 * @param paging
 	 * @param group 分组Id
 	 * @param ord
-	 * @param loadImages 是否加载图片
+	 * @param whetherHasAlbums 是否加载图片
 	 */
-	void paging(Paging paging, int group, String ord, boolean loadImages);
+	void paging(Paging paging, int group, String ord, boolean whetherHasAlbums);
 	
 	/**
 	 * 查询个人发布文章
-	 * @param page
+	 * @param paging
 	 * @param userId
 	 */
-	void pagingByUserId(Paging paing, long userId);
+	void pagingByUserId(Paging paging, long userId);
 	
 	/**
 	 * 根据关键字搜索
-	 * @param page
+	 * @param paging
 	 * @param q
-	 * @return
 	 * @throws InterruptedException
 	 * @throws IOException
 	 * @throws InvalidTokenOffsetsException
 	 */
-	List<Post> search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException;
+	void search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException;
 	
 	/**
 	 * 搜索 Tag
-	 * @param page
+	 * @param paging
 	 * @param tag
-	 * @return
 	 * @throws InterruptedException
 	 * @throws IOException
 	 * @throws InvalidTokenOffsetsException
 	 */
-	List<Post> searchByTag(Paging paging, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException;
+	void searchByTag(Paging paging, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException;
 	
 	/**
 	 * 查询最近更新
@@ -64,7 +62,7 @@ public interface PostService {
 	 * @param ignoreUserId
 	 * @return
 	 */
-	List<Post> findRecents(int maxResutls, long ignoreUserId);
+	List<Post> findLatests(int maxResutls, long ignoreUserId);
 	
 	List<Post> findHots(int maxResutls, long ignoreUserId);
 	

@@ -74,9 +74,8 @@ public class PostPO {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date created;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "author_id")
-	private UserPO author; // 作者
+	@Column(name = "author_id")
+	private long authorId; // 作者
 
 	private int images; // 图片统计
 	private int featured; // 推荐
@@ -149,12 +148,12 @@ public class PostPO {
 		this.created = created;
 	}
 
-	public UserPO getAuthor() {
-		return author;
+	public long getAuthorId() {
+		return authorId;
 	}
 
-	public void setAuthor(UserPO author) {
-		this.author = author;
+	public void setAuthorId(long authorId) {
+		this.authorId = authorId;
 	}
 
 	public int getStatus() {

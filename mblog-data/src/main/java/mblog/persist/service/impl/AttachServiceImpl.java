@@ -3,12 +3,7 @@
  */
 package mblog.persist.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +27,20 @@ public class AttachServiceImpl implements AttachService {
 	@Transactional(readOnly = true)
 	public List<Attach> findByTarget(long toId) {
 		List<AttachPO> list = attachDao.findByTarget(toId);
-		List<Attach> rets = new ArrayList<Attach>();
+		List<Attach> rets = new ArrayList<>();
 		list.forEach(po -> rets.add(BeanMapUtils.copy(po)));
 		return rets;
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Map<Long, List<Attach>> findByTarget(List<Long> toIds) {
+	public Map<Long, List<Attach>> findByTarget(Set<Long> toIds) {
 		if (toIds == null || toIds.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
 		List<AttachPO> list = attachDao.findByTarget(toIds);
-		Map<Long, List<Attach>> ret = new HashMap<Long, List<Attach>>();
+		Map<Long, List<Attach>> ret = new HashMap<>();
 
 		list.forEach(po -> {
 			Attach a = BeanMapUtils.copy(po);
@@ -53,7 +48,7 @@ public class AttachServiceImpl implements AttachService {
 			List<Attach> ats = ret.get(a.getToId());
 
 			if (ats == null) {
-				ats = new ArrayList<Attach>();
+				ats = new ArrayList<>();
 				ret.put(a.getToId(), ats);
 			}
 			ats.add(a);
@@ -64,13 +59,13 @@ public class AttachServiceImpl implements AttachService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Map<Long, Attach> findByIds(Collection<Long> ids) {
+	public Map<Long, Attach> findByIds(Set<Long> ids) {
 		if (ids == null || ids.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
 		List<AttachPO> list = attachDao.findByIds(ids);
-		Map<Long, Attach> ret = new HashMap<Long, Attach>();
+		Map<Long, Attach> ret = new HashMap<>();
 
 		list.forEach(po -> ret.put(po.getId(), BeanMapUtils.copy(po)));
 		return ret;
@@ -88,25 +83,16 @@ public class AttachServiceImpl implements AttachService {
 	
 	@Override
 	@Transactional
-	public long batchAdd(long toId, List<Attach> albums) {
-		long ret = 0;
-
-		for (Attach a : albums) {
-			a.setToId(toId);
-			ret = add(a);
-		}
-		return ret;
+	public long batchPost(long toId, List<Attach> albums) {
+		albums.forEach(d -> d.setToId(toId));
+		attachDao.batchAdd(albums);
+		return albums.size();
 	}
 	
 	@Override
 	@Transactional
 	public void deleteByToId(long toId) {
-		List<AttachPO> list = attachDao.findByTarget(toId);
-		
-		for (AttachPO po : list) {
-			//TODO: remove file
-			attachDao.delete(po);
-		}
+		attachDao.deleteByToId(toId);
 	}
 
 }

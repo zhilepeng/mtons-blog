@@ -34,8 +34,8 @@ public class SidebarController extends BaseController {
 	@Autowired
 	private TagPlanet tagPlanet;
 	
-	@RequestMapping("/recents.json")
-	public @ResponseBody List<Post> recent() {
+	@RequestMapping("/latests.json")
+	public @ResponseBody List<Post> latests() {
 		UserProfile up = getSubject().getProfile();
 		long ignoreUserId = 0;
 		if (up != null) {

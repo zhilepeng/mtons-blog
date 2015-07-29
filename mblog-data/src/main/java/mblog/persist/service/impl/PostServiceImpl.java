@@ -3,14 +3,21 @@
  */
 package mblog.persist.service.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import mblog.data.Attach;
+import mblog.data.Post;
+import mblog.data.Tag;
+import mblog.data.User;
+import mblog.lang.Consts;
+import mblog.persist.dao.PostDao;
+import mblog.persist.entity.PostPO;
+import mblog.persist.service.AttachService;
+import mblog.persist.service.PostService;
+import mblog.persist.service.TagService;
+import mblog.persist.service.UserService;
+import mblog.persist.utils.BeanMapUtils;
+import mblog.utils.PreviewTextUtils;
+import mtons.modules.lang.EntityStatus;
+import mtons.modules.pojos.Paging;
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.search.Sort;
@@ -29,20 +36,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import mblog.data.Attach;
-import mblog.data.Post;
-import mblog.data.Tag;
-import mblog.lang.Consts;
-import mblog.persist.dao.PostDao;
-import mblog.persist.entity.PostPO;
-import mblog.persist.entity.UserPO;
-import mblog.persist.service.AttachService;
-import mblog.persist.service.PostService;
-import mblog.persist.service.TagService;
-import mblog.persist.utils.BeanMapUtils;
-import mblog.utils.PreviewTextUtils;
-import mtons.modules.lang.EntityStatus;
-import mtons.modules.pojos.Paging;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author langhsu
@@ -55,49 +50,26 @@ public class PostServiceImpl implements PostService {
 	private AttachService attachService;
 	@Autowired
 	private TagService tagService;
+	@Autowired
+	private UserService userService;
 	
 	@Override
 	@Transactional(readOnly = true)
-	public void paging(Paging paging, int group, String ord, boolean loadImages) {
+	public void paging(Paging paging, int group, String ord, boolean whetherHasAlbums) {
 		List<PostPO> list = postDao.paging(paging, group, ord);
-		
-		List<Post> rets = new ArrayList<Post>();
-		List<Long> ids = new ArrayList<Long>();
-
-		list.forEach(po -> {
-			ids.add(po.getId());
-			rets.add(BeanMapUtils.copy(po, 0));
-		});
-		
-		if (loadImages) {
-			buildAttachs(rets, ids);
-		}
-		
-		paging.setResults(rets);
+		paging.setResults(toPosts(list, whetherHasAlbums));
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
 	public void pagingByUserId(Paging paging, long userId) {
 		List<PostPO> list = postDao.pagingByUserId(paging, userId);
-		
-		List<Post> rets = new ArrayList<Post>();
-		List<Long> ids = new ArrayList<Long>();
-
-		list.forEach(po -> {
-			ids.add(po.getId());
-			rets.add(BeanMapUtils.copy(po ,0));
-		});
-		
-		buildAttachs(rets, ids);
-		
-		paging.setResults(rets);
+		paging.setResults(toPosts(list, true));
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	public List<Post> search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException {
+	public void search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
 //	    fullTextSession.createIndexer().startAndWait();
 	    SearchFactory sf = fullTextSession.getSearchFactory();
@@ -121,9 +93,11 @@ public class PostServiceImpl implements PostService {
 	    List<PostPO> list = query.list();
 	    int resultSize = query.getResultSize();
 	    
-	    List<Post> rets = new ArrayList<Post>();
-	    List<Long> ids = new ArrayList<Long>();
-	    
+	    List<Post> rets = new ArrayList<>();
+
+		HashSet<Long> ids = new HashSet<>();
+		HashSet<Long> uids = new HashSet<>();
+
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
 
@@ -144,18 +118,20 @@ public class PostServiceImpl implements PostService {
 			
 			ids.add(po.getId());
 		}
-		
+
+		// 加载相册
 		buildAttachs(rets, ids);
-		
+
+		// 加载用户信息
+		buildUsers(rets, uids);
+
 		paging.setTotalCount(resultSize);
 		paging.setResults(rets);
-		return rets;
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	public List<Post> searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
+	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
 	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
@@ -170,31 +146,17 @@ public class PostServiceImpl implements PostService {
 		query.setSort(sort);
 
 		List<PostPO> list = query.list();
-	    List<Long> ids = new ArrayList<Long>();
-	    
 	    int resultSize = query.getResultSize();
 	    
-	    List<Post> rets = new ArrayList<Post>();
-
-		for (PostPO po : list) {
-			Post m = BeanMapUtils.copy(po ,0);
-			rets.add(m);
-			
-			ids.add(po.getId());
-		}
-		
-		buildAttachs(rets, ids);
-		
 		paigng.setTotalCount(resultSize);
-		paigng.setResults(rets);
-		return rets;
+		paigng.setResults(toPosts(list, true));
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Post> findRecents(int maxResutls, long ignoreUserId) {
-		List<PostPO> list = postDao.findRecents(maxResutls, ignoreUserId);
-		List<Post> rets = new ArrayList<Post>();
+	public List<Post> findLatests(int maxResutls, long ignoreUserId) {
+		List<PostPO> list = postDao.findLatests(maxResutls, ignoreUserId);
+		List<Post> rets = new ArrayList<>();
 
 		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));
 
@@ -205,7 +167,7 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public List<Post> findHots(int maxResutls, long ignoreUserId) {
 		List<PostPO> list = postDao.findHots(maxResutls, ignoreUserId);
-		List<Post> rets = new ArrayList<Post>();
+		List<Post> rets = new ArrayList<>();
 
 		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));
 		return rets;
@@ -215,16 +177,20 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public Map<Long, Post> findByIds(Set<Long> ids) {
 		List<PostPO> list = postDao.findByIds(ids);
-		Map<Long, Post> rets = new HashMap<Long, Post>();
-		
-		List<Long> imageIds = new ArrayList<Long>();
+		Map<Long, Post> rets = new HashMap<>();
+
+		HashSet<Long> imageIds = new HashSet<>();
+		HashSet<Long> uids = new HashSet<>();
 
 		list.forEach(po -> {
 			rets.put(po.getId(), BeanMapUtils.copy(po, 0));
 
+			// 此处加载最后一张图片
 			if (po.getLastImageId() > 0) {
 				imageIds.add(po.getLastImageId());
 			}
+
+			uids.add(po.getAuthorId());
 		});
 		
 		Map<Long, Attach> ats = attachService.findByIds(imageIds);
@@ -235,6 +201,10 @@ public class PostServiceImpl implements PostService {
 				v.setAlbum(a);
 			}
 		});
+
+		// 加载用户信息
+		buildUsers(rets.values(), uids);
+
 		return rets;
 	}
 	
@@ -243,9 +213,8 @@ public class PostServiceImpl implements PostService {
 	public void post(Post post) {
 		PostPO po = new PostPO();
 
-		BeanUtils.copyProperties(post, po, BeanMapUtils.POST_IGNORE);
+		BeanUtils.copyProperties(post, po);
 
-		po.setAuthor(new UserPO(post.getAuthorId()));
 		po.setCreated(new Date());
 		po.setStatus(EntityStatus.ENABLED);
 
@@ -258,14 +227,14 @@ public class PostServiceImpl implements PostService {
 
 		postDao.save(po);
 		
-		// attach handle
+		// 处理相册
 		if (post.getAlbums() != null) {
-			long lastImageId = attachService.batchAdd(po.getId(), post.getAlbums());
+			long lastImageId = attachService.batchPost(po.getId(), post.getAlbums());
 			po.setLastImageId(lastImageId);
 			po.setImages(post.getAlbums().size());
 		}
 		
-		// tag handle
+		// 处理标签
 		if (StringUtils.isNotBlank(post.getTags())) {
 			List<Tag> tags = BeanMapUtils.convertTags(po.getId(), post.getTags());
 			tagService.batchPost(tags);
@@ -279,9 +248,9 @@ public class PostServiceImpl implements PostService {
 		Post d = null;
 		if (po != null) {
 			d = BeanMapUtils.copy(po, 1);
-			
-			List<Attach> albs = attachService.findByTarget(d.getId());
-			d.setAlbums(albs);
+
+			d.setAuthor(userService.get(d.getAuthorId()));
+			d.setAlbums(attachService.findByTarget(d.getId()));
 		}
 		return d;
 	}
@@ -301,7 +270,9 @@ public class PostServiceImpl implements PostService {
 	public void delete(long id, long authorId) {
 		PostPO po = postDao.get(id);
 		if (po != null) {
-			Assert.isTrue(po.getAuthor().getId() == authorId, "认证失败");
+			// 判断文章是否属于当前登录用户
+			Assert.isTrue(po.getAuthorId() == authorId, "认证失败");
+
 			attachService.deleteByToId(id);
 			postDao.delete(po);
 		}
@@ -334,15 +305,6 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 	
-	/**
-     * 截取文章内容
-     * @param text
-     * @return
-     */
-    private String trimSummary(String text){
-        return PreviewTextUtils.truncateText(text, 126);
-    }
-    
     /**
 	 * 更新文章方法
 	 * @param p
@@ -366,9 +328,47 @@ public class PostServiceImpl implements PostService {
 		postDao.updateImageId(id, lastImageId);
 	}
 
-	private void buildAttachs(List<Post> posts, List<Long> postIds) {
+	/**
+	 * 截取文章内容
+	 * @param text
+	 * @return
+	 */
+	private String trimSummary(String text){
+		return PreviewTextUtils.truncateText(text, 126);
+	}
+
+	private List<Post> toPosts(List<PostPO> posts, boolean whetherHasAlbums) {
+		List<Post> rets = new ArrayList<>();
+
+		HashSet<Long> pids = new HashSet<>();
+		HashSet<Long> uids = new HashSet<>();
+
+		posts.forEach(po -> {
+			pids.add(po.getId());
+			uids.add(po.getAuthorId());
+
+			rets.add(BeanMapUtils.copy(po, 0));
+		});
+
+		// 加载用户信息
+		buildUsers(rets, uids);
+
+		// 判断是否加载相册
+		if (whetherHasAlbums) {
+			buildAttachs(rets, pids);
+		}
+		return rets;
+	}
+
+	private void buildAttachs(List<Post> posts, Set<Long> postIds) {
     	Map<Long, List<Attach>> attMap = attachService.findByTarget(postIds);
 
 		posts.forEach(p -> p.setAlbums(attMap.get(p.getId())));
     }
+
+	private void buildUsers(Collection<Post> posts, Set<Long> uids) {
+		Map<Long, User> userMap = userService.findMapByIds(uids);
+
+		posts.forEach(p -> p.setAuthor(userMap.get(p.getAuthorId())));
+	}
 }

@@ -1,9 +1,6 @@
 package mblog.persist.service.impl;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -32,14 +29,14 @@ public class UserServiceImpl implements UserService {
 	public AccountProfile login(String username, String password) {
 		UserPO po = userDao.get(username);
 		AccountProfile u = null;
-		if (po != null) {
-			
-			Assert.state(po.getStatus() == Const.STATUS_CLOSED, "您的账户已被封禁");
-			
-			if (StringUtils.equals(po.getPassword(), password)) {
-				po.setLastLogin(Calendar.getInstance().getTime());
-				u = BeanMapUtils.copyPassport(po);
-			}
+
+		Assert.notNull(po, "账户不存在");
+
+		Assert.state(po.getStatus() != Const.STATUS_CLOSED, "您的账户已被封禁");
+
+		if (StringUtils.equals(po.getPassword(), password)) {
+			po.setLastLogin(Calendar.getInstance().getTime());
+			u = BeanMapUtils.copyPassport(po);
 		}
 		return u;
 	}
@@ -168,13 +165,28 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public void paging(Paging paging, String key) {
 		List<UserPO> list = userDao.paging(paging, key);
-		List<User> rets = new ArrayList<User>();
+		List<User> rets = new ArrayList<>();
 		
 		for (UserPO po : list) {
 			User u = BeanMapUtils.copy(po);
 			rets.add(u);
 		}
 		paging.setResults(rets);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<Long, User> findMapByIds(Set<Long> ids) {
+		if (ids == null || ids.isEmpty()) {
+			return Collections.emptyMap();
+		}
+		List<UserPO> list = userDao.findByIds(ids);
+		Map<Long, User> ret = new HashMap<>();
+
+		list.forEach(po -> {
+			ret.put(po.getId(), BeanMapUtils.copy(po));
+		});
+		return ret;
 	}
 
 	@Override

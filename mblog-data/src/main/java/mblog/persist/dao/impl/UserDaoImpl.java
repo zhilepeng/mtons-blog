@@ -4,11 +4,13 @@
 package mblog.persist.dao.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -42,6 +44,11 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		}
 		q.desc("id");
 		return q.list();
+	}
+
+	@Override
+	public List<UserPO> findByIds(Set<Long> ids) {
+		return find(Restrictions.in("id", ids));
 	}
 
 }

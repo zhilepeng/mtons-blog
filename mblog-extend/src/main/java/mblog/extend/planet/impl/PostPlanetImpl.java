@@ -5,11 +5,7 @@
  *********************************************************************/
 package mblog.extend.planet.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import mblog.data.Attach;
 import mblog.data.Post;
@@ -64,7 +60,7 @@ public class PostPlanetImpl implements PostPlanet {
 		
 		// 查询图片, 这里只加载文章的最后一张图片
 		List<Post> results = (List<Post>) paging.getResults();
-		List<Long> imageIds = new ArrayList<Long>();
+		Set<Long> imageIds = new HashSet<Long>();
 
 		results.forEach(p -> {
 			if (p.getLastImageId() > 0) {
@@ -99,7 +95,7 @@ public class PostPlanetImpl implements PostPlanet {
 	@Override
 	@Cacheable(value = "postsCaches", key = "'post_recents'")
 	public List<Post> findRecents(int maxResutls, long ignoreUserId) {
-		return postService.findRecents(maxResutls, ignoreUserId);
+		return postService.findLatests(maxResutls, ignoreUserId);
 	}
 
 	@Override

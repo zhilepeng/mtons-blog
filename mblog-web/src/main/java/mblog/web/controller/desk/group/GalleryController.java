@@ -6,6 +6,7 @@ package mblog.web.controller.desk.group;
 import javax.servlet.http.HttpServletRequest;
 
 import mblog.extend.planet.PostPlanet;
+import mblog.lang.Consts;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
@@ -35,7 +36,7 @@ public class GalleryController extends BaseController {
 		Paging page = wrapPage(pn);
 		page.setMaxResults(jsonMaxResults);
 
-		page = postPlanet.gallery(page, groupId, "newest");
+		page = postPlanet.gallery(page, groupId, Consts.order.NEWEST);
 		model.put("page", page);
 		model.put("groupId", groupId);
 		return getView(Views.BROWSE_GALLERY);
@@ -47,7 +48,7 @@ public class GalleryController extends BaseController {
 		Paging page = wrapPage(pn);
 		page.setMaxResults(jsonMaxResults);
 		
-		page = postPlanet.gallery(page, groupId, "newest");
+		page = postPlanet.gallery(page, groupId, Consts.order.NEWEST);
 		model.put("page", page);
 		model.put("groupId", groupId);
 		return getView(Views.BROWSE_GALLERY_SNIPPET);
