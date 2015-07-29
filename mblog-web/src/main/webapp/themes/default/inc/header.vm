@@ -9,7 +9,7 @@
     				<span class="icon-bar"></span>
     				<span class="icon-bar"></span>
     			</button>
-    			<a class="navbar-brand logo" href="$base/index"><img src="$base/dist/images/logo/m216.png"></a>
+    			<a class="navbar-brand logo" href="$base/index"><img src="$base/assets/images/logo/m216.png"></a>
     		</div>
     		<div id="navbar" class="navbar-collapse collapse">
     			<ul class="nav navbar-nav">
@@ -26,14 +26,14 @@
 					#end
 					
     			</ul>
-    			<div class="search-box navbar-left hidden-xs">
+    			<div class="search-box navbar-left hidden-xs hidden-sm">
     				<form class="navbar-form" method="get" action="$base/browse/search">
     					<input type="text" class="form-control" name="q" placeholder="搜索...">
-						<span class="search-btn"><i class="fa fa-search"></i></span>
+						<button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
     				</form>
     			</div>
     			
-    			<ul class="nav navbar-nav navbar-right">
+    			<ul class="nav navbar-nav navbar-right sign">
     				#if($profile)
     				<li class="dropdown">
     					<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
@@ -56,8 +56,8 @@
     		              </ul>
     				</li>
     				#else
-    				<li><a href="$base/login">登录</a></li>
-                    <li><a href="$base/reg">注册</a></li>
+    				<li><a href="$base/login" class="login">登录</a></li>
+                    <li><a href="$base/reg" class="reg">注册</a></li>
     				#end
     			</ul>
     		</div>

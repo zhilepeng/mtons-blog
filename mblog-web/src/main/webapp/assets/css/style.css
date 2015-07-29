@@ -1,5 +1,6 @@
 body { font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif; word-wrap: break-word;}
 body {  background-image: url("../images/noise.png");}
+
 /* common */
 
 img { height: auto; max-width: 100%; }
@@ -18,7 +19,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .fr { float: right; }
 .clear { clear: both; }
 
-/* nav */
+/* nav 导航 */
 .navbar-inverse { background-color: #39424e; border-color: #39424e; border-radius: 0;}
 
 .navbar-inverse .navbar-nav > li > a { color: #DADFE8;}
@@ -26,16 +27,13 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .navbar-inverse .navbar-nav > li > a:focus { color: #fff; background-color: #232931; }
 
 .search-box { position: relative;}
-.search-box input {  background-color: #fff;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  transition: all 0.3s ease;}
-.search-box input:hover {width: 216px;}
-.search-btn {position: absolute; right: 25px; top: 12px; font-size: 18px; color: #999;}
+.search-box input {  background-color: #fff; border-radius: 15px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease; -ms-transition: all 0.3s ease; transition: all 0.3s ease;}
+.search-box .search-btn {position: absolute; right: 18px; top: 12px; font-size: 18px; color: #999; background-color: transparent;
+	border: none; outline: none;}
+.search-box .search-btn:hover {color: #5F8FDC;}
 
-/* main */
+/* main 首页主列表 */
 .shadow-box {   box-shadow: 0px 1px 1px rgba(209, 212, 221, 0.15); background-color: #fff; margin-bottom: 15px; border: 1px solid #ddd;}
 
 .filter {border-bottom: 1px solid #cacaca;}
@@ -107,7 +105,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .widget-box .box-list li span.name {width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;} 
 .widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
 
-/* detail */
+/* detail 文章详情 */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }
 
 .post-other { background-color: #f9f9f9; padding: 10px 20px; border-top:1px solid #f2f2f2; border-bottom:1px solid #f2f2f2;}
@@ -124,7 +122,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .post-footer .shares {float: left;}
 
 /* -------------------------------------------------------------------
-[ profile] 用户信息
+[ profile] 用户主页
 */
 .profile { background: #7f8c8d; color: #fff; text-align: center; padding: 45px 0 35px; margin-top: -20px; }
 .profile h1 { font-size: 28px; margin: 10px 0 15px; }
@@ -239,9 +237,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .page-jump { display: none; }
 .infinite-scroll-loader {text-align: center; z-index: 100; position: absolute; left: 45%; bottom: 40px; width: 150px; padding: 20px 0; font-size: 32px; background: #000; background: rgba(0,0,0,0.85); color: #a0a0a0; text-shadow: 1px 1px 1px rgba(0,0,0,0.6); border-radius: 10px; }
 
-/* 
-Tags
-*/
+/* Tags 标签页 */
 .tags_grid { padding: 20px 0 40px 0; margin: 0 -5px; list-style: none; text-align: center; }
 .tags_grid li { display: inline-block; overflow: hidden; padding: 5px; text-align: left; position: relative; }
 .tags_grid figure { margin: 0; height: 160px; background-color: #fff;
