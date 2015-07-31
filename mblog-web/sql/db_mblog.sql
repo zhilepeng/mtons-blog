@@ -142,7 +142,7 @@ CREATE TABLE `mto_users_extend` (
   `follows` int(11) NOT NULL,
   `married` int(11) NOT NULL,
   `posts` int(11) NOT NULL,
-  `praises` int(11) NOT NULL,
+  `favors` int(11) NOT NULL,
   `signature` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
