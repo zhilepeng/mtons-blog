@@ -37,7 +37,7 @@ import mblog.persist.entity.UserPO;
  *
  */
 public class BeanMapUtils {
-	public static String[] USER_IGNORE = new String[]{"password"};
+	public static String[] USER_IGNORE = new String[]{"password", "roles"};
 
 	public static String[] POST_IGNORE_LIST = new String[]{"markdown", "content"};
 	
