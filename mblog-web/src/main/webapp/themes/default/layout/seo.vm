@@ -8,8 +8,6 @@
 	<meta name="keywords" content="Mtons博客,$!{tags}"/>
 	<meta name="description" content="$!{summary}"/>
 
-	#parse("/default/inc/metas.vm")
-
 	<script src="$base/assets/vendors/pace/pace.min.js"></script>
 	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 	
