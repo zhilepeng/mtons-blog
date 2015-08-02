@@ -15,9 +15,9 @@
 		</div>
 		<!-- tab end -->
 		<!-- tab panes -->
-        <div class="stream-list">
+        <div class="stream-list qus-stream">
 			#foreach($row in $page.results)
-				#showBlog($row)
+				#showAsk($row)
 			#end
 			
 			#if($page.results.size() == 0)

@@ -5,16 +5,14 @@
  *******************************************************************************/
 package mblog.extend.analysis.videos.support;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import mtons.modules.exception.MtonsException;
-
 import com.alibaba.fastjson.JSON;
-
 import mblog.extend.analysis.videos.VideoStrategy;
 import mblog.extend.data.Video;
 import mblog.utils.HttpUtils;
+import mtons.modules.exception.MtonsException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 优酷视频信息抓取
@@ -24,21 +22,26 @@ import mblog.utils.HttpUtils;
  */
 public class Youku implements VideoStrategy {
 	private String source = "优酷";
-	private String api = "https://openapi.youku.com/v2/videos/show_basic.json";
+	private String apiBasic = "https://openapi.youku.com/v2/videos/show_basic.json";
+	private String api = "https://openapi.youku.com/v2/videos/show.json";
 	private String clientId = "7c068d0cb01cb88c";
 	
 	@Override
 	public Video take(String url) {
+
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("client_id", clientId);
 		params.put("video_url", url);
 		
 		Video ret = null;
 		try {
-			String body = HttpUtils.post(api, params);
-			System.out.println(body);
+			String body = HttpUtils.post(apiBasic, params);
 			ret = JSON.parseObject(body, Video.class);
-			
+
+			params.put("video_id", ret.getId());
+			body = HttpUtils.post(api, params);
+			ret = JSON.parseObject(body, Video.class);
+
 			ret.setSource(source);
 			ret.setBody(getHtmlBody(ret));
 		} catch (Exception e) {
@@ -68,4 +71,5 @@ public class Youku implements VideoStrategy {
 		buf.append("vid: '").append(video.getId()).append("' }); </script>");
 		return buf.toString();
 	}
+
 }

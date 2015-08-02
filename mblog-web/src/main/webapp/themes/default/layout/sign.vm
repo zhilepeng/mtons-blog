@@ -7,6 +7,8 @@
 	<meta name="keywords" content="mtons,blog,轻博客,博客,社区,前端,javascript,css, html5"/>
 	<meta name="description" content="Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择"/>
 
+	#parse("/default/inc/metas.vm")
+
 	<script src="$base/assets/vendors/pace/pace.min.js"></script>
 	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 	

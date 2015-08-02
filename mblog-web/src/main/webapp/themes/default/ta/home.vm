@@ -55,7 +55,7 @@
                             		
 									<div class="foot-block clearfix">
 	            			    		<div class="author">
-								        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+								        	<time>$relDate.format($row.created)</time>
 								        </div>
 	            						<ul class="tags">
 	            			    			#foreach($tag in $row.tagsArray)

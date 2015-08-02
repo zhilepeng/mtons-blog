@@ -31,8 +31,8 @@ public interface Views {
 	String TAGS_INDEX = "/tags/index";
 	String TAGS_TAG = "/tags/tag";
 	
-	String BROWSE_GALLERY = "/browse/gallery";
-	String BROWSE_GALLERY_SNIPPET = "/browse/snippet";
+	String BROWSE_GALLERY = "/gallery/index";
+	String BROWSE_GALLERY_SNIPPET = "/gallery/snippet";
 	String BROWSE_SEARCH = "/browse/search";
 	String BROWSE_DETAIL = "/browse/detail";
 	

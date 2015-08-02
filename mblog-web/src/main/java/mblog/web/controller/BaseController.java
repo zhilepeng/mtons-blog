@@ -62,7 +62,7 @@ public class BaseController {
 		if (pn == null || pn == 0) {
 			pn = 1;
 		}
-		return new Paging(pn, 10);
+		return new Paging(pn, 12);
 	}
 
 	protected String getSuffix(String name) {

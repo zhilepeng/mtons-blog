@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*******************************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *******************************************************************************/
 package mblog.web.controller.desk.account;
 
 import mtons.modules.pojos.Data;
@@ -33,7 +35,7 @@ public class PasswordController extends BaseController {
 	
 	@RequestMapping(value = "/password", method = RequestMethod.POST)
 	public String post(String oldPassword, String password, ModelMap model) {
-		Data data = Data.failure("操作失败");
+		Data data;
 		try {
 			UserProfile profile = getSubject().getProfile();
 			userService.updatePassword(profile.getId(), oldPassword, password);

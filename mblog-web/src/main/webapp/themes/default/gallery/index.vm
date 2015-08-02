@@ -1,4 +1,4 @@
-#set($title="走廊")
+#set($title="照片墙")
 
 <div class="col-xs-12 col-md-12">
     <div id="blog-wrap" class="g-box masonry-grid">
@@ -19,10 +19,12 @@
         	</div>
         	
         	<div class="g-btm">
-        		<div class="pull-left">
-        			<span class="author">#showName(${row.author})</span>
-        			<time class="time">$date.format('yyyy-MM-dd', $row.created)</time>
-        		</div>
+                <div class="pull-left">
+                    <div class="g-ava">
+                        <img src="$base${row.author.avatar}"/>
+                    </div>
+                    <div class="caption"><time>$relDate.format($row.created)</time> 来自 <a href="$base/ta/${row.author.id}">#showName(${row.author})</a></div>
+                </div>
     			<a class="cmt pull-right" href="javascript:void(0)" onclick="onFavor(this, '${row.id}')">喜欢&nbsp;(<i>${row.favors}</i>)</a>
         	</div>
         </div>

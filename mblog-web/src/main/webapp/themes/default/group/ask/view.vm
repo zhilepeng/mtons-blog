@@ -44,7 +44,7 @@
 	</div>
 	<!-- post/end -->
 	
-	#parse("/default/group/comments.vm")
+	#parse("/default/group/ask/comments.vm")
 </div>
 
 

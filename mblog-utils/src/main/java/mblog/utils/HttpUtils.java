@@ -39,7 +39,7 @@ public class HttpUtils {
     	}
     	
     	int status = client.executeMethod(post);
-    	
+
     	if (status != HttpStatus.SC_OK) {
     		throw new MtonsException("该地址请求失败");
     	}

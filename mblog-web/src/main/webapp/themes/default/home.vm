@@ -64,6 +64,9 @@
             		#end
             		
 			    	<div class="foot-block clearfix">
+                        <div class="author">
+                            <time>$relDate.format($row.created)</time>
+                        </div>
 						<ul class="tags">
 			    			#foreach($tag in $row.tagsArray)
                 			<li>

@@ -14,14 +14,6 @@
 .navbar .sign {
 	margin-right: -30px;
 }
-.navbar .nav .login, .navbar .nav .reg {
-	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
-}
-.navbar .nav .login { background-color: #5cb85c; }
-.navbar .nav .reg { background-color: #5F8FDC; }
-
-.navbar .nav .login:hover { background-color: #449d44; }
-.navbar .nav .reg:hover { background-color: #5E7FB5; }
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }
@@ -79,6 +71,8 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 	.col { width: 100%; margin-left: 0; margin-bottom: 25px; }
 	.masonry-grid { margin-left: 0; margin-right: 0; }
 	.masonry-entry { width: 47.5% !important; margin-bottom: 25px !important; }
+
+	.stream-head .user-post .act-icon { padding: 22px 30px; }
 }
 /* Mobile (Landscape)
 ================================================== */
@@ -87,14 +81,31 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 	.masonry-entry { width:100% !important; }
 	
 	.player {width:400px; height:334px;}
-	.stream-item .thumbs .media {max-height: 80px;}
+
+	.stream-head .user-info span.avatar-80 { width: 60px; height: 60px; }
+	.stream-head .user-post .act-icon { padding: 12px 20px; }
 }
 /* Mobile (Portrait only)
 ================================================== */
 @media only screen and (max-width: 479px) {
-	.masonry-entry { width: 100% !important; margin-bottom: 25px !important; }
 
-	.player {width:320px; height:267px;}
+	.masonry-entry {
+		width: 100% !important;
+		margin-bottom: 25px !important;
+	}
 
-	.stream-item .thumbs .media {max-height: 60px;}
+	.player {
+		width: 320px;
+		height: 267px;
+	}
+
+	.stream-item .thumbs .media {
+		max-height: 60px;
+	}
+
+	.stream-head .user-info {padding-left: 10px; padding-right: 10px;}
+	.stream-head .user-info span.avatar-80 { width: 45px; height: 45px; }
+	.stream-head .user-post .act-icon { padding: 20px 20px;}
+	.stream-head .user-post .act-icon i { font-size: 22px;}
+	.stream-head .user-post .act-icon .tip {display: none;}
 }

@@ -7,18 +7,19 @@ package mblog.extend.data;
 
 /**
  * @author langhsu
- * 
+ *
  */
 public class Video {
 	private String source;
-	
+
 	private String id;
 	private String title;
+	private String link;
 	private String thumbnail;
-	private String thumbnail_v2;
+	private String bigThumbnail;
 	private String description;
 	private String player;
-	
+
 	private String body;
 
 	public String getId() {
@@ -77,12 +78,20 @@ public class Video {
 		this.body = body;
 	}
 
-	public String getThumbnail_v2() {
-		return thumbnail_v2;
+	public String getLink() {
+		return link;
 	}
 
-	public void setThumbnail_v2(String thumbnail_v2) {
-		this.thumbnail_v2 = thumbnail_v2;
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getBigThumbnail() {
+		return bigThumbnail;
+	}
+
+	public void setBigThumbnail(String bigThumbnail) {
+		this.bigThumbnail = bigThumbnail;
 	}
 
 }

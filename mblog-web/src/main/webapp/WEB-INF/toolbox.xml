@@ -10,6 +10,12 @@
         <scope>application</scope>
         <class>org.apache.velocity.tools.generic.DateTool</class>
     </tool>
+
+    <tool>
+        <key>relDate</key>
+        <scope>application</scope>
+        <class>mblog.utils.RelativeDateFormat</class>
+    </tool>
     
     <tool>
         <key>string</key>

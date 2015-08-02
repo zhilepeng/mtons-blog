@@ -17,13 +17,14 @@
 	<div class="container mode-link">
         <h3 class="t-h3">友情链接</h3>
         <ul class="list-inline">
-            <li><a href="http://www.oschina.net" target="_blank" title="开源中国社区">开源中国社区</a></li>
+            <li><a href="http://mtons.com" target="_blank" title="mtons社区">mtons社区</a></li>
         </ul>
     </div>
 	<div class="container copy-right">
 		<span>Copyright © <a href="#">Mtons</a>（<a
-			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备********号</a>)
+			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备*******号</a>)
 		</span>
 		<span class="pull-right">Powered By <a href="http://mtons.com" target="_blank">Mtons</a></span>
 	</div>
+
 </footer>

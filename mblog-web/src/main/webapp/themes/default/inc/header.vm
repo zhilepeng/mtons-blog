@@ -15,7 +15,7 @@
     			<ul class="nav navbar-nav">
 					#if($profile)
     				<li data="home">
-    					<a href="$base/home" nav="home"><i class="fa fa-home fa-lg"></i> 我的首页</a>
+    					<a href="$base/home" nav="home">HOME</a>
     				</li>
 					#end
 					
@@ -56,8 +56,8 @@
     		              </ul>
     				</li>
     				#else
-    				<li><a href="$base/login" class="login">登录</a></li>
-                    <li><a href="$base/reg" class="reg">注册</a></li>
+    				<li><a href="$base/login">登录</a></li>
+                    <li><a href="$base/reg">注册</a></li>
     				#end
     			</ul>
     		</div>

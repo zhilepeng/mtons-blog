@@ -14,7 +14,7 @@
 					<span class="itag">${row.name}</span>
 				</a>
 				<figcaption>
-					<h3>#${row.name}</h3>
+					<h3><i class="fa fa-tag"></i> ${row.name}</h3>
 					<span>$!{row.post.title}</span>
 				</figcaption>
 			</figure>

@@ -151,8 +151,10 @@ CREATE TABLE `mto_auth_menu` (
   `sort` int(11) NOT NULL,
   `url` varchar(255) DEFAULT NULL,
   `parent_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `FK_fynq2bfwabynqmnauw69b7ulc` (`parent_id`),
+  CONSTRAINT `FK_fynq2bfwabynqmnauw69b7ulc` FOREIGN KEY (`parent_id`) REFERENCES `mto_auth_menu` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_auth_menu
@@ -199,7 +201,9 @@ CREATE TABLE `mto_user_role` (
   `user_id` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL,
   KEY `FK_fhtla2vc199mv0ru2r2kvakha` (`role_id`),
-  KEY `FK_b4m7ef0uvkr4efrscf8r1ehy2` (`user_id`)
+  KEY `FK_b4m7ef0uvkr4efrscf8r1ehy2` (`user_id`),
+  CONSTRAINT `FK_b4m7ef0uvkr4efrscf8r1ehy2` FOREIGN KEY (`user_id`) REFERENCES `mto_users` (`id`),
+  CONSTRAINT `FK_fhtla2vc199mv0ru2r2kvakha` FOREIGN KEY (`role_id`) REFERENCES `mto_role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

@@ -1,51 +1,51 @@
 #set($layout="default/layout/sign.vm")
 
 <div class="login">
-	<div class="vegas-overlay" style="opacity: 0.2; margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url($base/assets/images/overlay.png); z-index: -1;"></div>
-	
-	<a href="${base}/index">
-		<img src="$base/assets/images/logo/m.png" height="72" width="72">
-	</a>
-	<h1>登录你的 Mtons</h1>
-	<a href="$base/reg" class="signup-link gapps"><span>还没有账号? 注册</span></a>
-	<hr>
-	<form action="login" method="post">
-		<div id="message">
-    		#if($message)
-    			<div class="alert alert-danger">$!{message}</div>
-    		#end
-		</div>
-		<label for="id_email">登录名:</label>
-		<div id="id_email">
-			<input name="username" class="form-control" placeholder="用户名" type="text" data-required>
-		</div>
-		<label for="id_password">密码:</label>
-		<div id="id_password">
-			<input name="password" class="form-control" placeholder="密码" type="password" data-required>
-		</div>
-		<input type="submit" class="btn btn-primary" value="登录 Use it">
-		<a href="/accounts/password/reset/" class="forgot" style="display: none;">
-			Forgot password?
-		</a>
-	</form>
+    <div class="vegas-overlay" style="opacity: 0.2; margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url($base/assets/images/overlay.png); z-index: -1;"></div>
+
+    <a href="${base}/index">
+        <img src="$base/assets/images/logo/m.png" height="72" width="72">
+    </a>
+    <h1>登录你的 Mtons</h1>
+    <a href="$base/reg" class="signup-link gapps"><span>还没有账号? 注册</span></a>
+    <hr>
+    <form action="login" method="post">
+        <div id="message">
+			#if($message)
+                <div class="alert alert-danger">$!{message}</div>
+			#end
+        </div>
+        <label for="id_email">登录名:</label>
+        <div id="id_email">
+            <input name="username" class="form-control border" placeholder="用户名" type="text" data-required>
+        </div>
+        <label for="id_password">密码:</label>
+        <div id="id_password">
+            <input name="password" class="form-control border" placeholder="密码" type="password" data-required>
+        </div>
+        <input type="submit" class="btn btn-primary border" value="登录 Use it">
+        <a href="/accounts/password/reset/" class="forgot" style="display: none;">
+            Forgot password?
+        </a>
+    </form>
 </div>
 
 <script type="text/javascript">
-$(function(){
-	$('form').validate({
-		onKeyup : true,
-		onChange : true,
-		eachValidField : function() {
-			$(this).closest('div').removeClass('has-error').addClass('has-success');
-		},
-		eachInvalidField : function() {
-			$(this).closest('div').removeClass('has-success').addClass('has-error');
-		},
-		description : {
-			message : {
-				required : '<div class="alert alert-danger">请先输入用户名/密码再进行登录操作</div>'
-			}
-		}
-	});
-})
+    $(function(){
+        $('form').validate({
+            onKeyup : true,
+            onChange : true,
+            eachValidField : function() {
+                $(this).closest('div').removeClass('has-error').addClass('has-success');
+            },
+            eachInvalidField : function() {
+                $(this).closest('div').removeClass('has-success').addClass('has-error');
+            },
+            description : {
+                message : {
+                    required : '<div class="alert alert-danger">请先输入用户名/密码再进行登录操作</div>'
+                }
+            }
+        });
+    })
 </script>

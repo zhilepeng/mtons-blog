@@ -47,7 +47,6 @@ public class AccountRealm extends AuthorizingRealm {
     					// 添加基于Permission的权限信息
     					for (String permission : StringUtils.split(menu.getPermission(),",")){
     						info.addStringPermission(permission);
-    						System.out.println(permission);
     					}
     				}
     			}

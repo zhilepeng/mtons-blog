@@ -41,7 +41,7 @@ $user.username
     	<div class="foot-block clearfix">
     		<div class="author">
 	        	<span><a href="$base/ta/${row.author.id}">#showName($row.author)</a></span>
-	        	<time>$date.format('yyyy-MM-dd', $row.created)</time>
+	        	<time>$relDate.format($row.created)</time>
 	        </div>
     		<ul class="tags">
 				#foreach($tag in $row.tagsArray)
@@ -55,6 +55,42 @@ $user.username
 				<span class="act">评论 (${row.comments})</span>
     		</div>
     	</div>
+    </div>
+</div>
+#end
+
+## 问答列表显示
+#macro(showAsk $row)
+<div class="stream-item" id="loop-${row.id}">
+    <div class="qus-rank">
+        <div class="answers plus">
+            <span>${row.comments}</span>
+            <small>回答</small>
+        </div>
+        <div class="views hidden-xs">
+            <span>${row.views}</span>
+            <small>浏览</small>
+        </div>
+    </div>
+    <div class="summary">
+        <h2 class="title">#postLink($row)</h2>
+
+        <div class="foot-block clearfix">
+            <div class="author">
+                <span><a href="$base/ta/${row.author.id}">#showName($row.author)</a></span>
+                <time>$date.format('yyyy-MM-dd', $row.created)</time>
+            </div>
+            <ul class="tags">
+				#foreach($tag in $row.tagsArray)
+                    <li>
+                        <a class="tag tag-sm" href="$base/tag/${tag}/">$tag</a>
+                    </li>
+				#end
+            </ul>
+            <div class="pull-right hidden-xs">
+                <a href="$base/view/${row.id}" class="act">详情</a>
+            </div>
+        </div>
     </div>
 </div>
 #end
