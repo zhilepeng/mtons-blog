@@ -1,4 +1,3 @@
-
 <div class="widget-box shadow-box">
 	<div class="title">
 		<h3><i class="fa fa-area-chart"></i> 热门文章</h3>
@@ -20,8 +19,6 @@
     <ul class="tags m10 text-center" id="hottags">
     </ul>
 </div>
-
-#parse("/advs/right/250.vm")
 
 <script type="text/javascript">
 var hot_li_template = '<li><div class="li-out"><span class="last"><i>{0}</i></span><span class="name"><a  href="{1}">{2}</a></span><span class="nums">{3}</span></div></li>'
