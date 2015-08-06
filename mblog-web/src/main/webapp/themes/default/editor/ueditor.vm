@@ -1,9 +1,7 @@
 
 <link href="$base/assets/vendors/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.min.js"></script>
 
-<textarea id="content" name="content" rows="5" data-required data-describedby="message" data-description="content"></textarea>
+<textarea id="content" class="form-control" name="content" rows="5" data-required data-describedby="message" data-description="content"></textarea>
 
 <script type="text/javascript">
 function setContent(content) {
@@ -17,22 +15,9 @@ function setContent(content) {
 }
 
 $(function () {
-	if (mblog.browser.ios || mblog.browser.android) {
-		$('#content').addClass('form-control');
-		return;
-	} else {
-		umEditor = UM.getEditor('content', {
-			imageUrl: "$base/aj_um_upload.json",
-        	imagePath: "$base",
-            toolbar: ["undo", "redo", "|", "bold", "italic", "underline", "|", "justifyleft", "justifycenter",
-                "justifyright", "|", "link", "unlink", "|", "insertorderedlist", "insertunorderedlist", 
-				"|", "emotion", "image", "removeformat", "fullscreen"],
-            autoClearinitialContent: true,
-            wordCount: true,
-            maximumWords: 2000,
-            initialFrameWidth: '100%',
-            initialFrameHeight: 300
-        });
+	if (!mblog.browser.ios && !mblog.browser.android) {
+		seajs.use('editor');
 	}
 })
+
 </script>
