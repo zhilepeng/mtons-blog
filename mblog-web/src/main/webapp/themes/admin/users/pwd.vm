@@ -23,6 +23,5 @@
 var J = jQuery;
 
 $(function() {
-	selectNav(2);
 })
 </script>

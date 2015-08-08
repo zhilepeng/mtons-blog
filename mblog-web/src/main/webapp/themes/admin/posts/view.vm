@@ -44,8 +44,6 @@ function ajaxReload(json){
 }
 
 $(function() {
-	selectNav(1);
-	
 	// 删除
     $('a[data-action="delete"]').bind('click', function(){
         if(confirm('删除后将不可撤销, 确定要继续吗？')){

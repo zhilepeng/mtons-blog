@@ -32,6 +32,5 @@
 var J = jQuery;
 
 $(function() {
-	selectNav(4);
 })
 </script>
