@@ -26,11 +26,11 @@ public interface Consts {
 	int TIME_MIN = 1000;
 	
 	/* 状态 */
-	int status_normal = 0;
+	int STATUS_NORMAL = 0;
 	
-	int status_featured = 1;
+	int STATUS_FEATURED = 1;
 	
-	int status_locked = 1;
+	int STATUS_LOCKED = 1;
 	
 	interface order {
 		String FEATURED = "featured";
@@ -47,4 +47,6 @@ public interface Consts {
 	 * 附件-存储-网络
 	 */
 	int ATTACH_STORE_NETWORK = 1;
+
+	String SYSTEM_VERSION = "system.version";
 }

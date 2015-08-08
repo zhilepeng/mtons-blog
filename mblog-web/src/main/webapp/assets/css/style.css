@@ -1,5 +1,5 @@
 body { font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif; word-wrap: break-word;}
-body {  background-image: url("../images/noise.png");}
+body { background-color: #f6f6f6;}
 
 /* common */
 
@@ -14,6 +14,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .m10 { margin: 10px; }
 .mt20 { margin-top: 20px;}
 .mb6 { margin-bottom: 6px;}
+.pd20{padding:20px;}
+.pd50{padding:50px;}
 
 .fl { float: left; }
 .fr { float: right; }
@@ -33,8 +35,40 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 	border: none; outline: none;}
 .search-box .search-btn:hover {color: #5F8FDC;}
 
+/* 登录弹出层 */
+/* login */
+.login{position:relative;height:32px;line-height:32px;margin:8px 20px 0 0;display:inline;}
+.login li{float:left;display:block;}
+.login li a{text-align:center;font-size:14px;float:left;display:block;width:70px;height:32px;line-height:32px;background:#505050;color:#acacac;}
+.login .reg a{background:#6BC30D;color:#fff;}
+.loginmask{width:100%;height:100%;z-index:8;background:#000;position:fixed;top:0;left:0;display:none;}
+/* loginalert */
+#loginalert{width:440px;background:#fff;position:fixed;top:-600px;left:50%;margin-left:-220px;_margin-left:500px;z-index:1051;display:none;}
+.closealert{width:20px;height:20px;cursor:pointer;background:url('../images/icons.png') no-repeat -220px -315px;-webkit-transition:all 0.4s ease-out;-moz-transition:all 0.4s ease-out;-o-transition:all 0.4s ease-out;transition:all 0.4s ease-out;}
+.closealert:hover{transform:rotate(-180deg);-moz-transform:rotate(-180deg);-webkit-transform:rotate(-180deg);-o-transform:rotate(-180deg);}
+.loginwrap{width:340px;margin:0 auto;}
+.loginh{height:40px;margin-top:20px;}
+.loginh .fl{font-size:30px;line-height:40px;color:#292929;}
+.loginh .fr{font-size:18px;line-height:50px;color:#707070;}
+.loginh .fr a{font-size:18px;line-height:50px;color:#FF4200;margin-left:5px;}
+.loginwrap h3{font-size:14px;font-weight:500;height:22px;margin-top:15px;color:#292929;}
+.loginbtn{color:#6B6A6A;height:70px;overflow:hidden;}
+.logininput input{display:block;height:34px;width:100%;border:#DAE2E5 1px solid;text-indent:10px;overflow:hidden;color:#979696;padding-top:13px;padding-bottom:13px;}
+.logininput .loginusername{margin-top:15px;margin-bottom:10px;}
+.loginsubmit{width:130px;height:40px;margin:15px 20px 0 0;display:inline;}
+.loginsubmit .btn{width:130px;height:40px; padding: 0; line-height:40px;overflow:hidden;color:#fff;background:#70CA10;display:block;text-align:center;font-size:20px;border:none;font-family:'微软雅黑';cursor:pointer;}
+.loginpd{border-bottom:1px solid #ecf2f5;}
+.thirdlogin .pd50{padding-top:30px;padding-bottom:30px;}
+.thirdlogin h4{color:#6B6A6A;font-weight:500;margin-bottom:20px;}
+.thirdlogin ul li{display:inline;float:left;margin:0 20px 10px 0;}
+.thirdlogin ul li a{display:block;float:left;height:40px;line-height:40px;width:160px;color:#fff;text-indent:60px;}
+#sinal a{background:#d63b22 url('../images/weibo.png') no-repeat 0px -5px;}
+#qql a{background:#3eb0d8 url('../images/qq.png') no-repeat 0px -5px;}
+.loginwrap .login_warning{height:20px;line-height:20px;overflow:hidden;background:#ff7200;color:#fff;padding:0 4px;float:left;text-align:center;font-size:12px; display:inline-block;}
+
 /* main 首页主列表 */
 .shadow-box {   box-shadow: 0px 1px 1px rgba(209, 212, 221, 0.15); background-color: #fff; margin-bottom: 15px; border: 1px solid #ddd;}
+.no-bg {background-color: transparent;}
 
 .filter {border-bottom: 1px solid #cacaca;}
 .filter ul { display: block; }
@@ -56,7 +90,9 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-head .user-post .act-img { color: #A576F7; }
 .stream-head .user-post .act-text { color: #5EBCF2; }
 
-.stream-list { }
+.stream-list { background-color: #fff;}
+.stream-blank {height: 15px; border-bottom: 1px solid #eee; background-color: #f6f6f6;}
+
 .stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 10px; }
 .stream-item:hover { background-color: #f5f5f5;}
 .stream-item .summary { overflow: auto; padding-left: 12px; border-left: 1px solid #f3f3f3; }
@@ -192,7 +228,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .chats ul li .avt img { width: 100%; border-radius: 4px;}
 .chats .chat_body { margin-left: 50px; font-size: 13px; line-height: 18px; }
 .chats .chat_body h5 { margin: 0; display: block; font-weight: 500; height: 25px; line-height: 20px; overflow: hidden; }
-.chats .chat_body a { color: #1f8902; font-size: 12 px; }
+.chats .chat_body a { color: #1f8902; font-size: 12px; }
 .chats .chat_body span { color: #b4b4b4; margin-left: 5px; }
 
 .chats .chat_body .quote { background: #f4f4f4; margin-top: 10px; padding: 10px; }

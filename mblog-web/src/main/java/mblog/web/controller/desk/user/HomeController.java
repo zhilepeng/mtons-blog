@@ -5,6 +5,9 @@
  *******************************************************************************/
 package mblog.web.controller.desk.user;
 
+import mblog.extend.planet.CommentPlanet;
+import mblog.persist.service.CommentService;
+import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +28,10 @@ import mblog.web.controller.desk.Views;
 public class HomeController extends BaseController {
 	@Autowired
 	private PostService postService;
-	
-	@RequestMapping("/home")
+	@Autowired
+	private CommentPlanet commentPlanet;
+
+	@RequestMapping(value="/home")
 	public String home(Integer pn, ModelMap model) {
 		Paging page = wrapPage(pn);
 		AccountSubject subject = getSubject();
@@ -34,7 +39,29 @@ public class HomeController extends BaseController {
 		
 		model.put("page", page);
 		
-		return getView(Views.HOME);
+		return getView(Views.HOME_INDEX);
+	}
+
+	@RequestMapping(value="/home", params = "method=posts")
+	public String posts(Integer pn, ModelMap model) {
+		Paging page = wrapPage(pn);
+		AccountSubject subject = getSubject();
+		postService.pagingByUserId(page, subject.getProfile().getId());
+
+		model.put("page", page);
+
+		return getView(Views.HOME_POSTS);
+	}
+
+	@RequestMapping(value="/home", params = "method=comments")
+	public String comments(Integer pn, ModelMap model) {
+		Paging page = wrapPage(pn);
+		AccountSubject subject = getSubject();
+		page = commentPlanet.paging4Home(page, subject.getProfile().getId());
+
+		model.put("page", page);
+
+		return getView(Views.HOME_COMMENTS);
 	}
 	
 }

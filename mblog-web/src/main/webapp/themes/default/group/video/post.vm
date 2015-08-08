@@ -52,7 +52,7 @@
 <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script type="text/javascript">
 seajs.use('post', function (post) {
-	post.init('uedtior');
+	post.init();
 });
 
 seajs.use('video');

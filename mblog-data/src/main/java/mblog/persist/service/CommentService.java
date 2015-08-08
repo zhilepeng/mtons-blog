@@ -16,7 +16,9 @@ import mblog.data.Comment;
  */
 public interface CommentService {
 	void paging4Admin(Paging paging, String key);
-	
+
+	void paging4Home(Paging paging, long authorId);
+
 	/**
 	 * 查询评论列表
 	 * @param paging
@@ -34,4 +36,11 @@ public interface CommentService {
 	long post(Comment comment);
 	
 	void delete(List<Long> ids);
+
+	/**
+	 * 带作者验证的删除
+	 * @param id
+	 * @param authorId
+	 */
+	void delete(long id, long authorId);
 }

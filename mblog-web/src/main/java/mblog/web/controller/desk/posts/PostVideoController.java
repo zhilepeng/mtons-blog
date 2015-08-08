@@ -13,6 +13,7 @@ import mblog.extend.data.Video;
 import mblog.extend.planet.PostPlanet;
 import mblog.lang.Consts;
 import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.UserProfile;
 
 import org.apache.commons.lang.StringUtils;
@@ -51,7 +52,7 @@ public class PostVideoController extends BaseController {
 			
 			postPlanet.post(post);
 		}
-		return "redirect:/home";
+		return Views.REDIRECT_HOME;
 	}
 	
 	private Attach handleAlbums(String thumbnail) {

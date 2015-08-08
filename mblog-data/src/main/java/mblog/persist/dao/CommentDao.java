@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public interface CommentDao extends Dao<CommentPO> {
 	List<CommentPO> paging(Paging paging, String key);
-	List<CommentPO> paging(Paging paging, long toId, boolean desc);
+	List<CommentPO> paging(Paging paging, long toId, long authorId, boolean desc);
 	List<CommentPO> findByIds(Set<Long> ids);
 
 	int deleteByIds(Collection<Long> ids);

@@ -8,6 +8,7 @@ package mblog.web.servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import mblog.lang.Consts;
 import org.apache.log4j.Logger;
 
 import mblog.utils.PropertiesLoader;
@@ -34,9 +35,10 @@ public class InitServlet extends HttpServlet {
     	
     	// 初始化配置文件
     	try {
-    		PropertiesLoader propertiesLoader = new PropertiesLoader("/mtons.properties");
-    		String gmHome = propertiesLoader.getProperty(GMagickUtils.GMAGICK_HOME);
+    		PropertiesLoader p = new PropertiesLoader("/mtons.properties");
+    		String gmHome = p.getProperty(GMagickUtils.GMAGICK_HOME);
     		System.setProperty(GMagickUtils.GMAGICK_HOME, gmHome);
+            System.setProperty(Consts.SYSTEM_VERSION, p.getProperty(Consts.SYSTEM_VERSION));
 		} catch (Exception e) {
 			log.error("系统初始化失败: " + Exceptions.getStackTraceAsString(e));
             System.exit(0);

@@ -58,7 +58,7 @@ public class PostController extends BaseController {
 			
 			postPlanet.post(blog);
 		}
-		return "redirect:/home";
+		return Views.REDIRECT_HOME;
 	}
 	
 	@RequestMapping("/delete/{id}")

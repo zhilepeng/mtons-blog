@@ -7,6 +7,7 @@ package mblog.web.controller.desk.group;
 
 import mblog.data.Group;
 import mblog.data.Post;
+import mblog.extend.planet.GroupPlanet;
 import mblog.extend.planet.PostPlanet;
 import mblog.persist.service.GroupService;
 import mblog.persist.service.PostService;
@@ -34,7 +35,7 @@ public class GroupVidewController extends BaseController {
 	@Autowired
 	private PostService postService;
 	@Autowired
-	private GroupService groupService;
+	private GroupPlanet groupPlanet;
 
 	@RequestMapping("/{id}")
 	public String view(@PathVariable Long id, ModelMap model) {
@@ -42,7 +43,7 @@ public class GroupVidewController extends BaseController {
 		
 		Assert.notNull(ret, "该文章已被删除");
 		
-		Group group = groupService.getById(ret.getGroup());
+		Group group = groupPlanet.getById(ret.getGroup());
 
 		postService.identityViews(id);
 		model.put("ret", ret);

@@ -32,6 +32,7 @@ public class LoginController extends BaseController {
 	public String view() {
 		return getView(Views.LOGIN);
 	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(String username, String password, ModelMap model) {
 		String ret = getView(Views.LOGIN);
@@ -49,7 +50,7 @@ public class LoginController extends BaseController {
         try {
             SecurityUtils.getSubject().login(token);
             
-            ret = "redirect:" + Views.HOME;
+            ret = Views.REDIRECT_HOME;
         } catch (AuthenticationException e) {
             if (e instanceof UnknownAccountException) {
             	model.put("message", "用户不存在");
@@ -62,7 +63,4 @@ public class LoginController extends BaseController {
         return ret;
 	}
 
-	protected AuthenticationToken createToken(String username, String password) {
-        return new UsernamePasswordToken(username, MD5Helper.md5(password));
-    }
 }

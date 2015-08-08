@@ -88,7 +88,7 @@ $user.username
 				#end
             </ul>
             <div class="pull-right hidden-xs">
-                <a href="$base/view/${row.id}" class="act">详情</a>
+                <a href="$base/view/${row.id}" class="act">查看更多</a>
             </div>
         </div>
     </div>

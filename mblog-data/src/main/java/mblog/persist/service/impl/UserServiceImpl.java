@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import mblog.data.UserFull;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public AccountProfile login(String username, String password) {
 		UserPO po = userDao.get(username);
 		AccountProfile u = null;
@@ -46,7 +47,17 @@ public class UserServiceImpl implements UserService {
 
 		if (StringUtils.equals(po.getPassword(), password)) {
 			po.setLastLogin(Calendar.getInstance().getTime());
+
 			u = BeanMapUtils.copyPassport(po);
+
+			// FIXME: 兼容代码 1.3 之前版本的注册用户
+			if (po.getExtend() == null) {
+				// 保存扩展
+				UserExtendPO extend = new UserExtendPO();
+				extend.setUser(po);
+
+				po.setExtend(extend);
+			}
 		}
 		return u;
 	}
@@ -94,7 +105,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public User get(long id) {
 		UserPO po = userDao.get(id);
 		User ret = null;
@@ -105,7 +116,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public User get(String username) {
 		UserPO po = userDao.get(username);
 		User ret = null;
@@ -114,7 +125,24 @@ public class UserServiceImpl implements UserService {
 		}
 		return ret;
 	}
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public UserFull getUserFull(long id) {
+		UserPO po = userDao.get(id);
+		UserFull ret;
+
+		Assert.notNull(po, "用户数据获取失败");
+
+		ret = new UserFull();
+		BeanUtils.copyProperties(po, ret, BeanMapUtils.USER_IGNORE);
+
+		if (po.getExtend() != null) {
+			BeanUtils.copyProperties(po.getExtend(), ret);
+		}
+		return ret;
+	}
+
 	@Override
 	@Transactional
 	public AccountProfile updateAvatar(long id, String path) {

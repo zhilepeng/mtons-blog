@@ -13,15 +13,17 @@ package mblog.data;
 public class UserFull extends User {
 	private static final long serialVersionUID = -2824943524392184921L;
 
-	private int married; // 婚姻状况
-	
 	private String signature; // 个性签名
 
+	private int married; // 婚姻状态
+	
 	private int posts; // 文章数
 	
 	private int comments; // 发布评论数
 	
 	private int follows; // 关注人数
+
+	private int fans; // 粉丝数
 	
 	private int favors; // 被赞数
 	
@@ -39,14 +41,6 @@ public class UserFull extends User {
 
 	public void setFollows(int follows) {
 		this.follows = follows;
-	}
-
-	public int getMarried() {
-		return married;
-	}
-
-	public void setMarried(int married) {
-		this.married = married;
 	}
 
 	public String getSignature() {
@@ -73,4 +67,20 @@ public class UserFull extends User {
 		this.favors = favors;
 	}
 
+	public int getFans() {
+		return fans;
+	}
+
+	public void setFans(int fans) {
+		this.fans = fans;
+	}
+
+	public int getMarried() {
+		return married;
+	}
+
+	public void setMarried(int married) {
+		this.married = married;
+	}
+	
 }

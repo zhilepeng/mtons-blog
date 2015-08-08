@@ -7,6 +7,8 @@
 	<meta name="keywords" content="mtons,$!{site_keywords}">
 	<meta name="description" content="$!{site_description}">
 
+	#parse("/default/inc/metas.vm")
+	
 	<script src="$base/assets/vendors/pace/pace.min.js"></script>
 	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
 	
@@ -35,15 +37,11 @@
 	<!-- Favicons -->
 	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m.png"/>
 	<link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
-	
-	<script type="text/javascript">
-	window.app = {
-		base: '$base'
-	};
-	window.UMEDITOR_HOME_URL = '$base/assets/vendors/umeditor/';
-	</script>
+
 </head>
 <body>
+	#parse("/default/inc/params.vm")
+
 	#parse("/default/inc/header.vm")
 	
 	<div class="wrap">

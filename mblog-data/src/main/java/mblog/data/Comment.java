@@ -3,6 +3,7 @@
  */
 package mblog.data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,7 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author langhsu
  * 
  */
-public class Comment {
+public class Comment implements Serializable {
 	private long id;
 	private long toId;
 	private long pid;
@@ -24,6 +25,7 @@ public class Comment {
 
 	private User author;
 	private Comment parent;
+	private Post post;
 	
 	public long getId() {
 		return id;
@@ -96,5 +98,13 @@ public class Comment {
 
 	public void setParent(Comment parent) {
 		this.parent = parent;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 }

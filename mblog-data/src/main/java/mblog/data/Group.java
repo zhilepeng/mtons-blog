@@ -6,11 +6,13 @@
 package mblog.data;
 
 
+import java.io.Serializable;
+
 /**
  * @author langhsu
  *
  */
-public class Group {
+public class Group implements Serializable {
 	private int id;
 	
 	private String name;

@@ -5,10 +5,6 @@ package mblog.web.controller.desk.comment;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.Paging;
-import mtons.modules.pojos.UserProfile;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import mblog.data.Comment;
-import mblog.persist.service.CommentService;
+import mblog.extend.planet.CommentPlanet;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.Paging;
+import mtons.modules.pojos.UserProfile;
 
 /**
  * @author langhsu
@@ -32,14 +31,14 @@ import mblog.web.controller.BaseController;
 @RequestMapping("/comment")
 public class CommentController extends BaseController {
 	@Autowired
-	private CommentService commentService;
+	private CommentPlanet commentPlanet;
 	@Autowired
 	private PostService postService;
 	
 	@RequestMapping("/list/{toId}")
 	public @ResponseBody Paging view(Integer pn, @PathVariable Long toId) {
 		Paging page = wrapPage(pn);
-		commentService.paging(page, toId);
+		page = commentPlanet.paging(page, toId);
 		return page;
 	}
 	
@@ -64,11 +63,26 @@ public class CommentController extends BaseController {
 			
 			c.setPid(pid);
 			
-			commentService.post(c);
+			commentPlanet.post(c);
 			// 自增评论数
 			postService.identityComments(c.getToId());
 			
 			data = Data.success("发表成功!", Data.NOOP);
+		}
+		return data;
+	}
+
+	@RequestMapping("/delete")
+	public @ResponseBody Data delete(Long id) {
+		Data data = Data.failure("操作失败");
+		if (id != null) {
+			UserProfile up = getSubject().getProfile();
+			try {
+				commentPlanet.delete(id, up.getId());
+				data = Data.success("操作成功", Data.NOOP);
+			} catch (Exception e) {
+				data = Data.failure(e.getMessage());
+			}
 		}
 		return data;
 	}

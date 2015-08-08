@@ -10,6 +10,7 @@ import java.util.Set;
 import mblog.data.AccountProfile;
 import mblog.data.AuthMenu;
 import mblog.data.User;
+import mblog.data.UserFull;
 import mtons.modules.pojos.Paging;
 
 /**
@@ -46,6 +47,14 @@ public interface UserService {
 	User get(long id);
 	
 	User get(String username);
+
+	/**
+	 * 获取用户详细信息
+	 *
+	 * @param id user id
+	 * @return all of the user info
+	 */
+	UserFull getUserFull(long id);
 	
 	/**
 	 * 修改头像

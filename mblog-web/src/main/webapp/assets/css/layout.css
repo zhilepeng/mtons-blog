@@ -14,6 +14,14 @@
 .navbar .sign {
 	margin-right: -30px;
 }
+.navbar .nav .login, .navbar .nav .reg {
+	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
+}
+.navbar .nav .login { background-color: #5cb85c; }
+.navbar .nav .reg { background-color: #5F8FDC; }
+
+.navbar .nav .login:hover { background-color: #449d44; }
+.navbar .nav .reg:hover { background-color: #5E7FB5; }
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }

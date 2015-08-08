@@ -84,9 +84,14 @@ public class AttachServiceImpl implements AttachService {
 	@Override
 	@Transactional
 	public long batchPost(long toId, List<Attach> albums) {
-		albums.forEach(d -> d.setToId(toId));
-		attachDao.batchAdd(albums);
-		return albums.size();
+		long lastId = 0;
+
+		for (Attach d : albums) {
+			d.setToId(toId);
+			lastId = add(d);
+		};
+//		attachDao.batchAdd(albums);
+		return lastId;
 	}
 	
 	@Override

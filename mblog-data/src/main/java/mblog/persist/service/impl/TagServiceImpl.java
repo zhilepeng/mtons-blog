@@ -47,7 +47,7 @@ public class TagServiceImpl implements TagService {
 		}
 		
 		if (loadPost && postIds.size() > 0) {
-			Map<Long, Post> posts = postService.findByIds(postIds);
+			Map<Long, Post> posts = postService.findMapByIds(postIds);
 			
 			for (Tag t : rets) {
 				Post p = posts.get(t.getLastPostId());
@@ -76,7 +76,7 @@ public class TagServiceImpl implements TagService {
 				if (po != null) {
 
 					// 如果不锁定则更新文章ID
-					if (po.getLocked() != Consts.status_locked) {
+					if (po.getLocked() != Consts.STATUS_LOCKED) {
 						po.setLastPostId(t.getLastPostId());
 					}
 					po.setPosts(po.getPosts() + 1);
@@ -129,10 +129,10 @@ public class TagServiceImpl implements TagService {
 	public void updateFeatured(long id, int status) {
 		TagPO po = tagDao.get(id);
 		if (po != null) {
-			if (po.getFeatured() == Consts.status_normal) {
-				po.setFeatured(Consts.status_featured);
+			if (po.getFeatured() == Consts.STATUS_NORMAL) {
+				po.setFeatured(Consts.STATUS_FEATURED);
 			} else {
-				po.setFeatured(Consts.status_normal);
+				po.setFeatured(Consts.STATUS_NORMAL);
 			}
 		}
 	}

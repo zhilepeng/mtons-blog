@@ -5,6 +5,7 @@
  *******************************************************************************/
 package mblog.web.controller.desk.ta;
 
+import mblog.data.UserFull;
 import mtons.modules.pojos.Paging;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class TaController extends BaseController {
 	
 	@RequestMapping("/ta/{uid}")
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
-		User user = userService.get(uid);
+		UserFull user = userService.getUserFull(uid);
 		Paging page = wrapPage(pn);
 		page = postPlanet.pagingByUserId(page, uid);
 		

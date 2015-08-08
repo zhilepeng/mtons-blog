@@ -11,8 +11,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import mtons.modules.utils.MD5Helper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
@@ -49,6 +52,10 @@ public class BaseController {
 	
 	protected void putProfile(UserProfile profile) {
 		SecurityUtils.getSubject().getSession(true).setAttribute("profile", profile);
+	}
+
+	protected AuthenticationToken createToken(String username, String password) {
+		return new UsernamePasswordToken(username, MD5Helper.md5(password));
 	}
 
 	/**

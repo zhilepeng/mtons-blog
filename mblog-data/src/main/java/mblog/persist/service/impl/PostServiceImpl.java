@@ -10,10 +10,7 @@ import mblog.data.User;
 import mblog.lang.Consts;
 import mblog.persist.dao.PostDao;
 import mblog.persist.entity.PostPO;
-import mblog.persist.service.AttachService;
-import mblog.persist.service.PostService;
-import mblog.persist.service.TagService;
-import mblog.persist.service.UserService;
+import mblog.persist.service.*;
 import mblog.persist.utils.BeanMapUtils;
 import mblog.utils.PreviewTextUtils;
 import mtons.modules.lang.EntityStatus;
@@ -52,6 +49,8 @@ public class PostServiceImpl implements PostService {
 	private TagService tagService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserEventService userEventService;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -175,7 +174,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Map<Long, Post> findByIds(Set<Long> ids) {
+	public Map<Long, Post> findMapByIds(Set<Long> ids) {
 		List<PostPO> list = postDao.findByIds(ids);
 		Map<Long, Post> rets = new HashMap<>();
 
@@ -239,6 +238,8 @@ public class PostServiceImpl implements PostService {
 			List<Tag> tags = BeanMapUtils.convertTags(po.getId(), post.getTags());
 			tagService.batchPost(tags);
 		}
+
+		userEventService.identityPost(Collections.singletonList(po.getAuthorId()), po.getId(), true);
 	}
 	
 	@Override

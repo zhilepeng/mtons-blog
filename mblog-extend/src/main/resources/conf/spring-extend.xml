@@ -21,6 +21,8 @@
 	<!-- Planet -->
 	<bean id="postPlanet" class="mblog.extend.planet.impl.PostPlanetImpl" />
 	<bean id="tagPlanet" class="mblog.extend.planet.impl.TagPlanetImpl" />
+	<bean id="groupPlanet" class="mblog.extend.planet.impl.GroupPlanetImpl" />
+	<bean id="commentPlanet" class="mblog.extend.planet.impl.CommentPlanetImpl" />
 	
 	<bean id="videoAnalysis" class="mblog.extend.analysis.videos.VideoAnalysis">
 		<property name="strategies">

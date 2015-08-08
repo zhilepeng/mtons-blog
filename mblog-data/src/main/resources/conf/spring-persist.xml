@@ -20,6 +20,8 @@
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
 	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />
+	<bean id="userEventService" class="mblog.persist.service.impl.UserEventServiceImpl" />
+	
 	<bean id="logService" class="mblog.persist.service.impl.LogServiceImpl" />
 	<bean id="commentService" class="mblog.persist.service.impl.CommentServiceImpl" />
 	<bean id="postService" class="mblog.persist.service.impl.PostServiceImpl" />

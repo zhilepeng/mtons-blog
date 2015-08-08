@@ -35,15 +35,17 @@ public class UserExtendPO {
 	@JoinColumn(name="id", referencedColumnName="id")
 	private UserPO user;
 	
-	private int married; // 婚姻状况
-	
 	private String signature; // 个性签名
 
+	private int married; // 婚姻状态
+	
 	private int posts; // 文章数
 	
 	private int comments; // 发布评论数
 	
 	private int follows; // 关注人数
+
+	private int fans; // 粉丝数
 	
 	private int favors; // 收到的喜欢数
 	
@@ -79,14 +81,6 @@ public class UserExtendPO {
 		this.follows = follows;
 	}
 
-	public int getMarried() {
-		return married;
-	}
-
-	public void setMarried(int married) {
-		this.married = married;
-	}
-
 	public String getSignature() {
 		return signature;
 	}
@@ -111,4 +105,21 @@ public class UserExtendPO {
 	public void setFavors(int favors) {
 		this.favors = favors;
 	}
+
+	public int getFans() {
+		return fans;
+	}
+
+	public void setFans(int fans) {
+		this.fans = fans;
+	}
+
+	public int getMarried() {
+		return married;
+	}
+
+	public void setMarried(int married) {
+		this.married = married;
+	}
+	
 }

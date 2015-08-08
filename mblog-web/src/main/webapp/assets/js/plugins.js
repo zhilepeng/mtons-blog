@@ -71,7 +71,7 @@
 
 (function($){
 	var uuid = 0;
-	
+
 	function pageLink(curNo, pageNo){
 		if(curNo == -1){
 			return '<li class="pass"><span>......</span></li>';
@@ -81,7 +81,7 @@
 		}
 		return $.format('<li><a href="javascript:void(0);" pn="{0}">{0}</a></li>', pageNo);
 	}
-	
+
 	// 注册上传插件
 	jQuery.fn.extend({
 		upload: function(url, callback){
@@ -89,14 +89,14 @@
 			var frameId = "ajax-pload-" + (++uuid);
 			var $frame = $("<iframe id='" + frameId + "' name='" + frameId + "' style='position:absolute; top:-9999px;display:none;'/>").appendTo("body");
 			var $form = $("<form action='" + url + "' target='" + frameId + "' method='post' enctype='multipart/form-data' style='display:none;'/>");
-			
+
 			var nfile = self.clone(true);
 			self.attr("id", "uf-" + uuid);
 			self.before(nfile);
 			self.detach().appendTo($form);
-			
+
 			$form.appendTo("body");
-			
+
 			$form.submit(function() {
 				$frame.load(function() {
 					var contents = $frame.contents().get(0);
@@ -114,7 +114,7 @@
 			}).submit();
 			return this;
 		},
-		
+
 		/**
 		 * 分页函数
 		 * p: paging
@@ -127,7 +127,7 @@
 				this.html('');
 				return this;
 			}
-			
+
 			var	c = 3,				// 左右各需要显示的分页数量
 				tc = c * 2 + 3, 	// 显示的分页总数
 				cp = parseInt(p.pageNo),		//当前页号
@@ -137,7 +137,7 @@
 			if(cp > 1){
 				h.push($.format('<li class="previous"><a href="javascript:void(0);" pn="{0}"><span class="arrow" title="上一页">&lt;</span></a></li>', cp - 1));
 			}
-			
+
 			// 分页
 			if(!mini){
 				if(pc > tc){
@@ -169,14 +169,14 @@
 					}
 				}
 			}
-			
+
 			// 下一页
 			if(cp < pc){
 				h.push($.format('<li class="next"><a href="javascript:void(0);" pn="{0}"><span class="arrow" title="下一页">&gt;</span></a></li>', cp + 1));
 			}
-			
+
 			h.push('</ul>');
-			
+
 			// 添加事件
 			this.html(h.join(''));
 			this.find('a').bind('click', function(){
@@ -186,11 +186,11 @@
 				}
 				return false;
 			});
-			
+
 			return this;
 		}
 	});
-	
+
 	jQuery.extend({
 		/**
 	     * 使用参数格式化字符串
@@ -198,7 +198,7 @@
 	     * params：参数数组，参数序号对应模式中的下标
 	     */
         format: function(source, params) {
-	    	if ( arguments.length == 1 ) 
+	    	if ( arguments.length == 1 )
 	    		return function() {
 	    			var args = $.makeArray(arguments);
 	    			args.unshift(source);
@@ -215,7 +215,7 @@
 	    	});
 	    	return source;
 	    }
-	    
+
 	});
-	
+
 })(window.jQuery);

@@ -79,7 +79,7 @@
 
 <script type="text/javascript">
 seajs.use('post', function (post) {
-	post.init('uedtior');
+	post.init();
 });
 seajs.use('upload');
 </script>

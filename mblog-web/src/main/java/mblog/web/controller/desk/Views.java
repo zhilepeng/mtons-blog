@@ -13,12 +13,18 @@ package mblog.web.controller.desk;
  *
  */
 public interface Views {
+	String REDIRECT_HOME = "redirect:/home";
+
 	String LOGIN = "/login";
 	String REG = "/reg";
 	String REG_RESULT = "/reg_result";
 	
 	String INDEX = "/index";
-	String HOME = "/home";
+
+	String HOME_INDEX = "/home/index";
+	String HOME_POSTS = "/home/posts";
+	String HOME_COMMENTS = "/home/comments";
+
 	String TA_HOME = "/ta/home";
 	String ACCOUNT_AVATAR = "/account/avatar";
 	String ACCOUNT_PASSWORD = "/account/password";

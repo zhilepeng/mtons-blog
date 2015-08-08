@@ -8,8 +8,7 @@ define(function(require, exports, module) {
 	
 	PostView.prototype = {
         name : 'PostView',
-        init : function (options) {
-        	this.options = $.extend({}, this.defaults, options);
+        init : function () {
         	this.bindEvents();
         },
         defaults: {
@@ -56,8 +55,8 @@ define(function(require, exports, module) {
         }
     };
 	
-	exports.init = function (contentId) {
-		new PostView().init($('#' + contentId));
+	exports.init = function () {
+		new PostView().init();
 	}
 	
 });

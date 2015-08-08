@@ -3,8 +3,6 @@
 #set($summary=$!{ret.summary})
 #set($layout = "/default/layout/seo.vm")
 
-<script type="text/javascript" src="$base/assets/js/app/comment.js"></script>
-
 <div class="col-xs-12 col-md-9 side-left">
     <div class="shadow-box">
 		<h1 class="post-title">$!{ret.title}</h1>

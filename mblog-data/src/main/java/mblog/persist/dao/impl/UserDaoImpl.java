@@ -11,6 +11,7 @@ import mtons.modules.pojos.Paging;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -49,6 +50,66 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 	@Override
 	public List<UserPO> findByIds(Set<Long> ids) {
 		return find(Restrictions.in("id", ids));
+	}
+
+	@Override
+	public void identityPost(List<Long> userIds, boolean identity) {
+		String substm = "+ 1";
+
+		if (!identity) {
+			substm = "- 1";
+		}
+		Query query = createSQLQuery("update mto_users_extend set posts = posts " + substm + " where id in (:ids)");
+		query.setParameterList("ids", userIds);
+		query.executeUpdate();
+	}
+
+	@Override
+	public void identityComment(List<Long> userIds, boolean identity) {
+		String substm = "+ 1";
+
+		if (!identity) {
+			substm = "- 1";
+		}
+		Query query = createSQLQuery("update mto_users_extend set comments = comments " + substm + " where id in (:ids)");
+		query.setParameterList("ids", userIds);
+		query.executeUpdate();
+	}
+
+	@Override
+	public void identityFollow(List<Long> userIds, boolean identity) {
+		String substm = "+ 1";
+
+		if (!identity) {
+			substm = "- 1";
+		}
+		Query query = createSQLQuery("update mto_users_extend set follows = follows " + substm + " where id in (:ids)");
+		query.setParameterList("ids", userIds);
+		query.executeUpdate();
+	}
+
+	@Override
+	public void identityFans(List<Long> userIds, boolean identity) {
+		String substm = "+ 1";
+
+		if (!identity) {
+			substm = "- 1";
+		}
+		Query query = createSQLQuery("update mto_users_extend set fans = fans " + substm + " where id in (:ids)");
+		query.setParameterList("ids", userIds);
+		query.executeUpdate();
+	}
+
+	@Override
+	public void identityFavors(List<Long> userIds, boolean identity) {
+		String substm = "+ 1";
+
+		if (!identity) {
+			substm = "- 1";
+		}
+		Query query = createSQLQuery("update mto_users_extend set favors = favors " + substm + " where id in (:ids)");
+		query.setParameterList("ids", userIds);
+		query.executeUpdate();
 	}
 
 }

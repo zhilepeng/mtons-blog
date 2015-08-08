@@ -71,7 +71,7 @@ public interface PostService {
 	 * @param ids
 	 * @return
 	 */
-	Map<Long, Post> findByIds(Set<Long> ids);
+	Map<Long, Post> findMapByIds(Set<Long> ids);
 	
 	/**
 	 * 发布文章
