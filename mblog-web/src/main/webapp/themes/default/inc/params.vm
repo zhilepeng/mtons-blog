@@ -1,0 +1,71 @@
+<script type="text/javascript">
+    window.app = {
+        base: '$base',
+        login: '$!{profile.id}'
+    };
+	
+	window.UMEDITOR_HOME_URL = '$base/assets/vendors/umeditor/';
+	
+    function callLogin() {
+        $('#loginalert').modal();
+    }
+
+    function doLogin() {
+        var un = $('#alt_un').val();
+        var pw = $('#alt_pw').val();
+        jQuery.post('$base/api/login.json', {'username': un, 'password': pw}, function (ret) {
+            if (ret && ret.code == 0) {
+                //$('#loginalert').modal('hide');
+                //window.app.login = ret.data.id;
+                window.location.reload();
+            } else {
+                $('#login_warning').text(ret.message).show();
+            }
+        });
+    }
+
+    $(function () {
+        $('#alt_login').click(function () {
+            doLogin();
+        });
+    })
+</script>
+
+<!-- 弹出框开始-->
+<div id="loginalert" style="display: none; top: 0px;" class="fade in">
+    <div class="pd20 loginpd">
+        <h3><i class="closealert fr" data-dismiss="modal" aria-label="Close"></i><div class="clear"></div></h3>
+        <div class="loginwrap">
+            <div class="loginh">
+                <div class="fl">会员登录</div>
+                <div class="fr">还没有账号<a id="sigup_now" href="$base/reg">立即注册</a></div>
+            </div>
+            <h3><span class="login_warning" id="login_warning" style="display: none;">用户名或密码错误</span><div class="clear"></div></h3>
+            <form action="" method="post" id="login_form">
+                <div class="logininput">
+                    <input type="text" id="alt_un" name="username" class="loginusername" value="" placeholder="用户名">
+                    <input type="password" id="alt_pw" name="password" class="loginuserpasswordp" placeholder="密码">
+                </div>
+                <div class="loginbtn">
+                    <div class="loginsubmit fl"><input type="button" value="登录" id="alt_login" class="btn"></div>
+                    <!--
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="http://www.198zone.com/">忘记密码?</a></div>
+                    -->
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--
+    <div class="thirdlogin">
+        <div class="pd50">
+            <h4>用第三方帐号直接登录</h4>
+            <ul>
+                <li id="sinal"><a href="http://www.198zone.com">微博帐号注册</a></li>
+                <li id="qql" style="margin-right: 0px;"><a href="http://www.198zone.com">QQ帐号注册</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    -->
+</div>

@@ -1,0 +1,46 @@
+<ul class="list-group">
+    <li class="list-group-item">
+        <a href="$base/home?method=posts">我的文章</a>
+    </li>
+    <li class="list-group-item">
+        <a href="$base/home?method=comments">我的评论</a>
+    </li>
+</ul>
+
+<div class="widget-box shadow-box">
+    <div class="title">
+        <h3><i class="fa fa-area-chart"></i> 热门文章</h3>
+    </div>
+    <ul class="box-list" id="hots">
+    </ul>
+</div>
+
+<div class="widget-box shadow-box">
+    <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
+    <ul class="tags m10 text-center" id="hottags">
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var hot_li_template = '<li><div class="li-out"><span class="last"><i>{0}</i></span><span class="name"><a  href="{1}">{2}</a></span><span class="nums">{3}</span></div></li>'
+    var tag_li_template	= '<li class="mb6"><a href="$base/tag/{0}/" class="tag" title="有{1}篇文章">{2}</a></li>';
+
+    seajs.use('sidebox', function (sidebox) {
+        sidebox.init({
+            hotUrl : '$base/api/hots.json',
+            hotTagUrl : '$base/api/hot_tags.json',
+
+            maxResults :10,
+            // callback
+            onLoadHot : function (i, data) {
+                var url = '$base/view/' + data.id;
+                var item = jQuery.format(hot_li_template, i + 1, url, data.title, data.views);
+                return item;
+            },
+            onLoadHotTag : function (i, data) {
+                var item = jQuery.format(tag_li_template, data.name, data.posts, data.name);
+                return item;
+            }
+        });
+    });
+</script>
