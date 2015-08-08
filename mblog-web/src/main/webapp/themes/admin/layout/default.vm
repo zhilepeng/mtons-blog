@@ -18,7 +18,7 @@
 	
 	<script type='text/javascript' src='$base/assets/js/jquery.min.js'></script>
 	<script type="text/javascript" src="$base/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-	<script type='text/javascript' src='$base/assets/js/jquery-validate.js'></script>
+	<script type='text/javascript' src='$base/assets/vendors/validate/jquery-validate.js'></script>
 	
 	<script type="text/javascript" src="$base/assets/admin/js/app.js"></script>
 	<script type="text/javascript" src="$base/assets/admin/js/app.plugin.js"></script>

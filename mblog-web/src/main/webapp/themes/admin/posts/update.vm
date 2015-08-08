@@ -6,7 +6,6 @@
 <script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="$base/assets/vendors/umeditor/umeditor.min.js"></script>
 <script type="text/javascript" src="$base/assets/js/plugins.js"></script>
-<script type="text/javascript" src="$base/assets/js/tag-it.js"></script>
 
 <div class="panel m-t-large m-b">
 	<header class="panel-heading">文章编辑</header>
@@ -51,11 +50,13 @@
 </div>
 <script type="text/javascript">
 $(function() {
-	selectNav(1);
-	
+
 	UM.getEditor('blog_content',{
-		toolbar: ["bold","italic","underline","justifyleft","justifycenter",
-			"justifyright","blockquote","link","unlink","inserttable","removeformat","fullscreen"],
+        imageUrl: "$base/aj_um_upload.json",
+        imagePath: "$base",
+        toolbar: ["undo", "redo", "|", "bold", "italic", "underline", "|", "justifyleft", "justifycenter",
+            "justifyright", "|", "link", "unlink", "|", "insertorderedlist", "insertunorderedlist",
+            "|", "emotion", "image", "removeformat", "fullscreen"],
 		wordCount:true,
 		maximumWords:2000,
 		initialFrameWidth:'100%',
