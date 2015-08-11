@@ -5,7 +5,7 @@ define(function(require, exports, module) {
 	
 	umEditor = UM.getEditor('content', {
 		imageUrl: window.app.base + "/aj_um_upload.json",
-    	imagePath: "$base",
+    	imagePath: window.app.base,
         toolbar: ["undo", "redo", "|", "bold", "italic", "underline", "|", "justifyleft", "justifycenter",
             "justifyright", "|", "link", "unlink", "|", "insertorderedlist", "insertunorderedlist", 
 			"|", "emotion", "image", "removeformat", "fullscreen"],

@@ -21,6 +21,8 @@ public class AuthMenu implements Serializable{
 	
 	private String parentIds;
 	
+	private String icon;
+	
 	private List<AuthMenu> children;
 	
 	public long getId() {
@@ -85,6 +87,14 @@ public class AuthMenu implements Serializable{
 
 	public void setChildren(List<AuthMenu> children) {
 		this.children = children;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	
