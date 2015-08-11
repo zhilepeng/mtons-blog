@@ -151,10 +151,11 @@ CREATE TABLE `mto_auth_menu` (
   `sort` int(11) NOT NULL,
   `url` varchar(255) DEFAULT NULL,
   `parent_id` bigint(20) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_fynq2bfwabynqmnauw69b7ulc` (`parent_id`),
   CONSTRAINT `FK_fynq2bfwabynqmnauw69b7ulc` FOREIGN KEY (`parent_id`) REFERENCES `mto_auth_menu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_auth_menu
@@ -207,7 +208,23 @@ CREATE TABLE `mto_role_menu` (
 -- ----------------------------
 -- Records of mto_role_menu
 -- ----------------------------
+INSERT INTO `mto_role_menu` VALUES ('1', '4');
+INSERT INTO `mto_role_menu` VALUES ('1', '6');
+INSERT INTO `mto_role_menu` VALUES ('1', '2');
 INSERT INTO `mto_role_menu` VALUES ('1', '1');
+INSERT INTO `mto_role_menu` VALUES ('1', '3');
+INSERT INTO `mto_role_menu` VALUES ('1', '5');
+INSERT INTO `mto_role_menu` VALUES ('1', '7');
+INSERT INTO `mto_role_menu` VALUES ('1', '8');
+INSERT INTO `mto_role_menu` VALUES ('1', '9');
+INSERT INTO `mto_role_menu` VALUES ('1', '10');
+INSERT INTO `mto_role_menu` VALUES ('1', '11');
+INSERT INTO `mto_role_menu` VALUES ('1', '12');
+INSERT INTO `mto_role_menu` VALUES ('1', '13');
+INSERT INTO `mto_role_menu` VALUES ('1', '14');
+INSERT INTO `mto_role_menu` VALUES ('1', '15');
+INSERT INTO `mto_role_menu` VALUES ('1', '16');
+INSERT INTO `mto_role_menu` VALUES ('1', '17');
 
 -- ----------------------------
 -- Table structure for mto_user_role
