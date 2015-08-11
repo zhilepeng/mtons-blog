@@ -159,7 +159,23 @@ CREATE TABLE `mto_auth_menu` (
 -- ----------------------------
 -- Records of mto_auth_menu
 -- ----------------------------
-INSERT INTO `mto_auth_menu` VALUES ('1', '后台管理', '', 'admin', '1', '/admin', null);
+INSERT INTO `mto_auth_menu` VALUES ('1', '根目录', '', '', '1', '/', null, null);
+INSERT INTO `mto_auth_menu` VALUES ('2', '后台管理', null, 'admin', '1', 'admin', '1', null);
+INSERT INTO `mto_auth_menu` VALUES ('3', '我的主页', null, '', '1', '', '1', null);
+INSERT INTO `mto_auth_menu` VALUES ('4', '文章管理', null, 'admin:posts:view', '2', 'admin/posts/list', '2', 'fa fa-edit icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('5', '文章修改', null, 'admin:posts:edit', '1', null, '4', null);
+INSERT INTO `mto_auth_menu` VALUES ('6', '用户管理', null, 'admin:users:view', '3', 'admin/users/list', '2', 'fa fa-user icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('7', '禁用用户', null, 'admin:users:edit', '1', null, '6', null);
+INSERT INTO `mto_auth_menu` VALUES ('8', '修改密码', null, 'admin:users:edit', '1', null, '6', null);
+INSERT INTO `mto_auth_menu` VALUES ('9', '评论管理', null, 'admin:comments:view', '4', 'admin/comments/list', '2', 'fa fa-comments-o icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('10', '删除评论', null, 'admin:comments:edit', '1', null, '9', null);
+INSERT INTO `mto_auth_menu` VALUES ('11', '标签管理', null, 'admin:tags:view', '5', 'admin/tags/list', '2', 'fa fa-tags icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('12', '删除标签', null, 'admin:tags:edit', '1', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('13', '修改标签', null, 'admin:tags:edit', '2', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('14', '推荐标签', null, 'admin:tags:edit', '3', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('15', '系统配置', null, 'admin:config:view', '6', 'admin/config/', '2', 'fa fa-cog icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('16', '修改配置', null, 'admin:config:edit', '1', null, '15', null);
+INSERT INTO `mto_auth_menu` VALUES ('17', 'dashboard', null, 'admin', '1', 'admin', '2', 'fa fa-dashboard icon-xlarge');
 
 -- ----------------------------
 -- Table structure for mto_role
