@@ -35,6 +35,8 @@ public class AuthMenuPO {
 	
 	private int sort;
 	
+	private String icon;
+	
 	private String permission;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -124,6 +126,19 @@ public class AuthMenuPO {
 
 	public void setChildren(List<AuthMenuPO> children) {
 		this.children = children;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthMenuPO [name=" + name + "]";
 	}
 	
 	

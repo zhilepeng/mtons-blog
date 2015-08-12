@@ -38,12 +38,11 @@
 <!-- nav -->
 <nav id="nav" class="nav-primary visible-lg nav-vertical">
 	<ul class="nav" data-spy="affix" data-offset-top="50">
-		<li><a href="$base/admin" nav="1"><i class="fa fa-dashboard icon-xlarge"></i>Dashboard</a></li>
-		<li><a href="$base/admin/posts/list" nav="2"><i class="fa fa-edit icon-xlarge"></i>文章管理</a></li>
-		<li><a href="$base/admin/tags/list" nav="3"><i class="fa fa-tags icon-xlarge"></i>标签管理</a></li>
-		<li><a href="$base/admin/comments/list" nav="4"><i class="fa fa-comments-o icon-xlarge"></i>评论管理</a></li>
-		<li><a href="$base/admin/users/list" nav="5"><i class="fa fa-user icon-xlarge"></i>用户管理</a></li>
-		<li><a href="$base/admin/config/" nav="6"><i class="fa fa-cog icon-xlarge"></i>系统配置</a></li>
+		#foreach($menu in $profile.authMenus)
+			#if($menu.parent.id==2)
+				<li><a href="$base/$menu.url" nav="$menu.sort"><i class="$menu.icon"></i>$menu.name</a></li>
+			#end
+		#end
 	</ul>
 </nav>
 <!-- / nav -->

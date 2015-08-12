@@ -22,6 +22,14 @@ public class AuthMenuDaoImpl extends DaoImpl<AuthMenuPO> implements AuthMenuDao{
 		super(AuthMenuPO.class);
 	}
 
+	@Override
+	public List<AuthMenuPO> findByParentId(Long parentId) {
+		// TODO Auto-generated method stub
+		Query query = createQuery("from AuthMenuPO am where am.parent.id = ? order by am.sort");
+		query.setLong(0, parentId);
+		return query.list();
+	}
+
 
 
 
