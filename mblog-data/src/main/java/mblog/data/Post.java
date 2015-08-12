@@ -210,15 +210,4 @@ public class Post implements Serializable {
 		this.images = images;
 	}
 	
-	public List<Attach> getValuedAlbums(){
-		List<Attach> list = getAlbums();
-		if(list!=null){
-			for(Attach attach : list){
-				if(StringUtils.isBlank(attach.getOriginal())){
-					list.remove(attach);
-				}
-			}
-		}
-		return list;
-	}
 }

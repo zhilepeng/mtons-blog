@@ -1,4 +1,4 @@
-package mblog.persist.utils;
+package mblog.data.test;
 
 import javax.sql.DataSource;
 

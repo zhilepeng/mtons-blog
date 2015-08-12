@@ -57,12 +57,12 @@ public class PostController extends BaseController {
 			UserProfile up = getSubject().getProfile();
 			
 			//处理图片，保存和缩放相关
-			handleAlbums(blog.getValuedAlbums());
+			handleAlbums(blog.getAlbums());
 			blog.setAuthorId(up.getId());
 			
 			postPlanet.post(blog);
 		}
-		return "redirect:/home";
+		return Views.REDIRECT_HOME;
 	}
 	
 	@RequestMapping("/delete/{id}")

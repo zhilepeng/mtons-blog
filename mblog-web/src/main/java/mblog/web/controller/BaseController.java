@@ -6,12 +6,12 @@
 package mblog.web.controller;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import mtons.modules.utils.MD5Helper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -26,6 +26,7 @@ import mblog.extend.upload.FileRepo;
 import mblog.shiro.authc.AccountSubject;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
+import mtons.modules.utils.MD5Helper;
 
 /**
  * Controller 基类
@@ -113,7 +114,17 @@ public class BaseController {
 		if (albums == null || albums.isEmpty()) {
 			return;
 		}
-		albums.forEach(alb -> {
+		
+		Iterator<Attach> it = albums.iterator();
+		
+		while (it.hasNext()) {
+			Attach alb = it.next();
+			
+			if (alb == null ||  StringUtils.isBlank(alb.getOriginal())) {
+				it.remove();
+				continue;
+			}
+			
 			String root = fileRepo.getRoot();
 			File temp = new File(root + alb.getOriginal());
 			
@@ -133,7 +144,7 @@ public class BaseController {
 					temp.delete();
 				}
 			}
-		});
+		}
 	}
 	
 }
