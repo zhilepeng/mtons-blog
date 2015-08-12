@@ -7,13 +7,9 @@
 			<figure>
 				<a href="$base/tag/${row.name}">
 					#if($!{row.post.album})
-						#if($!row.post.album.preview.startsWith("http"))
-							<img src="$base/assets/images/spinner.gif" data-original="${row.post.album.preview}"/>
-						#else
-							<img src="$base/assets/images/spinner.gif" data-original="$base${row.post.album.preview}"/>
-						#end
+						#albShow(${row.post.album})
 					#else
-						<div class="txt">$!{row.post.summary}</div>
+                    <div class="txt">$!{row.post.summary}</div>
 					#end
 					<span class="itag">${row.name}</span>
 				</a>

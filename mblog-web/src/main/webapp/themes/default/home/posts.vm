@@ -28,7 +28,7 @@
 		</ul>
 	</div>
 	<!-- tab end -->
-	
+
 	<div class="shadow-box">
 		<!-- tab panes -->
         <div class="stream-list">
@@ -45,7 +45,7 @@
 			    <div class="summary">
 			        <h2 class="title">#postLink($row)</h2>
 			        <div class="excerpt wordbreak hidden-xs">$!{row.summary} &nbsp;</div>
-					
+
 					<!--前端图片显示样式-->
             		#if($!{row.albums})
             		<!--Start-->
@@ -54,7 +54,7 @@
 							#if ($velocityCount <= 3)
                 			<div class="media col-xs-4 col-sm-4 col-md-4">
                     			<a title="${row.title}" href="$base${alb.original}">
-                    				<img src="$base/assets/images/spinner.gif" data-original="$base${alb.preview}"/>
+									#albShow($!alb)
                     			</a>
                 			</div>
                 			#end
@@ -62,7 +62,7 @@
             		</div>
             		<!--End-->
             		#end
-            		
+
 			    	<div class="foot-block clearfix">
                         <div class="author">
                             <time>$relDate.format($row.created)</time>
@@ -81,13 +81,13 @@
 			    </div>
         	</div>
 			#end
-			
+
 			#if($page.results.size() == 0)
     		<div class="stream-item">
 				<i class="fa fa-info-circle fa-lg"></i> 您还没发表过文章!
             </div>
 			#end
-			
+
 		</div>
 	</div>
 	<div class="text-center clr">
@@ -104,7 +104,7 @@
 $(function() {
 	$('a[data-evt=trash]').click(function () {
 		var id = $(this).attr('data-id');
-		
+
 		layer.confirm('确定删除此项吗?', {
             btn: ['确定','取消'], //按钮
             shade: false //不显示遮罩
@@ -116,9 +116,9 @@ $(function() {
 					$('#loop-' + id).remove();
 				}
 			});
-            
+
         }, function(){
-			
+
         });
 	});
 })

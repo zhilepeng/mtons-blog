@@ -29,7 +29,7 @@ $user.username
     			#if ($velocityCount <= 3)
     			<div class="media col-xs-4 col-sm-4 col-md-4">
         			<a title="${row.title}" href="$base${alb.original}">
-        				<img src="$base/assets/images/spinner.gif" data-original="$base${alb.preview}"/>
+						#albShow($!alb)
         			</a>
     			</div>
     			#end
@@ -165,4 +165,12 @@ $user.username
 
 #macro (postLink $view)
 	<a href="$base/view/${view.id}">${view.title}</a>
+#end
+
+#macro (albShow $att)
+	#if($att.store == 1)
+        <img src="$base/assets/images/spinner.gif" data-original="${att.preview}"/>
+	#else
+        <img src="$base/assets/images/spinner.gif" data-original="$base${att.preview}"/>
+	#end
 #end

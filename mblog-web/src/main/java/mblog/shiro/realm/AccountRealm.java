@@ -2,14 +2,6 @@ package mblog.shiro.realm;
 
 import java.util.List;
 
-import mblog.data.AccountProfile;
-import mblog.data.AuthMenu;
-import mblog.data.User;
-import mblog.lang.EnumRole;
-import mblog.persist.service.UserService;
-import mblog.shiro.authc.AccountAuthenticationInfo;
-import mtons.modules.lang.Const;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -21,6 +13,14 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+
+import mblog.data.AccountProfile;
+import mblog.data.AuthMenu;
+import mblog.data.User;
+import mblog.lang.EnumRole;
+import mblog.persist.service.UserService;
+import mblog.shiro.authc.AccountAuthenticationInfo;
+import mtons.modules.lang.Const;
 
 public class AccountRealm extends AuthorizingRealm {
     private UserService userService;
@@ -40,8 +40,9 @@ public class AccountRealm extends AuthorizingRealm {
             User user = userService.get(username);
             if (user != null){
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-                EnumRole role = EnumRole.getEnum(user.getRoleId());
+//                EnumRole role = EnumRole.getEnum(user.getRoleId());
                 List<AuthMenu> menuList = userService.getMenuList(user.getId());
+                
                 for (AuthMenu menu : menuList){
     				if (StringUtils.isNotBlank(menu.getPermission())){
     					// 添加基于Permission的权限信息
@@ -70,7 +71,7 @@ public class AccountRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
     	AccountProfile profile = getAccount(userService, token);
         
-        if(profile.getStatus() != Const.STATUS_NORMAL){
+    	if(profile.getStatus() == Const.STATUS_CLOSED){
             throw new LockedAccountException(profile.getName());
         }
         
