@@ -21,6 +21,7 @@ import mblog.extend.event.LogEvent;
 import mblog.extend.planet.PostPlanet;
 import mblog.lang.EnumLog;
 import mblog.persist.service.GroupService;
+import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Data;
@@ -35,6 +36,8 @@ import mtons.modules.pojos.UserProfile;
 public class PostController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
+	@Autowired
+	private PostService postService;
 	@Autowired
 	private GroupService groupService;
 	@Autowired
@@ -53,12 +56,13 @@ public class PostController extends BaseController {
 		if (blog != null && StringUtils.isNotBlank(blog.getTitle())) {
 			UserProfile up = getSubject().getProfile();
 			
-			handleAlbums(blog.getAlbums());
+			//处理图片，保存和缩放相关
+			handleAlbums(blog.getValuedAlbums());
 			blog.setAuthorId(up.getId());
 			
 			postPlanet.post(blog);
 		}
-		return Views.REDIRECT_HOME;
+		return "redirect:/home";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -74,6 +78,22 @@ public class PostController extends BaseController {
 			}
 		}
 		return data;
+	}
+	
+	/**
+	 * 跳转到文章编辑方法
+	 * @param id
+	 * @param model
+	 * @param P
+	 * @return
+	 */
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String toUpdate(@PathVariable Long id, ModelMap model) {
+		
+		Post ret = postService.get(id);
+		model.put("post", ret);
+		return view("blog", model);
+//		return "/admin/posts/update";
 	}
 	
 	@RequestMapping("/favor")
