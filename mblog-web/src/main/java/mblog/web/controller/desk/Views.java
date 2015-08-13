@@ -18,6 +18,7 @@ public interface Views {
 	String LOGIN = "/login";
 	String REG = "/reg";
 	String REG_RESULT = "/reg_result";
+	String OAUTH_REG = "/oauth_reg";
 	
 	String INDEX = "/index";
 

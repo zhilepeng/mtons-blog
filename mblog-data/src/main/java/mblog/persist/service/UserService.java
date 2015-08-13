@@ -30,7 +30,7 @@ public interface UserService {
 	 * 注册
 	 * @param user
 	 */
-	void register(User user);
+	User register(User user);
 	
 	/**
 	 * 修改用户信息
@@ -47,6 +47,8 @@ public interface UserService {
 	User get(long id);
 	
 	User get(String username);
+
+	String getUserPassword(String username);
 
 	/**
 	 * 获取用户详细信息

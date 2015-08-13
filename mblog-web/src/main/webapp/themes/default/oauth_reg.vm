@@ -5,28 +5,28 @@
     <a href="$base/index">
         <img src="$base/assets/images/logo/m90.png" height="72" width="72">
     </a>
-    <h1>注册你的 Mtons 账号</h1>
-    <a href="$base/login" class="signup-link gapps"><span>已有账号, 登录</span></a>
+    <h1>离成功只差一步</h1>
     <hr>
-    <form action="reg" method="post">
+    <form action="$base/oauth/callback/bind_oauth" method="post">
+        <input type="hidden" name="oauthType" value="$!{open.oauthType}"/>
+
+        <input type="hidden" name="code" value="$!{open.oauthCode}"/>
+        <input type="hidden" name="oauthUserId" value="$!{open.oauthUserId}"/>
+        <input type="hidden" name="accessToken" value="$!{open.accessToken}"/>
+        <input type="hidden" name="expireIn" value="$!{open.expireIn}"/>
+        <input type="hidden" name="refreshToken" value="$!{open.refreshToken}"/>
+        <input type="hidden" name="avatar" value="$!{open.avatar}"/>
+
         <div id="message">
 			#parse("/default/inc/action_message.vm")
         </div>
         <label for="id_email">用户名:</label>
         <div id="id_email">
-            <input maxlength="18" class="form-control border" name="username" placeholder="用户名" type="text" data-required>
+            <input maxlength="18" class="form-control border" name="username" placeholder="用户名" type="text" value="$!{open.username}" data-required>
         </div>
         <label for="id_name">昵称:</label>
         <div id="id_name">
-            <input maxlength="9" class="form-control border" name="name" placeholder="昵称" type="text" data-required>
-        </div>
-        <label for="id_password">密码:</label>
-        <div id="id_password">
-            <input id="password" class="form-control border" maxlength="18" name="password" placeholder="密码" type="password" data-required>
-        </div>
-        <label for="id_password2">确认密码:</label>
-        <div id="id_password2">
-            <input maxlength="18" class="form-control border" name="password2" placeholder="请再输入一次密码" type="password" data-required data-conditional="confirm" data-describedby="message" data-description="passwd">
+            <input maxlength="9" class="form-control border" name="nickname" placeholder="昵称" type="text" value="$!{open.nickname}" data-required>
         </div>
         <input type="submit" class="btn btn-success border" value="注 册">
     </form>

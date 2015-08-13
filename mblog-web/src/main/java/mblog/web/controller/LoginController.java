@@ -56,8 +56,6 @@ public class LoginController extends BaseController {
             } else {
             	model.put("message", "用户认证失败");
             }
-        } catch (IllegalStateException e) {
-            model.put("message", e.getMessage());
         }
         return ret;
 	}

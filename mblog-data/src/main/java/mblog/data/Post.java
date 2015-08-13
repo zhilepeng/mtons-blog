@@ -209,5 +209,4 @@ public class Post implements Serializable {
 	public void setImages(int images) {
 		this.images = images;
 	}
-	
 }

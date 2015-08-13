@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>$!title - $!{site_name}</title>
+	<title>$!title</title>
 	<meta name="keywords" content="mtons,$!{site_keywords}">
 	<meta name="description" content="$!{site_description}">
 
@@ -35,7 +35,7 @@
     <![endif]-->
 	
 	<!-- Favicons -->
-	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m.png"/>
+	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m99.png"/>
 	<link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
 
 </head>

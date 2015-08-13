@@ -11,7 +11,7 @@ import mtons.modules.persist.impl.DaoImpl;
 public class AuthMenuDaoImpl extends DaoImpl<AuthMenuPO> implements AuthMenuDao{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 

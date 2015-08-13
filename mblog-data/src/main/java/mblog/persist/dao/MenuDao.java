@@ -16,5 +16,4 @@ import mtons.modules.persist.Dao;
  */
 public interface MenuDao extends Dao<MenuPO> {
 	List<MenuPO> findAll();
-	
 }

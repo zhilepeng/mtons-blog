@@ -17,17 +17,12 @@
 	<div class="container mode-link">
         <h3 class="t-h3">友情链接</h3>
         <ul class="list-inline">
-			<li><a href="http://jfbbs.tomoya.cn/" target="_blank" title="JFinal社区">JFinal社区</a></li>
-			<li><a href="http://bbs.90ithome.com/" target="_blank" title="90IT之家">90IT之家</a></li>
-			<li><a href="http://zsl.90ithome.com/" target="_blank" title="小林的个人博客">小林的个人博客</a></li>
-            <li><a href="http://www.traxex.cn/" target="_blank" title="崔希丝的梦">崔希丝的梦</a></li>
-            <li><a href="http://www.javazhijia.com/" target="_blank" title="Java之家">Java之家</a></li>
-            <li><a href="http://www.oschina.net" target="_blank" title="开源中国社区">开源中国社区</a></li>
+			<li><a href="http://mtons.com/" target="_blank" title="Mtons博客">Mtons博客</a></li>
         </ul>
     </div>
 	<div class="container copy-right">
 		<span>Copyright © <a href="#">Mtons</a>（<a
-			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备********号</a>)
 		</span>
 		<span class="pull-right">Powered By <a href="http://mtons.com" target="_blank">Mtons</a></span>
 	</div>

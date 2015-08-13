@@ -38,5 +38,5 @@ public class IndexController extends BaseController{
 		model.put("ord", order);
 		return getView(Views.INDEX);
 	}
-	
+
 }

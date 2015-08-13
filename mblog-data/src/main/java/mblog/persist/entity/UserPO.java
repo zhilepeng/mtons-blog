@@ -48,6 +48,7 @@ public class UserPO {
 	
 	@Column(name = "name", length = 18)
 	private String name;
+
 	private int gender;
 
 	@Column(name = "email", length = 128)
@@ -58,6 +59,8 @@ public class UserPO {
 
 	private Date created;
 	private Date updated;
+
+	private int source;
 
 	@Column(name = "last_login")
 	private Date lastLogin;
@@ -204,4 +207,11 @@ public class UserPO {
 		this.roles = roles;
 	}
 
+	public int getSource() {
+		return source;
+	}
+
+	public void setSource(int source) {
+		this.source = source;
+	}
 }

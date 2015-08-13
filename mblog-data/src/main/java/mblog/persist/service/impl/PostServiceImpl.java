@@ -100,6 +100,7 @@ public class PostServiceImpl implements PostService {
 		for (PostPO po : list) {
 			Post m = BeanMapUtils.copy(po ,0);
 
+			// 处理高亮
 			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
 			String summary = highlighter.getBestFragment(standardAnalyzer, "summary", m.getSummary());
 			String tags = highlighter.getBestFragment(standardAnalyzer, "tags", m.getTags());
@@ -116,6 +117,7 @@ public class PostServiceImpl implements PostService {
 			rets.add(m);
 			
 			ids.add(po.getId());
+			uids.add(po.getAuthorId());
 		}
 
 		// 加载相册

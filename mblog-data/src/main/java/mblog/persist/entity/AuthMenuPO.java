@@ -35,8 +35,6 @@ public class AuthMenuPO {
 	
 	private int sort;
 	
-	private String icon;
-	
 	private String permission;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -45,7 +43,9 @@ public class AuthMenuPO {
 	
 	@Column(name="parent_ids")
 	private String parentIds;
-	
+
+	private String icon;
+
 	@ManyToMany(mappedBy = "authMenus", fetch=FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -135,12 +135,4 @@ public class AuthMenuPO {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
-	@Override
-	public String toString() {
-		return "AuthMenuPO [name=" + name + "]";
-	}
-	
-	
-
 }

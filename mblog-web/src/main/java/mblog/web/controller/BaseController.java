@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import mtons.modules.utils.MD5Helper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -26,7 +27,6 @@ import mblog.extend.upload.FileRepo;
 import mblog.shiro.authc.AccountSubject;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
-import mtons.modules.utils.MD5Helper;
 
 /**
  * Controller 基类
@@ -114,29 +114,29 @@ public class BaseController {
 		if (albums == null || albums.isEmpty()) {
 			return;
 		}
-		
+
 		Iterator<Attach> it = albums.iterator();
-		
+
 		while (it.hasNext()) {
 			Attach alb = it.next();
-			
+
 			if (alb == null ||  StringUtils.isBlank(alb.getOriginal())) {
 				it.remove();
 				continue;
 			}
-			
+
 			String root = fileRepo.getRoot();
 			File temp = new File(root + alb.getOriginal());
-			
+
 			try {
 				// 保存原图
 				String orig = fileRepo.storeScale(temp, appContext.getOrigDir(), 750);
 				alb.setOriginal(orig);
-				
+
 				// 创建缩放图片
 				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 360);
 				alb.setPreview(preview);
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import mblog.data.UserFull;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.util.Assert;
 import mblog.data.AccountProfile;
 import mblog.data.AuthMenu;
 import mblog.data.User;
-import mblog.data.UserFull;
 import mblog.persist.dao.UserDao;
 import mblog.persist.entity.AuthMenuPO;
 import mblog.persist.entity.RolePO;
@@ -26,6 +26,7 @@ import mblog.persist.entity.UserExtendPO;
 import mblog.persist.entity.UserPO;
 import mblog.persist.service.UserService;
 import mblog.persist.utils.BeanMapUtils;
+import mtons.modules.lang.Const;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Paging;
 import mtons.modules.utils.MD5Helper;
@@ -41,6 +42,8 @@ public class UserServiceImpl implements UserService {
 		AccountProfile u = null;
 
 		Assert.notNull(po, "账户不存在");
+
+		Assert.state(po.getStatus() != Const.STATUS_CLOSED, "您的账户已被封禁");
 
 		if (StringUtils.equals(po.getPassword(), password)) {
 			po.setLastLogin(Calendar.getInstance().getTime());
@@ -61,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void register(User user) {
+	public User register(User user) {
 		Assert.notNull(user, "Parameter user can not be null!");
 		
 		Assert.hasLength(user.getUsername(), "用户名不能为空!");
@@ -87,6 +90,8 @@ public class UserServiceImpl implements UserService {
 		po.setExtend(extend);
 		
 		userDao.save(po);
+
+		return BeanMapUtils.copy(po);
 	}
 
 	@Override
@@ -121,6 +126,13 @@ public class UserServiceImpl implements UserService {
 			ret = BeanMapUtils.copy(po);
 		}
 		return ret;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public String getUserPassword(String username) {
+		UserPO po = userDao.get(username);
+		return po.getPassword();
 	}
 
 	@Override

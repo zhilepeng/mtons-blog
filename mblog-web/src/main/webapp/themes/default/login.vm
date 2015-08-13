@@ -4,11 +4,15 @@
     <div class="vegas-overlay" style="opacity: 0.2; margin: 0px; padding: 0px; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; background-image: url($base/assets/images/overlay.png); z-index: -1;"></div>
 
     <a href="${base}/index">
-        <img src="$base/assets/images/logo/m.png" height="72" width="72">
+        <img src="$base/assets/images/logo/m90.png" height="72" width="72">
     </a>
     <h1>登录你的 Mtons</h1>
-    <a href="$base/reg" class="signup-link gapps"><span>还没有账号? 注册</span></a>
+    <a href="https://api.weibo.com/oauth2/authorize?client_id=3554307689&redirect_uri=http://mtons.com/oauth/callback/weibo&response_type=code&state=1" class="open sina"><span>微博帐号登录</span></a>
+    <a href="https://graph.qq.com/oauth2.0/authorize?client_id=101235848&response_type=code&scope=get_user_info,add_share&state=2&redirect_uri=http://mtons.com/oauth/callback/qq" class="open qq"><span>QQ帐号登录</span></a>
     <hr>
+    <p>
+        如果没有账号:<a href="$base/reg">注册</a>
+    </p>
     <form action="login" method="post">
         <div id="message">
 			#if($message)
@@ -23,9 +27,9 @@
         <div id="id_password">
             <input name="password" class="form-control border" placeholder="密码" type="password" data-required>
         </div>
-        <input type="submit" class="btn btn-primary border" value="登录 Use it">
+        <input type="submit" class="btn btn-success border" value="登录 Use it">
         <a href="/accounts/password/reset/" class="forgot" style="display: none;">
-            Forgot password?
+            还没有账号? 注册
         </a>
     </form>
 </div>

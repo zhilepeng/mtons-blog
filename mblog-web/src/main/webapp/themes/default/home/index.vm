@@ -7,7 +7,7 @@
 		<div class="user-info">
 			<span class="avatar-80">
     			<a href="$base/account/profile">
-    				<img class="img-circle" src="$base${profile.avatar}">
+					#showAva(${profile.avatar}, "img-circle")
     			</a>
 			</span>
 		</div>

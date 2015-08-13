@@ -21,7 +21,7 @@
 	<div class="g-btm">
         <div class="pull-left">
             <div class="g-ava">
-                <img src="$base${row.author.avatar}"/>
+                #showAva(${row.author.avatar})
             </div>
             <div class="caption"><time>$relDate.format($row.created)</time> 来自 <a href="$base/ta/${row.author.id}">#showName(${row.author})</a></div>
         </div>

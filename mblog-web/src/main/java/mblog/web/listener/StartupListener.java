@@ -63,7 +63,7 @@ public class StartupListener implements InitializingBean, ServletContextAware {
             	System.out.println("+---Mblog加载完毕,您已经可以使用了---+");
             	System.out.println("+----------------------------+");
             }
-        }, 10 * Consts.TIME_MIN);
+        }, 5 * Consts.TIME_MIN);
     }
 
 	@Override

@@ -72,7 +72,7 @@ public class BeanMapUtils {
 		passport.setAuthMenus(menus);
 		return passport;
 	}
-	
+
 	public static Comment copy(CommentPO po) {
 		Comment ret = new Comment();
 		BeanUtils.copyProperties(po, ret);

@@ -20,7 +20,7 @@ public class AuthMenu implements Serializable{
 	private AuthMenu parent;
 	
 	private String parentIds;
-	
+
 	private String icon;
 	
 	private List<AuthMenu> children;
@@ -89,6 +89,7 @@ public class AuthMenu implements Serializable{
 		this.children = children;
 	}
 
+
 	public String getIcon() {
 		return icon;
 	}
@@ -96,7 +97,4 @@ public class AuthMenu implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	
-	
-
 }

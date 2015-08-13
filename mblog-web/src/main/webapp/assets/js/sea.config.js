@@ -1,49 +1,49 @@
 seajs.config({
-alias: {
+    alias: {
         'jquery': 'jquery.min',
-            '$': 'jquery.min',
-            'jquery.migrate': 'jquery-migrate-1.2.1.min',
-            'plugins': 'plugins',
+        '$': 'jquery.min',
+        'jquery.migrate': 'jquery-migrate-1.2.1.min',
+        'plugins': 'plugins',
 
-                /* modules */
-            'main': 'modules/main',
-            'sidebox': 'modules/sidebox',
-            'post': 'modules/post',
-            'upload': 'modules/upload',
-            'video': 'modules/video',
-            'comment': 'modules/comment',
-            'phiz': 'modules/phiz',
-            'avatar': 'modules/avatar',
-            'editor': 'modules/editor',
+            /* modules */
+        'main': 'modules/main',
+        'sidebox': 'modules/sidebox',
+        'post': 'modules/post',
+        'upload': 'modules/upload',
+        'video': 'modules/video',
+        'comment': 'modules/comment',
+        'phiz': 'modules/phiz',
+        'avatar': 'modules/avatar',
+        'editor': 'modules/editor',
 
-                /* vendors */
-            'bootstrap': 'vendors/bootstrap/js/bootstrap.min',
-            'baguetteBox': 'vendors/baguette/baguetteBox.min',
-            'layer': 'vendors/layer/layer',
-            'pace': 'vendors/pace/pace.min',
-            'dmuploader': 'vendors/uploader/dmuploader',
-            'jcrop': 'vendors/jcrop/jquery.jcrop.min',
-            'validate': 'vendors/validate/jquery-validate',
-            'lazyload': 'vendors/lazyload/jquery.lazyload',
+            /* vendors */
+        'bootstrap': 'vendors/bootstrap/js/bootstrap.min',
+        'baguetteBox': 'vendors/baguette/baguetteBox.min',
+        'layer': 'vendors/layer/layer',
+        'pace': 'vendors/pace/pace.min',
+        'dmuploader': 'vendors/uploader/dmuploader',
+        'jcrop': 'vendors/jcrop/jquery.jcrop.min',
+        'validate': 'vendors/validate/jquery-validate',
+        'lazyload': 'vendors/lazyload/jquery.lazyload',
 
-            'umeditor': 'vendors/umeditor/umeditor.min',
-            'umeditor.config': 'vendors/umeditor/umeditor.config'
-},
+        'umeditor': 'vendors/umeditor/umeditor.min',
+        'umeditor.config': 'vendors/umeditor/umeditor.config'
+    },
 
-// 预加载项
-preload: [this.JSON ? '' : 'json', 'jquery'],
+    // 预加载项
+    preload: [this.JSON ? '' : 'json', 'jquery'],
 
         // 路径配置
     paths: {
         'vendors': '../../vendors',
-},
+    },
 
-// 变量配置
-vars: {
+    // 变量配置
+    vars: {
         'locale': 'zh-cn'
-},
+    },
 
-charset: 'utf-8',
+    charset: 'utf-8',
 
     debug: false
 });

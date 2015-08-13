@@ -13,7 +13,7 @@ $user.username
 	<div class="blog-rank">
 		<div class="user" title="${row.author.name}">
 			<a href="$base/ta/${row.author.id}">
-            	<img class="img-circle" src="$base${row.author.avatar}">
+                #showAva(${row.author.avatar}, "img-circle")
             </a>
         </div>
     </div>
@@ -172,5 +172,13 @@ $user.username
         <img src="$base/assets/images/spinner.gif" data-original="${att.preview}"/>
 	#else
         <img src="$base/assets/images/spinner.gif" data-original="$base${att.preview}"/>
+	#end
+#end
+
+#macro (showAva $avatar $clazz)
+	#if($avatar.startWitdh("http:"))
+        <img class="$!{clazz}" src="$avatar"/>
+	#else
+        <img class="$!{clazz}" src="$base$!{avatar}"/>
 	#end
 #end
