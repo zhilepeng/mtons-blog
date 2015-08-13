@@ -5,20 +5,24 @@
  *******************************************************************************/
 package mblog.web.controller.desk;
 
-import com.google.gson.Gson;
-import mblog.web.controller.BaseController;
-import mblog.web.from.UMEditorResult;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import com.google.gson.Gson;
+
+import mblog.extend.context.Global;
+import mblog.web.controller.BaseController;
+import mblog.web.from.UMEditorResult;
 
 /**
  * Ueditor 文件上传
@@ -33,15 +37,19 @@ public class FileUploadController extends BaseController {
  	private static String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
 	
  	static {
- 		errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
-		errorInfo.put("NOFILE", "未包含文件上传域");
-		errorInfo.put("TYPE", "不允许的文件格式");
-		errorInfo.put("SIZE", "文件大小超出限制");
-		errorInfo.put("ENTYPE", "请求类型ENTYPE错误");
-		errorInfo.put("REQUEST", "上传请求异常");
-		errorInfo.put("IO", "IO异常");
-		errorInfo.put("DIR", "目录创建失败");
-		errorInfo.put("UNKNOWN", "未知错误");
+ 		try{
+ 			errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
+ 			errorInfo.put("NOFILE", URLEncoder.encode("未包含文件上传域","UTF-8"));
+ 			errorInfo.put("TYPE", URLEncoder.encode("不允许的文件格式","UTF-8"));
+ 			errorInfo.put("SIZE", URLEncoder.encode("文件大小超出限制，最大支持2Mb","UTF-8"));
+ 			errorInfo.put("ENTYPE", URLEncoder.encode("请求类型ENTYPE错误","UTF-8"));
+ 			errorInfo.put("REQUEST", URLEncoder.encode("上传请求异常","UTF-8"));
+ 			errorInfo.put("IO", URLEncoder.encode("IO异常","UTF-8"));
+ 			errorInfo.put("DIR", URLEncoder.encode("目录创建失败","UTF-8"));
+ 			errorInfo.put("UNKNOWN", URLEncoder.encode("未知错误","UTF-8"));
+ 		}catch(Exception e){
+ 			
+ 		}
  	}
 	
  	@RequestMapping("/aj_um_upload")
@@ -52,23 +60,29 @@ public class FileUploadController extends BaseController {
  		// 保存图片
 		if (file != null && !file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
-			
-			if (this.checkFileType(fileName)) {
-				try {
-					String path = fileRepo.storeScale(file, appContext.getThumbsDir(), 600);
-					data.setName(fileName);
-					data.setOriginalName(fileName);
-					data.setType(getSuffix(fileName));
-					data.setState(errorInfo.get("SUCCESS"));
-					data.setUrl(path);
-					data.setSize(file.getSize());
-				} catch (Exception e) {
-					data.setState(errorInfo.get("UNKNOWN"));
-					e.printStackTrace();
-				}
-			} else {
-				data.setState(errorInfo.get("TYPE"));
+			if(file.getSize()>Long.parseLong(Global.getConfig("umeditor.fileSizeLimit"))*1024*1024){
+				data.setState(errorInfo.get("SIZE"));
 			}
+			else{
+				if (this.checkFileType(fileName)) {
+					try {
+						String path = fileRepo.storeScale(file, appContext.getThumbsDir(), 600);
+						data.setName(fileName);
+						data.setOriginalName(fileName);
+						data.setType(getSuffix(fileName));
+						data.setState(errorInfo.get("SUCCESS"));
+						data.setUrl(path);
+						data.setSize(file.getSize());
+					} catch (Exception e) {
+						data.setState(errorInfo.get("UNKNOWN"));
+						e.printStackTrace();
+					}
+				} else {
+					data.setState(errorInfo.get("TYPE"));
+				}
+			}
+			
+			
 			
 		} else {
 			data.setState(errorInfo.get("NOFILE"));
