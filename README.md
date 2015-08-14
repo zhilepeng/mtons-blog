@@ -5,21 +5,22 @@
 ## 技术选型：
 
 * **服务端**
-1. SSH (Spring、SpringMVC、Hibernate）
-2. 安全权限 Shiro
-3. 搜索工具 Lucene
-4. 缓存 Ehcache
-5. 视图模板 Velocity
-6. 其它 Jsoup、fastjson、GraphicsMagick
+* SSH (Spring、SpringMVC、Hibernate）
+* 安全权限 Shiro
+* 搜索工具 Lucene
+* 缓存 Ehcache
+* 视图模板 Velocity
+* 其它 Jsoup、fastjson、GraphicsMagick
 
 * **前端**
-1. jQuery、Seajs
-2. Bootstrap 前端框架
-3. UEditor/Markdown编辑器
-4. font-wesome 字体/图标
+* jQuery、Seajs
+* Bootstrap 前端框架
+* UEditor/Markdown编辑器
+* font-wesome 字体/图标
 
-## 系统配置
-### Mysql 数据库配置
+### 系统配置
+
+Mysql 数据库配置
 > 配置文件： src/main/resources/init.properties
 
 
@@ -32,7 +33,7 @@ jdbc.password={password}
 ```
 
 
-### 索引文件存放目录
+索引文件存放目录
 
 > 配置文件：src/main/resources/init.properties
 
@@ -42,7 +43,7 @@ hibernate.search.indexs=d:/data/indexs
 ```
 
 
-### 图片工具(GraphicsMagick)安装路径配置
+图片工具(GraphicsMagick)安装路径配置
 > 配置文件：src/main/resources/mtons.properties
 
 ```
@@ -53,7 +54,7 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 [Graphicsmagick 下载](http://www.graphicsmagick.org/download.html)
 
 
-### 关于Tomcat部署
+关于Tomcat部署
 > 请在Connector设置url编码, 否则标签页会出现乱码
 
 ```
