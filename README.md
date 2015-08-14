@@ -2,7 +2,7 @@
 
 > mblog (mtons blog) 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台. 
 
-## 技术选型：
+### 技术选型：
 
 * **服务端**
 * SSH (Spring、SpringMVC、Hibernate）
