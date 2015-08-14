@@ -3,16 +3,16 @@
 > mblog (mtons blog) 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台. 
 
 ## 技术选型：
+
 服务端
----------
 1. SSH (Spring、SpringMVC、Hibernate）
 2. 安全权限 Shiro
 3. 搜索工具 Lucene
 4. 缓存 Ehcache
 5. 视图模板 Velocity
 6. 其它 Jsoup、fastjson、GraphicsMagick
+
 前端
----------
 1. jQuery、Seajs
 2. Bootstrap 前端框架
 3. UEditor/Markdown编辑器
