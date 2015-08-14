@@ -187,7 +187,7 @@
             var me = this;
             try{
                 var json = eval('('+r+')');
-                Base.callback(me.editor, me.dialog, json.url, json.state);
+                Base.callback(me.editor, me.dialog, json.url, decodeURI(json.state));
             }catch (e){
                 var lang = me.editor.getLang('image');
                 Base.callback(me.editor, me.dialog, '', (lang && lang.uploadError) || 'Error!');
