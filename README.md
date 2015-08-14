@@ -4,7 +4,7 @@
 
 ## 技术选型：
 
-* 服务端
+* **服务端**
 1. SSH (Spring、SpringMVC、Hibernate）
 2. 安全权限 Shiro
 3. 搜索工具 Lucene
@@ -12,7 +12,7 @@
 5. 视图模板 Velocity
 6. 其它 Jsoup、fastjson、GraphicsMagick
 
-* 前端
+* **前端**
 1. jQuery、Seajs
 2. Bootstrap 前端框架
 3. UEditor/Markdown编辑器
