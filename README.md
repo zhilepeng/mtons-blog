@@ -1,17 +1,24 @@
-## Mblog
+## MBLOG
 
-> Mblog 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台.
+> mblog (mtons blog) 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台. 
 
+## 技术选型：
+服务端
+---------
+1. SSH (Spring、SpringMVC、Hibernate）
+2. 安全权限 Shiro
+3. 搜索工具 Lucene
+4. 缓存 Ehcache
+5. 视图模板 Velocity
+6. 其它 Jsoup、fastjson、GraphicsMagick
+前端
+---------
+1. jQuery、Seajs
+2. Bootstrap 前端框架
+3. UEditor/Markdown编辑器
+4. font-wesome 字体/图标
 
-### 使用的框架：
-
-* Bootstrap 3
-* Spring mvc
-* Velocity
-* Hibernate
-* Lucene
-
-
+## 系统配置
 ### Mysql 数据库配置
 > 配置文件： src/main/resources/init.properties
 
@@ -47,7 +54,7 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 
 ### 关于Tomcat部署
-> 请在Connector设置url编码 
+> 请在Connector设置url编码, 否则标签页会出现乱码
 
 ```
 <Connector port="8080" protocol="HTTP/1.1" ... URIEncoding="UTF-8"/>
