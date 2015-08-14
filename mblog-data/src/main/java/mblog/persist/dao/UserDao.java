@@ -6,10 +6,9 @@ package mblog.persist.dao;
 import java.util.List;
 import java.util.Set;
 
-import mblog.data.User;
+import mblog.persist.entity.UserPO;
 import mtons.modules.persist.Dao;
 import mtons.modules.pojos.Paging;
-import mblog.persist.entity.UserPO;
 
 /**
  * @author langhsu

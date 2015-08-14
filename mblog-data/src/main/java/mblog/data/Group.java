@@ -13,6 +13,8 @@ import java.io.Serializable;
  *
  */
 public class Group implements Serializable {
+	private static final long serialVersionUID = 4264359286718556524L;
+
 	private int id;
 	
 	private String name;

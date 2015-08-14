@@ -1,11 +1,13 @@
 package mblog.persist.entity;
 
-import org.hibernate.annotations.*;
-
-import javax.persistence.*;
-import javax.persistence.Cache;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * 第三方开发授权登录

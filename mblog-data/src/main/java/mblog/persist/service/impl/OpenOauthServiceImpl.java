@@ -1,5 +1,9 @@
 package mblog.persist.service.impl;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 import mblog.data.OpenOauth;
 import mblog.data.User;
 import mblog.persist.dao.OpenOauthDao;
@@ -9,10 +13,6 @@ import mblog.persist.entity.UserPO;
 import mblog.persist.service.OpenOauthService;
 import mblog.persist.utils.BeanMapUtils;
 import mtons.modules.utils.MD5Helper;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author langhsu on 2015/8/12.

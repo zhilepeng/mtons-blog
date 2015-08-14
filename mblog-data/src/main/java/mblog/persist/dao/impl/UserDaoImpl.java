@@ -6,17 +6,15 @@ package mblog.persist.dao.impl;
 import java.util.List;
 import java.util.Set;
 
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.UserDao;
 import mblog.persist.entity.UserPO;
+import mtons.modules.persist.impl.DaoImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu

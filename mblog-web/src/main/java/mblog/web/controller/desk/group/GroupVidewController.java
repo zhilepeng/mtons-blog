@@ -5,21 +5,20 @@
  *******************************************************************************/
 package mblog.web.controller.desk.group;
 
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.extend.planet.GroupPlanet;
-import mblog.extend.planet.PostPlanet;
-import mblog.persist.service.GroupService;
-import mblog.persist.service.PostService;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import mblog.data.Group;
+import mblog.data.Post;
+import mblog.extend.planet.GroupPlanet;
+import mblog.extend.planet.PostPlanet;
+import mblog.persist.service.PostService;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
 
 /**
  * 文章浏览
