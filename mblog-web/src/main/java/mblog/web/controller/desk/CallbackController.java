@@ -161,7 +161,7 @@ public class CallbackController extends BaseController {
             username = userService.get(thirdToken.getUserId()).getUsername();
             // 不存在：注册新用户，并绑定此token，登录
         } else {
-            User user = userService.get(username);
+            User user = userService.getByUsername(username);
             if(user == null){
                 User u = userService.register(wrapUser(openOauth));
 

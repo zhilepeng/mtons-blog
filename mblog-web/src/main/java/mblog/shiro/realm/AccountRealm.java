@@ -38,7 +38,7 @@ public class AccountRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.fromRealm(getName()).iterator().next();
         if (username != null) {
-            User user = userService.get(username);
+            User user = userService.getByUsername(username);
             if (user != null){
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 EnumRole role = EnumRole.getEnum(user.getRoleId());

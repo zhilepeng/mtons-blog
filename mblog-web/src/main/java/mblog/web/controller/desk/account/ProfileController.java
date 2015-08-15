@@ -77,6 +77,9 @@ public class ProfileController extends BaseController {
 		try {
 			Assert.notNull(email, "缺少必要的参数");
 
+			// 先执行修改，判断邮箱是否更改，或邮箱是否被人使用
+			userService.updateEmail(profile.getId(), email);
+
 			String code = verifyService.generateCode(profile.getId(), Consts.VERIFY_BIND, email);
 
 			Map<String, Object> context = new HashMap<>();
@@ -85,8 +88,6 @@ public class ProfileController extends BaseController {
 			context.put("type", Consts.VERIFY_BIND);
 
 			emailSender.to("bind.vm", email, "邮箱绑定验证", context);
-
-			userService.updateEmail(profile.getId(), email);
 
 			data = Data.success("操作成功，已经发送验证邮件，请前往邮箱验证", Data.NOOP);
 		} catch (Exception e) {

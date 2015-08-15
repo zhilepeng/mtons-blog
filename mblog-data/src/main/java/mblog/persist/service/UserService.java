@@ -53,7 +53,7 @@ public interface UserService {
 	 */
 	User get(long id);
 	
-	User get(String username);
+	User getByUsername(String username);
 
 	/**
 	 * 获取用户详细信息

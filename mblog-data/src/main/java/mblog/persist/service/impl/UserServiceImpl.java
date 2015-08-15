@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import mblog.data.UserFull;
-import mblog.lang.Consts;
+import mtons.modules.exception.MtonsException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public AccountProfile login(String username, String password) {
-		UserPO po = userDao.get(username);
+		UserPO po = userDao.getByUsername(username);
 		AccountProfile u = null;
 
 		Assert.notNull(po, "账户不存在");
@@ -69,10 +69,16 @@ public class UserServiceImpl implements UserService {
 		Assert.notNull(user, "Parameter user can not be null!");
 		
 		Assert.hasLength(user.getUsername(), "用户名不能为空!");
+		Assert.hasLength(user.getEmail(), "邮箱不能为空!");
 		Assert.hasLength(user.getPassword(), "密码不能为空!");
 		
-		UserPO check = userDao.get(user.getUsername());
+		UserPO check = userDao.getByUsername(user.getUsername());
+
 		Assert.isNull(check, "用户名已经存在!");
+
+		check = userDao.getByEmail(user.getEmail());
+
+		Assert.isNull(check, "邮箱已经被注册!");
 		
 		UserPO po = new UserPO();
 		
@@ -112,7 +118,18 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public AccountProfile updateEmail(long id, String email) {
 		UserPO po = userDao.get(id);
+
 		if (null != po) {
+
+			if (email.equals(po.getEmail())) {
+				throw new MtonsException("邮箱没做更改");
+			}
+
+			UserPO check = userDao.getByEmail(email);
+
+			if (check != null && check.getId() != po.getId()) {
+				throw new MtonsException("该邮箱已经被使用了");
+			}
 			po.setEmail(email);
 			po.setActiveEmail(EntityStatus.ENABLED);
 		}
@@ -133,8 +150,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public User get(String username) {
-		UserPO po = userDao.get(username);
+	public User getByUsername(String username) {
+		UserPO po = userDao.getByUsername(username);
 		User ret = null;
 		if (po != null) {
 			ret = BeanMapUtils.copy(po);

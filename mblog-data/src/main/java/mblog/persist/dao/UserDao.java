@@ -15,7 +15,9 @@ import java.util.Set;
  *
  */
 public interface UserDao extends Dao<UserPO> {
-	UserPO get(String username);
+	UserPO getByUsername(String username);
+	UserPO getByEmail(String email);
+
 	List<UserPO> paging(Paging paging, String key);
 	List<UserPO> findByIds(Set<Long> ids);
 

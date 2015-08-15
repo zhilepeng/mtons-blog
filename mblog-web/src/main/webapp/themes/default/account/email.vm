@@ -39,7 +39,7 @@
 	        						<div class="form-group">
 	        							<label class="control-label col-lg-3" for="email">邮箱地址</label>
 	        							<div class="col-lg-4">
-	        								<input type="text" class="form-control" name="email" value="$!{profile.email}" maxlength="64" data-required >
+	        								<input type="text" class="form-control" name="email" value="$!{profile.email}" maxlength="64" data-required data-conditional="email" data-description="email" data-describedby="message">
 	        							</div>		
 	        						</div>
 	        						<div class="form-group">
@@ -60,14 +60,24 @@
 <script type="text/javascript">
 $(function () {
 	$('#pf').validate({
-		onKeyup : true,
-		onChange : true,
-		eachValidField : function() {
-			$(this).closest('div').removeClass('has-error').addClass('has-success');
-		},
-		eachInvalidField : function() {
-			$(this).closest('div').removeClass('has-success').addClass('has-error');
-		}
+        onKeyup : true,
+        onChange : true,
+        eachValidField : function() {
+            $(this).closest('div').removeClass('has-error').addClass('has-success');
+        },
+        eachInvalidField : function() {
+            $(this).closest('div').removeClass('has-success').addClass('has-error');
+        },
+        conditional : {
+            email : function() {
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val());
+            }
+        },
+        description : {
+            email : {
+                conditional : '<div class="alert alert-danger">邮箱格式不合法</div>'
+            }
+        }
 	});
 });
 </script>

@@ -37,7 +37,7 @@
 <div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
 	<!--
 	<div class="search">
-		<form class="form-inline clearfix" method="get" id="searchform" action="$base/browse/search">
+		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">
     		<div class="input-group custom-search-form">
         		<input type="text" class="form-control" name="q" placeholder="搜索...">
         		<span class="input-group-btn">

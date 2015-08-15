@@ -36,7 +36,7 @@ public class ForgotController extends BaseController {
         DataExt data = null;
 
         if (StringUtils.isNotBlank(username)) {
-            User user = userService.get(username);
+            User user = userService.getByUsername(username);
 
             if (user != null) {
                 String code = verifyService.generateCode(user.getId(), Consts.VERIFY_FORGOT, user.getEmail());

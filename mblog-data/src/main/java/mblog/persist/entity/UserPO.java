@@ -51,7 +51,7 @@ public class UserPO {
 
 	private int gender;
 
-	@Column(name = "email", length = 128)
+	@Column(name = "email", unique = true, length = 128)
 	private String email;
 	
 	@Column(name = "mobile", length = 11)

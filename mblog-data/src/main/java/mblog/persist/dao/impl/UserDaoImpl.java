@@ -27,8 +27,13 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 	}
 	
 	@Override
-	public UserPO get(String username) {
+	public UserPO getByUsername(String username) {
 		return findUniqueBy("username", username);
+	}
+
+	@Override
+	public UserPO getByEmail(String email) {
+		return findUniqueBy("email", email);
 	}
 
 	@Override
