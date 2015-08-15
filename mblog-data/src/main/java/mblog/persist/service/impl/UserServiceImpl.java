@@ -121,13 +121,13 @@ public class UserServiceImpl implements UserService {
 		if (null != po) {
 
 			if (email.equals(po.getEmail())) {
-				throw new MtonsException("邮箱没做更改");
+				throw new MtonsException("邮箱地址没做更改");
 			}
 
 			UserPO check = userDao.getByEmail(email);
 
 			if (check != null && check.getId() != po.getId()) {
-				throw new MtonsException("该邮箱已经被使用了");
+				throw new MtonsException("该邮箱地址已经被使用了");
 			}
 			po.setEmail(email);
 			po.setActiveEmail(EntityStatus.ENABLED);
