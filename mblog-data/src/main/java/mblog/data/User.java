@@ -20,6 +20,7 @@ public class User implements Serializable {
 	private Date lastLogin;
 	private int roleId;
 	private int status;
+	private int activeEmail;
 	private int source; // 用户来源，主要用于第三方注册用户
 	
 	private List<Role> roles = new ArrayList<Role>();
@@ -134,5 +135,13 @@ public class User implements Serializable {
 
 	public void setSource(int source) {
 		this.source = source;
+	}
+
+	public int getActiveEmail() {
+		return activeEmail;
+	}
+
+	public void setActiveEmail(int activeEmail) {
+		this.activeEmail = activeEmail;
 	}
 }

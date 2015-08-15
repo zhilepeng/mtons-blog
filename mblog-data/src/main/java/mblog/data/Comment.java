@@ -14,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 9192186139010913437L;
-	
+
 	private long id;
 	private long toId;
 	private long pid;

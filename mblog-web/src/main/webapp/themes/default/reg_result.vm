@@ -12,7 +12,9 @@
 	<form action="login" method="post">
 		<div id="message">#parse("/default/inc/action_message.vm")</div>
 		<div class="text-center">
-			<a href="$base/login" class="btn btn-success">去登陆</a>
+			#foreach($row in $data.links)
+                <a href="$base/${row.link}" class="btn btn-success">${row.text}</a>
+			#end
 		</div>
 	</form>
 </div>

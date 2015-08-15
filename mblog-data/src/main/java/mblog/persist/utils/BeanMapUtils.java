@@ -58,6 +58,8 @@ public class BeanMapUtils {
 		passport.setLastLogin(po.getLastLogin());
 		passport.setRoleId(po.getRoleId());
 		passport.setStatus(po.getStatus());
+		passport.setActiveEmail(po.getActiveEmail());
+
 		List<AuthMenu> menus = new ArrayList<AuthMenu>();
 		List<RolePO> rolePOs = po.getRoles();
 		List<Role> roles = new ArrayList<Role>();

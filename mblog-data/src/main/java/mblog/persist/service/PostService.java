@@ -15,6 +15,7 @@ import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import mblog.data.Post;
 
 /**
+ * 文章管理
  * @author langhsu
  *
  */
@@ -57,19 +58,25 @@ public interface PostService {
 	void searchByTag(Paging paging, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException;
 	
 	/**
-	 * 查询最近更新
+	 * 查询最近更新 - 按发布时间排序
 	 * @param maxResutls
 	 * @param ignoreUserId
 	 * @return
 	 */
 	List<Post> findLatests(int maxResutls, long ignoreUserId);
-	
+
+	/**
+	 * 查询热门文章 - 按浏览次数排序
+	 * @param maxResutls
+	 * @param ignoreUserId
+	 * @return
+	 */
 	List<Post> findHots(int maxResutls, long ignoreUserId);
 	
 	/**
 	 * 根据Ids查询
 	 * @param ids
-	 * @return
+	 * @return <id, 文章对象>
 	 */
 	Map<Long, Post> findMapByIds(Set<Long> ids);
 	
@@ -80,11 +87,17 @@ public interface PostService {
 	void post(Post post);
 	
 	/**
-	 * 查询单个文章
+	 * 文章详情
 	 * @param id
 	 * @return
 	 */
 	Post get(long id);
+
+	/**
+	 * 更新文章方法
+	 * @param p
+	 */
+	void update(Post p);
 	
 	/**
 	 * 删除
@@ -93,7 +106,7 @@ public interface PostService {
 	void delete(long id);
 	
 	/**
-	 * 带作者验证的删除
+	 * 带作者验证的删除 - 验证是否属于自己的文章
 	 * @param id
 	 * @param authorId
 	 */
@@ -116,17 +129,5 @@ public interface PostService {
 	 * @param id
 	 */
 	void identityComments(long id);
-	/**
-	 * 更新文章方法
-	 * @param p
-	 */
-	void update(Post p);
 
-	/**
-	 * 修改最后的图片Id
-	 *
-	 * @param id
-	 * @param lastImageId
-	 */
-	void updateImage(long id, long lastImageId);
 }

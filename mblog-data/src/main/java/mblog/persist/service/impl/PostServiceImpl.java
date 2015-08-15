@@ -3,17 +3,18 @@
  */
 package mblog.persist.service.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import mblog.data.Attach;
+import mblog.data.Post;
+import mblog.data.Tag;
+import mblog.data.User;
+import mblog.lang.Consts;
+import mblog.persist.dao.PostDao;
+import mblog.persist.entity.PostPO;
+import mblog.persist.service.*;
+import mblog.persist.utils.BeanMapUtils;
+import mblog.utils.PreviewTextUtils;
+import mtons.modules.lang.EntityStatus;
+import mtons.modules.pojos.Paging;
 import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.search.Sort;
@@ -32,22 +33,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import mblog.data.Attach;
-import mblog.data.Post;
-import mblog.data.Tag;
-import mblog.data.User;
-import mblog.lang.Consts;
-import mblog.persist.dao.PostDao;
-import mblog.persist.entity.PostPO;
-import mblog.persist.service.AttachService;
-import mblog.persist.service.PostService;
-import mblog.persist.service.TagService;
-import mblog.persist.service.UserEventService;
-import mblog.persist.service.UserService;
-import mblog.persist.utils.BeanMapUtils;
-import mblog.utils.PreviewTextUtils;
-import mtons.modules.lang.EntityStatus;
-import mtons.modules.pojos.Paging;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author langhsu
@@ -93,11 +80,7 @@ public class PostServiceImpl implements PostService {
 	    query.setFirstResult(paging.getFirstResult());
 	    query.setMaxResults(paging.getMaxResults());
 
-		//按Id排倒序
-		Sort sort = new Sort(new SortField("id", SortField.Type.LONG, true));
-		query.setSort(sort);
-
-	    StandardAnalyzer standardAnalyzer = new StandardAnalyzer(); 
+	    StandardAnalyzer standardAnalyzer = new StandardAnalyzer();
 	    SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
         QueryScorer queryScorer = new QueryScorer(luceneQuery);
         Highlighter highlighter = new Highlighter(formatter, queryScorer);
@@ -147,7 +130,7 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
+		SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
 	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("tags").matching(tag).createQuery();
 
@@ -270,7 +253,24 @@ public class PostServiceImpl implements PostService {
 		}
 		return d;
 	}
-	
+
+	/**
+	 * 更新文章方法
+	 * @param p
+	 */
+	@Override
+	@Transactional
+	public void update(Post p){
+		PostPO po = postDao.get(p.getId());
+
+		if (po != null) {
+			po.setTitle(p.getTitle());//标题
+			po.setSummary(trimSummary(p.getContent()));
+			po.setContent(p.getContent());//内容
+			po.setTags(p.getTags());//标签
+		}
+	}
+
 	@Override
 	@Transactional
 	public void delete(long id) {
@@ -321,29 +321,6 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 	
-    /**
-	 * 更新文章方法
-	 * @param p
-	 */
-    @Override
-	@Transactional
-	public void update(Post p){
-    	PostPO po = postDao.get(p.getId());
-    	
-    	if (po != null) {
-	    	po.setTitle(p.getTitle());//标题
-	    	po.setSummary(trimSummary(p.getContent()));
-	    	po.setContent(p.getContent());//内容
-	    	po.setTags(p.getTags());//标签
-    	}
-	}
-
-	@Override
-	@Transactional
-	public void updateImage(long id, long lastImageId) {
-		postDao.updateImageId(id, lastImageId);
-	}
-
 	/**
 	 * 截取文章内容
 	 * @param text

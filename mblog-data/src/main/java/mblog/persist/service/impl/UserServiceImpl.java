@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import mblog.data.UserFull;
+import mblog.lang.Consts;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,11 +78,12 @@ public class UserServiceImpl implements UserService {
 		
 		BeanUtils.copyProperties(user, po);
 		
-		Date current = Calendar.getInstance().getTime();
+		Date now = Calendar.getInstance().getTime();
 		po.setPassword(MD5Helper.md5(user.getPassword()));
 		po.setStatus(EntityStatus.ENABLED);
-		po.setCreated(current);
-		po.setUpdated(current);
+		po.setActiveEmail(EntityStatus.ENABLED);
+		po.setCreated(now);
+		po.setUpdated(now);
 		
 		// 保存扩展
 		UserExtendPO extend = new UserExtendPO();
@@ -105,7 +107,19 @@ public class UserServiceImpl implements UserService {
 		
 		return BeanMapUtils.copyPassport(po);
 	}
-	
+
+	@Override
+	@Transactional
+	public AccountProfile updateEmail(long id, String email) {
+		UserPO po = userDao.get(id);
+		if (null != po) {
+			po.setEmail(email);
+			po.setActiveEmail(EntityStatus.ENABLED);
+		}
+
+		return BeanMapUtils.copyPassport(po);
+	}
+
 	@Override
 	@Transactional(readOnly = true)
 	public User get(long id) {
@@ -126,13 +140,6 @@ public class UserServiceImpl implements UserService {
 			ret = BeanMapUtils.copy(po);
 		}
 		return ret;
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public String getUserPassword(String username) {
-		UserPO po = userDao.get(username);
-		return po.getPassword();
 	}
 
 	@Override
@@ -197,7 +204,18 @@ public class UserServiceImpl implements UserService {
 			po.setStatus(status);
 		}
 	}
-	
+
+	@Override
+	@Transactional
+	public AccountProfile updateActiveEmail(long id, int activeEmail) {
+		UserPO po = userDao.get(id);
+
+		if (po != null) {
+			po.setActiveEmail(activeEmail);
+		}
+		return BeanMapUtils.copyPassport(po);
+	}
+
 	@Override
 	@Transactional
 	public void updateRole(long id, int roleId) {

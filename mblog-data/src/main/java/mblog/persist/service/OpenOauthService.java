@@ -18,6 +18,4 @@ public interface OpenOauthService {
 
     void saveOauthToken(OpenOauth oauth);
 
-    // 只允许第三方登录且没修改过用户名时才可以修改
-    void updateUsername(long userId, String username, String nickname);
 }

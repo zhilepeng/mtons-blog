@@ -1,9 +1,5 @@
 package mblog.persist.service.impl;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
 import mblog.data.OpenOauth;
 import mblog.data.User;
 import mblog.persist.dao.OpenOauthDao;
@@ -13,8 +9,12 @@ import mblog.persist.entity.UserPO;
 import mblog.persist.service.OpenOauthService;
 import mblog.persist.utils.BeanMapUtils;
 import mtons.modules.utils.MD5Helper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * 第三方登录授权管理
  * @author langhsu on 2015/8/12.
  */
 public class OpenOauthServiceImpl implements OpenOauthService {
@@ -79,11 +79,4 @@ public class OpenOauthServiceImpl implements OpenOauthService {
         openOauthDao.save(po);
     }
 
-    @Override
-    @Transactional
-    public void updateUsername(long userId, String username, String nickname) {
-        UserPO userPO = userDao.get(userId);
-        userPO.setUsername(username);
-        userPO.setName(nickname);
-    }
 }

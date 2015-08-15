@@ -39,6 +39,10 @@ input[type=text],input[type=password],textarea {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.alert {
+	padding: 10px;
+}
+
 .sign {
 	padding-bottom: 40px;
 	background: url(../images/first/party.1037.jpg) #000 no-repeat top right;

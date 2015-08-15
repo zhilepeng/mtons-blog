@@ -1,13 +1,8 @@
 package mblog.persist.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 
 /**
  * 第三方开发授权登录
@@ -23,7 +18,7 @@ public class OpenOauthPO {
     private long id;
 
     @Column(name = "user_id")
-    private long userId;
+    private long userId; // 系统中的用户ID
 
     @Column(name = "oauth_type")
     private int oauthType; // 认证类型：QQ、新浪
@@ -32,10 +27,10 @@ public class OpenOauthPO {
     private String oauthUserId; // 对应第三方用户ID
 
     @Column(name = "oauth_code")
-    private String oauthCode;
+    private String oauthCode;  // 第三方返回的code
 
     @Column(name = "access_token")
-    private String accessToken;
+    private String accessToken;  // 访问令牌
 
     @Column(name = "expire_in")
     private String expireIn;

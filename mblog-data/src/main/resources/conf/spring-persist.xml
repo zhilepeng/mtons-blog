@@ -18,6 +18,8 @@
 	<bean id="menuDao" class="mblog.persist.dao.impl.MenuDaoImpl" />
 	<bean id="openOauthDao" class="mblog.persist.dao.impl.OpenOauthDaoImpl" />
 
+	<bean id="verifyDao" class="mblog.persist.dao.impl.VerifyDaoImpl" />
+
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
 	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />
@@ -32,4 +34,5 @@
 	<bean id="userEventService" class="mblog.persist.service.impl.UserEventServiceImpl" />
 	<bean id="openOauthService" class="mblog.persist.service.impl.OpenOauthServiceImpl" />
 
+	<bean id="verifyService" class="mblog.persist.service.impl.VerifyServiceImpl" />
 </beans>

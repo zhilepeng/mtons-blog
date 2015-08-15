@@ -33,5 +33,23 @@
 			</map>
 		</property>
 	</bean>
-	
+
+	<bean id="emailSender" class="mblog.extend.email.impl.EmailSenderImpl">
+		<property name="config">
+			<map>
+				<entry key="host" value="${mail.host}" />
+				<entry key="auth" value="${mail.auth}" />
+				<entry key="timeout" value="${mail.timeout}" />
+				<entry key="username" value="${mail.username}" />
+				<entry key="password" value="${mail.password}" />
+				<entry key="from" value="${mail.from}" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- velocity模板引擎 -->
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="${velocity.resource}" />
+	</bean>
+
 </beans>

@@ -19,7 +19,10 @@ public interface Views {
 	String REG = "/reg";
 	String REG_RESULT = "/reg_result";
 	String OAUTH_REG = "/oauth_reg";
-	
+
+	String FORGOT_APPLY = "/forgot/apply";
+	String FORGOT_RESET = "/forgot/reset";
+
 	String INDEX = "/index";
 
 	String HOME_INDEX = "/home/index";
@@ -30,9 +33,8 @@ public interface Views {
 	String ACCOUNT_AVATAR = "/account/avatar";
 	String ACCOUNT_PASSWORD = "/account/password";
 	String ACCOUNT_PROFILE = "/account/profile";
-	
-	String BLOG_POST = "/post/post_";
-	
+	String ACCOUNT_EMAIL = "/account/email";
+
 	String BLOG_UPLOAD = "/post/upload";
 	
 	String TAGS_INDEX = "/tags/index";

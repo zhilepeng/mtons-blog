@@ -8,9 +8,9 @@ import mtons.modules.persist.impl.DaoImpl;
  * @author langhsu on 2015/8/12.
  */
 public class OpenOauthDaoImpl extends DaoImpl<OpenOauthPO> implements OpenOauthDao {
-	private static final long serialVersionUID = 3953147809633630305L;
+    private static final long serialVersionUID = 3953147809633630305L;
 
-	public OpenOauthDaoImpl() {
+    public OpenOauthDaoImpl() {
         super(OpenOauthPO.class);
     }
 

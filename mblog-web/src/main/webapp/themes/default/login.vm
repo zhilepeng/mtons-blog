@@ -28,8 +28,8 @@
             <input name="password" class="form-control border" placeholder="密码" type="password" data-required>
         </div>
         <input type="submit" class="btn btn-success border" value="登录 Use it">
-        <a href="/accounts/password/reset/" class="forgot" style="display: none;">
-            还没有账号? 注册
+        <a href="$base/forgot/apply" class="forgot">
+            忘记密码
         </a>
     </form>
 </div>

@@ -23,7 +23,8 @@ public class UserServiceTest extends TestCase {
 		
 		UserPO check = null;
 		Assert.isNull(check, "Username already exists!");
-		
+
+		Assert.hasLength(null, "缺少必要的参数");
 		System.out.println("end");
 	}
 }

@@ -72,7 +72,9 @@ public class UserPO {
 	@JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private List<RolePO> roles = new ArrayList<RolePO>();
-	
+
+	@Column(name = "active_email")
+	private int activeEmail;
 	private int status;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -213,5 +215,13 @@ public class UserPO {
 
 	public void setSource(int source) {
 		this.source = source;
+	}
+
+	public int getActiveEmail() {
+		return activeEmail;
+	}
+
+	public void setActiveEmail(int activeEmail) {
+		this.activeEmail = activeEmail;
 	}
 }

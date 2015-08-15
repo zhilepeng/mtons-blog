@@ -17,6 +17,7 @@ public class AccountProfile extends UserProfile {
     private static final long serialVersionUID = 1748764917028425871L;
 
     private int roleId;
+    private int activeEmail;
 
     private List<AuthMenu> authMenus;
 
@@ -53,4 +54,11 @@ public class AccountProfile extends UserProfile {
         this.authMenus = authMenus;
     }
 
+    public int getActiveEmail() {
+        return activeEmail;
+    }
+
+    public void setActiveEmail(int activeEmail) {
+        this.activeEmail = activeEmail;
+    }
 }

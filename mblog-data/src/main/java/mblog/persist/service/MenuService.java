@@ -16,5 +16,9 @@ import mblog.data.Menu;
  *
  */
 public interface MenuService {
+	/**
+	 * 获取所有菜单项
+	 * @return
+	 */
 	List<Menu> findAll();
 }

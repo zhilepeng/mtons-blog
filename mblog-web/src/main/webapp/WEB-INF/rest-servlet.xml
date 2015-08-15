@@ -54,9 +54,9 @@
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="dateToolAttribute" value="dateTool" />
-		<property name="redirectContextRelative" value="true"></property>
-		<property name="requestContextAttribute" value="request"></property>
-		<property name="redirectHttp10Compatible" value="true"></property>
+		<property name="redirectContextRelative" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="redirectHttp10Compatible" value="true" />
 	</bean>
 	
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -74,16 +74,18 @@
 			</props>
 		</property>
 	</bean>
-	
+
+	<!-- 最大上传文件为2M -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-		<property name="defaultEncoding" value="utf-8"></property>
-		<property name="maxUploadSize" value="10485760000"></property>
-		<property name="maxInMemorySize" value="40960"></property>
-		<property name="uploadTempDir" value="upload/tmp"></property>
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="2097152" />
+		<property name="maxInMemorySize" value="40960" />
+		<property name="uploadTempDir" value="store/upload_temp" />
 	</bean>
 	
 	<bean id="exceptionResolver" class="mblog.web.exceptions.DefaultExceptionHandler" />
-	
+
+	<!-- 配置基础拦截器 -->
 	<mvc:interceptors>
         <bean class="mblog.web.interceptor.BaseInterceptor"/>  
     </mvc:interceptors>

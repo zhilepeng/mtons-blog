@@ -154,6 +154,10 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .widget-box .box-list li span.name {width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
 
+.box-list li:nth-child(1) span.last i{background-color: #eb7508;}
+.box-list li:nth-child(2) span.last i{background-color: #1cba11;}
+.box-list li:nth-child(3) span.last i{background-color: #00aed1;}
+
 /* detail 文章详情 */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }
 

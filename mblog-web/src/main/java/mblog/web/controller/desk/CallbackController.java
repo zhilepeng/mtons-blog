@@ -1,27 +1,10 @@
 package mblog.web.controller.desk;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
 import com.qq.connect.api.qzone.UserInfo;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.oauth.Oauth;
-
 import mblog.data.OpenOauth;
 import mblog.data.User;
 import mblog.lang.Consts;
@@ -30,7 +13,22 @@ import mblog.persist.service.OpenOauthService;
 import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mtons.modules.exception.MtonsException;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import weibo4j.Users;
 import weibo4j.model.WeiboException;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 第三方登录回调
@@ -73,6 +71,16 @@ public class CallbackController extends BaseController {
         openOauth.setRefreshToken(token.getRefreshToken());
         openOauth.setOauthType(EnumOauthType.TYPE_SINA.getValue());
 
+        String userName = String.valueOf(token.getUID().getBytes().hashCode());
+        openOauth.setUsername("SN" + userName);
+
+        // 加载微博账号信息
+        Users users = new Users();
+        users.setToken(token.getAccessToken());
+        weibo4j.model.User u = users.showUserById(token.getUID());
+        openOauth.setNickname(u.getName());
+        openOauth.setAvatar(u.getAvatarLarge());
+
         OpenOauth thirdToken = openOauthService.getOauthByToken(openOauth.getAccessToken());
 
         if (thirdToken == null) {
@@ -80,7 +88,7 @@ public class CallbackController extends BaseController {
             return getView(Views.OAUTH_REG);
         }
         String username = userService.get(thirdToken.getUserId()).getUsername();
-        return login(username, request);
+        return login(username, openOauth.getAccessToken(), request);
     }
 
     /**
@@ -124,7 +132,6 @@ public class CallbackController extends BaseController {
 
         UserInfoBean userInfoBean = qzoneUserInfo.getUserInfo();
         openOauth.setNickname(userInfoBean.getNickname());
-
         openOauth.setAvatar(userInfoBean.getAvatar().getAvatarURL100());
 
         // 判断是否存在绑定此accessToken的用户
@@ -135,7 +142,7 @@ public class CallbackController extends BaseController {
             return getView(Views.OAUTH_REG);
         }
         String username = userService.get(thirdToken.getUserId()).getUsername();
-        return login(username, request);
+        return login(username, openOauth.getAccessToken(), request);
     }
 
     /**
@@ -168,11 +175,7 @@ public class CallbackController extends BaseController {
             }
         }
 
-        String result = login(username, request);
-        if(username.startsWith("QQ_") || username.startsWith("SN_")){
-            return getView(Views.OAUTH_REG);
-        }
-        return result;
+        return login(username, openOauth.getAccessToken(), request);
     }
 
     /**
@@ -182,13 +185,11 @@ public class CallbackController extends BaseController {
      * @param request
      * @return
      */
-    private String login(String username, HttpServletRequest request) {
+    private String login(String username, String accessToken, HttpServletRequest request) {
         String ret = getView(Views.LOGIN);
 
         if (StringUtils.isNotBlank(username)) {
-            String pwd = userService.getUserPassword(username);
-
-            AuthenticationToken token = new UsernamePasswordToken(username, pwd);
+            AuthenticationToken token = createToken(username, accessToken);
 
             try {
                 SecurityUtils.getSubject().login(token);
@@ -218,7 +219,7 @@ public class CallbackController extends BaseController {
         user.setSource(openOauth.getOauthType());
 
         if (StringUtils.isNotBlank(openOauth.getAvatar())) {
-            //FIXME: 此处这么写有bug
+            //FIXME: 这里使用网络路径，前端应做对应处理
             user.setAvatar(openOauth.getAvatar());
         } else {
             user.setAvatar(Consts.AVATAR);

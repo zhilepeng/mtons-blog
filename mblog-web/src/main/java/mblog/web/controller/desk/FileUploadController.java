@@ -26,38 +26,38 @@ import mblog.web.from.UMEditorResult;
 
 /**
  * Ueditor 文件上传
- * 
+ *
  * @author langhsu
  *
  */
 @Controller
 public class FileUploadController extends BaseController {
-	private static HashMap<String, String> errorInfo = new HashMap<String, String>();
-    // 文件允许格式
- 	private static String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
-	
- 	static {
- 		try{
- 			errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
- 			errorInfo.put("NOFILE", URLEncoder.encode("未包含文件上传域","UTF-8"));
- 			errorInfo.put("TYPE", URLEncoder.encode("不允许的文件格式","UTF-8"));
- 			errorInfo.put("SIZE", URLEncoder.encode("文件大小超出限制，最大支持2Mb","UTF-8"));
- 			errorInfo.put("ENTYPE", URLEncoder.encode("请求类型ENTYPE错误","UTF-8"));
- 			errorInfo.put("REQUEST", URLEncoder.encode("上传请求异常","UTF-8"));
- 			errorInfo.put("IO", URLEncoder.encode("IO异常","UTF-8"));
- 			errorInfo.put("DIR", URLEncoder.encode("目录创建失败","UTF-8"));
- 			errorInfo.put("UNKNOWN", URLEncoder.encode("未知错误","UTF-8"));
- 		}catch(Exception e){
- 			
- 		}
- 	}
-	
- 	@RequestMapping("/aj_um_upload")
- 	public void upload(@RequestParam(value = "upfile", required=false) MultipartFile file, 
- 			HttpServletResponse response) throws IOException {
- 		UMEditorResult data = new UMEditorResult();
- 		
- 		// 保存图片
+	private static HashMap<String, String> errorInfo = new HashMap<>();
+	// 文件允许格式
+	private static String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
+
+	static {
+		try{
+			errorInfo.put("SUCCESS", "SUCCESS"); //默认成功
+			errorInfo.put("NOFILE", URLEncoder.encode("未包含文件上传域","UTF-8"));
+			errorInfo.put("TYPE", URLEncoder.encode("不允许的文件格式","UTF-8"));
+			errorInfo.put("SIZE", URLEncoder.encode("文件大小超出限制，最大支持2Mb","UTF-8"));
+			errorInfo.put("ENTYPE", URLEncoder.encode("请求类型ENTYPE错误","UTF-8"));
+			errorInfo.put("REQUEST", URLEncoder.encode("上传请求异常","UTF-8"));
+			errorInfo.put("IO", URLEncoder.encode("IO异常","UTF-8"));
+			errorInfo.put("DIR", URLEncoder.encode("目录创建失败","UTF-8"));
+			errorInfo.put("UNKNOWN", URLEncoder.encode("未知错误","UTF-8"));
+		}catch(Exception e){
+
+		}
+	}
+
+	@RequestMapping("/aj_um_upload")
+	public void upload(@RequestParam(value = "upfile", required=false) MultipartFile file,
+					   HttpServletResponse response) throws IOException {
+		UMEditorResult data = new UMEditorResult();
+
+		// 保存图片
 		if (file != null && !file.isEmpty()) {
 			String fileName = file.getOriginalFilename();
 			if(file.getSize()>Long.parseLong(Global.getConfig("umeditor.fileSizeLimit"))*1024*1024){
@@ -81,20 +81,18 @@ public class FileUploadController extends BaseController {
 					data.setState(errorInfo.get("TYPE"));
 				}
 			}
-			
-			
-			
+
 		} else {
 			data.setState(errorInfo.get("NOFILE"));
 		}
-		
+
 		Gson gson = new Gson();
 		response.getWriter().write(gson.toJson(data));
- 	}
- 	
- 	/**
+	}
+
+	/**
 	 * 文件类型判断
-	 * 
+	 *
 	 * @param fileName
 	 * @return
 	 */
@@ -108,5 +106,5 @@ public class FileUploadController extends BaseController {
 		}
 		return false;
 	}
- 	
+
 }

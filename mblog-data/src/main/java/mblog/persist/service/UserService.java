@@ -38,7 +38,14 @@ public interface UserService {
 	 * @return
 	 */
 	AccountProfile update(User user);
-	
+
+	/**
+	 * 修改用户信息
+	 * @param email
+	 * @return
+	 */
+	AccountProfile updateEmail(long id, String email);
+
 	/**
 	 * 查询单个用户
 	 * @param id
@@ -47,8 +54,6 @@ public interface UserService {
 	User get(long id);
 	
 	User get(String username);
-
-	String getUserPassword(String username);
 
 	/**
 	 * 获取用户详细信息
@@ -87,6 +92,8 @@ public interface UserService {
 	 * @param status
 	 */
 	void updateStatus(long id, int status);
+
+	AccountProfile updateActiveEmail(long id, int activeEmail);
 	
 	void updateRole(long id, int roleId);
 	

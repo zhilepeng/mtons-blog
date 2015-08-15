@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import mblog.data.AccountProfile;
 import mtons.modules.utils.MD5Helper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -51,7 +52,7 @@ public class BaseController {
 	    return (AccountSubject) SecurityUtils.getSubject();
 	}
 	
-	protected void putProfile(UserProfile profile) {
+	protected void putProfile(AccountProfile profile) {
 		SecurityUtils.getSubject().getSession(true).setAttribute("profile", profile);
 	}
 
