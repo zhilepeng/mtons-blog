@@ -107,7 +107,6 @@ public class UserServiceImpl implements UserService {
 	public AccountProfile update(User user) {
 		UserPO po = userDao.get(user.getId());
 		if (null != po) {
-			po.setEmail(user.getEmail());
 			po.setName(user.getName());
 		}
 		

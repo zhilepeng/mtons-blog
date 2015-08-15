@@ -44,7 +44,7 @@ public class ProfileController extends BaseController {
 	}
 
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String post(String name, String email, ModelMap model) {
+	public String post(String name, ModelMap model) {
 		Data data = Data.failure("修改失败");
 		UserProfile profile = getSubject().getProfile();
 		
@@ -52,7 +52,6 @@ public class ProfileController extends BaseController {
 			
 			User user = new User();
 			user.setId(profile.getId());
-			user.setEmail(email);
 			user.setName(name);
 			putProfile(userService.update(user));
 			
