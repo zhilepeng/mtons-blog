@@ -130,9 +130,9 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
+        SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.phrase().onField("tags").sentence(tag).createQuery();
+	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("tags").matching(tag).createQuery();
 
 	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paigng.getFirstResult());
