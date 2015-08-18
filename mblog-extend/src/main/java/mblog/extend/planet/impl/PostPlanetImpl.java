@@ -9,6 +9,7 @@ import java.util.*;
 
 import mblog.data.Attach;
 import mblog.data.Post;
+import mblog.extend.event.FeedsEvent;
 import mblog.extend.planet.PostPlanet;
 import mblog.extend.upload.FileRepo;
 import mblog.persist.service.AttachService;
@@ -18,6 +19,7 @@ import mtons.modules.pojos.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.ApplicationContext;
 
 /**
  * @author langhsu
@@ -30,6 +32,8 @@ public class PostPlanetImpl implements PostPlanet {
 	private AttachService attachService;
 	@Autowired
 	private FileRepo fileRepo;
+	@Autowired
+	private ApplicationContext applicationContext;
 
 	/**
 	 * 分页查询文章, 带缓存
@@ -89,7 +93,12 @@ public class PostPlanetImpl implements PostPlanet {
 	@Override
 	@CacheEvict(value = "postsCaches", allEntries = true)
 	public void post(Post post) {
-		postService.post(post);
+		long id = postService.post(post);
+
+		FeedsEvent event = new FeedsEvent("feedsEvent");
+		event.setPostId(id);
+		event.setAuthorId(post.getAuthorId());
+		applicationContext.publishEvent(event);
 	}
 	
 	@Override

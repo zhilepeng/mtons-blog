@@ -17,12 +17,12 @@
 	<div class="container mode-link">
         <h3 class="t-h3">友情链接</h3>
         <ul class="list-inline">
-			<li><a href="http://mtons.com/" target="_blank" title="Mtons博客">Mtons博客</a></li>
+			<li><a href="http://mtons.com/" target="_blank" title="Mtons社区">mtons社区</a></li>
         </ul>
     </div>
 	<div class="container copy-right">
 		<span>Copyright © <a href="#">Mtons</a>（<a
-			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+			href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备******号</a>)
 		</span>
 		<span class="pull-right">Powered By <a href="http://mtons.com" target="_blank">Mtons</a></span>
 	</div>

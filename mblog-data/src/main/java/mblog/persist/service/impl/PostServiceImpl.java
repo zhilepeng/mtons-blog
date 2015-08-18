@@ -130,15 +130,14 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-		SearchFactory sf = fullTextSession.getSearchFactory();
+	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("tags").matching(tag).createQuery();
+	    org.apache.lucene.search.Query luceneQuery  = qb.phrase().onField("tags").sentence(tag).createQuery();
 
 	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paigng.getFirstResult());
 	    query.setMaxResults(paigng.getMaxResults());
 
-		//按Id排倒序
 		Sort sort = new Sort(new SortField("id", SortField.Type.LONG, true));
 		query.setSort(sort);
 
@@ -172,7 +171,11 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Map<Long, Post> findMapByIds(Set<Long> ids) {
+	public Map<Long, Post> findSingleMapByIds(Set<Long> ids) {
+		if (ids == null || ids.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
 		List<PostPO> list = postDao.findByIds(ids);
 		Map<Long, Post> rets = new HashMap<>();
 
@@ -204,10 +207,36 @@ public class PostServiceImpl implements PostService {
 
 		return rets;
 	}
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public Map<Long, Post> findMultileMapByIds(Set<Long> ids) {
+		if (ids == null || ids.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		List<PostPO> list = postDao.findByIds(ids);
+		Map<Long, Post> rets = new HashMap<>();
+
+		HashSet<Long> uids = new HashSet<>();
+
+		list.forEach(po -> {
+			rets.put(po.getId(), BeanMapUtils.copy(po, 0));
+			uids.add(po.getAuthorId());
+		});
+
+		// 加载相册
+		buildAttachs(rets.values(), ids);
+
+		// 加载用户信息
+		buildUsers(rets.values(), uids);
+
+		return rets;
+	}
+
 	@Override
 	@Transactional
-	public void post(Post post) {
+	public long post(Post post) {
 		PostPO po = new PostPO();
 
 		BeanUtils.copyProperties(post, po);
@@ -237,7 +266,10 @@ public class PostServiceImpl implements PostService {
 			tagService.batchPost(tags);
 		}
 
+		// 更新文章统计
 		userEventService.identityPost(Collections.singletonList(po.getAuthorId()), po.getId(), true);
+
+		return po.getId();
 	}
 	
 	@Override
@@ -353,7 +385,7 @@ public class PostServiceImpl implements PostService {
 		return rets;
 	}
 
-	private void buildAttachs(List<Post> posts, Set<Long> postIds) {
+	private void buildAttachs(Collection<Post> posts, Set<Long> postIds) {
     	Map<Long, List<Attach>> attMap = attachService.findByTarget(postIds);
 
 		posts.forEach(p -> p.setAlbums(attMap.get(p.getId())));

@@ -19,6 +19,8 @@
 	<bean id="openOauthDao" class="mblog.persist.dao.impl.OpenOauthDaoImpl" />
 
 	<bean id="verifyDao" class="mblog.persist.dao.impl.VerifyDaoImpl" />
+	<bean id="followDao" class="mblog.persist.dao.impl.FollowDaoImpl" />
+	<bean id="feedsDao" class="mblog.persist.dao.impl.FeedsDaoImpl" />
 
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
@@ -35,4 +37,7 @@
 	<bean id="openOauthService" class="mblog.persist.service.impl.OpenOauthServiceImpl" />
 
 	<bean id="verifyService" class="mblog.persist.service.impl.VerifyServiceImpl" />
+	<bean id="followService" class="mblog.persist.service.impl.FollowServiceImpl" />
+	<bean id="feedsService" class="mblog.persist.service.impl.FeedsServiceImpl" />
+
 </beans>

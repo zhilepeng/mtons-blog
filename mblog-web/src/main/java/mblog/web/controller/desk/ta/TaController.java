@@ -7,6 +7,7 @@ package mblog.web.controller.desk.ta;
 
 import mblog.data.UserFull;
 import mblog.extend.planet.PostPlanet;
+import mblog.extend.planet.UserPlanet;
 import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
+ * 访问他人主页
  * @author langhsu
  *
  */
@@ -26,11 +28,11 @@ public class TaController extends BaseController {
 	@Autowired
 	private PostPlanet postPlanet;
 	@Autowired
-	private UserService userService;
+	private UserPlanet userPlanet;
 	
 	@RequestMapping("/ta/{uid}")
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
-		UserFull user = userService.getUserFull(uid);
+		UserFull user = userPlanet.getUserFull(uid);
 		Paging page = wrapPage(pn);
 		page = postPlanet.pagingByUserId(page, uid);
 		

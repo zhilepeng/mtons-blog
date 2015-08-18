@@ -29,7 +29,14 @@ public class GalleryController extends BaseController {
 	private PostPlanet postPlanet;
 	
 	private int jsonMaxResults = 8;
-	
+
+	/**
+	 * 走廊页
+	 * @param pn
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/gallery")
 	public String view(Integer pn, ModelMap model, HttpServletRequest request) {
 		int groupId = ServletRequestUtils.getIntParameter(request, "g", 0);
@@ -41,7 +48,14 @@ public class GalleryController extends BaseController {
 		model.put("groupId", groupId);
 		return getView(Views.BROWSE_GALLERY);
 	}
-	
+
+	/**
+	 * ajax 请求走廊片段
+	 * @param pn
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/gallery_snippet/{pn}")
 	public String snippet(@PathVariable Integer pn, ModelMap model, HttpServletRequest request) {
 		int groupId = ServletRequestUtils.getIntParameter(request, "g", 0);

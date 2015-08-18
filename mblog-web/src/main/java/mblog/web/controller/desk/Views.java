@@ -25,9 +25,11 @@ public interface Views {
 
 	String INDEX = "/index";
 
-	String HOME_INDEX = "/home/index";
+	String HOME_FEEDS = "/home/feeds";
 	String HOME_POSTS = "/home/posts";
 	String HOME_COMMENTS = "/home/comments";
+	String HOME_FOLLOWS = "/home/follows";
+	String HOME_FANS = "/home/fans";
 
 	String TA_HOME = "/ta/home";
 	String ACCOUNT_AVATAR = "/account/avatar";

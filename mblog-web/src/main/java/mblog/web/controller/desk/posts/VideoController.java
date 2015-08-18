@@ -17,6 +17,7 @@ import mblog.extend.analysis.videos.VideoAnalysis;
 import mblog.extend.data.Video;
 
 /**
+ * 视频信息抓取
  * @author langhsu
  *
  */

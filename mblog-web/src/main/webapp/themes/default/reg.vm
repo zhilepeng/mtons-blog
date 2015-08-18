@@ -14,7 +14,7 @@
         </div>
         <label for="id_email">用户名:</label>
         <div id="id_email">
-            <input maxlength="18" class="form-control border" name="username" placeholder="用户名" type="text" data-required>
+            <input maxlength="18" class="form-control border" name="username" placeholder="用户名" type="text" data-required data-conditional="username" data-description="username" data-describedby="message">
         </div>
         <label for="id_name">昵称:</label>
         <div id="id_name">
@@ -53,6 +53,9 @@
                 },
                 email : function() {
                     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val());
+                },
+                username : function() {
+                    return /^[a-z][a-z_0-9]{4,18}$/i.test($(this).val());
                 }
             },
             description : {
@@ -61,6 +64,9 @@
                 },
                 email : {
                     conditional : '<div class="alert alert-danger">邮箱格式不合法</div>'
+                },
+                username : {
+                    conditional : '<div class="alert alert-danger">只能是字母/字母+数字的组合</div>'
                 }
             }
         });

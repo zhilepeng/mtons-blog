@@ -1,9 +1,9 @@
 <ul class="list-group">
     <li class="list-group-item">
-        <a href="$base/home?method=posts">我的文章</a>
+        <a href="$base/home/follows">我的关注</a>
     </li>
     <li class="list-group-item">
-        <a href="$base/home?method=comments">我的评论</a>
+        <a href="$base/home/fans">我的粉丝</a>
     </li>
 </ul>
 

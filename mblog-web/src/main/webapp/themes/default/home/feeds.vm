@@ -1,0 +1,62 @@
+#set($title = "我的主页")
+
+<!-- left -->
+<div class="col-xs-12 col-md-9 side-left">
+	<!-- tab -->
+	<div class="stream-head clearfix">
+		<div class="user-info">
+			<span class="avatar-80">
+    			<a href="$base/account/profile">
+					#showAva(${profile.avatar}, "img-circle")
+    			</a>
+			</span>
+		</div>
+		<ul class="user-post">
+			#foreach($g in $groups)
+			<li>
+				#if ($velocityCount % 2 == 0)
+					#set($color = 'act-text')
+				#else
+					#set($color = 'act-img')
+				#end
+				<a href="$base/post/new/${g.key}" class="act-icon ${color}">
+					<i class="${g.icon}"></i>
+					<span class="tip">${g.alias}</span>
+				</a>
+			</li>
+			#end
+		</ul>
+	</div>
+	<!-- tab end -->
+	
+	<div class="shadow-box">
+        <div class="filter">
+            <ul class="">
+                <li><a class="active" href="$base/home">动态</a></li>
+                <li><a href="$base/home?method=posts">我的文章</a></li>
+                <li><a href="$base/home?method=comments">我的评论</a></li>
+            </ul>
+        </div>
+		<!-- tab panes -->
+        <div class="stream-list">
+			#foreach($row in $page.results)
+				#showBlog($row.post)
+			#end
+
+			#if($page.results.size() == 0)
+    		<div class="stream-item">
+				<i class="fa fa-info-circle fa-lg"></i> 您还没发表过文章!
+            </div>
+			#end
+			
+		</div>
+	</div>
+	<div class="text-center clr">
+    	#page("home" $page 5)
+    </div>
+</div>
+
+
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+	#parse("/default/home/right.vm")
+</div>

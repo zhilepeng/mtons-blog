@@ -63,8 +63,7 @@ public class BaseController {
 	/**
 	 * 包装分页对象
 	 * 
-	 * @param pn
-	 *            页码
+	 * @param pn 页码
 	 * @return
 	 */
 	protected Paging wrapPage(Integer pn) {

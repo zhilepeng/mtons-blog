@@ -24,5 +24,6 @@
 	<task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true" />
 	
 	<bean id="logEventHandler" class="mblog.extend.event.handler.LogEventHandler" />
-	
+	<bean id="feedsEventHandler" class="mblog.extend.event.handler.FeedsEventHandler" />
+
 </beans>

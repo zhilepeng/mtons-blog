@@ -83,7 +83,56 @@ define(function(require, exports, module) {
 			});
 		});
     }
-    
+
+
+	// 绑定按钮事件
+	var bindClickEvent = function () {
+		// Favor
+		$('a[rel=favor]').click(function () {
+			var id = $(this).attr('data-id');
+
+			if (parseInt(id) > 0) {
+				jQuery.getJSON(app.base +'/post/favor.json', {'id': id}, function (ret) {
+					if (ret.code >=0) {
+						var favors = $('#favors').text();
+						$('#favors').text(parseInt(favors) + 1);
+					} else {
+						layer.msg(ret.message, {icon: 5});
+					}
+				});
+			}
+		});
+
+		// Follow
+		$('a[rel=follow]').click(function () {
+			var that = $(this);
+			var id = that.attr('data-id');
+
+			if (parseInt(id) > 0) {
+				jQuery.getJSON(app.base +'/user/follow.json', {'id': id}, function (ret) {
+					if (ret.code >=0) {
+						that.text("已关注");
+					} else {
+						layer.msg(ret.message, {icon: 2});
+					}
+				});
+			}
+		});
+
+		$('a[rel=follow]').each(function () {
+			var that = $(this);
+			var id = that.attr('data-id');
+
+			if (parseInt(id) > 0) {
+				jQuery.getJSON(app.base +'/user/check_follow.json', {'id': id}, function (ret) {
+					if (ret.code >=0 && ret.data) {
+						that.text("已关注");
+					}
+				});
+			}
+		});
+	}
+
     exports.init = function () {
     	imagesLazyload();
 
@@ -92,6 +141,8 @@ define(function(require, exports, module) {
     	backToTop();
     	
     	masonry();
+
+		bindClickEvent();
     }
     
 });

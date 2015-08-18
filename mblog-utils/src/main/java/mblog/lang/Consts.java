@@ -59,4 +59,6 @@ public interface Consts {
 
 	int ACTIVE_EMAIL = 1; // 邮箱激活
 
+	int FEEDS_TYPE_POST = 1;
+
 }

@@ -10,27 +10,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import mblog.data.*;
+import mblog.persist.entity.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 
-import mblog.data.AccountProfile;
-import mblog.data.Attach;
-import mblog.data.AuthMenu;
-import mblog.data.Comment;
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.data.Role;
-import mblog.data.Tag;
-import mblog.data.User;
 import mblog.lang.Consts;
-import mblog.persist.entity.AttachPO;
-import mblog.persist.entity.AuthMenuPO;
-import mblog.persist.entity.CommentPO;
-import mblog.persist.entity.GroupPO;
-import mblog.persist.entity.PostPO;
-import mblog.persist.entity.RolePO;
-import mblog.persist.entity.TagPO;
-import mblog.persist.entity.UserPO;
 
 /**
  * @author langhsu
@@ -157,5 +142,11 @@ public class BeanMapUtils {
 		}
 		r.setAuthMenus(authMenus);
 		return r;
+	}
+
+	public static Feeds copy(FeedsPO po) {
+		Feeds ret = new Feeds();
+		BeanUtils.copyProperties(po, ret);
+		return ret;
 	}
 }

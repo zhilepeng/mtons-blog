@@ -27,6 +27,7 @@ import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;
 
 /**
+ * 文章操作
  * @author langhsu
  *
  */
@@ -39,14 +40,25 @@ public class PostController extends BaseController {
 	private GroupService groupService;
 	@Autowired
 	private ApplicationContext applicationContext;
-	
+
+	/**
+	 * 发布文章页
+	 * @param groupKey
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/new/{groupKey}", method = RequestMethod.GET)
 	public String view(@PathVariable String groupKey, ModelMap model) {
 		Group group = groupService.getByKey(groupKey);
 		model.put("group", group);
 		return routeView(Views.ROUTE_POST_PUBLISH, group.getTemplate());
 	}
-	
+
+	/**
+	 * 提交发布
+	 * @param blog
+	 * @return
+	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String post(Post blog) {
 		
@@ -60,7 +72,12 @@ public class PostController extends BaseController {
 		}
 		return Views.REDIRECT_HOME;
 	}
-	
+
+	/**
+	 * 删除文章
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/delete/{id}")
 	public @ResponseBody Data delete(@PathVariable Long id) {
 		Data data = Data.failure("操作失败");
@@ -75,7 +92,13 @@ public class PostController extends BaseController {
 		}
 		return data;
 	}
-	
+
+	/**
+	 * 喜欢文章
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/favor")
 	public @ResponseBody Data favor(Long id, HttpServletRequest request) {
 		Data data = Data.failure("操作失败");

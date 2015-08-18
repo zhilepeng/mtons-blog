@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogoutController extends BaseController {
 
+	/**
+	 * 退出登录
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public String logout() {
 		SecurityUtils.getSubject().logout();

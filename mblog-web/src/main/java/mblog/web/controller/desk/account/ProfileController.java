@@ -3,7 +3,9 @@
  */
 package mblog.web.controller.desk.account;
 
+import mblog.data.UserFull;
 import mblog.extend.email.EmailSender;
+import mblog.extend.planet.UserPlanet;
 import mblog.lang.Consts;
 import mblog.persist.service.VerifyService;
 import mtons.modules.pojos.Data;
@@ -34,27 +36,37 @@ public class ProfileController extends BaseController {
 	@Autowired
 	private UserService userService;
 	@Autowired
+	private UserPlanet userPlanet;
+	@Autowired
 	private VerifyService verifyService;
 	@Autowired
 	private EmailSender emailSender;
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String view() {
+	public String view(ModelMap model) {
+		UserProfile profile = getSubject().getProfile();
+		UserFull view = userPlanet.getUserFull(profile.getId());
+		model.put("view", view);
 		return getView(Views.ACCOUNT_PROFILE);
 	}
 
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String post(String name, ModelMap model) {
-		Data data = Data.failure("修改失败");
+	public String post(String name, String signature, ModelMap model) {
+		Data data;
 		UserProfile profile = getSubject().getProfile();
 		
 		try {
-			
-			User user = new User();
+			UserFull user = new UserFull();
 			user.setId(profile.getId());
 			user.setName(name);
-			putProfile(userService.update(user));
-			
+			user.setSignature(signature);
+
+			putProfile(userPlanet.update(user));
+
+			// put 最新信息
+			UserFull view = userPlanet.getUserFull(profile.getId());
+			model.put("view", view);
+
 			data = Data.success("操作成功", Data.NOOP);
 		} catch (Exception e) {
 			data = Data.failure(e.getMessage());

@@ -7,8 +7,10 @@ package mblog.web.controller.desk.group;
 
 import mblog.data.Group;
 import mblog.data.Post;
+import mblog.data.UserFull;
 import mblog.extend.planet.GroupPlanet;
 import mblog.extend.planet.PostPlanet;
+import mblog.extend.planet.UserPlanet;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
@@ -34,6 +36,8 @@ public class GroupVidewController extends BaseController {
 	private PostService postService;
 	@Autowired
 	private GroupPlanet groupPlanet;
+	@Autowired
+	private UserPlanet userPlanet;
 
 	@RequestMapping("/{id}")
 	public String view(@PathVariable Long id, ModelMap model) {
@@ -42,9 +46,11 @@ public class GroupVidewController extends BaseController {
 		Assert.notNull(ret, "该文章已被删除");
 		
 		Group group = groupPlanet.getById(ret.getGroup());
+		UserFull user = userPlanet.getUserFull(ret.getAuthorId());
 
 		postService.identityViews(id);
 		model.put("ret", ret);
+		model.put("user", user);
 		return routeView(Views.ROUTE_POST_VIEW, group.getTemplate());
 	}
 }

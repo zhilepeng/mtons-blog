@@ -7,10 +7,9 @@
 			#showAva(${user.avatar}, "img-circle")
 		</div>
 		<h1>#showName(${user})</h1>
-        <h2>Ta发布的文章</h2>
-		<!--
-		<a class="btn btn-white" href="#">Back</a>
-		-->
+
+        <h2>$!{user.signature}</h2>
+		<a class="btn btn-white" href="javascript:void(0);" data-id="${user.id}" rel="follow">+ 关注</a>
 	</div>
 </div>
 

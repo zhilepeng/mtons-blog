@@ -22,6 +22,7 @@ import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
 
 /**
+ * Group 主页
  * @author langhsu
  *
  */

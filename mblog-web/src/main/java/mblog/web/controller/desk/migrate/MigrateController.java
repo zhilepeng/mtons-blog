@@ -47,14 +47,14 @@ public class MigrateController extends BaseController {
 		return getView(Views.BROWSE_DETAIL);
 	}
 	
-	@RequestMapping("/user/{uid}")
-	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
-		User user = userService.get(uid);
-		Paging page = wrapPage(pn);
-		page = postPlanet.pagingByUserId(page, uid);
-		
-		model.put("user", user);
-		model.put("page", page);
-		return getView(Views.TA_HOME);
-	}
+//	@RequestMapping("/user/{uid}")
+//	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
+//		User user = userService.get(uid);
+//		Paging page = wrapPage(pn);
+//		page = postPlanet.pagingByUserId(page, uid);
+//
+//		model.put("user", user);
+//		model.put("page", page);
+//		return getView(Views.TA_HOME);
+//	}
 }

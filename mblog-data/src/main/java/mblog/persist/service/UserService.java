@@ -37,7 +37,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	AccountProfile update(User user);
+	AccountProfile update(UserFull user);
 
 	/**
 	 * 修改用户信息
@@ -104,8 +104,6 @@ public interface UserService {
 	void paging(Paging paging, String key);
 
 	Map<Long, User> findMapByIds(Set<Long> ids);
-	
-	void updateExtend(User user);
 	
 	List<AuthMenu> getMenuList(long id);
 }

@@ -184,7 +184,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	private void buildPosts(Collection<Comment> comments, Set<Long> postIds) {
-		Map<Long, Post> postMap = postService.findMapByIds(postIds);
+		Map<Long, Post> postMap = postService.findSingleMapByIds(postIds);
 
 		comments.forEach(p -> p.setPost(postMap.get(p.getToId())));
 	}

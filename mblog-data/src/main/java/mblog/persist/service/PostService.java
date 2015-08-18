@@ -74,17 +74,24 @@ public interface PostService {
 	List<Post> findHots(int maxResutls, long ignoreUserId);
 	
 	/**
-	 * 根据Ids查询
+	 * 根据Ids查询 - 单图
 	 * @param ids
 	 * @return <id, 文章对象>
 	 */
-	Map<Long, Post> findMapByIds(Set<Long> ids);
+	Map<Long, Post> findSingleMapByIds(Set<Long> ids);
+
+	/**
+	 * 根据Ids查询 - 多图
+	 * @param ids
+	 * @return <id, 文章对象>
+	 */
+	Map<Long, Post> findMultileMapByIds(Set<Long> ids);
 	
 	/**
 	 * 发布文章
 	 * @param post
 	 */
-	void post(Post post);
+	long post(Post post);
 	
 	/**
 	 * 文章详情

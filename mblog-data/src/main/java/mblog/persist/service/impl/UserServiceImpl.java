@@ -104,10 +104,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public AccountProfile update(User user) {
+	public AccountProfile update(UserFull user) {
 		UserPO po = userDao.get(user.getId());
 		if (null != po) {
 			po.setName(user.getName());
+
+			if (StringUtils.isNotBlank(user.getSignature())) {
+				UserExtendPO extend = po.getExtend();
+
+				if (extend == null) {
+					new UserExtendPO();
+					extend.setUser(po);
+					po.setExtend(extend);
+				}
+
+				extend.setSignature(user.getSignature());
+			}
 		}
 		
 		return BeanMapUtils.copyPassport(po);
@@ -270,12 +282,6 @@ public class UserServiceImpl implements UserService {
 		return ret;
 	}
 
-	@Override
-	public void updateExtend(User user) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	@Override
 	@Transactional(readOnly = true)
 	public List<AuthMenu> getMenuList(long id) {

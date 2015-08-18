@@ -18,18 +18,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * 
+ * 登录页
  * @author langhsu
- *
  */
 @Controller
 public class LoginController extends BaseController {
-	
+
+    /**
+     * 跳转登录页
+     * @return
+     */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String view() {
 		return getView(Views.LOGIN);
 	}
 
+    /**
+     * 提交登录
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(String username, String password, ModelMap model) {
 		String ret = getView(Views.LOGIN);
