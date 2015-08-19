@@ -89,8 +89,7 @@ public class UserServiceImpl implements UserService {
 		po.setStatus(EntityStatus.ENABLED);
 		po.setActiveEmail(EntityStatus.ENABLED);
 		po.setCreated(now);
-		po.setUpdated(now);
-		
+
 		// 保存扩展
 		UserExtendPO extend = new UserExtendPO();
 		extend.setUser(po);
@@ -193,7 +192,6 @@ public class UserServiceImpl implements UserService {
 		UserPO po = userDao.get(id);
 		if (po != null) {
 			po.setAvatar(path);
-			po.setUpdated(new Date());
 		}
 		return BeanMapUtils.copyPassport(po);
 	}

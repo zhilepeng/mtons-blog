@@ -39,16 +39,6 @@ public class UserExtendPO {
 
 	private int married; // 婚姻状态
 	
-	private int posts; // 文章数
-	
-	private int comments; // 发布评论数
-	
-	private int follows; // 关注人数
-
-	private int fans; // 粉丝数
-	
-	private int favors; // 收到的喜欢数
-	
 	public long getId() {
 		return id;
 	}
@@ -65,53 +55,12 @@ public class UserExtendPO {
 		this.user = user;
 	}
 
-	public int getPosts() {
-		return posts;
-	}
-
-	public void setPosts(int posts) {
-		this.posts = posts;
-	}
-
-	public int getFollows() {
-		return follows;
-	}
-
-	public void setFollows(int follows) {
-		this.follows = follows;
-	}
-
 	public String getSignature() {
 		return signature;
 	}
 
 	public void setSignature(String signature) {
 		this.signature = signature;
-	}
-
-	public int getComments() {
-		return comments;
-	}
-
-	public void setComments(int comments) {
-		this.comments = comments;
-	}
-
-
-	public int getFavors() {
-		return favors;
-	}
-
-	public void setFavors(int favors) {
-		this.favors = favors;
-	}
-
-	public int getFans() {
-		return fans;
-	}
-
-	public void setFans(int fans) {
-		this.fans = fans;
 	}
 
 	public int getMarried() {

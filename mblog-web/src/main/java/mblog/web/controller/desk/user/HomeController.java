@@ -11,6 +11,7 @@ import mblog.extend.planet.UserPlanet;
 import mblog.persist.service.FeedsService;
 import mblog.persist.service.FollowService;
 import mblog.persist.service.PostService;
+import mblog.persist.service.UserService;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
@@ -36,7 +37,7 @@ public class HomeController extends BaseController {
 	@Autowired
 	private CommentPlanet commentPlanet;
 	@Autowired
-	private UserPlanet userPlanet;
+	private UserService userService;
 	@Autowired
 	private FollowService followService;
 
@@ -133,7 +134,7 @@ public class HomeController extends BaseController {
 
 	private void initUser(ModelMap model) {
 		UserProfile up = getSubject().getProfile();
-		UserFull user = userPlanet.getUserFull(up.getId());
+		UserFull user = userService.getUserFull(up.getId());
 
 		model.put("user", user);
 	}

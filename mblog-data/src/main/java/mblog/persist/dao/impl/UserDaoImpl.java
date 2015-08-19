@@ -61,7 +61,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		if (!identity) {
 			substm = "- 1";
 		}
-		Query query = createSQLQuery("update mto_users_extend set posts = posts " + substm + " where id in (:ids)");
+		Query query = createSQLQuery("update mto_users set posts = posts " + substm + " where id in (:ids)");
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}
@@ -73,7 +73,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		if (!identity) {
 			substm = "- 1";
 		}
-		Query query = createSQLQuery("update mto_users_extend set comments = comments " + substm + " where id in (:ids)");
+		Query query = createSQLQuery("update mto_users set comments = comments " + substm + " where id in (:ids)");
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}
@@ -85,7 +85,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		if (!identity) {
 			substm = "- 1";
 		}
-		Query query = createSQLQuery("update mto_users_extend set follows = follows " + substm + " where id in (:ids)");
+		Query query = createSQLQuery("update mto_users set follows = follows " + substm + " where id in (:ids)");
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}
@@ -97,7 +97,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		if (!identity) {
 			substm = "- 1";
 		}
-		Query query = createSQLQuery("update mto_users_extend set fans = fans " + substm + " where id in (:ids)");
+		Query query = createSQLQuery("update mto_users set fans = fans " + substm + " where id in (:ids)");
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}
@@ -109,7 +109,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 		if (!identity) {
 			substm = "- 1";
 		}
-		Query query = createSQLQuery("update mto_users_extend set favors = favors " + substm + " where id in (:ids)");
+		Query query = createSQLQuery("update mto_users set favors = favors " + substm + " where id in (:ids)");
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}

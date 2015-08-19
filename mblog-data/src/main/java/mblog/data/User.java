@@ -15,8 +15,14 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String mobile;
+
+	private int posts; // 文章数
+	private int comments; // 发布评论数
+	private int follows; // 关注人数
+	private int fans; // 粉丝数
+	private int favors; // 收到的喜欢数
+
 	private Date created;
-	private Date updated;
 	private Date lastLogin;
 	private int roleId;
 	private int status;
@@ -105,14 +111,6 @@ public class User implements Serializable {
 		this.avatar = avatar;
 	}
 
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-
 	public int getRoleId() {
 		return roleId;
 	}
@@ -143,5 +141,45 @@ public class User implements Serializable {
 
 	public void setActiveEmail(int activeEmail) {
 		this.activeEmail = activeEmail;
+	}
+
+	public int getPosts() {
+		return posts;
+	}
+
+	public void setPosts(int posts) {
+		this.posts = posts;
+	}
+
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+
+	public int getFollows() {
+		return follows;
+	}
+
+	public void setFollows(int follows) {
+		this.follows = follows;
+	}
+
+	public int getFans() {
+		return fans;
+	}
+
+	public void setFans(int fans) {
+		this.fans = fans;
+	}
+
+	public int getFavors() {
+		return favors;
+	}
+
+	public void setFavors(int favors) {
+		this.favors = favors;
 	}
 }

@@ -36,8 +36,6 @@ public class GroupVidewController extends BaseController {
 	private PostService postService;
 	@Autowired
 	private GroupPlanet groupPlanet;
-	@Autowired
-	private UserPlanet userPlanet;
 
 	@RequestMapping("/{id}")
 	public String view(@PathVariable Long id, ModelMap model) {
@@ -46,11 +44,9 @@ public class GroupVidewController extends BaseController {
 		Assert.notNull(ret, "该文章已被删除");
 		
 		Group group = groupPlanet.getById(ret.getGroup());
-		UserFull user = userPlanet.getUserFull(ret.getAuthorId());
 
 		postService.identityViews(id);
 		model.put("ret", ret);
-		model.put("user", user);
 		return routeView(Views.ROUTE_POST_VIEW, group.getTemplate());
 	}
 }
