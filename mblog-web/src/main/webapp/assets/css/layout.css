@@ -14,14 +14,14 @@
 .navbar .sign {
 	margin-right: -30px;
 }
-.navbar .nav .signin, .navbar .nav .reg {
+.navbar .nav .signin, .navbar .nav .signup {
 	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
 }
 .navbar .nav .signin { background-color: #1cba11; }
-.navbar .nav .reg { background-color: #00aed1; }
+.navbar .nav .signup { background-color: #00aed1; }
 
-.navbar .nav .signin:hover { background-color: #eb7508; }
-.navbar .nav .reg:hover { background-color: #eb7508; }
+.navbar .nav .signin:hover { background-color: #25D618; }
+.navbar .nav .signup:hover { background-color: #22BBDA; }
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }

@@ -24,6 +24,7 @@ public class Feeds {
 	private Date created;
 
 	// params
+	private int privacy; // 访问权限
 
 	private Post post;
 
@@ -81,5 +82,13 @@ public class Feeds {
 
 	public void setPost(Post post) {
 		this.post = post;
+	}
+
+	public int getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(int privacy) {
+		this.privacy = privacy;
 	}
 }

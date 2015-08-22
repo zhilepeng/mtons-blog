@@ -40,7 +40,9 @@
 		<!-- tab panes -->
         <div class="stream-list">
 			#foreach($row in $page.results)
-				#showBlog($row.post)
+				#if($row.post)
+					#showBlog($row.post)
+				#end
 			#end
 
 			#if($page.results.size() == 0)

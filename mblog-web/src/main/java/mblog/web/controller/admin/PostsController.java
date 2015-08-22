@@ -14,6 +14,7 @@ import mtons.modules.pojos.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,8 @@ import mblog.data.Post;
 import mblog.extend.planet.PostPlanet;
 import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author langhsu
@@ -37,10 +40,17 @@ public class PostsController extends BaseController {
 	private PostPlanet postPlanet;
 	
 	@RequestMapping("/list")
-	public String list(Integer pn, ModelMap model) {
+	public String list(Integer pn, String title, ModelMap model, HttpServletRequest request) {
+		long id = ServletRequestUtils.getLongParameter(request, "id", Const.ZERO);
+		int group = ServletRequestUtils.getIntParameter(request, "group", Const.ZERO);
+
 		Paging page = wrapPage(pn);
-		postService.paging(page, Const.ZERO, "newest", false);
+
+		postService.paging4Admin(page, id, title, group);
 		model.put("page", page);
+		model.put("title", title);
+		model.put("id", id);
+		model.put("group", group);
 		return "/admin/posts/list";
 	}
 	
@@ -67,9 +77,6 @@ public class PostsController extends BaseController {
 	/**
 	 * 更新文章方法
 	 * @author LBB
-	 * @param id
-	 * @param model
-	 * @param P
 	 * @return
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -79,7 +86,20 @@ public class PostsController extends BaseController {
 		}
 		return "redirect:/admin/posts/list";
 	}
-	
+
+	@RequestMapping("/privacy")
+	public @ResponseBody Data updatePrivacy(Long id, Integer privacy) {
+		Data data = Data.failure("操作失败");
+		if (id != null) {
+			try {
+				postPlanet.updatePrivacy(id, privacy);
+				data = Data.success("操作成功", Data.NOOP);
+			} catch (Exception e) {
+				data = Data.failure(e.getMessage());
+			}
+		}
+		return data;
+	}
 	
 	@RequestMapping("/delete")
 	public @ResponseBody Data delete(@RequestParam("id") List<Long> id) {

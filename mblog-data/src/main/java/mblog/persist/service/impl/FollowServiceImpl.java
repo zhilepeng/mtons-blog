@@ -77,15 +77,10 @@ public class FollowServiceImpl implements FollowService {
 	@Transactional(readOnly = true)
 	public void follows(Paging paging, long userId) {
 		List<FollowPO> list = followDao.following(paging, userId);
-		List<UserFull> rets = new ArrayList<>();
+		List<User> rets = new ArrayList<>();
 
 		for (FollowPO po : list) {
-			UserFull u = new UserFull();
-			BeanUtils.copyProperties(po.getFollow(), u, BeanMapUtils.USER_IGNORE);
-			if (po.getFollow().getExtend() != null) {
-				BeanUtils.copyProperties(po.getFollow().getExtend(), u);
-			}
-			rets.add(u);
+			rets.add(BeanMapUtils.copy(po.getFollow()));
 		}
 		paging.setResults(rets);
 	}
@@ -94,15 +89,10 @@ public class FollowServiceImpl implements FollowService {
 	@Transactional(readOnly = true)
 	public void fans(Paging paging, long userId) {
 		List<FollowPO> list = followDao.fans(paging, userId);
-		List<UserFull> rets = new ArrayList<>();
+		List<User> rets = new ArrayList<>();
 
 		for (FollowPO po : list) {
-			UserFull u = new UserFull();
-			BeanUtils.copyProperties(po.getUser(), u, BeanMapUtils.USER_IGNORE);
-			if (po.getUser().getExtend() != null) {
-				BeanUtils.copyProperties(po.getUser().getExtend(), u);
-			}
-			rets.add(u);
+			rets.add(BeanMapUtils.copy(po.getUser()));
 		}
 		paging.setResults(rets);
 	}

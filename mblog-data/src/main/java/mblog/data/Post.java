@@ -30,7 +30,7 @@ public class Post implements Serializable {
 	private long authorId;
 
 	private long lastImageId;
-
+	private int privacy;  // 访问权限
 	private int images; // 图片统计
 	private int featured; // 推荐状态
 	private int favors; // 喜欢
@@ -208,5 +208,13 @@ public class Post implements Serializable {
 
 	public void setImages(int images) {
 		this.images = images;
+	}
+
+	public int getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(int privacy) {
+		this.privacy = privacy;
 	}
 }

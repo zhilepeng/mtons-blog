@@ -8,6 +8,7 @@ import mblog.data.Post;
 import mblog.data.Tag;
 import mblog.data.User;
 import mblog.lang.Consts;
+import mblog.lang.EnumPrivacy;
 import mblog.persist.dao.PostDao;
 import mblog.persist.entity.PostPO;
 import mblog.persist.service.*;
@@ -58,11 +59,18 @@ public class PostServiceImpl implements PostService {
 		List<PostPO> list = postDao.paging(paging, group, ord);
 		paging.setResults(toPosts(list, whetherHasAlbums));
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
-	public void pagingByUserId(Paging paging, long userId) {
-		List<PostPO> list = postDao.pagingByUserId(paging, userId);
+	public void paging4Admin(Paging paging, long id, String title, int group) {
+		List<PostPO> list = postDao.paging4Admin(paging, id, title, group);
+		paging.setResults(toPosts(list, false));
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public void pagingByAuthorId(Paging paging, long userId, EnumPrivacy privacy) {
+		List<PostPO> list = postDao.pagingByAuthorId(paging, userId, privacy);
 		paging.setResults(toPosts(list, true));
 	}
 	
@@ -130,9 +138,9 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-        SearchFactory sf = fullTextSession.getSearchFactory();
+	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("tags").matching(tag).createQuery();
+	    org.apache.lucene.search.Query luceneQuery  = qb.phrase().onField("tags").sentence(tag).createQuery();
 
 	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paigng.getFirstResult());
@@ -300,6 +308,16 @@ public class PostServiceImpl implements PostService {
 			po.setSummary(trimSummary(p.getContent()));
 			po.setContent(p.getContent());//内容
 			po.setTags(p.getTags());//标签
+		}
+	}
+
+	@Override
+	@Transactional
+	public void updatePrivacy(long id, int privacy) {
+		PostPO po = postDao.get(id);
+
+		if (po != null) {
+			po.setPrivacy(privacy);//标题
 		}
 	}
 

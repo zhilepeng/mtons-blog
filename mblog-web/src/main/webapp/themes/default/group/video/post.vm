@@ -22,7 +22,7 @@
                     </div>
     			</div>
 				<div class="form-group">
-    				<label for="desc" class="col-sm-2 control-label no-padding-right">内容:</label>
+    				<label for="desc" class="col-sm-2 control-label no-padding-right">内容</label>
     				<input type="hidden" name="editor" value="$!{setting_editor}"/>
                     <div class="col-sm-8">
 						#parse("/default/editor/$!{setting_editor}.vm")
@@ -37,6 +37,17 @@
                         <p class="help-block" style="font-size: 12px;">添加相关标签，用逗号或空格分隔 (最多4个).</p>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">访问权限</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="privacy">
+                            <option value="0">公开</option>
+                            <option value="1">私密</option>
+                        </select>
+                    </div>
+                </div>
+
     			<div class="row">
     				<div class="form-group">
             			<div class="text-center">

@@ -88,7 +88,9 @@
 	            			#end
 
 							#if($page.results.size() == 0)
+                            <div class="stream-item">
 								<i class="fa fa-info-circle fa-lg"></i> TA还没发表过文章!
+							</div>
 							#end
 	    				</div>
 	                </div>

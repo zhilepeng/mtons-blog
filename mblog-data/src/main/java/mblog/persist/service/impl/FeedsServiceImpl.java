@@ -5,6 +5,7 @@ package mblog.persist.service.impl;
 
 import mblog.data.Feeds;
 import mblog.data.Post;
+import mblog.lang.EnumPrivacy;
 import mblog.persist.dao.FeedsDao;
 import mblog.persist.entity.FeedsPO;
 import mblog.persist.service.FeedsService;
@@ -39,9 +40,13 @@ public class FeedsServiceImpl implements FeedsService {
 		// 给自己保存一条
 		feedsDao.save(po);
 
-		// 派发给粉丝
-		int ret = feedsDao.batchAdd(feeds);
-		return ret + 1;
+		int ret = 1;
+
+		if (feeds.getPrivacy() != EnumPrivacy.SECRECY.getIndex()){
+			// 派发给粉丝
+			ret += feedsDao.batchAdd(feeds);
+		}
+		return ret;
 	}
 
 	@Override

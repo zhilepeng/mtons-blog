@@ -32,6 +32,8 @@ public class FeedsEventHandler implements ApplicationListener<FeedsEvent> {
         feeds.setPostId(event.getPostId());
         feeds.setAuthorId(event.getAuthorId());
 
+        feeds.setPrivacy(event.getPrivacy());
+
         int ret = feedsService.add(feeds);
 
         log.debug(MessageFormat.format("成功派发 {0} 条动态!", ret));

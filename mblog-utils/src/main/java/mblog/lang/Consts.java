@@ -37,7 +37,7 @@ public interface Consts {
 		String NEWEST = "newest";
 		String HOTTEST = "hottest";
 	}
-	
+
 	/**
 	 * 附件-存储-本地
 	 */
@@ -59,6 +59,10 @@ public interface Consts {
 
 	int ACTIVE_EMAIL = 1; // 邮箱激活
 
-	int FEEDS_TYPE_POST = 1;
+	int FEEDS_TYPE_POST = 1; // 动态类型 - 发布文章
+
+	int FEATURED_COLD = -1;
+	int FEATURED_DEFAULT = 0;
+	int FEATURED_ACTIVE = 1;
 
 }

@@ -16,6 +16,7 @@ import mblog.persist.service.CommentService;
 import mtons.modules.pojos.Paging;
 
 /**
+ * 评论
  * @author langhsu
  *
  */

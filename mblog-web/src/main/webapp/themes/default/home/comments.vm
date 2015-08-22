@@ -56,7 +56,10 @@
 				#else
                     <div class="stream-item">文章已删除</div>
 				#end
-                <div class="stream-blank"></div>
+
+				#if($velocityCount < $page.size)
+                    <div class="stream-blank"></div>
+				#end
 			#end
 			
 			#if($page.results.size() == 0)

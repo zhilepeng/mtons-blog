@@ -8,6 +8,7 @@ package mblog.extend.planet;
 import java.util.Collection;
 import java.util.List;
 
+import mblog.lang.EnumPrivacy;
 import mtons.modules.pojos.Paging;
 import mblog.data.Post;
 
@@ -37,7 +38,7 @@ public interface PostPlanet {
 	 * @param uid
 	 * @return
 	 */
-	Paging pagingByUserId(Paging paging, long uid);
+	Paging pagingByAuthorId(Paging paging, long uid, EnumPrivacy privacy);
 	
 	/**
 	 * 走廊查询 - (只返回一张图片)
@@ -63,6 +64,8 @@ public interface PostPlanet {
 	 * @param post
 	 */
 	void post(Post post);
+
+	void updatePrivacy(long id, int privacy);
 
 	/**
 	 * 查询最近更新的文章

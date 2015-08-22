@@ -51,8 +51,8 @@ $user.username
 				#end
     		</ul>
     		<div class="pull-right hidden-xs">
-				<span class="act">浏览 (${row.views})</span>
-				<span class="act">评论 (${row.comments})</span>
+				<span class="act"><i class="fa fa-eye"></i> ${row.views}</span>
+				<span class="act"><i class="fa fa-commenting-o"></i> ${row.comments}</span>
     		</div>
     	</div>
     </div>
@@ -107,7 +107,7 @@ $user.username
     
 <ul class="pagination">
 	#if($p.pageNo > 1)
-		<li><a class="prev" href="${cURL}${p.prev}" pageNo="1"><</a></li>
+		<li><a class="prev" href="${cURL}${p.prev}" pageNo="1">上一页</a></li>
     #end
     
     #set($totalNo = ${span} * 2 + 3)
@@ -146,7 +146,7 @@ $user.username
     #end
     
     #if ($p.pageNo < $p.pageCount)
-		<li><a href="${cURL}${p.next}" pageNo="$p.next">></a></li>
+		<li><a href="${cURL}${p.next}" pageNo="$p.next">下一页</a></li>
 	#end
 </ul>
 #end

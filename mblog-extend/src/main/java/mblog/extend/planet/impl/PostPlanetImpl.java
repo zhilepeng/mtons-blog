@@ -12,7 +12,9 @@ import mblog.data.Post;
 import mblog.extend.event.FeedsEvent;
 import mblog.extend.planet.PostPlanet;
 import mblog.extend.upload.FileRepo;
+import mblog.lang.EnumPrivacy;
 import mblog.persist.service.AttachService;
+import mblog.persist.service.FeedsService;
 import mblog.persist.service.PostService;
 import mtons.modules.pojos.Paging;
 
@@ -30,6 +32,8 @@ public class PostPlanetImpl implements PostPlanet {
 	private PostService postService;
 	@Autowired
 	private AttachService attachService;
+	@Autowired
+	private FeedsService feedsService;
 	@Autowired
 	private FileRepo fileRepo;
 	@Autowired
@@ -51,9 +55,9 @@ public class PostPlanetImpl implements PostPlanet {
 	}
 	
 	@Override
-	@Cacheable(value = "postsCaches", key = "'uhome' + #uid + '_' + #paging.getPageNo()")
-	public Paging pagingByUserId(Paging paging, long uid) {
-		postService.pagingByUserId(paging, uid);
+	@Cacheable(value = "postsCaches", key = "'uhome' + #uid + '_' + #privacy.getIndex() + '_' + #paging.getPageNo()")
+	public Paging pagingByAuthorId(Paging paging, long uid, EnumPrivacy privacy) {
+		postService.pagingByAuthorId(paging, uid, privacy);
 		return paging;
 	}
 
@@ -98,9 +102,16 @@ public class PostPlanetImpl implements PostPlanet {
 		FeedsEvent event = new FeedsEvent("feedsEvent");
 		event.setPostId(id);
 		event.setAuthorId(post.getAuthorId());
+		event.setPrivacy(post.getPrivacy());
 		applicationContext.publishEvent(event);
 	}
-	
+
+	@Override
+	@CacheEvict(value = "postsCaches", allEntries = true)
+	public void updatePrivacy(long id, int privacy) {
+		postService.updatePrivacy(id, privacy);
+	}
+
 	@Override
 	@Cacheable(value = "postsCaches", key = "'post_recents'")
 	public List<Post> findRecents(int maxResutls, long ignoreUserId) {
@@ -126,6 +137,8 @@ public class PostPlanetImpl implements PostPlanet {
 				fileRepo.deleteFile(a.getOriginal());
 			});
 		}
+
+		feedsService.deleteByTarget(id);
 	}
 
 	@Override
@@ -142,6 +155,8 @@ public class PostPlanetImpl implements PostPlanet {
 					fileRepo.deleteFile(a.getOriginal());
 				});
 			}
+
+			feedsService.deleteByTarget(id);
 		}
 	}
 

@@ -25,6 +25,7 @@
             <value>
                 /login = anon
                 /home* = authc
+                /home/** = authc
                 /post/** = authc
                 /account/** = authc
                 /admin = authc,perms[admin]

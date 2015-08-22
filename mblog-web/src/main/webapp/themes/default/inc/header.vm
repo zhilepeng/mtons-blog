@@ -57,7 +57,7 @@
     				</li>
     				#else
     				<li><a href="$base/login" class="signin">登录</a></li>
-                    <li><a href="$base/reg" class="reg">注册</a></li>
+                    <li><a href="$base/reg" class="signup">注册</a></li>
     				#end
     			</ul>
     		</div>

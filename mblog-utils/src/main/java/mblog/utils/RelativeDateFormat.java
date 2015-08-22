@@ -17,8 +17,12 @@ public class RelativeDateFormat {
     private static final String ONE_DAY_AGO = "天前";
     private static final String ONE_MONTH_AGO = "月前";
     private static final String ONE_YEAR_AGO = "年前";
+    private static final String ONE_UNKNOWN = "未知";
 
     public static String format(Date date) {
+        if (null == date) {
+            return ONE_UNKNOWN;
+        }
         long delta = new Date().getTime() - date.getTime();
         if (delta < 1L * ONE_MINUTE) {
             long seconds = toSeconds(delta);

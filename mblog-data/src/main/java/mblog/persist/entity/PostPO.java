@@ -60,6 +60,8 @@ public class PostPO {
 	@Column(name = "author_id")
 	private long authorId; // 作者
 
+	private int privacy;  // 私密
+
 	private int images; // 图片统计
 	private int featured; // 推荐
 	private int favors; // 喜欢数
@@ -201,5 +203,13 @@ public class PostPO {
 
 	public void setImages(int images) {
 		this.images = images;
+	}
+
+	public int getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(int privacy) {
+		this.privacy = privacy;
 	}
 }

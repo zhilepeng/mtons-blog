@@ -6,12 +6,15 @@ package mblog.persist.dao.impl;
 import java.util.Collection;
 import java.util.List;
 
+import mblog.lang.Consts;
+import mblog.lang.EnumPrivacy;
 import mtons.modules.lang.Const;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 
-import org.hibernate.Query;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.PostDao;
@@ -41,18 +44,43 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 			q.add(Restrictions.eq("group", group));
 		}
 		
-		if ("hottest".equals(ord)) {
+		if (Consts.order.HOTTEST.equals(ord)) {
 			q.desc("views");
+		}
+
+		q.add(Restrictions.eq("privacy", EnumPrivacy.OPEN.getIndex()));
+		q.desc("created");
+		return q.list();
+	}
+
+	@Override
+	public List<PostPO> paging4Admin(Paging paging, long id, String title, int group) {
+		PagingQuery<PostPO> q = pagingQuery(paging);
+
+		if (group > Const.ZERO) {
+			q.add(Restrictions.eq("group", group));
+		}
+
+		if (StringUtils.isNotBlank(title)) {
+			q.add(Restrictions.like("title", title, MatchMode.ANYWHERE));
+		}
+
+		if (id > Const.ZERO) {
+			q.add(Restrictions.eq("id", id));
 		}
 		q.desc("created");
 		return q.list();
 	}
 
 	@Override
-	public List<PostPO> pagingByUserId(Paging paging, long userId) {
+	public List<PostPO> pagingByAuthorId(Paging paging, long userId, EnumPrivacy privacy) {
 		PagingQuery<PostPO> q = pagingQuery(paging);
 		if (userId > 0) {
 			q.add(Restrictions.eq("authorId", userId));
+		}
+
+		if (privacy != null && privacy != EnumPrivacy.ALL) {
+			q.add(Restrictions.eq("privacy", privacy.getIndex()));
 		}
 		q.desc("created");
 		return q.list();
@@ -85,11 +113,4 @@ public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
 		return find(Restrictions.in("id", ids));
 	}
 
-	@Override
-	public int updateImageId(long id, long lastImageId) {
-		Query query = createQuery("update PostPO set lastImageId = :lastImageId where id = :id");
-		query.setLong("lastImageId", lastImageId);
-		query.setLong("id", id);
-		return query.executeUpdate();
-	}
 }

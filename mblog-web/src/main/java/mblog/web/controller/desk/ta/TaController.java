@@ -8,7 +8,7 @@ package mblog.web.controller.desk.ta;
 import mblog.data.UserFull;
 import mblog.extend.planet.PostPlanet;
 import mblog.extend.planet.UserPlanet;
-import mblog.persist.service.UserService;
+import mblog.lang.EnumPrivacy;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
@@ -34,7 +34,7 @@ public class TaController extends BaseController {
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
 		UserFull user = userPlanet.getUserFull(uid);
 		Paging page = wrapPage(pn);
-		page = postPlanet.pagingByUserId(page, uid);
+		page = postPlanet.pagingByAuthorId(page, uid, EnumPrivacy.OPEN);
 		
 		model.put("user", user);
 		model.put("page", page);

@@ -21,7 +21,7 @@
     					<th>文章标题</th>
     					<th>作者</th>
     					<th>发表日期</th>
-    					<th width="200"></th>
+    					<th width="240"></th>
     				</tr>
     			</thead>
     			<tbody>
@@ -43,7 +43,17 @@
     						<a href="$base/admin/posts/update?id=${row.id}" class="btn btn-mini btn-primary">
     							<i class="fa fa-edit"></i>编辑
     						</a>
-    						<a href="javascript:void(0);" class="btn btn-mini btn-white" data-id="${row.id}" data-action="delete">
+
+							#if($row.privacy == 0)
+                                <a href="javascript:void(0);" class="btn btn-mini btn-primary" data-id="${row.id}" rel="secrecy">
+                                    <i class="fa fa-edit"></i>私有
+                                </a>
+							#elseif($row.privacy == 1)
+                                <a href="javascript:void(0);" class="btn btn-mini btn-primary" data-id="${row.id}" rel="open">
+                                    <i class="fa fa-edit"></i>公开
+                                </a>
+							#end
+    						<a href="javascript:void(0);" class="btn btn-mini btn-white" data-id="${row.id}" rel="delete">
     							<i class="fa fa-bitbucket"></i> 删除
     						</a>
     					</td>
@@ -80,18 +90,48 @@ function ajaxReload(json){
 }
 
 function doDelete(ids) {
-	J.getJSON('$base/admin/posts/delete', J.param({'id': ids}, true), ajaxReload);
+	J.getJSON('$base/admin/posts/delete.json', J.param({'id': ids}, true), ajaxReload);
+}
+
+function doUpdatePrivacy(id, privacy) {
+    J.getJSON('$base/admin/posts/privacy.json', J.param({'id': id, 'privacy': privacy}, true), ajaxReload);
 }
 
 $(function() {
 	// 删除
-    $('#dataGrid a[data-action="delete"]').bind('click', function(){
+    $('#dataGrid a[rel="delete"]').bind('click', function(){
         var that = $(this);
 		layer.confirm('确定删除此项吗?', {
             btn: ['确定','取消'], //按钮
             shade: false //不显示遮罩
         }, function(){
 			doDelete(that.attr('data-id'));
+        }, function(){
+        });
+        return false;
+    });
+
+    // 私有
+    $('#dataGrid a[rel="secrecy"]').bind('click', function(){
+        var that = $(this);
+        layer.confirm('确定私有吗?', {
+            btn: ['确定','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+            doUpdatePrivacy(that.attr('data-id'), 1);
+        }, function(){
+        });
+        return false;
+    });
+
+    // 公开
+    $('#dataGrid a[rel="open"]').bind('click', function(){
+        var that = $(this);
+        layer.confirm('确定公开吗?', {
+            btn: ['确定','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+            doUpdatePrivacy(that.attr('data-id'), 0);
         }, function(){
         });
         return false;

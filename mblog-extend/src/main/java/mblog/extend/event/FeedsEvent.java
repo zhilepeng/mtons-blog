@@ -9,6 +9,8 @@ public class FeedsEvent extends ApplicationEvent {
     private long authorId;
     private long postId;
 
+    private int privacy;
+
     /**
      * Create a new ApplicationEvent.
      *
@@ -32,5 +34,13 @@ public class FeedsEvent extends ApplicationEvent {
 
     public void setPostId(long postId) {
         this.postId = postId;
+    }
+
+    public int getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(int privacy) {
+        this.privacy = privacy;
     }
 }

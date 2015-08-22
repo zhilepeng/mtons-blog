@@ -7,7 +7,7 @@ package mblog.web.controller.desk.user;
 
 import mblog.data.UserFull;
 import mblog.extend.planet.CommentPlanet;
-import mblog.extend.planet.UserPlanet;
+import mblog.lang.EnumPrivacy;
 import mblog.persist.service.FeedsService;
 import mblog.persist.service.FollowService;
 import mblog.persist.service.PostService;
@@ -69,8 +69,8 @@ public class HomeController extends BaseController {
 	@RequestMapping(value="/home", params = "method=posts")
 	public String posts(Integer pn, ModelMap model) {
 		Paging page = wrapPage(pn);
-		AccountSubject subject = getSubject();
-		postService.pagingByUserId(page, subject.getProfile().getId());
+		UserProfile up = getSubject().getProfile();
+		postService.pagingByAuthorId(page, up.getId(), EnumPrivacy.ALL);
 
 		model.put("page", page);
 		initUser(model);

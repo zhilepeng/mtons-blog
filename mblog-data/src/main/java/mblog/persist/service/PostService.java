@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import mblog.lang.EnumPrivacy;
 import mtons.modules.pojos.Paging;
 
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
@@ -25,17 +26,20 @@ public interface PostService {
 	 * 
 	 * @param paging
 	 * @param group 分组Id
-	 * @param ord
+	 * @param ord   排序
 	 * @param whetherHasAlbums 是否加载图片
 	 */
 	void paging(Paging paging, int group, String ord, boolean whetherHasAlbums);
+
+	void paging4Admin(Paging paging, long id, String title, int group);
 	
 	/**
 	 * 查询个人发布文章
 	 * @param paging
 	 * @param userId
+	 * @param privacy 权限
 	 */
-	void pagingByUserId(Paging paging, long userId);
+	void pagingByAuthorId(Paging paging, long userId, EnumPrivacy privacy);
 	
 	/**
 	 * 根据关键字搜索
@@ -105,6 +109,8 @@ public interface PostService {
 	 * @param p
 	 */
 	void update(Post p);
+
+	void updatePrivacy(long id, int privacy);
 	
 	/**
 	 * 删除

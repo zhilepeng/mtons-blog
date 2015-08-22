@@ -51,7 +51,7 @@ public class MigrateController extends BaseController {
 //	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
 //		User user = userService.get(uid);
 //		Paging page = wrapPage(pn);
-//		page = postPlanet.pagingByUserId(page, uid);
+//		page = postPlanet.pagingByAuthorId(page, uid);
 //
 //		model.put("user", user);
 //		model.put("page", page);
