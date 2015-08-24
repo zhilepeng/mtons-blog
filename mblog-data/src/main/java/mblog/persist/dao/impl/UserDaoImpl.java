@@ -33,7 +33,12 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 
 	@Override
 	public UserPO getByEmail(String email) {
-		return findUniqueBy("email", email);
+		List<UserPO> rets = findBy("email", email);
+
+		if (rets != null && rets.size() > 0) {
+			return rets.get(0);
+		}
+		return null;
 	}
 
 	@Override

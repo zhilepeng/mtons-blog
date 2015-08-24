@@ -24,6 +24,7 @@ public class OpenOauth {
     // extends
     private String username;
     private String nickname;
+    private String email;
     private String avatar;
 
     public long getId() {
@@ -112,5 +113,13 @@ public class OpenOauth {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
