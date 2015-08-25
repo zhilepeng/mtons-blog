@@ -15,23 +15,15 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.mtons</groupId>
-			<artifactId>mtons-lang</artifactId>
-			<version>1.0.3</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.mtons</groupId>
-			<artifactId>mtons-persist</artifactId>
-			<version>1.0.3</version>
-			<scope>compile</scope>
-		</dependency>
 		
 		<dependency>
 			<groupId>com.mtons.mblog</groupId>
 			<artifactId>mblog-data</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mtons.mblog</groupId>
+			<artifactId>mblog-utils</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
