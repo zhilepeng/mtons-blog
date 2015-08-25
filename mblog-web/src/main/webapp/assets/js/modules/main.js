@@ -109,7 +109,7 @@ define(function(require, exports, module) {
 			var id = that.attr('data-id');
 
 			if (parseInt(id) > 0) {
-				jQuery.getJSON(app.base +'/user/follow.json', {'id': id}, function (ret) {
+				jQuery.getJSON(app.base +'/account/follow.json', {'id': id}, function (ret) {
 					if (ret.code >=0) {
 						that.text("已关注");
 					} else {
@@ -124,7 +124,7 @@ define(function(require, exports, module) {
 			var id = that.attr('data-id');
 
 			if (parseInt(id) > 0) {
-				jQuery.getJSON(app.base +'/user/check_follow.json', {'id': id}, function (ret) {
+				jQuery.getJSON(app.base +'/account/check_follow.json', {'id': id}, function (ret) {
 					if (ret.code >=0 && ret.data) {
 						that.text("已关注");
 					}

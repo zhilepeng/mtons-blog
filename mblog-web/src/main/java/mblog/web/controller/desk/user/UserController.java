@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author langhsu on 2015/8/18.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/account")
 public class UserController extends BaseController {
     @Autowired
     private FollowService followService;
