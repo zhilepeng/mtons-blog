@@ -33,13 +33,21 @@ CREATE TABLE `mto_users` (
   `updated` datetime DEFAULT NULL,
   `gender` int(11) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
+  `source` int(11) NOT NULL,
+  `active_email` int(11) DEFAULT NULL,
+  `comments` int(11) NOT NULL,
+  `fans` int(11) NOT NULL,
+  `favors` int(11) NOT NULL,
+  `follows` int(11) NOT NULL,
+  `posts` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 -- Records of mto_users
 -- ----------------------------
-INSERT INTO `mto_users` VALUES ('1', null, null, null, null, '3TGCQF25BLHU9R7IQUITN0FCC5', '0', 'admin', 'admin', '/dist/images/ava/default.png', '2015-05-09 10:39:45', '0', '1');
+INSERT INTO `mto_users` VALUES ('1', '2015-08-06 17:52:41', 'admin@mtons.com', '2015-08-19 21:06:55', null, '3TGCQF25BLHU9R7IQUITN0FCC5', '0', 'admin', '小豆丁', '/dist/images/ava/default.png', '2015-07-26 11:08:36', '0', '1', '0', '1', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for mto_configs
