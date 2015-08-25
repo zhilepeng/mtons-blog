@@ -69,16 +69,17 @@ public class UserServiceImpl implements UserService {
 		Assert.notNull(user, "Parameter user can not be null!");
 		
 		Assert.hasLength(user.getUsername(), "用户名不能为空!");
-		Assert.hasLength(user.getEmail(), "邮箱不能为空!");
+//		Assert.hasLength(user.getEmail(), "邮箱不能为空!");
 		Assert.hasLength(user.getPassword(), "密码不能为空!");
 		
 		UserPO check = userDao.getByUsername(user.getUsername());
 
 		Assert.isNull(check, "用户名已经存在!");
-
-		check = userDao.getByEmail(user.getEmail());
-
-		Assert.isNull(check, "邮箱已经被注册!");
+		
+		if (StringUtils.isNotBlank(user.getEmail())) {
+			check = userDao.getByEmail(user.getEmail());
+			Assert.isNull(check, "邮箱已经被注册!");
+		}
 		
 		UserPO po = new UserPO();
 		
