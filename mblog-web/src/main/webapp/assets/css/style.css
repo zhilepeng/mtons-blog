@@ -234,7 +234,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 }
 
 .avatar img { position: relative; width: 120px; height: 120px; margin: 0 auto; }
-.avatar:hover { background: #dcdcdc; }
+.avatar:hover { background: #dcdcdc; box-shadow: 0 0 10px rgba(255,255,255,0.75); }
 
 .btn-white { border: 2px solid #fff; color: #fff; text-transform: uppercase; font-weight: 700; font-size: 12px;
 	padding: 9px 20px; background: transparent;
