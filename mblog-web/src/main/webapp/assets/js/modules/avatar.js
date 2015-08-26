@@ -1,3 +1,9 @@
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
+
 define(function(require, exports, module) {
 	J = jQuery;
 	require('plugins');

@@ -1,3 +1,9 @@
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
+ 
 body { font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif; word-wrap: break-word;}
 body { background-color: #f6f6f6;}
 
@@ -180,7 +186,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .widget-box {margin-bottom: 20px; overflow: hidden;}
 .widget-box .title { border-bottom: 1px solid #dadfea; }
 .widget-box .title h3 {font-size: 14px; line-height: 26px; margin: 9px 15px;}
-.widget-box .li-out {overflow: hidden;}
+.widget-box .li-out {overflow: hidden; margin-top: 5px;}
 .widget-box .box-list {padding: 0 15px; margin-bottom: -1px;}
 .widget-box .box-list li {border-bottom: 1px dashed #cacaca;}
 .widget-box .box-list li span { display: inline-block; margin-right: 5px; font-size: 12px; color: #999; line-height: 30px; }
@@ -271,10 +277,10 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .chats h4 { display: block; height: 40px; line-height: 40px; font-weight: 500; text-indent: 10px; font-size: 14px; }
 .chats .chat_other { border-bottom: 1px solid #e5e5e5; }
 .chats .chat_other h4 { margin: 5px; display: block; height: 40px; line-height: 40px; font-weight: 500; }
-.chats ul { padding-left: 15px; padding-right: 15px; }
-.chats ul li { display: block; padding: 15px 0; border-bottom: 1px solid #e5e5e5; }
-.chats ul li .avt { display: block; width: 40px; }
-.chats ul li .avt img { width: 100%; border-radius: 4px;}
+.chats .its { padding-left: 15px; padding-right: 15px; }
+.chats .its li { display: block; padding: 15px 0; border-bottom: 1px solid #e5e5e5; }
+.chats .its li .avt { display: block; width: 40px; }
+.chats .its li .avt img { width: 100%; border-radius: 4px;}
 .chats .chat_body { margin-left: 50px; font-size: 13px; line-height: 18px; }
 .chats .chat_body h5 { margin: 0; display: block; font-weight: 500; height: 25px; line-height: 20px; overflow: hidden; }
 .chats .chat_body a { color: #1f8902; font-size: 12px; }

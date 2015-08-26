@@ -2,7 +2,7 @@
     <div class="chat_other">
         <h4><i id="chat_count">0</i> 条回复</h4>
     </div>
-    <ul id="chat_container"></ul>
+    <ul id="chat_container" class="its"></ul>
     <div id="pager" class="text-center"></div>
     <div class="cbox-wrap">
         <div class="cbox-title">我有话说: <span id="chat_reply" style="display:none;">@<i id="chat_to"></i></span>
