@@ -5,18 +5,19 @@
  *******************************************************************************/
 package mblog.web.controller.desk.ta;
 
-import mblog.data.UserFull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import mblog.data.User;
 import mblog.extend.planet.PostPlanet;
 import mblog.extend.planet.UserPlanet;
 import mblog.lang.EnumPrivacy;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 访问他人主页
@@ -32,7 +33,7 @@ public class TaController extends BaseController {
 	
 	@RequestMapping("/ta/{uid}")
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
-		UserFull user = userPlanet.getUserFull(uid);
+		User user = userPlanet.getUser(uid);
 		Paging page = wrapPage(pn);
 		page = postPlanet.pagingByAuthorId(page, uid, EnumPrivacy.OPEN);
 		

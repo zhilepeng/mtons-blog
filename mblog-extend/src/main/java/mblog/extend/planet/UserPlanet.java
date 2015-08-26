@@ -1,13 +1,13 @@
 package mblog.extend.planet;
 
 import mblog.data.AccountProfile;
-import mblog.data.UserFull;
+import mblog.data.User;
 
 /**
  * @author langhsu on 2015/8/15.
  */
 public interface UserPlanet {
-    UserFull getUserFull(long userId);
+    User getUser(long userId);
 
-    AccountProfile update(UserFull user);
+    AccountProfile update(User user);
 }

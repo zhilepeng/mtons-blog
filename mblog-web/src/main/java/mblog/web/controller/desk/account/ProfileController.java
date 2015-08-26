@@ -3,13 +3,8 @@
  */
 package mblog.web.controller.desk.account;
 
-import mblog.data.UserFull;
-import mblog.extend.email.EmailSender;
-import mblog.extend.planet.UserPlanet;
-import mblog.lang.Consts;
-import mblog.persist.service.VerifyService;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import mblog.data.User;
+import mblog.extend.email.EmailSender;
+import mblog.extend.planet.UserPlanet;
+import mblog.lang.Consts;
 import mblog.persist.service.UserService;
+import mblog.persist.service.VerifyService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
-
-import java.util.HashMap;
-import java.util.Map;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 
 /**
  * @author langhsu
@@ -45,7 +43,7 @@ public class ProfileController extends BaseController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String view(ModelMap model) {
 		UserProfile profile = getSubject().getProfile();
-		UserFull view = userPlanet.getUserFull(profile.getId());
+		User view = userPlanet.getUser(profile.getId());
 		model.put("view", view);
 		return getView(Views.ACCOUNT_PROFILE);
 	}
@@ -56,7 +54,7 @@ public class ProfileController extends BaseController {
 		UserProfile profile = getSubject().getProfile();
 		
 		try {
-			UserFull user = new UserFull();
+			User user = new User();
 			user.setId(profile.getId());
 			user.setName(name);
 			user.setSignature(signature);
@@ -64,7 +62,7 @@ public class ProfileController extends BaseController {
 			putProfile(userPlanet.update(user));
 
 			// put 最新信息
-			UserFull view = userPlanet.getUserFull(profile.getId());
+			User view = userPlanet.getUser(profile.getId());
 			model.put("view", view);
 
 			data = Data.success("操作成功", Data.NOOP);

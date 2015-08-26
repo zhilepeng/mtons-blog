@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import mblog.data.UserFull;
-import mtons.modules.exception.MtonsException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,10 @@ import mblog.data.User;
 import mblog.persist.dao.UserDao;
 import mblog.persist.entity.AuthMenuPO;
 import mblog.persist.entity.RolePO;
-import mblog.persist.entity.UserExtendPO;
 import mblog.persist.entity.UserPO;
 import mblog.persist.service.UserService;
 import mblog.persist.utils.BeanMapUtils;
+import mtons.modules.exception.MtonsException;
 import mtons.modules.lang.Const;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Paging;
@@ -50,15 +48,6 @@ public class UserServiceImpl implements UserService {
 			po.setLastLogin(Calendar.getInstance().getTime());
 
 			u = BeanMapUtils.copyPassport(po);
-
-			// FIXME: 兼容代码 1.3 之前版本的注册用户
-			if (po.getExtend() == null) {
-				// 保存扩展
-				UserExtendPO extend = new UserExtendPO();
-				extend.setUser(po);
-
-				po.setExtend(extend);
-			}
 		}
 		return u;
 	}
@@ -91,12 +80,6 @@ public class UserServiceImpl implements UserService {
 		po.setActiveEmail(EntityStatus.ENABLED);
 		po.setCreated(now);
 
-		// 保存扩展
-		UserExtendPO extend = new UserExtendPO();
-		extend.setUser(po);
-
-		po.setExtend(extend);
-		
 		userDao.save(po);
 
 		return BeanMapUtils.copy(po);
@@ -104,22 +87,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public AccountProfile update(UserFull user) {
+	public AccountProfile update(User user) {
 		UserPO po = userDao.get(user.getId());
 		if (null != po) {
 			po.setName(user.getName());
-
-			if (StringUtils.isNotBlank(user.getSignature())) {
-				UserExtendPO extend = po.getExtend();
-
-				if (extend == null) {
-					new UserExtendPO();
-					extend.setUser(po);
-					po.setExtend(extend);
-				}
-
-				extend.setSignature(user.getSignature());
-			}
+			po.setSignature(user.getSignature());
 		}
 		
 		return BeanMapUtils.copyPassport(po);
@@ -166,23 +138,6 @@ public class UserServiceImpl implements UserService {
 		User ret = null;
 		if (po != null) {
 			ret = BeanMapUtils.copy(po);
-		}
-		return ret;
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public UserFull getUserFull(long id) {
-		UserPO po = userDao.get(id);
-		UserFull ret;
-
-		Assert.notNull(po, "用户数据获取失败");
-
-		ret = new UserFull();
-		BeanUtils.copyProperties(po, ret, BeanMapUtils.USER_IGNORE);
-
-		if (po.getExtend() != null) {
-			BeanUtils.copyProperties(po.getExtend(), ret);
 		}
 		return ret;
 	}

@@ -5,7 +5,12 @@
  *******************************************************************************/
 package mblog.web.controller.desk.user;
 
-import mblog.data.UserFull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import mblog.data.User;
 import mblog.extend.planet.CommentPlanet;
 import mblog.lang.EnumPrivacy;
 import mblog.persist.service.FeedsService;
@@ -18,10 +23,6 @@ import mblog.web.controller.desk.Views;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 用户主页
@@ -134,7 +135,7 @@ public class HomeController extends BaseController {
 
 	private void initUser(ModelMap model) {
 		UserProfile up = getSubject().getProfile();
-		UserFull user = userService.getUserFull(up.getId());
+		User user = userService.get(up.getId());
 
 		model.put("user", user);
 	}

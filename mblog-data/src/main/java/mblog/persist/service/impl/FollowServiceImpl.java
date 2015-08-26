@@ -3,8 +3,16 @@
  */
 package mblog.persist.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
 import mblog.data.User;
-import mblog.data.UserFull;
 import mblog.persist.dao.FollowDao;
 import mblog.persist.entity.FollowPO;
 import mblog.persist.entity.UserPO;
@@ -13,15 +21,6 @@ import mblog.persist.service.UserEventService;
 import mblog.persist.utils.BeanMapUtils;
 import mtons.modules.exception.MtonsException;
 import mtons.modules.pojos.Paging;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author langhsu

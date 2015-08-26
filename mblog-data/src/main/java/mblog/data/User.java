@@ -23,12 +23,15 @@ public class User implements Serializable {
 	private int favors; // 收到的喜欢数
 
 	private Date created;
+	private int source; // 用户来源，主要用于第三方注册用户
+
 	private Date lastLogin;
+	private String signature; // 个性签名
+
 	private int roleId;
 	private int status;
 	private int activeEmail;
-	private int source; // 用户来源，主要用于第三方注册用户
-	
+
 	private List<Role> roles = new ArrayList<Role>();
 
 	public long getId() {
@@ -181,5 +184,13 @@ public class User implements Serializable {
 
 	public void setFavors(int favors) {
 		this.favors = favors;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
 	}
 }

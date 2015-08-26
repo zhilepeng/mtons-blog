@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,8 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -73,6 +70,8 @@ public class UserPO {
 
 	@Column(name = "last_login")
 	private Date lastLogin;
+	
+	private String signature; // 个性签名
 
 	@Column(name = "role_id")
 	private int roleId;
@@ -85,10 +84,6 @@ public class UserPO {
 	@Column(name = "active_email")
 	private int activeEmail;
 	private int status;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	private UserExtendPO extend;
 
 	public UserPO() {
 
@@ -194,12 +189,12 @@ public class UserPO {
 		this.roleId = roleId;
 	}
 
-	public UserExtendPO getExtend() {
-		return extend;
+	public String getSignature() {
+		return signature;
 	}
 
-	public void setExtend(UserExtendPO extend) {
-		this.extend = extend;
+	public void setSignature(String signature) {
+		this.signature = signature;
 	}
 
 	public List<RolePO> getRoles() {
