@@ -17,12 +17,9 @@
     <div class="container">
         <div class="content">
             <ul class="nav navbar-nav">
-                <li>
+                <li class="active">
 					<a href="javascript:void(0);)">文章数 $!{user.posts}</a>
                 </li>
-                <li>
-					<a href="javascript:void(0);)">评论数 $!{user.comments}</a>
-				</li>
             </ul>
         </div>
     </div>

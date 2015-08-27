@@ -215,6 +215,7 @@ public class CallbackController extends BaseController {
         user.setUsername(openOauth.getUsername());
         user.setName(openOauth.getNickname());
         user.setPassword(openOauth.getAccessToken());
+//        user.setEmail(openOauth.getEmail());
 
         user.setSource(openOauth.getOauthType());
 

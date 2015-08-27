@@ -107,7 +107,7 @@ $user.username
     
 <ul class="pagination">
 	#if($p.pageNo > 1)
-		<li><a class="prev" href="${cURL}${p.prev}" pageNo="1">上一页</a></li>
+		<li><a class="prev" href="${cURL}${p.prev}" pageNo="1">&nbsp;<i class="fa fa-angle-left"></i>&nbsp;</a></li>
     #end
     
     #set($totalNo = ${span} * 2 + 3)
@@ -146,7 +146,7 @@ $user.username
     #end
     
     #if ($p.pageNo < $p.pageCount)
-		<li><a href="${cURL}${p.next}" pageNo="$p.next">下一页</a></li>
+		<li><a href="${cURL}${p.next}" pageNo="$p.next">&nbsp;<i class="fa fa-angle-right"></i>&nbsp;</a></li>
 	#end
 </ul>
 #end

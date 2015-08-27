@@ -3,8 +3,13 @@
  */
 package mblog.web.controller.desk.account;
 
-import java.util.HashMap;
-import java.util.Map;
+import mblog.data.User;
+import mblog.extend.email.EmailSender;
+import mblog.extend.planet.UserPlanet;
+import mblog.lang.Consts;
+import mblog.persist.service.VerifyService;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +18,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.data.User;
-import mblog.extend.email.EmailSender;
-import mblog.extend.planet.UserPlanet;
-import mblog.lang.Consts;
 import mblog.persist.service.UserService;
-import mblog.persist.service.VerifyService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author langhsu

@@ -5,11 +5,6 @@
  *******************************************************************************/
 package mblog.web.controller.desk.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import mblog.data.User;
 import mblog.extend.planet.CommentPlanet;
 import mblog.lang.EnumPrivacy;
@@ -23,6 +18,10 @@ import mblog.web.controller.desk.Views;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 用户主页

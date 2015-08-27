@@ -40,7 +40,7 @@
 		<!-- tab panes -->
         <div class="stream-list no-bg">
 			#foreach($row in $page.results)
-                <div class="stream-item" el="loop-${row.id}">
+                <div class="stream-item comment-item" el="loop-${row.id}">
                     <h2 class="title" style="color:#F36C52">我说：$row.content</h2>
                     <div class="foot-block clearfix">
                         <div class="author">
@@ -50,6 +50,7 @@
                             <a class="act" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
                         </div>
                     </div>
+					<div class="arrow"></div>
                 </div>
 				#if ($row.post)
 					#showBlog($row.post)
