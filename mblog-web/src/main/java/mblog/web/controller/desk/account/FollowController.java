@@ -1,4 +1,4 @@
-package mblog.web.controller.desk.user;
+package mblog.web.controller.desk.account;
 
 import mblog.persist.service.FollowService;
 import mblog.web.controller.BaseController;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/account")
-public class UserController extends BaseController {
+public class FollowController extends BaseController {
     @Autowired
     private FollowService followService;
 
