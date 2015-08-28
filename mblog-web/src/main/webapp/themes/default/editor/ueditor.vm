@@ -1,7 +1,5 @@
 
-<link href="$base/assets/vendors/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet" />
-
-<textarea id="content" class="form-control" name="content" rows="5" data-required data-describedby="message" data-description="content"></textarea>
+<textarea id="content" name="content" class="form-control" rows="5" data-required data-describedby="message" data-description="content"></textarea>
 
 <script type="text/javascript">
 function setContent(content) {
@@ -9,16 +7,18 @@ function setContent(content) {
     	if (mblog.browser.ios || mblog.browser.android) {
     		$('#content').text(content);
     	} else {
-    		UM.getEditor('content').setContent(content);
+    		UE.getEditor('content').setContent(content);
     	}
 	}
 }
 
 $(function () {
 	if (!mblog.browser.ios && !mblog.browser.android) {
-		seajs.use('editor');
-	}
+        seajs.use('editor', function(editor) {
+            editor.init(function () {
+                $('#content').removeClass('form-control');
+			});
+        });
+    }
 })
-
-
 </script>

@@ -26,8 +26,8 @@ seajs.config({
         'validate': 'vendors/validate/jquery-validate',
         'lazyload': 'vendors/lazyload/jquery.lazyload',
 
-        'umeditor': 'vendors/umeditor/umeditor.min',
-        'umeditor.config': 'vendors/umeditor/umeditor.config'
+        'ueditor': 'vendors/ueditor/ueditor.all.min',
+        'ueditor.config': 'vendors/ueditor/ueditor.config'
     },
 
     // 预加载项

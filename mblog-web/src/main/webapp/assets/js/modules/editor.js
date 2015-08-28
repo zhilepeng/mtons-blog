@@ -6,20 +6,30 @@
 
 define(function(require, exports, module) {
 
-	require('umeditor.config');
-	require('umeditor');
-	
-	umEditor = UM.getEditor('content', {
-		imageUrl: window.app.base + "/aj_um_upload.json",
-    	imagePath: window.app.base,
-        toolbar: ["undo", "redo", "|", "bold", "italic", "underline", "|", "justifyleft", "justifycenter",
-            "justifyright", "|", "link", "unlink", "|", "insertorderedlist", "insertunorderedlist", 
-			"|", "emotion", "image", "removeformat", "fullscreen"],
-        autoClearinitialContent: true,
-        wordCount: true,
-        maximumWords: 2000,
-        initialFrameWidth: '100%',
-        initialFrameHeight: 300
-    });
-	
+	require('ueditor.config');
+
+    var ueditor;
+
+    var initEditor = function (callback) {
+        require.async('ueditor', function () {
+            ueditor = UE.getEditor('content', {
+                fastUpload: window.app.base + "/aj_um_upload.json",
+                fastFileName: 'upfile',
+                fastUrlPrefix: window.app.base,
+                imageAllowFiles: [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 上传图片格式显示 */
+
+                wordCount: true,
+                maximumWords: 2000,
+                initialFrameWidth: '100%',
+                initialFrameHeight: 300
+            });
+
+            callback.call(this);
+        });
+
+    }
+
+	exports.init = function (callback) {
+        initEditor(callback);
+    }
 });
