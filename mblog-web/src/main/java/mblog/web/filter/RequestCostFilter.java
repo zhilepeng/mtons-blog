@@ -27,7 +27,7 @@ public class RequestCostFilter implements Filter {
         chain.doFilter(request, response);
         stopWatch.stop();
 
-        log.info(httpRequest.getRequestURI() + " -> request cost - " + stopWatch.getTotalTimeMillis());
+        log.debug(httpRequest.getRequestURI() + " -> request cost - " + stopWatch.getTotalTimeMillis());
     }
 
     @Override
