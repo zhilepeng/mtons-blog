@@ -2,7 +2,7 @@
 
 <div class="col-lg-6">
 	<div class="panel m-t-large m-b"> 
-		<header class="panel-heading">修改角色</header>
+		<header class="panel-heading">修改系统配置</header>
 		<div class="panel-body">
 			<form id="qForm" class="form-horizontal" method="post" action="update">
 				#parse("/admin/message.vm")
