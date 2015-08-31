@@ -1,3 +1,14 @@
+2015-08-31
+关于2.0 升级
+	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并
+	2. mto_user 表添加了 active_email、posts、comments、follows、fans、favors 等字段，请设置这些字段的默认值
+	3. 添加第三方登录，注意修改自己的openId (login.vm、mblog-web/resource/config.pro..  qqconnectconfig.pro...)
+	4. 添加邮箱验证（注意修改回调邮件地址：/WEB-INF/vm/email）
+	5. 添加用户关注，可收到关注的人最新的动态
+	6. 部分页面调整（用户主页、修改个人资料等）
+	7. umeditor改为ueditor, 对mblog进行了一些定制
+	8. 对个人主页的访问加入了缓存，提高页面访问速度
+
 2015-07-17
 关于1.2 升级到最新版本
 
@@ -12,3 +23,7 @@
 	4. post snapshoot_id 改为 lastImageId
 	
 		升级sql: UPDATE mto_posts SET last_image_id = 0 WHERE last_image_id IS NULL
+
+	5. config 表 key 字段改名为 key_
+
+
