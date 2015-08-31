@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
 	<!--
 	<div class="search">
 		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">

@@ -1,4 +1,4 @@
-#set($title = "Mtons博客-前端博客-前端技术，记录web前端开发的技术博客")
+#set($title = "图文")
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
 	<!--
 	<div class="search">
 		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">

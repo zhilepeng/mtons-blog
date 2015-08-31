@@ -36,7 +36,7 @@
 
 
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
     <ul class="list-group about-user">
         <li class="list-group-item user-card" >
             <div class="ava">

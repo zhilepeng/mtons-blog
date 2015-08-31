@@ -1,4 +1,4 @@
-#set($title = "Mtons博客-前端博客-前端技术，记录web前端开发的技术博客")
+#set($title = "问答")
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">
@@ -34,18 +34,6 @@
     </div>
 </div>
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
-	<!--
-	<div class="search">
-		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">
-    		<div class="input-group custom-search-form">
-        		<input type="text" class="form-control" name="q" placeholder="搜索...">
-        		<span class="input-group-btn">
-        			<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-        		</span>
-        	</div>
-		</form>
-	</div>
-	-->
+<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
 	#parse("/default/inc/right.vm")
 </div>
