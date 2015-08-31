@@ -84,24 +84,25 @@ CREATE TABLE `mto_tags` (
   `hots` int(11) NOT NULL,
   `last_post_id` bigint(20) DEFAULT NULL,
   `posts` int(11) NOT NULL,
+  `locked` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of mto_tags
 -- ----------------------------
-INSERT INTO `mto_tags` VALUES ('1', '清新', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('2', '电影', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('3', '宠物', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('4', '语录', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('5', '美女', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('6', '旅行', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('7', '北京', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('8', '艺术', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('9', '美图', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('10', '模特', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('11', '心情', '1', '0', '0', '0');
-INSERT INTO `mto_tags` VALUES ('12', '摄影', '1', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('1', '清新', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('2', '电影', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('3', '宠物', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('4', '语录', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('5', '美女', '1', '1', '3', '2', '0');
+INSERT INTO `mto_tags` VALUES ('6', '旅行', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('7', '北京', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('8', '艺术', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('9', '美图', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('10', '模特', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('11', '心情', '1', '0', '0', '0', '0');
+INSERT INTO `mto_tags` VALUES ('12', '摄影', '1', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for mto_group
@@ -114,16 +115,17 @@ CREATE TABLE `mto_group` (
   `alias` varchar(255) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `template` varchar(16) DEFAULT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_group
 -- ----------------------------
-INSERT INTO `mto_group` VALUES ('1', 'blog', '文章', '写文章', 'fa fa-pencil-square', 'blog');
-INSERT INTO `mto_group` VALUES ('2', 'image', '图片', '发图片', 'fa fa-camera', 'image');
-INSERT INTO `mto_group` VALUES ('3', 'video', '视频', '分享视频', 'fa fa-toggle-right', 'video');
-INSERT INTO `mto_group` VALUES ('4', 'ask', '问答', '提问题', 'fa fa-question-circle', 'ask');
+INSERT INTO `mto_group` VALUES ('1', 'blog', '文章', '写文章', 'fa fa-pencil-square', 'blog', '0');
+INSERT INTO `mto_group` VALUES ('2', 'image', '图片', '发图片', 'fa fa-camera', 'image', '0');
+INSERT INTO `mto_group` VALUES ('3', 'video', '视频', '搬视频', 'fa fa-toggle-right', 'video', '0');
+INSERT INTO `mto_group` VALUES ('4', 'ask', '问答', '提问题', 'fa fa-question-circle', 'ask', '0');
 
 -- ----------------------------
 -- Table structure for mto_menu
@@ -135,17 +137,18 @@ CREATE TABLE `mto_menu` (
   `target` varchar(18) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `weight` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_menu
 -- ----------------------------
-INSERT INTO `mto_menu` VALUES ('1', '文章', '_self', 'g/blog', '0');
-INSERT INTO `mto_menu` VALUES ('2', '视频', '_self', 'g/video', '0');
-INSERT INTO `mto_menu` VALUES ('3', '问答', '_self', 'g/ask', '0');
-INSERT INTO `mto_menu` VALUES ('4', '发现', '_self', 'tags', '0');
-INSERT INTO `mto_menu` VALUES ('5', '走廊', '_self', 'gallery?g=2', '0');
+INSERT INTO `mto_menu` VALUES ('1', '文章', '_self', 'g/blog', '0', '0');
+INSERT INTO `mto_menu` VALUES ('2', '视频', '_self', 'g/video', '0', '0');
+INSERT INTO `mto_menu` VALUES ('3', '问答', '_self', 'g/ask', '0', '0');
+INSERT INTO `mto_menu` VALUES ('4', '发现', '_self', 'tags', '0', '0');
+INSERT INTO `mto_menu` VALUES ('5', '走廊', '_self', 'gallery?g=2', '0', '0');
 
 -- ----------------------------
 -- Table structure for mto_auth_menu

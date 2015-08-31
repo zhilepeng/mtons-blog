@@ -3,6 +3,8 @@
 	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并
 	2. mto_user 表添加了 active_email、posts、comments、follows、fans、favors 等字段，请设置这些字段的默认值
 	3. 添加第三方登录，注意修改自己的openId (login.vm、mblog-web/resource/config.pro..  qqconnectconfig.pro...)
+		/themes/default/inc/metas.vm 里需要添加第三方的 meta 数据
+		
 	4. 添加邮箱验证（注意修改回调邮件地址：/WEB-INF/vm/email）
 	5. 添加用户关注，可收到关注的人最新的动态
 	6. 部分页面调整（用户主页、修改个人资料等）
