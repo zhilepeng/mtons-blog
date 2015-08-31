@@ -22,6 +22,8 @@
 	<bean id="followDao" class="mblog.persist.dao.impl.FollowDaoImpl" />
 	<bean id="feedsDao" class="mblog.persist.dao.impl.FeedsDaoImpl" />
 
+	<bean id="favorDao" class="mblog.persist.dao.impl.FavorDaoImpl" />
+
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
 	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />
@@ -40,4 +42,5 @@
 	<bean id="followService" class="mblog.persist.service.impl.FollowServiceImpl" />
 	<bean id="feedsService" class="mblog.persist.service.impl.FeedsServiceImpl" />
 
+	<bean id="favorService" class="mblog.persist.service.impl.FavorServiceImpl" />
 </beans>

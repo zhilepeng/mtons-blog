@@ -7,8 +7,6 @@ package mblog.extend.event.handler;
 
 import java.util.Date;
 
-import mtons.modules.exception.MtonsException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 
@@ -34,11 +32,6 @@ public class LogEventHandler implements ApplicationListener<LogEvent> {
 		
 		switch (type) {
 			case FAVORED:
-				int logs = logService.statsByDay(type.getIndex(), event.getUserId(), event.getTargetId(), event.getIp(), now);
-				if (logs > 0) {
-					throw new MtonsException("您今天已经喜欢过该文章了");
-				}
-				postService.identityFavors(event.getTargetId());
 				logService.add(type.getIndex(), event.getUserId(), event.getTargetId(), event.getIp());
 				break;
 			case BROWSE:

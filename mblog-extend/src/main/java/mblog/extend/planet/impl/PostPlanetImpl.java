@@ -160,4 +160,16 @@ public class PostPlanetImpl implements PostPlanet {
 		}
 	}
 
+	@Override
+	@CacheEvict(value = "postsCaches", key = "'view_' + #postId")
+	public void favor(long userId, long postId) {
+		postService.favor(userId, postId);
+	}
+
+	@Override
+	@CacheEvict(value = "postsCaches", key = "'view_' + #postId")
+	public void unfavor(long userId, long postId) {
+		postService.unfavor(userId, postId);
+	}
+
 }

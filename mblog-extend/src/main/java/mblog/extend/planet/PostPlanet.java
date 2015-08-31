@@ -65,6 +65,11 @@ public interface PostPlanet {
 	 */
 	void post(Post post);
 
+	/**
+	 * 修改文章访问权限
+	 * @param id
+	 * @param privacy
+	 */
 	void updatePrivacy(long id, int privacy);
 
 	/**
@@ -99,5 +104,19 @@ public interface PostPlanet {
 	 * @param ids
 	 */
 	void delete(Collection<Long> ids);
+
+	/**
+	 * 喜欢文章
+	 * @param userId
+	 * @param postId
+	 */
+	void favor(long userId, long postId);
+
+	/**
+	 * 取消喜欢文章
+	 * @param userId
+	 * @param postId
+	 */
+	void unfavor(long userId, long postId);
 	
 }

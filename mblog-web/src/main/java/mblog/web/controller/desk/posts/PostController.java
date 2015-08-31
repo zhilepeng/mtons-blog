@@ -3,28 +3,22 @@
  */
 package mblog.web.controller.desk.posts;
 
-import javax.servlet.http.HttpServletRequest;
-
+import mblog.data.Group;
+import mblog.data.Post;
+import mblog.extend.planet.PostPlanet;
+import mblog.persist.service.GroupService;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.extend.event.LogEvent;
-import mblog.extend.planet.PostPlanet;
-import mblog.lang.EnumLog;
-import mblog.persist.service.GroupService;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
 
 /**
  * 文章操作
@@ -38,8 +32,6 @@ public class PostController extends BaseController {
 	private PostPlanet postPlanet;
 	@Autowired
 	private GroupService groupService;
-	@Autowired
-	private ApplicationContext applicationContext;
 
 	/**
 	 * 发布文章页
@@ -93,35 +85,4 @@ public class PostController extends BaseController {
 		return data;
 	}
 
-	/**
-	 * 喜欢文章
-	 * @param id
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/favor")
-	public @ResponseBody Data favor(Long id, HttpServletRequest request) {
-		Data data = Data.failure("操作失败");
-		if (id != null) {
-			try {
-				UserProfile up = getSubject().getProfile();
-				
-				LogEvent evt = new LogEvent("source");
-				
-				if (up != null) {
-					evt.setUserId(up.getId());
-				}
-				evt.setTargetId(id);
-				evt.setType(EnumLog.FAVORED);
-				evt.setIp(getIpAddr(request));
-				applicationContext.publishEvent(evt);
-				
-				data = Data.success("操作成功,感谢您的支持!", Data.NOOP);
-			} catch (Exception e) {
-				data = Data.failure(e.getMessage());
-			}
-		}
-		return data;
-	}
-	
 }

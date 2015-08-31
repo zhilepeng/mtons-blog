@@ -5,6 +5,7 @@
 ### 技术选型：
 
 * **服务端**
+* JDK8
 * SSH (Spring、SpringMVC、Hibernate）
 * 安全权限 Shiro
 * 搜索工具 Lucene

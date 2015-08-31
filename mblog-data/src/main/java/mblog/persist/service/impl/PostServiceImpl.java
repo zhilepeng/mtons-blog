@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.persist.service.impl;
 
 import mblog.data.Attach;
@@ -52,7 +54,9 @@ public class PostServiceImpl implements PostService {
 	private UserService userService;
 	@Autowired
 	private UserEventService userEventService;
-	
+	@Autowired
+	private FavorService favorService;
+
 	@Override
 	@Transactional(readOnly = true)
 	public void paging(Paging paging, int group, String ord, boolean whetherHasAlbums) {
@@ -102,7 +106,7 @@ public class PostServiceImpl implements PostService {
 		HashSet<Long> uids = new HashSet<>();
 
 		for (PostPO po : list) {
-			Post m = BeanMapUtils.copy(po ,0);
+			Post m = BeanMapUtils.copy(po, 0);
 
 			// 处理高亮
 			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
@@ -351,22 +355,37 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	@Transactional
-	public void identityFavors(long id) {
-		PostPO po = postDao.get(id);
-		if (po != null) {
-			po.setFavors(po.getFavors() + Consts.IDENTITY_STEP);
-		}
-	}
-	
-	@Override
-	@Transactional
 	public void identityComments(long id) {
 		PostPO po = postDao.get(id);
 		if (po != null) {
 			po.setComments(po.getComments() + Consts.IDENTITY_STEP);
 		}
 	}
-	
+
+	@Override
+	@Transactional
+	public void favor(long userId, long postId) {
+		PostPO po = postDao.get(postId);
+
+		Assert.notNull(po, "文章不存在");
+
+		favorService.add(userId, postId);
+
+		po.setFavors(po.getFavors() + Consts.IDENTITY_STEP);
+	}
+
+	@Override
+	@Transactional
+	public void unfavor(long userId, long postId) {
+		PostPO po = postDao.get(postId);
+
+		Assert.notNull(po, "文章不存在");
+
+		favorService.delete(userId, postId);
+
+		po.setFavors(po.getFavors() - Consts.IDENTITY_STEP);
+	}
+
 	/**
 	 * 截取文章内容
 	 * @param text

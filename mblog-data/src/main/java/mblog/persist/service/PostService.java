@@ -1,6 +1,8 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.persist.service;
 
 import java.io.IOException;
@@ -132,15 +134,23 @@ public interface PostService {
 	void identityViews(long id);
 	
 	/**
-	 * 自增喜欢数
-	 * @param id
-	 */
-	void identityFavors(long id);
-	
-	/**
 	 * 自增评论数
 	 * @param id
 	 */
 	void identityComments(long id);
+
+	/**
+	 * 喜欢文章
+	 * @param userId
+	 * @param postId
+	 */
+	void favor(long userId, long postId);
+
+	/**
+	 * 取消喜欢文章
+	 * @param userId
+	 * @param postId
+	 */
+	void unfavor(long userId, long postId);
 
 }
