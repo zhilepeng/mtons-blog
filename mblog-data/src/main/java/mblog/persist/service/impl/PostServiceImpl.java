@@ -107,16 +107,12 @@ public class PostServiceImpl implements PostService {
 			// 处理高亮
 			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
 			String summary = highlighter.getBestFragment(standardAnalyzer, "summary", m.getSummary());
-			String tags = highlighter.getBestFragment(standardAnalyzer, "tags", m.getTags());
 
 			if (StringUtils.isNotEmpty(title)) {
 				m.setTitle(title);
 			}
 			if (StringUtils.isNotEmpty(summary)) {
 				m.setSummary(summary);
-			}
-			if (StringUtils.isNotEmpty(tags)) {
-				m.setTags(tags);
 			}
 			rets.add(m);
 			
