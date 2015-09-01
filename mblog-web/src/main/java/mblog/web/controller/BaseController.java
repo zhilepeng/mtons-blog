@@ -134,7 +134,7 @@ public class BaseController {
 				alb.setOriginal(orig);
 
 				// 创建缩放图片
-				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 360);
+				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 305);
 				alb.setPreview(preview);
 
 			} catch (Exception e) {

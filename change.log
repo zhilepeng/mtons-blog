@@ -4,12 +4,15 @@
 	2. mto_user 表添加了 active_email、posts、comments、follows、fans、favors 等字段，请设置这些字段的默认值
 	3. 添加第三方登录，注意修改自己的openId (login.vm、mblog-web/resource/config.pro..  qqconnectconfig.pro...)
 		/themes/default/inc/metas.vm 里需要添加第三方的 meta 数据
-		
-	4. 添加邮箱验证（注意修改回调邮件地址：/WEB-INF/vm/email）
+
+	4. 添加邮箱验证（注意修改回调邮件地址：/WEB-INF/vm/email， 在 mtons.properties 里添加发件账号）
+
 	5. 添加用户关注，可收到关注的人最新的动态
 	6. 部分页面调整（用户主页、修改个人资料等）
 	7. umeditor改为ueditor, 对mblog进行了一些定制
 	8. 对个人主页的访问加入了缓存，提高页面访问速度
+	9. 添加通知体系（喜欢文章、评论、回复评论、关注都会收到对应的通知）
+	10. home页版式调整，修复了在手机访问时的一些小瑕疵
 
 2015-07-17
 关于1.2 升级到最新版本

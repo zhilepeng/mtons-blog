@@ -1,12 +1,15 @@
-/**
- * 
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.persist.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -36,23 +41,23 @@ public class UserPO {
 	private long id;
 
 	@Column(name = "username", unique = true, length = 64)
-	private String username;
+	private String username; // 用户名
 	
 	@Column(name = "password", length = 64)
-	private String password;
+	private String password; // 密码
 
-	private String avatar;
+	private String avatar;  // 头像
 	
 	@Column(name = "name", length = 18)
-	private String name;
+	private String name;  // 昵称
 
-	private int gender;
+	private int gender;   // 性别
 
 	@Column(name = "email", unique = true, length = 128)
-	private String email;
+	private String email;  // 邮箱
 	
 	@Column(name = "mobile", length = 11)
-	private String mobile;
+	private String mobile;  // 手机号
 
 	private int posts; // 文章数
 
@@ -64,13 +69,13 @@ public class UserPO {
 
 	private int favors; // 收到的喜欢数
 
-	private Date created;
+	private Date created;  // 注册时间
 
-	private int source;
+	private int source; // 注册来源：主要用于第三方登录
 
 	@Column(name = "last_login")
 	private Date lastLogin;
-	
+
 	private String signature; // 个性签名
 
 	@Column(name = "role_id")
@@ -82,8 +87,8 @@ public class UserPO {
 	private List<RolePO> roles = new ArrayList<RolePO>();
 
 	@Column(name = "active_email")
-	private int activeEmail;
-	private int status;
+	private int activeEmail; // 邮箱激活状态
+	private int status; // 用户状态
 
 	public UserPO() {
 
@@ -189,14 +194,6 @@ public class UserPO {
 		this.roleId = roleId;
 	}
 
-	public String getSignature() {
-		return signature;
-	}
-
-	public void setSignature(String signature) {
-		this.signature = signature;
-	}
-
 	public List<RolePO> getRoles() {
 		return roles;
 	}
@@ -259,5 +256,13 @@ public class UserPO {
 
 	public void setFavors(int favors) {
 		this.favors = favors;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
 	}
 }

@@ -88,7 +88,7 @@ input[type=text],input[type=password],textarea {
 
 .sign .login .forgot {
 	font-size: 14px;
-	padding: 15px 0;
+	padding: 10px 0;
 	color: #999;
 	display: inline-block
 }
@@ -104,12 +104,10 @@ input[type=text],input[type=password],textarea {
 }
 
 .open {
-
 	display: inline-block;
-	width: 100%;
-	height: 50px;
+	height: 40px;
 	padding: 0 0 0 30px;
-	margin: 0;
+	margin-top: 10px;
 
 	border-radius: 2px;
 	font-size: 16px;
@@ -117,20 +115,18 @@ input[type=text],input[type=password],textarea {
 	line-height: 22px;
 
 	color: #fff;
-
 }
 
 .sina {
-	background: url(../images/weibo.png) no-repeat;
-	background-position: 10px;
+	background: url(../images/first/weibo.png) no-repeat;
+	background-position: 0;
 	background-color: #d63b22;
 }
 
 .qq {
-	background: url(../images/qq.png) no-repeat;
-	background-position: 10px;
+	background: url(../images/first/qq.png) no-repeat;
+	background-position: 0;
 	background-color: #3eb0d8;
-	margin-top: 10px;
 }
 
 .sina:hover {
@@ -152,8 +148,65 @@ input[type=text],input[type=password],textarea {
 .open span {
 	margin: 0;
 	display: block;
-	padding: 14px 30px;
+	padding: 8px 15px 0 25px;
 	height: 22px;
+}
+
+.with-line {
+	font-size: 16px;
+	color: #999;
+	margin: 15px auto;
+	position: relative;
+	text-align: center;
+}
+.with-line:before {
+	content: "";
+	border-top: 1px solid #ededed;
+	display: block;
+	position: absolute;
+	width: 50px;
+	top: 11px;
+	left: 0;
+}
+.with-line:after {
+	content: "";
+	border-top: 1px solid #ededed;
+	display: block;
+	position: absolute;
+	width: 50px;
+	top: 11px;
+	right: 0;
+}
+
+.buttons a {
+	display: inline-block;
+	margin-right: 10px;
+	width: 64px;
+	height: 64px;
+	background: url(../images/first/login_icons_small.png) 0 0 no-repeat;
+}
+
+.buttons a.qzone {
+	background-position: -80px 0;
+}
+.buttons a.douban {
+	background-position: -160px 0;
+}
+.buttons a.renren {
+	background-position: -240px 0;
+}
+
+.buttons a.weibo:hover {
+	background-position: 0 -80px;
+}
+.buttons a.qzone:hover {
+	background-position: -80px -80px;
+}
+.buttons a.douban:hover {
+	background-position: -160px -80px;
+}
+.buttons a.renren:hover {
+	background-position: -240px -80px;
 }
 
 /**************************************************************************************

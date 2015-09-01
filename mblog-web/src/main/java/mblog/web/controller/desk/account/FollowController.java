@@ -1,10 +1,13 @@
 package mblog.web.controller.desk.account;
 
+import mblog.extend.event.NotifyEvent;
+import mblog.lang.Consts;
 import mblog.persist.service.FollowService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class FollowController extends BaseController {
     @Autowired
     private FollowService followService;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @RequestMapping("/follow")
     public @ResponseBody Data follow(Long id) {
@@ -26,6 +31,8 @@ public class FollowController extends BaseController {
                 UserProfile up = getSubject().getProfile();
 
                 followService.follow(up.getId(), id);
+
+                sendNotify(up.getId(), id);
 
                 data = Data.success("关注成功!", Data.NOOP);
             } catch (Exception e) {
@@ -67,5 +74,18 @@ public class FollowController extends BaseController {
             }
         }
         return data;
+    }
+
+    /**
+     * 发送关注通知
+     * @param userId
+     * @param followId
+     */
+    private void sendNotify(long userId, long followId) {
+        NotifyEvent event = new NotifyEvent("NotifyEvent");
+        event.setToUserId(followId);
+        event.setFromUserId(userId);
+        event.setEvent(Consts.NOTIFY_EVENT_FOLLOW);
+        applicationContext.publishEvent(event);
     }
 }

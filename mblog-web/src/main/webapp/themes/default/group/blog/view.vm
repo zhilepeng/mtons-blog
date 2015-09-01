@@ -51,9 +51,9 @@
     <ul class="list-group about-user">
         <li class="list-group-item user-card" >
             <div class="ava">
-				<a href="$base/ta/${ret.author.id}">
+                <a href="$base/ta/${ret.author.id}">
 					#showAva(${ret.author.avatar}, "img-circle")
-				</a>
+                </a>
             </div>
             <div class="user-info">
                 <div class="nk mb10">#showName(${ret.author})</div>
@@ -81,3 +81,6 @@
 	#parse("/default/inc/right.vm")
 </div>
 
+<script type="text/javascript">
+    seajs.use('view');
+</script>

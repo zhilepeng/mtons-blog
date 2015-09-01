@@ -22,7 +22,11 @@
     			#foreach($alb in $ret.albums)
     				<div class="single-post-media">
 						<a title="${ret.title}" href="$base${alb.original}">
-							#albShow(${alb})
+							#if($att.store == 1)
+                                <img src="$base/assets/images/spinner.gif" data-original="${alb.original}"/>
+							#else
+                                <img src="$base/assets/images/spinner.gif" data-original="$base${alb.original}"/>
+							#end
 						</a>
 					</div><!-- .post-thumbnail -->	
 				#end
@@ -51,9 +55,9 @@
     <ul class="list-group about-user">
         <li class="list-group-item user-card" >
             <div class="ava">
-				<a href="$base/ta/${ret.author.id}">
+                <a href="$base/ta/${ret.author.id}">
 					#showAva(${ret.author.avatar}, "img-circle")
-				</a>
+                </a>
             </div>
             <div class="user-info">
                 <div class="nk mb10">#showName(${ret.author})</div>
@@ -81,3 +85,6 @@
 	#parse("/default/inc/right.vm")
 </div>
 
+<script type="text/javascript">
+    seajs.use('view');
+</script>

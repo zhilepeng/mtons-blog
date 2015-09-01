@@ -4,7 +4,7 @@
         login: '$!{profile.id}'
     };
 	
-	window.UMEDITOR_HOME_URL = '$base/assets/vendors/umeditor/';
+	window.UEDITOR_HOME_URL = '$base/assets/vendors/ueditor/';
 	
     function callLogin() {
         $('#loginalert').modal();

@@ -27,6 +27,8 @@ public class Group implements Serializable {
 	
 	private String template;
 
+	private int status;
+
 	public int getId() {
 		return id;
 	}
@@ -74,5 +76,12 @@ public class Group implements Serializable {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

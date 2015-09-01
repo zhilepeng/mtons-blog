@@ -1,16 +1,20 @@
 package mblog.web.controller.desk.posts;
 
-import javax.servlet.http.HttpServletRequest;
-
+import mblog.extend.event.LogEvent;
+import mblog.extend.event.NotifyEvent;
+import mblog.extend.planet.PostPlanet;
+import mblog.lang.Consts;
+import mblog.lang.EnumLog;
+import mblog.web.controller.BaseController;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.extend.planet.PostPlanet;
-import mblog.web.controller.BaseController;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author langhsu on 2015/8/31.
@@ -20,6 +24,8 @@ import mtons.modules.pojos.UserProfile;
 public class FavorController extends BaseController {
     @Autowired
     private PostPlanet postPlanet;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     /**
      * 喜欢文章
@@ -35,11 +41,27 @@ public class FavorController extends BaseController {
                 UserProfile up = getSubject().getProfile();
                 postPlanet.favor(up.getId(), id);
 
+                sendNotify(up.getId(), id);
+
                 data = Data.success("操作成功!", Data.NOOP);
             } catch (Exception e) {
                 data = Data.failure(e.getMessage());
             }
         }
         return data;
+    }
+
+    /**
+     * 发送通知
+     * @param userId
+     * @param postId
+     */
+    private void sendNotify(long userId, long postId) {
+        NotifyEvent event = new NotifyEvent("NotifyEvent");
+        event.setFromUserId(userId);
+        event.setEvent(Consts.NOTIFY_EVENT_FAVOR_POST);
+        // 此处不知道文章作者, 让通知事件系统补全
+        event.setPostId(postId);
+        applicationContext.publishEvent(event);
     }
 }

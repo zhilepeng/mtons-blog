@@ -36,6 +36,8 @@ public class MenuPO {
 	
 	private int weight;
 
+	private int status;
+
 	public int getId() {
 		return id;
 	}
@@ -75,5 +77,12 @@ public class MenuPO {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

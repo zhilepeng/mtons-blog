@@ -5,9 +5,12 @@ package mblog.web.controller.desk.comment;
 
 import javax.servlet.http.HttpServletRequest;
 
+import mblog.extend.event.NotifyEvent;
+import mblog.lang.Consts;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +37,9 @@ public class CommentController extends BaseController {
 	private CommentPlanet commentPlanet;
 	@Autowired
 	private PostService postService;
-	
+	@Autowired
+	private ApplicationContext applicationContext;
+
 	@RequestMapping("/list/{toId}")
 	public @ResponseBody Paging view(Integer pn, @PathVariable Long toId) {
 		Paging page = wrapPage(pn);
@@ -64,8 +69,8 @@ public class CommentController extends BaseController {
 			c.setPid(pid);
 			
 			commentPlanet.post(c);
-			// 自增评论数
-			postService.identityComments(c.getToId());
+
+			sendNotify(up.getId(), toId, pid);
 			
 			data = Data.success("发表成功!", Data.NOOP);
 		}
@@ -86,5 +91,23 @@ public class CommentController extends BaseController {
 		}
 		return data;
 	}
-	
+
+	/**
+	 * 发送通知
+	 * @param userId
+	 * @param postId
+	 */
+	private void sendNotify(long userId, long postId, long pid) {
+		NotifyEvent event = new NotifyEvent("NotifyEvent");
+		event.setFromUserId(userId);
+
+		if (pid > 0) {
+			event.setEvent(Consts.NOTIFY_EVENT_COMMENT_REPLY);
+		} else {
+			event.setEvent(Consts.NOTIFY_EVENT_COMMENT);
+		}
+		// 此处不知道文章作者, 让通知事件系统补全
+		event.setPostId(postId);
+		applicationContext.publishEvent(event);
+	}
 }

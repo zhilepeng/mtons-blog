@@ -15,6 +15,7 @@ seajs.config({
         'phiz': 'modules/phiz',
         'avatar': 'modules/avatar',
         'editor': 'modules/editor',
+        'view': 'modules/view',
 
             /* vendors */
         'bootstrap': 'vendors/bootstrap/js/bootstrap.min',
@@ -27,7 +28,8 @@ seajs.config({
         'lazyload': 'vendors/lazyload/jquery.lazyload',
 
         'ueditor': 'vendors/ueditor/ueditor.all.min',
-        'ueditor.config': 'vendors/ueditor/ueditor.config'
+        'ueditor.config': 'vendors/ueditor/ueditor.config',
+        'ueditor.parse': 'vendors/ueditor/ueditor.parse.min'
     },
 
     // 预加载项

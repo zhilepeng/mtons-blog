@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mtons.mblog</groupId>
@@ -14,7 +14,7 @@
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.mtons.mblog</groupId>
 			<artifactId>mblog-data</artifactId>
@@ -23,7 +23,7 @@
 			<groupId>com.mtons.mblog</groupId>
 			<artifactId>mblog-utils</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -32,7 +32,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		
+
 		<!-- spring aop aspectj -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -47,17 +47,17 @@
 			<artifactId>cglib</artifactId>
 		</dependency>
 		<!-- spring aop aspectj /end -->
-		
+
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>

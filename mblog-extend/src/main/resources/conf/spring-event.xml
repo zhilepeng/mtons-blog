@@ -25,5 +25,6 @@
 	
 	<bean id="logEventHandler" class="mblog.extend.event.handler.LogEventHandler" />
 	<bean id="feedsEventHandler" class="mblog.extend.event.handler.FeedsEventHandler" />
+	<bean id="notifyEventHandler" class="mblog.extend.event.handler.NotifyEventHandler" />
 
 </beans>

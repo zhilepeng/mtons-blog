@@ -1,78 +1,44 @@
 #set($title = "我的主页")
+#set($layout="default/layout/home.vm")
 
-<!-- left -->
-<div class="col-xs-12 col-md-9 side-left">
-	<!-- tab -->
-	<div class="stream-head clearfix">
-		<div class="user-info">
-			<span class="avatar-80">
-    			<a href="$base/account/profile">
-    				<img class="img-circle" src="$base${profile.avatar}">
-    			</a>
-			</span>
-		</div>
-		<ul class="user-post">
-			#foreach($g in $groups)
-			<li>
-				#if ($velocityCount % 2 == 0)
-					#set($color = 'act-text')
-				#else
-					#set($color = 'act-img')
-				#end
-				<a href="$base/post/new/${g.key}" class="act-icon ${color}">
-					<i class="${g.icon}"></i>
-					<span class="tip">${g.alias}</span>
-				</a>
-			</li>
-			#end
-		</ul>
-	</div>
-	<!-- tab end -->
-
-	<div class="shadow-box">
-        <div class="filter">
-            <ul class="">
-                <li><a href="$base/home/follows">我的关注</a></li>
-                <li><a class="active" href="$base/home/fans">我的粉丝</a></li>
-            </ul>
-        </div>
-		<!-- tab panes -->
-        <div class="stream-list">
-			#foreach($row in $page.results)
-                <div class="stream-item" id="loop-${row.id}">
-                    <div class="blog-rank">
-                        <div class="user" title="${row.name}">
-                            <a href="$base/ta/${row.id}">
-								#showAva(${row.avatar}, "img-circle")
-                            </a>
-                        </div>
+<div class="shadow-box">
+    <div class="filter">
+        <ul class="">
+            <li><a href="$base/home/follows">我的关注</a></li>
+            <li><a class="active" href="$base/home/fans">我的粉丝</a></li>
+        </ul>
+    </div>
+    <!-- tab panes -->
+    <div class="stream-list">
+        #foreach($row in $page.results)
+            <div class="stream-item" id="loop-${row.id}">
+                <div class="blog-rank">
+                    <div class="user" title="${row.name}">
+                        <a href="$base/ta/${row.id}">
+                            #showAva(${row.avatar}, "img-circle")
+                        </a>
                     </div>
-                    <div class="summary">
-                        <h2 class="title">$row.name</h2>
-                        <div class="foot-block clearfix">
-                            <div class="author">
-                                <span>文章数 ${row.posts}</span>
-                                <span>评论数 ${row.comments}</span>
-                            </div>
+                </div>
+                <div class="summary">
+                    <h2 class="title">$row.name</h2>
+                    <div class="foot-block clearfix">
+                        <div class="author">
+                            <span>文章数 ${row.posts}</span>
+                            <span>评论数 ${row.comments}</span>
                         </div>
                     </div>
                 </div>
-			#end
-
-			#if($page.results.size() == 0)
-    		<div class="stream-item">
-				<i class="fa fa-info-circle fa-lg"></i> 您还没发表过文章!
             </div>
-			#end
+        #end
 
-		</div>
-	</div>
-	<div class="text-center clr">
-    	#page("home/fans" $page 5)
+        #if($page.results.size() == 0)
+        <div class="stream-item">
+            <i class="fa fa-info-circle fa-lg"></i> 您还没发表过文章!
+        </div>
+        #end
+
     </div>
 </div>
-
-
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
-	#parse("/default/home/right.vm")
+<div class="text-center clr">
+    #page("home/fans" $page 5)
 </div>

@@ -20,6 +20,8 @@ public class Menu {
 	
 	private int weight;
 
+	private int status;
+
 	public int getId() {
 		return id;
 	}
@@ -59,5 +61,12 @@ public class Menu {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

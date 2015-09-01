@@ -1,16 +1,9 @@
-/**
- *
- */
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.persist.service.impl;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import mblog.data.User;
 import mblog.persist.dao.FollowDao;
@@ -21,6 +14,14 @@ import mblog.persist.service.UserEventService;
 import mblog.persist.utils.BeanMapUtils;
 import mtons.modules.exception.MtonsException;
 import mtons.modules.pojos.Paging;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author langhsu

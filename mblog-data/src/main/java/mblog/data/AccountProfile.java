@@ -21,6 +21,8 @@ public class AccountProfile extends UserProfile {
 
     private List<AuthMenu> authMenus;
 
+    private BadgesCount badgesCount;
+
     public AccountProfile(long id, String username) {
         super(id, username);
     }
@@ -60,5 +62,13 @@ public class AccountProfile extends UserProfile {
 
     public void setActiveEmail(int activeEmail) {
         this.activeEmail = activeEmail;
+    }
+
+    public BadgesCount getBadgesCount() {
+        return badgesCount;
+    }
+
+    public void setBadgesCount(BadgesCount badgesCount) {
+        this.badgesCount = badgesCount;
     }
 }

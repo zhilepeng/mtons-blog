@@ -1,46 +1,44 @@
-<ul class="list-group">
-    <li class="list-group-item">
-        <a href="$base/home/follows">我的关注</a>
-    </li>
-    <li class="list-group-item">
-        <a href="$base/home/fans">我的粉丝</a>
+<ul class="list-group about-user">
+    <li class="list-group-item user-card" >
+        <div class="ava">
+            <a href="$base/ta/${user.id}">
+                #showAva(${user.avatar}, "img-circle")
+            </a>
+        </div>
+        <div class="user-info">
+            <div class="nk mb10">#showName(${user})</div>
+            <div class="mb6">
+                <a class="btn btn-success btn-xs" href="$base/account/profile">编辑用户</a>
+            </div>
+        </div>
     </li>
 </ul>
 
-<div class="widget-box shadow-box">
-    <div class="title">
-        <h3><i class="fa fa-area-chart"></i> 热门文章</h3>
-    </div>
-    <ul class="box-list" id="hots">
-    </ul>
-</div>
+<ul class="list-group user-nav">
+    <li class="list-group-item">
+        <a href="$base/home"><i class="fa fa-feed"></i> 动态</a>
+    </li>
+    <li class="list-group-item">
+        <a href="$base/home?method=posts"><i class="fa fa-file-text-o"></i> 我的文章</a>
+    </li>
+    <li class="list-group-item">
+        <a href="$base/home?method=comments"><i class="fa fa-comment-o"></i> 我的评论</a>
+    </li>
+</ul>
 
-<div class="widget-box shadow-box">
-    <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
-    <ul class="tags m10 text-center" id="hottags">
-    </ul>
-</div>
+<ul class="list-group user-nav">
+    <li class="list-group-item">
+        <a href="$base/home/follows"><i class="fa fa-eye"></i> 我的关注</a>
+    </li>
+    <li class="list-group-item">
+        <a href="$base/home/fans"><i class="fa fa-users"></i> 我的粉丝</a>
+    </li>
+</ul>
 
-<script type="text/javascript">
-    var hot_li_template = '<li><div class="li-out"><span class="last"><i>{0}</i></span><span class="name"><a  href="{1}">{2}</a></span><span class="nums">{3}</span></div></li>'
-    var tag_li_template	= '<li class="mb6"><a href="$base/tag/{0}/" class="tag" title="有{1}篇文章">{2}</a></li>';
-
-    seajs.use('sidebox', function (sidebox) {
-        sidebox.init({
-            hotUrl : '$base/api/hots.json',
-            hotTagUrl : '$base/api/hot_tags.json',
-
-            maxResults :10,
-            // callback
-            onLoadHot : function (i, data) {
-                var url = '$base/view/' + data.id;
-                var item = jQuery.format(hot_li_template, i + 1, url, data.title, data.views);
-                return item;
-            },
-            onLoadHotTag : function (i, data) {
-                var item = jQuery.format(tag_li_template, data.name, data.posts, data.name);
-                return item;
-            }
-        });
-    });
-</script>
+<ul class="list-group user-nav">
+    <li class="list-group-item">
+        <a href="$base/home/notifies">
+            <i class="fa fa-bell-o"></i> 通知   <span class="label label-danger"">$!{profile.badgesCount.notifies}</span>
+        </a>
+    </li>
+</ul>

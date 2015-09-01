@@ -39,6 +39,8 @@ public class GroupPO {
 	@Column(name = "template", length = 16)
 	private String template;
 
+	private int status;
+
 	public int getId() {
 		return id;
 	}
@@ -86,5 +88,12 @@ public class GroupPO {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 }

@@ -30,6 +30,7 @@ public interface Views {
 	String HOME_COMMENTS = "/home/comments";
 	String HOME_FOLLOWS = "/home/follows";
 	String HOME_FANS = "/home/fans";
+	String HOME_NOTIFIES = "/home/notifies";
 
 	String TA_HOME = "/ta/home";
 	String ACCOUNT_AVATAR = "/account/avatar";

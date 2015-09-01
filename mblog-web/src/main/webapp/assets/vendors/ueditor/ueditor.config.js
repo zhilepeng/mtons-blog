@@ -34,7 +34,9 @@
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
 
-        , toolbars: [["source","undo","redo","bold","italic","underline","forecolor","fontfamily","fontsize","backcolor","insertunorderedlist","insertorderedlist","justifyleft","justifycenter","justifyright","link","unlink","autotypeset","fastupload","insertvideo","music","emotion","inserttable","blockquote","insertcode","template","removeformat","preview","fullscreen"]]
+//        , toolbars: [["source","undo","redo","bold","italic","underline","forecolor","fontfamily","fontsize","backcolor","insertunorderedlist","insertorderedlist","justifyleft","justifycenter","justifyright","link","unlink","autotypeset","fastupload","insertvideo","music","emotion","inserttable","blockquote","insertcode","template","removeformat","preview","fullscreen"]]
+        , toolbars: [["undo","redo","bold","italic","underline","forecolor","fontfamily","fontsize","backcolor","insertunorderedlist","insertorderedlist","justifyleft","justifycenter","justifyright","link","unlink","autotypeset","fastupload","insertvideo","music","emotion","inserttable","blockquote","insertcode","template","removeformat","preview","fullscreen"]]
+
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
         //    'anchor':'', 'undo':''
@@ -190,7 +192,7 @@
         //]
 
         //快捷菜单
-        ,shortcutMenu:["fontfamily","fontsize","bold","italic","underline","forecolor","backcolor","insertorderedlist","insertunorderedlist"]
+        //,shortcutMenu:["fontfamily","fontsize","bold","italic","underline","forecolor","backcolor","insertorderedlist","insertunorderedlist"]
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示

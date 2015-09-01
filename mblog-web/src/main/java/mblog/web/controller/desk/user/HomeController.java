@@ -5,19 +5,19 @@
  *******************************************************************************/
 package mblog.web.controller.desk.user;
 
+import mblog.data.AccountProfile;
+import mblog.data.BadgesCount;
 import mblog.data.User;
 import mblog.extend.planet.CommentPlanet;
 import mblog.lang.EnumPrivacy;
-import mblog.persist.service.FeedsService;
-import mblog.persist.service.FollowService;
-import mblog.persist.service.PostService;
-import mblog.persist.service.UserService;
+import mblog.persist.service.*;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,6 +40,8 @@ public class HomeController extends BaseController {
 	private UserService userService;
 	@Autowired
 	private FollowService followService;
+	@Autowired
+	private NotifyService notifyService;
 
 	/**
 	 * 用户主页
@@ -132,10 +134,40 @@ public class HomeController extends BaseController {
 		return getView(Views.HOME_FANS);
 	}
 
+	/**
+	 * 我的通知
+	 * @param pn
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/home/notifies")
+	public String notifies(Integer pn, ModelMap model) {
+		Paging page = wrapPage(pn);
+		UserProfile profile = getSubject().getProfile();
+		notifyService.findByOwnId(page, profile.getId());
+		// 标记已读
+		notifyService.readed4Me(profile.getId());
+
+		model.put("page", page);
+		initUser(model);
+
+		pushBadgesCount(profile.getId());
+
+		return getView(Views.HOME_NOTIFIES);
+	}
+
 	private void initUser(ModelMap model) {
 		UserProfile up = getSubject().getProfile();
 		User user = userService.get(up.getId());
 
 		model.put("user", user);
+	}
+
+	private void pushBadgesCount(long userId) {
+		AccountProfile profile = (AccountProfile) session.getAttribute("profile");
+		if (profile != null) {
+			profile.getBadgesCount().setNotifies(0);
+		}
+		session.setAttribute("profile", profile);
 	}
 }

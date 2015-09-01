@@ -1,4 +1,4 @@
-#set($title = "图文")
+#set($title = ${group.name})
 
 <!-- left -->
 <div class="col-xs-12 col-md-9 side-left">

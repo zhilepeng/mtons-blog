@@ -149,4 +149,11 @@ public class BeanMapUtils {
 		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
+
+	public static Notify copy(NotifyPO po) {
+		Notify ret = new Notify();
+		BeanUtils.copyProperties(po, ret);
+		return ret;
+	}
+
 }

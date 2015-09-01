@@ -112,15 +112,15 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .filter ul li a {padding: 0 15px; font-size: 14px; color: #8c97b2; text-decoration: none; display: block; line-height: 40px; border-bottom: 2px solid transparent; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -o-transition: all 0.3s ease; -ms-transition: all 0.3s ease; transition: all 0.3s ease; }
 .filter ul li a.active, .filter ul li a:hover { border-bottom: 2px solid #1cba11; }
 
-.stream-head { background-color: #fff; border: 1px solid #dadfea; margin-bottom: 15px;}
+.stream-head { background-color: #fff; border: 1px solid #ddd; margin-bottom: 15px;}
 .stream-head .user-info { float: left; margin-top: 10px; padding-left: 30px; padding-right: 30px;}
 .stream-head .user-info span.avatar-80 { float: left; width: 80px; height: 80px; }
-.stream-head .user-post { float: left;}
-.stream-head .user-post > li { float: left; border-right: 1px solid #f2f2f2;}
-.stream-head .user-post > li:first-child { border-left: 1px solid #f2f2f2; }
+.stream-head .user-post { float: left; width: 100%;}
+.stream-head .user-post > li { float: left; border-right: 1px solid #f2f2f2; width: 25%;}
+.stream-head .user-post > li:last-child { border-right:0; }
 .stream-head .user-post > li a {border-bottom: 2px solid #FFF; text-align: center}
 .stream-head .user-post > li a:hover {border-bottom: 2px solid #3fa7cb; background-color: #f2f2f2;}
-.stream-head .user-post .act-icon { display: block; padding: 25px 35px; overflow: hidden; background-size: 100% 100%; background-position: center center; background-repeat: no-repeat; }
+.stream-head .user-post .act-icon { display: block; padding: 16px 35px; overflow: hidden; background-size: 100% 100%; background-position: center center; background-repeat: no-repeat; }
 .stream-head .user-post .act-icon i { display: block; text-align: center; font-size: 35px; }
 .stream-head .user-post .act-icon .tip { margin-top: 10px;}
 .stream-head .user-post .act-img { color: #A576F7; }
@@ -229,6 +229,9 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .about-user .user-datas ul li { float: left; width: 110px; height: 50px; text-align: center; border-right: 1px solid #e8e8e8; }
 .about-user .user-datas ul li strong { height: 26px; line-height: 26px; font-size: 26px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: normal; display: block; margin-bottom: 5px; }
 .about-user .user-datas ul li span { font-size: 12px; color: #999; }
+
+.user-nav .list-group-item i {padding-right: 15px;}
+
 /* detail 文章详情 */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }
 
@@ -239,8 +242,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .author { margin-right: 15px; }
 .author img {width: 20px; height: 20px; margin-right: 10px; }
 .single-post-media { margin-top: 20px; margin-bottom: 20px; }
-.single-post-media img { max-width: 98%; display: block; margin-left: auto; margin-right: auto; border-radius: 3px 3px 0 0; -webkit-border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0; }
-.post-content { margin: 20px 20px 0; line-height: 28px; padding-bottom: 20px; word-wrap: break-word; overflow: hidden;}
+.single-post-media img { max-width: 98%; display: block; margin-left: auto; margin-right: auto; }
+.post-content { margin: 20px 20px 0; line-height: 28px; padding-bottom: 20px; word-wrap: break-word; position: relative; display: block; overflow: hidden;}
 .post-footer { position: relative; height: 50px;background-color: #f9f9f9; padding-top: 5px; border-top: 1px solid #f2f2f2;}
 .post-footer .tip {margin-left: 20px; padding: 9px; float: left;}
 .post-footer .shares {float: left;}
@@ -262,8 +265,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .avatar img { position: relative; width: 120px; height: 120px; margin: 0 auto; }
 .avatar:hover { background: #dcdcdc; box-shadow: 0 0 10px rgba(255,255,255,0.75); }
 
-.btn-white { border: 2px solid #fff; color: #fff; text-transform: uppercase; font-weight: 700; font-size: 12px;
-	padding: 9px 20px; background: transparent;
+.btn-white { border: 2px solid #fff; color: #fff; text-transform: uppercase; font-weight: 700; font-size: 13px;
+	padding: 6px 20px; background: transparent;
 	-moz-border-radius: 30px; -webkit-border-radius: 30px; -o-border-radius: 30px; -ms-border-radius: 30px;
 	transition-duration: 0.3s; -moz-transition-duration: 0.3s; -webkit-transition-duration: 0.3s; -o-transition-duration: 0.3s; -ms-transition-duration: 0.3s;
 }
@@ -272,6 +275,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .profile-navbar .content { border-top: 1px solid rgba(255,255,255,.4); }
 .profile-navbar .nav { margin: 0; padding: 0; }
 .profile-navbar .nav>li { float: left; margin-top: -1px; border-top: 1px solid transparent; }
+.profile-navbar .nav>li  a{padding-bottom: 20px;}
 .profile-navbar a { padding: 15px 20px; color: rgba(255,255,255,.4); text-transform: uppercase; border: none; }
 .profile-navbar a:hover, .profile-navbar a:active, .profile-navbar a:focus { color: #fff; background-color: transparent!important;}
 
@@ -299,6 +303,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 修改头像
 */
 .update_ava { width: 300px; min-height: 300px; margin: 10px auto; text-align: center; background-color: #f5f5f5; border: 1px solid transparent; border-radius: 4px; border-color: #ddd; }
+
+.account-tab>li>a {border-radius: 2px; padding: 6px 10px;}
 
 /*
  * Chat
@@ -354,7 +360,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 
 .g-box .g-thumb { max-height: 600px; overflow: hidden; }
 .g-box .g-thumb a { display: block; position: relative; }
-.g-box .g-thumb img { display: block; width: 100%; box-shadow: #000 0em 0em 0em; nowhitespace: afterproperty; border-radius: 3px 3px 0 0;}
+.g-box .g-thumb img { display: block; width: 100%; box-shadow: #000 0em 0em 0em; nowhitespace: afterproperty; }
 .g-box .g-thumb a:before { content: ""; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: #000 url("../images/image-overlay-icon.png") center center no-repeat; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -moz-opacity: 0; -khtml-opacity: 0; opacity: 0; visibility: hidden; transition: all .25s ease-in-out; -webkit-transition: all .25s ease-in-out; -moz-transition: all .25s ease-in-out; }
 .g-box .g-thumb a:hover:before { visibility: visible; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); -moz-opacity: 0.8; -khtml-opacity: 0.8; opacity: 0.8; }
 
@@ -376,8 +382,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 /* Tags 标签页 */
 .tags_grid { padding: 20px 0 40px 0; margin: 0 -5px; list-style: none; text-align: center; }
 .tags_grid li { display: inline-block; overflow: hidden; padding: 5px; text-align: left; position: relative; }
-.tags_grid figure { margin: 0; height: 160px; background-color: #fff;
-	position: relative; border-radius: 3px; border: 1px solid #ddd; -moz-border-radius: 3px; -webkit-border-radius: 3px;
+.tags_grid figure { margin: 0; height: 160px; background-color: #fff; position: relative; border: 1px solid #ddd;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.15); -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15); -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
 }
 .tags_grid figure img { width: 100%; display: block; position: relative; }

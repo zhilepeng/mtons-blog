@@ -17,9 +17,7 @@
 .logo { float: left; padding: 5px 8px 8px 15px; font-size: 18px; line-height: 20px; height: 50px; }
 .logo img { height: 26px; margin-top: 6px;}
 
-.navbar .sign {
-	margin-right: -30px;
-}
+.navbar .sign { }
 .navbar .nav .signin, .navbar .nav .signup {
 	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
 }
@@ -39,7 +37,7 @@
 .wrap { position: relative; background-color: #f6f6f6; padding-top: 20px; padding-bottom: 30px; min-height: 520px;}
 .main { margin: 0;}
 .side-left {}
-.side-right {padding:0; }
+.side-right { padding: 0 0 0 15px; margin-left: -15px;}
 
 /* footer */
 
@@ -67,7 +65,7 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 /* Tablet (Portrait)
 ================================================== */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-	.navbar .sign { margin-right: -15px !important; }
+	.side-right { padding: 0 15px 0 15px; margin-left: 0;}
 
 	/*grids*/
 	.masonry-grid .masonry-entry.span_1_of_3,
@@ -80,7 +78,7 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 /* Mobile (Portrait & Landscape)
 ================================================== */
 @media only screen and (max-width: 767px) {
-	.navbar .sign { margin-right: -15px !important; }
+	.side-right { padding: 0 15px 0 15px; margin-left: 0;}
 
 	.col { width: 100%; margin-left: 0; margin-bottom: 25px; }
 	.masonry-grid { margin-left: 0; margin-right: 0; }

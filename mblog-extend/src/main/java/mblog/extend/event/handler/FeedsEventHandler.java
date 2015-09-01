@@ -1,3 +1,8 @@
+/*********************************************************************
+ * Copyright (c) 2014, 2015 mtons.com
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *********************************************************************/
 package mblog.extend.event.handler;
 
 import mblog.data.Feeds;
@@ -7,6 +12,7 @@ import mblog.persist.service.FeedsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
 
 import java.text.MessageFormat;
 
@@ -19,6 +25,7 @@ public class FeedsEventHandler implements ApplicationListener<FeedsEvent> {
     @Autowired
     private FeedsService feedsService;
 
+    @Async
     @Override
     public void onApplicationEvent(FeedsEvent event) {
         if (event == null) {

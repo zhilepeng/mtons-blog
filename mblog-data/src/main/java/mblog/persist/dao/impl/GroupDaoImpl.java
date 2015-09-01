@@ -7,7 +7,11 @@ package mblog.persist.dao.impl;
 
 import mblog.persist.dao.GroupDao;
 import mblog.persist.entity.GroupPO;
+import mtons.modules.lang.Const;
+import mtons.modules.lang.EntityStatus;
 import mtons.modules.persist.impl.DaoImpl;
+
+import java.util.List;
 
 /**
  * @author langhsu
@@ -18,6 +22,11 @@ public class GroupDaoImpl extends DaoImpl<GroupPO> implements GroupDao {
 
 	public GroupDaoImpl() {
 		super(GroupPO.class);
+	}
+
+	@Override
+	public List<GroupPO> findAll() {
+		return findBy("status", Const.STATUS_NORMAL);
 	}
 
 	@Override
