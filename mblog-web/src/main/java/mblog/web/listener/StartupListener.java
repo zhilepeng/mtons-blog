@@ -5,13 +5,12 @@
  *********************************************************************/
 package mblog.web.listener;
 
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import javax.servlet.ServletContext;
 
 import mblog.data.Config;
+import mblog.extend.context.AppContext;
 import mblog.lang.Consts;
 import mblog.persist.service.ConfigService;
 import mblog.persist.service.GroupService;
@@ -32,6 +31,8 @@ public class StartupListener implements InitializingBean, ServletContextAware {
 	private GroupService groupService;
 	@Autowired
 	private MenuService menuService;
+	@Autowired
+	private AppContext appContext;
 	
 	private ServletContext servletContext;
 	
@@ -44,24 +45,30 @@ public class StartupListener implements InitializingBean, ServletContextAware {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-            	System.out.println("+---------.站点信息初始化.--------+");
+				System.out.println("+----------.站点初始化.----------+");
             	
             	List<Config> configs = configService.findAll();
-            	
+            	Map<String, String> configMap = new HashMap<>();
+
             	if (configs.isEmpty()) {
-            		System.out.println("ERROR 站点配置信息加载失败");
+            		System.err.println("ERROR 站点配置信息加载失败");
+					System.exit(1);
             	} else {
-            		configs.forEach(conf -> servletContext.setAttribute(conf.getKey(), conf.getValue()));
+            		configs.forEach(conf -> {
+						servletContext.setAttribute(conf.getKey(), conf.getValue());
+						configMap.put(conf.getKey(), conf.getValue());
+					});
             	}
+
+				appContext.setConfig(configMap);
             	
             	servletContext.setAttribute("groups", groupService.findAll());
             	
             	servletContext.setAttribute("menus", menuService.findAll());
-            	
-            	System.out.println("+----------------------------+");
-            	System.out.println("+------------恭喜您------------+");
-            	System.out.println("+---Mblog加载完毕,您已经可以使用了---+");
-            	System.out.println("+----------------------------+");
+
+				System.out.println("+----------------------------+");
+				System.out.println("+-----Mblog加载完毕,可以正常使用-----+");
+				System.out.println("+----------------------------+");
             }
         }, 5 * Consts.TIME_MIN);
     }

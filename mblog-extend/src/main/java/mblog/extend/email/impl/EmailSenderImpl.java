@@ -5,7 +5,9 @@
  *********************************************************************/
 package mblog.extend.email.impl;
 
+import mblog.extend.context.AppContext;
 import mblog.extend.email.EmailSender;
+import mblog.lang.EnumConfig;
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +27,20 @@ public class EmailSenderImpl implements EmailSender {
     private Logger logger = Logger.getLogger(this.getClass());
     @Autowired
     private VelocityEngine velocityEngine;
+    @Autowired
+    private AppContext appContext;
 
     private Map<String, String> config;
     private JavaMailSenderImpl javaMailSender;
 
     @Override
     public void to(String template, String address, String subject, Map<String, Object> data) {
+
+        String domain = appContext.getConfig().get(EnumConfig.SITE_DOMAIN.getKey());
+        if (domain.endsWith("/")) {
+            domain = domain.substring(0, domain.lastIndexOf("/"));
+        }
+        data.put("domain", domain);
         final String html = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, template, "UTF-8", data);
 
         new Thread(){

@@ -5,6 +5,8 @@
  *********************************************************************/
 package mblog.extend.context;
 
+import java.util.Map;
+
 /**
  * @author langhsu
  * 
@@ -35,6 +37,12 @@ public class AppContext {
 	 * 文件存储-临时文件目录
 	 */
 	String tempDir = "/store/temp";
+
+	/*
+	 * 系统配置信息
+	 * - 在 StartupListener 类中加载
+	 */
+	public Map<String, String> config;
 
 	public String getRoot() {
 		return root;
@@ -76,4 +84,11 @@ public class AppContext {
 		this.avaDir = avaDir;
 	}
 
+	public Map<String, String> getConfig() {
+		return config;
+	}
+
+	public void setConfig(Map<String, String> config) {
+		this.config = config;
+	}
 }

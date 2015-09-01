@@ -5,7 +5,7 @@
 	3. 添加第三方登录，注意修改自己的openId (login.vm、mblog-web/resource/config.pro..  qqconnectconfig.pro...)
 		/themes/default/inc/metas.vm 里需要添加第三方的 meta 数据
 
-	4. 添加邮箱验证（注意修改回调邮件地址：/WEB-INF/vm/email， 在 mtons.properties 里添加发件账号）
+	4. 添加邮箱验证（ 在 mtons.properties 里添加发件账号）
 
 	5. 添加用户关注，可收到关注的人最新的动态
 	6. 部分页面调整（用户主页、修改个人资料等）
