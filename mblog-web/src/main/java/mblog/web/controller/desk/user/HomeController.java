@@ -151,7 +151,7 @@ public class HomeController extends BaseController {
 		model.put("page", page);
 		initUser(model);
 
-		pushBadgesCount(profile.getId());
+		pushBadgesCount();
 
 		return getView(Views.HOME_NOTIFIES);
 	}
@@ -163,11 +163,11 @@ public class HomeController extends BaseController {
 		model.put("user", user);
 	}
 
-	private void pushBadgesCount(long userId) {
+	private void pushBadgesCount() {
 		AccountProfile profile = (AccountProfile) session.getAttribute("profile");
-		if (profile != null) {
+		if (profile != null && profile.getBadgesCount() != null) {
 			profile.getBadgesCount().setNotifies(0);
+			session.setAttribute("profile", profile);
 		}
-		session.setAttribute("profile", profile);
 	}
 }
