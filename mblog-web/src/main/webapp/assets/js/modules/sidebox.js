@@ -31,8 +31,8 @@ define(function(require, exports, module) {
         	// load hots
 			if (opts.hotUrl) {
 				J.getJSON(opts.hotUrl, {maxResults : opts.maxResults}, function (ret) {
+					$('#hots').empty();
 					if(ret && ret.length > 0){
-						$('#hots').empty();
 						jQuery.each(ret, function(i, n) {
 							var item = opts.onLoadHot.call(this, i, n);
 							$('#hots').append(item);
@@ -45,8 +45,8 @@ define(function(require, exports, module) {
 
 			if (opts.latestUrl) {
 				J.getJSON(opts.latestUrl, {maxResults: opts.maxResults}, function (ret) {
+					$('#latests').empty();
 					if (ret && ret.length > 0) {
-						$('#latests').empty();
 						jQuery.each(ret, function (i, n) {
 							var item = opts.onLoadLatest.call(this, i, n);
 							$('#latests').append(item);
@@ -59,8 +59,8 @@ define(function(require, exports, module) {
 
 			if (opts.hotTagUrl) {
 				J.getJSON(opts.hotTagUrl, {maxResults: opts.maxResults}, function (ret) {
+					$('#hottags').empty();
 					if (ret && ret.length > 0) {
-						$('#hottags').empty();
 						jQuery.each(ret, function (i, n) {
 							var item = opts.onLoadHotTag.call(this, i, n);
 							$('#hottags').append(item);
