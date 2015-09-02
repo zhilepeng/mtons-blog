@@ -40,5 +40,5 @@
     </div>
 </div>
 <div class="text-center clr">
-    #page("home/fans" $page 5)
+    #page("fans" $page 5)
 </div>
