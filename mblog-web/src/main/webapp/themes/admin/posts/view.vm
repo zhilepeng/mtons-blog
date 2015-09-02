@@ -12,7 +12,7 @@
     				</div>
     				<span class="h4">${view.title}</span>
     				<span class="block">
-    					<a href="$base/user/${row.author.id}" class="">${view.author.username}</a>
+    					<a href="$base/ta/${view.author.id}" target="_blank" class="">${view.author.username}</a>
     					#foreach($tag in $row.tagsArray)
             			<span class="label label-success">$tag</span>
         				#end

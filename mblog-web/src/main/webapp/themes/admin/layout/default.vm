@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="$base/assets/admin/js/app.js"></script>
 	<script type="text/javascript" src="$base/assets/admin/js/app.plugin.js"></script>
 	<script type="text/javascript" src="$base/assets/admin/js/app.data.js"></script>
-	
+
 	#foreach($j in $js)
 	<script type="text/javascript" src="$j"></script>
 	#end
@@ -40,6 +40,9 @@
 	<style type="text/css">
 	body {font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;}
     </style>
+	<script type="text/javascript">
+        window.UEDITOR_HOME_URL = '$base/assets/vendors/ueditor/';
+	</script>
 </head>
 <body>
 	#parse("/admin/inc/header.vm")
