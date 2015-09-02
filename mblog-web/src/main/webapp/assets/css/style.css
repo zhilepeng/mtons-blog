@@ -161,7 +161,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .qus-stream {}
 .qus-stream .stream-item {}
 .qus-stream .stream-item .summary {border-left: 0;}
-.qus-rank { float: left; margin: 0; font-size: 16px; text-align: center; line-height: 1.2; color: #666;}
+.qus-rank { float: left; margin-right: 15px; font-size: 16px; text-align: center; line-height: 1.2; color: #666;}
 .qus-rank .answers, .qus-rank .views { display: inline-block; padding-top: 3px; width: 45px; height: 45px; -moz-border-radius: 1px; -webkit-border-radius: 1px; border-radius: 1px;}
 .qus-rank .answers { background-color: #5EBCF2; color: #fff; }
 .qus-rank .answers, .qus-rank .views { border: 1px solid #d9dfe9;}
