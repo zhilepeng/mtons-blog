@@ -17,18 +17,18 @@
 2015-07-17
 关于1.2 升级到最新版本
 
-	1. post 添加 group_ 字段
+	1. mto_posts 添加 group_ 字段
 		升级sql: update mto_posts set group_ = 1 where type = 'text'
 				 update mto_posts set group_ = 2 where type = 'image'
 				 update mto_posts set group_ = 3 where type = 'video'
 				 
-	2. post summary 改为普通string, 缩小表空间
+	2. mto_posts summary 改为普通string, 缩小表空间
 	
-	3. post 删除 updated
-	4. post snapshoot_id 改为 lastImageId
+	3. mto_posts 删除 updated
+	4. mto_posts snapshoot_id 改为 last_image_id 
 	
 		升级sql: UPDATE mto_posts SET last_image_id = 0 WHERE last_image_id IS NULL
 
-	5. config 表 key 字段改名为 key_
+	5. mto_config 表 key 字段改名为 key_
 
 
