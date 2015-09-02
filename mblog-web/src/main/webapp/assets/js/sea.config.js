@@ -22,6 +22,7 @@ seajs.config({
         'baguetteBox': 'vendors/baguette/baguetteBox.min',
         'layer': 'vendors/layer/layer',
         'pace': 'vendors/pace/pace.min',
+        'pjax': 'vendors/pjax/jquery.pjax',
         'dmuploader': 'vendors/uploader/dmuploader',
         'jcrop': 'vendors/jcrop/jquery.jcrop.min',
         'validate': 'vendors/validate/jquery-validate',

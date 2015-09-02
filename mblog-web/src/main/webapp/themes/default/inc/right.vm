@@ -4,6 +4,7 @@
 		<h3><i class="fa fa-area-chart"></i> 热门文章</h3>
 	</div>
 	<ul class="box-list" id="hots">
+		<li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
 	</ul>
 </div>
 
@@ -12,12 +13,14 @@
 		<h3><i class="fa fa-bars"></i> 最新发布</h3>
 	</div>
 	<ul class="box-list" id="latests">
+        <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
 	</ul>
 </div>
 
 <div class="widget-box shadow-box">
     <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
-    <ul class="tags m10 text-center" id="hottags">
+    <ul class="tags m10 text-center" id="hottags" style="float: none;">
+        <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
     </ul>
 </div>
 
@@ -32,7 +35,7 @@ seajs.use('sidebox', function (sidebox) {
         latestUrl : '$base/api/latests.json',
     	hotUrl : '$base/api/hots.json',
 		hotTagUrl : '$base/api/hot_tags.json',
-		
+
     	maxResults :10,
         // callback
         onLoadHot : function (i, data) {

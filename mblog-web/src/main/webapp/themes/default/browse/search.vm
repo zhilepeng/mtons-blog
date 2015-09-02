@@ -17,7 +17,7 @@
 			#end
         </div>
 		<!-- tab panes -->
-        <div class="stream-list">
+        <div class="stream-list p-stream">
 			#foreach($row in $page.results)
 				#showBlog($row)
 			#end

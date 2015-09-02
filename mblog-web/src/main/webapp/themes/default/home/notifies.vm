@@ -43,7 +43,7 @@
 
         #if($page.results.size() == 0)
         <div class="stream-item">
-            <i class="fa fa-info-circle fa-lg"></i> 您还没收到过通知!
+            <i class="fa fa-info-circle fa-lg"></i> 您还没发表过文章!
         </div>
         #end
 

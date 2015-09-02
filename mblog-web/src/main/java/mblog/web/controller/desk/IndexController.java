@@ -1,8 +1,12 @@
-/*******************************************************************************
- * Copyright (c) 2014, 2015 mtons.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *******************************************************************************/
+/*
++--------------------------------------------------------------------------
+|   Mblog [#RELEASE_VERSION#]
+|   ========================================
+|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   http://www.mtons.com
+|
++---------------------------------------------------------------------------
+*/
 package mblog.web.controller.desk;
 
 import mblog.extend.planet.PostPlanet;

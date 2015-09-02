@@ -1,13 +1,17 @@
-/*********************************************************************
- * Copyright (c) 2014, 2015 mtons.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *********************************************************************/
+/*
++--------------------------------------------------------------------------
+|   Mblog [#RELEASE_VERSION#]
+|   ========================================
+|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   http://www.mtons.com
+|
++---------------------------------------------------------------------------
+*/
 
 define(function(require, exports, module) {
     var plugins = require('plugins');
     require('bootstrap');
-    
+
     var wpexLocalize = {
     		"mobileMenuOpen" : "Click here to navigate",
     		"mobileMenuClosed" : "Close navigation",
@@ -137,6 +141,12 @@ define(function(require, exports, module) {
 				});
 			}
 		});
+
+		//$(document).pjax('a[rel=pjax]', '#wrap', {
+		//	fragment: '#wrap',
+		//	timeout: 10000,
+		//	maxCacheLength: 0
+		//});
 	}
 
     exports.init = function () {

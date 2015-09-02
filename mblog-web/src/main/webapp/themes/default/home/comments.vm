@@ -10,7 +10,7 @@
 		</ul>
 	</div>
 	<!-- tab panes -->
-	<div class="stream-list no-bg">
+	<div class="stream-list p-stream no-bg">
 		#foreach($row in $page.results)
 			<div class="stream-item comment-item" el="loop-${row.id}">
 				<h2 class="title" style="color:#F36C52">我说：$row.content</h2>

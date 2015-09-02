@@ -1,8 +1,12 @@
-/*********************************************************************
- * Copyright (c) 2014, 2015 mtons.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *********************************************************************/
+/*
++--------------------------------------------------------------------------
+|   Mblog [#RELEASE_VERSION#]
+|   ========================================
+|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   http://www.mtons.com
+|
++---------------------------------------------------------------------------
+*/
 
 /*.container */
 @media (min-width: 1200px) {
@@ -79,6 +83,7 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 ================================================== */
 @media only screen and (max-width: 767px) {
 	.side-right { padding: 0 15px 0 15px; margin-left: 0;}
+	.user-nav.first {margin-top: 15px;}
 
 	.col { width: 100%; margin-left: 0; margin-bottom: 25px; }
 	.masonry-grid { margin-left: 0; margin-right: 0; }

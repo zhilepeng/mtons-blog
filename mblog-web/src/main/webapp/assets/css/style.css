@@ -1,8 +1,12 @@
-/*********************************************************************
- * Copyright (c) 2014, 2015 mtons.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- *********************************************************************/
+/*
++--------------------------------------------------------------------------
+|   Mblog [#RELEASE_VERSION#]
+|   ========================================
+|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   http://www.mtons.com
+|
++---------------------------------------------------------------------------
+*/
 
 body { font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,STHeiti,"Microsoft Yahei",sans-serif; word-wrap: break-word;}
 body { background-color: #f6f6f6;}
@@ -30,6 +34,9 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .fr { float: right; }
 .clear { clear: both; }
 .noborder  {border: 0 !important; }
+
+.praise_icon { display: inline-block; background: url(../images/praise.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -2px 0; }
+.comment_icon { display: inline-block; background: url(../images/comment.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -2px 0; }
 
 /* bootstrap extend */
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -129,10 +136,10 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-list { background-color: #fff;}
 .stream-blank {height: 15px; border-bottom: 1px solid #eee; background-color: #f6f6f6;}
 
-.stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 15px 10px; position: relative;}
+.stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 15px; position: relative;}
 .stream-item:hover { background-color: #f5f5f5;}
-.stream-item .summary { overflow: hidden; padding-left: 12px; /*border-left: 1px solid #f3f3f3;*/ }
-.stream-item .title { display: inline; margin: 0 5px 0 0; font-size: 16px; }
+.stream-item .summary { overflow: hidden; padding: 0; /*border-left: 1px solid #f3f3f3;*/ }
+.stream-item .title { display: block; margin: 0 0 10px 0; font-size: 16px; }
 .stream-item .title a {color: #333;}
 .stream-item .author { color: #999; font-size: 13px; margin-right: 20px; float: left; line-height: 22px; vertical-align: middle;}
 .stream-item .author span { margin-right: 15px;}
@@ -159,6 +166,16 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .qus-rank .answers { background-color: #5EBCF2; color: #fff; }
 .qus-rank .answers, .qus-rank .views { border: 1px solid #d9dfe9;}
 .qus-rank .foot-block {margin-top: 10px!important;}
+
+.p-stream .stream-item  { padding: 20px 25px; }
+.p-rank { margin-bottom: 15px; }
+.p-rank  .users{}
+.p-rank  .users .ava { width: 40px; height: 40px; float: left;}
+.p-rank  .users .info { float: left; padding-left: 12px;}
+.p-rank  .users .info strong { display: block; margin-bottom: 2px;}
+.p-rank  .users .info time { color: #888; }
+.p-rank  .counts {float: right; font-size: 14px; color: #888;}
+.p-rank  .counts .act {margin-left: 5px;}
 
 .comment-item > .arrow, .comment-item > .arrow:after {
 	position: absolute;
@@ -188,11 +205,12 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 
 .tags { overflow: hidden; float: left;}
 .tags > li { display: inline-block; margin-right: 5px; }
-.tags .tag { display: inline-block; padding: 0 12px; color: #6f7d95; border: 1px solid #d9dfe9; background-color: #f3f5f9; height: 24px; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
-.tags .tag-sm { padding: 0 8px; height: 20px; line-height: 20px; font-size: 12px; }
+.tags .tag { display: inline-block; padding: 0 12px; color: #6f7d95; border: 1px solid #d9dfe9; background-color: #f3f5f9; line-height: 24px; font-weight: normal; font-size: 13px; text-align: center; }
+.tags .tag-sm { padding: 0 8px; line-height: 22px; font-size: 12px; background-color: #6ADBE8; color: #fff; border: 0; border-radius: 2px;}
 .tag[href]:hover,.tag[href]:focus{background-color:#32a5e7;color:#fff;text-decoration:none}
+.tag-sm[href]:hover,.tag-sm[href]:focus{background-color:#32a5e7;color:#fff;text-decoration:none}
 
-.foot-block {margin-top: 10px; display: block; font-size: 12px;}
+.foot-block {margin-top: 15px; display: block; font-size: 12px;}
 .foot-block a {font-size: 12px; line-height:18px;}
 .foot-block, .foot-block a {color: #6f7d95}
 .foot-block .tags {width: 232px; white-space: nowrap;}

@@ -10,11 +10,21 @@ $user.username
 ## 博文列表显示
 #macro(showBlog $row)
 <div class="stream-item" id="loop-${row.id}">
-	<div class="blog-rank">
-		<div class="user" title="${row.author.name}">
-			<a href="$base/ta/${row.author.id}">
-                #showAva(${row.author.avatar}, "img-circle")
-            </a>
+    <div class="p-rank clearfix">
+        <div class="users">
+            <a href="$base/ta/${row.author.id}">
+				<div class="ava">
+					#showAva(${row.author.avatar}, "img-circle")
+				</div>
+				<div class="info">
+					<strong>${row.author.name}</strong>
+					<time>$relDate.format($row.created)</time>
+				</div>
+			</a>
+        </div>
+        <div class="counts">
+            <span class="act"><i class="praise_icon"></i>${row.favors}</span>
+            <span class="act"><i class="comment_icon"></i>${row.comments}</span>
         </div>
     </div>
     <div class="summary">
@@ -39,10 +49,6 @@ $user.username
 		#end
 		
     	<div class="foot-block clearfix">
-    		<div class="author">
-	        	<span><a href="$base/ta/${row.author.id}">#showName($row.author)</a></span>
-	        	<time>$relDate.format($row.created)</time>
-	        </div>
     		<ul class="tags">
 				#foreach($tag in $row.tagsArray)
     			<li>
@@ -50,10 +56,6 @@ $user.username
 				</li>
 				#end
     		</ul>
-    		<div class="pull-right hidden-xs">
-				<span class="act"><i class="fa fa-eye"></i> ${row.views}</span>
-				<span class="act"><i class="fa fa-commenting-o"></i> ${row.comments}</span>
-    		</div>
     	</div>
     </div>
 </div>
