@@ -19,6 +19,8 @@
 * UEditor/Markdown编辑器
 * font-wesome 字体/图标
 
+[部署手册](https://www.zybuluo.com/langhsu/note/165902)
+
 ### 系统配置
 
 Mysql 数据库配置
@@ -74,6 +76,5 @@ mail.password = 你的密码
 ### 开源协议
 
 如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mtons相关版权信息链接
-
 
 QQ交流群：378433412
