@@ -43,7 +43,7 @@
 				<entry key="timeout" value="${mail.timeout}" />
 				<entry key="username" value="${mail.username}" />
 				<entry key="password" value="${mail.password}" />
-				<entry key="from" value="${mail.from}" />
+				<entry key="from" value="${mail.username}" />
 			</map>
 		</property>
 	</bean>

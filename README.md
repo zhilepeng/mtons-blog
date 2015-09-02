@@ -54,6 +54,14 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 
 [Graphicsmagick 下载](http://www.graphicsmagick.org/download.html)
 
+邮件服务器
+```
+mail.host = smtp.mtons.com (smtp服务地址)
+mail.auth = true
+mail.timeout = 25000
+mail.username = admin@mtons.com(你的账号)
+mail.password = 你的密码
+```
 
 关于Tomcat部署
 > 请在Connector设置url编码, 否则标签页会出现乱码
@@ -62,9 +70,10 @@ gmagick.home=C:/Program Files/GraphicsMagick-1.3.20-Q8
 <Connector port="8080" protocol="HTTP/1.1" ... URIEncoding="UTF-8"/>
 ```
 
+
 ### 开源协议
 
-本系统遵循 Apache Licene 2.0 协议, 如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mblog 相关版权信息链接
+如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mtons相关版权信息链接
 
 
 QQ交流群：378433412
