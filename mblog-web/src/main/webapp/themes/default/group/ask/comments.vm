@@ -74,7 +74,7 @@
                 var content = ContentRender.wrapItem(data.content);
 
                 var quoto = '';
-                if (data.pid > 0) {
+                if (data.pid > 0 && !(data.parent === null)) {
                     var pat = data.parent;
                     var pcontent = ContentRender.wrapItem(pat.content);
                     quoto = '<div class="quote"><a href="$base/ta/' + pat.author.id+ '">@' + pat.author.name + '</a>: ' + pcontent + '</div>';
