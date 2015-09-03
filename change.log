@@ -1,3 +1,8 @@
+2015-09-03
+	1. init.properties 中的 hibernate.search.indexs 配置移动到 mtons.properties
+	2. 升级发送邮件的代码，添加配置自检查
+	3. 升级系统配置功能，添加第三方登录地址管理和备案号管理
+
 2015-08-31
 关于2.0 升级
 	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并
@@ -30,5 +35,3 @@
 		升级sql: UPDATE mto_posts SET last_image_id = 0 WHERE last_image_id IS NULL
 
 	5. mto_config 表 key 字段改名为 key_
-
-
