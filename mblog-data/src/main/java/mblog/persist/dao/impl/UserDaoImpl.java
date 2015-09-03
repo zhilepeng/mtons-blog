@@ -9,29 +9,28 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.persist.dao.UserDao;
-import mblog.persist.entity.UserPO;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
-import java.util.Set;
+import mblog.persist.dao.UserDao;
+import mblog.persist.entity.UserPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  *
  */
-public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
+@Repository(entity = UserPO.class)
+public class UserDaoImpl extends BaseRepositoryImpl<UserPO> implements UserDao {
 	private static final long serialVersionUID = -3396151113305189145L;
 
-	public UserDaoImpl() {
-		super(UserPO.class);
-	}
-	
 	@Override
 	public UserPO getByUsername(String username) {
 		return findUniqueBy("username", username);
@@ -39,12 +38,7 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 
 	@Override
 	public UserPO getByEmail(String email) {
-		List<UserPO> rets = findBy("email", email);
-
-		if (rets != null && rets.size() > 0) {
-			return rets.get(0);
-		}
-		return null;
+		return findFirst("email", email);
 	}
 
 	@Override

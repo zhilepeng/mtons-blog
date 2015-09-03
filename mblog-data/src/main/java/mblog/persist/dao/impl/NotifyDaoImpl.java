@@ -1,27 +1,28 @@
 package mblog.persist.dao.impl;
 
-import mblog.lang.Consts;
-import mblog.persist.dao.NotifyDao;
-import mblog.persist.entity.NotifyPO;
-import mblog.utils.NumberUtils;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
+import mblog.lang.Consts;
+import mblog.persist.dao.NotifyDao;
+import mblog.persist.entity.NotifyPO;
+import mblog.utils.NumberUtils;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu on 2015/8/31.
  */
-public class NotifyDaoImpl extends DaoImpl<NotifyPO> implements NotifyDao {
-    public NotifyDaoImpl() {
-        super(NotifyPO.class);
-    }
+@Repository(entity = NotifyPO.class)
+public class NotifyDaoImpl extends BaseRepositoryImpl<NotifyPO> implements NotifyDao {
+	private static final long serialVersionUID = -4830458674452233964L;
 
-    @Override
+	@Override
     public List<NotifyPO> findByOwnId(Paging paging, long ownId) {
         PagingQuery<NotifyPO> q = pagingQuery(paging);
         q.add(Restrictions.eq("ownId", ownId));

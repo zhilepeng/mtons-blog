@@ -28,9 +28,10 @@ $user.username
         </div>
     </div>
     <div class="summary">
-        <h2 class="title">#postLink($row)</h2>
-        <div class="excerpt wordbreak hidden-xs">$!{row.summary} </div>
-			
+		<a href="$base/view/${row.id}">
+        	<h2 class="title">$!{row.title}</h2>
+        	<div class="excerpt wordbreak hidden-xs">$!{row.summary} </div>
+        </a>
 		<!--前端图片显示样式-->
 		#if($!{row.albums})
 		<!--Start-->

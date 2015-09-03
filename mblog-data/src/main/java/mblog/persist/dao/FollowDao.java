@@ -10,7 +10,7 @@
 package mblog.persist.dao;
 
 import mblog.persist.entity.FollowPO;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 import mtons.modules.pojos.Paging;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  * @author langhsu
  * 
  */
-public interface FollowDao extends Dao<FollowPO> {
+public interface FollowDao extends BaseRepository<FollowPO> {
 
 	/**
 	 * 检查是否已关注

@@ -40,8 +40,8 @@
     </form>
     <div class="with-line">使用第三方帐号登录</div>
     <div class="buttons">
-        <a href="https://api.weibo.com/oauth2/authorize?client_id=3554307689&redirect_uri=http://mtons.com/oauth/callback/weibo&response_type=code&state=1" title="微博帐号登录" rel="nofollow" class="weibo"></a>
-        <a href="https://graph.qq.com/oauth2.0/authorize?client_id=101235848&response_type=code&scope=get_user_info,add_share&state=2&redirect_uri=http://mtons.com/oauth/callback/qq" title="QQ帐号登录" rel="nofollow" class="qzone"></a>
+        <a href="$!{setting_oauth_weibo}" title="微博帐号登录" rel="nofollow" class="weibo"></a>
+        <a href="$!{setting_oauth_qq}" title="QQ帐号登录" rel="nofollow" class="qzone"></a>
     </div>
 </div>
 

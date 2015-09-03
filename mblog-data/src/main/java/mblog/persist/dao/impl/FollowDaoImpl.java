@@ -9,27 +9,26 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.persist.dao.FollowDao;
-import mblog.persist.entity.FollowPO;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 
-import java.util.List;
+import mblog.persist.dao.FollowDao;
+import mblog.persist.entity.FollowPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  *
  */
-public class FollowDaoImpl extends DaoImpl<FollowPO> implements FollowDao {
+@Repository(entity = FollowPO.class)
+public class FollowDaoImpl extends BaseRepositoryImpl<FollowPO> implements FollowDao {
 	private static final long serialVersionUID = 2809599067409589271L;
-
-	public FollowDaoImpl() {
-		super(FollowPO.class);
-	}
 
 	@Override
 	@SuppressWarnings("unchecked")

@@ -25,8 +25,8 @@
 .navbar .nav .signin, .navbar .nav .signup {
 	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
 }
-.navbar .nav .signin { background-color: #1cba11; }
-.navbar .nav .signup { background-color: #00aed1; }
+.navbar .nav .signin { border: 1px solid #1cba11; }
+.navbar .nav .signup { border: 1px solid #00aed1; }
 
 .navbar .nav .signin:hover { background-color: #25D618; }
 .navbar .nav .signup:hover { background-color: #22BBDA; }

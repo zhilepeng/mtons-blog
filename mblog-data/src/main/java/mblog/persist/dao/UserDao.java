@@ -10,7 +10,7 @@
 package mblog.persist.dao;
 
 import mblog.persist.entity.UserPO;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 import mtons.modules.pojos.Paging;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * @author langhsu
  */
-public interface UserDao extends Dao<UserPO> {
+public interface UserDao extends BaseRepository<UserPO> {
     UserPO getByUsername(String username);
 
     UserPO getByEmail(String email);

@@ -12,12 +12,12 @@ package mblog.persist.dao;
 import java.util.List;
 
 import mblog.persist.entity.MenuPO;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 
 /**
  * @author langhsu
  *
  */
-public interface MenuDao extends Dao<MenuPO> {
+public interface MenuDao extends BaseRepository<MenuPO> {
 	List<MenuPO> findAll();
 }

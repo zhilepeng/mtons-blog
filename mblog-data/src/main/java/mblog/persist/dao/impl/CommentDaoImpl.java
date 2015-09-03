@@ -9,29 +9,28 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.persist.dao.CommentDao;
-import mblog.persist.entity.CommentPO;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import mblog.persist.dao.CommentDao;
+import mblog.persist.entity.CommentPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  *
  */
-public class CommentDaoImpl extends DaoImpl<CommentPO> implements CommentDao {
+@Repository(entity = CommentPO.class)
+public class CommentDaoImpl extends BaseRepositoryImpl<CommentPO> implements CommentDao {
 	private static final long serialVersionUID = 1023552695901348149L;
-
-	public CommentDaoImpl() {
-		super(CommentPO.class);
-	}
 
 	@Override
 	public List<CommentPO> paging(Paging paging, String key) {

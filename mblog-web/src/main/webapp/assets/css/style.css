@@ -34,9 +34,10 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .fr { float: right; }
 .clear { clear: both; }
 .noborder  {border: 0 !important; }
+.whitebg {background-color: #fff}
 
-.praise_icon { display: inline-block; background: url(../images/praise.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -2px 0; }
-.comment_icon { display: inline-block; background: url(../images/comment.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -2px 0; }
+.praise_icon { display: inline-block; background: url(../images/praise.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -3px 0; }
+.comment_icon { display: inline-block; background: url(../images/comment.png) no-repeat; width: 16px; height: 16px; margin: 0 5px -3px 0; }
 
 /* bootstrap extend */
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -51,16 +52,8 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .pagination>li:last-child>a, .pagination>li:last-child>span { border-top-right-radius: 2px; border-bottom-right-radius: 2px;
 }
 
-.btn-success {
-	color: #fff;
-	background-color: #1cba11;
-	border-color: #5cb85c;
-}
-.btn-primary {
-	color: #fff;
-	background-color: #00aed1;
-	border-color: #428bca;
-}
+.btn-success { color: #fff; background-color: #1cba11; border-color: #5cb85c; }
+.btn-primary { color: #fff; background-color: #00aed1; border-color: #428bca; }
 
 /* nav 导航 */
 .navbar-inverse { background-color: #39424e; border-color: #39424e; border-radius: 0; margin-bottom: 0;}
@@ -139,8 +132,7 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .stream-item { margin: 0; border-bottom: 1px solid #eee; padding: 15px; position: relative;}
 .stream-item:hover { background-color: #f5f5f5;}
 .stream-item .summary { overflow: hidden; padding: 0; /*border-left: 1px solid #f3f3f3;*/ }
-.stream-item .title { display: block; margin: 0 0 10px 0; font-size: 16px; }
-.stream-item .title a {color: #333;}
+.stream-item .title { display: block; margin: 0 0 10px 0; color: #333; font-weight: bold; font-size: 16px; }
 .stream-item .author { color: #999; font-size: 13px; margin-right: 20px; float: left; line-height: 22px; vertical-align: middle;}
 .stream-item .author span { margin-right: 15px;}
 .stream-item .excerpt { margin: 8px 0 4px; color: #777; font-size: 14px; line-height: 1.6; overflow: hidden; }
@@ -233,9 +225,9 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .widget-box .box-list li span.name {width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
 
-.box-list li:nth-child(1) span.last i{background-color: #eb7508;}
+.box-list li:nth-child(1) span.last i{background-color: #1cba11;}
 .box-list li:nth-child(2) span.last i{background-color: #1cba11;}
-.box-list li:nth-child(3) span.last i{background-color: #00aed1;}
+.box-list li:nth-child(3) span.last i{background-color: #1cba11;}
 
 .about-user .user-card{ padding:0;}
 .about-user .ava { float:left; padding: 15px;}

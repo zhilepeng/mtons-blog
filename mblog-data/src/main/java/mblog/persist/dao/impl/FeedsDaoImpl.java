@@ -9,31 +9,29 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.data.Feeds;
-import mblog.persist.dao.FeedsDao;
-import mblog.persist.entity.FeedsPO;
-import mtons.modules.lang.Const;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
+import java.text.MessageFormat;
+import java.util.List;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Restrictions;
 
-import java.text.MessageFormat;
-import java.util.List;
+import mblog.data.Feeds;
+import mblog.persist.dao.FeedsDao;
+import mblog.persist.entity.FeedsPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.lang.Const;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  *
  */
-public class FeedsDaoImpl extends DaoImpl<FeedsPO> implements FeedsDao {
+@Repository(entity = FeedsPO.class)
+public class FeedsDaoImpl extends BaseRepositoryImpl<FeedsPO> implements FeedsDao {
 	private static final long serialVersionUID = -3008484602494194917L;
 
-	public FeedsDaoImpl() {
-		super(FeedsPO.class);
-	}
-
 	String pattern = "INSERT INTO mto_feeds (own_id, type, post_id, author_id, created) SELECT user_id, {0}, {1}, {2}, now() FROM mto_follows WHERE follow_id = {3}";
-
 
 	@Override
 	public int batchAdd(Feeds feeds) {

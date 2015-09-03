@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-  	http://www.springframework.org/schema/beans/spring-beans.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 	default-autowire="byName">
-
-	<!-- Dao -->
-	<bean id="configDao" class="mblog.persist.dao.impl.ConfigDaoImpl" />
-	<bean id="userDao" class="mblog.persist.dao.impl.UserDaoImpl" />
-	<bean id="logDao"  class="mblog.persist.dao.impl.LogDaoImpl" />
-	<bean id="commentDao" class="mblog.persist.dao.impl.CommentDaoImpl" />
-	<bean id="postDao" class="mblog.persist.dao.impl.PostDaoImpl" />
-	<bean id="attachDao" class="mblog.persist.dao.impl.AttachDaoImpl" />
-	<bean id="tagDao" class="mblog.persist.dao.impl.TagDaoImpl" />
 	
-	<bean id="groupDao" class="mblog.persist.dao.impl.GroupDaoImpl" />
-	<bean id="menuDao" class="mblog.persist.dao.impl.MenuDaoImpl" />
-	<bean id="openOauthDao" class="mblog.persist.dao.impl.OpenOauthDaoImpl" />
-
-	<bean id="verifyDao" class="mblog.persist.dao.impl.VerifyDaoImpl" />
-	<bean id="followDao" class="mblog.persist.dao.impl.FollowDaoImpl" />
-	<bean id="feedsDao" class="mblog.persist.dao.impl.FeedsDaoImpl" />
-
-	<bean id="favorDao" class="mblog.persist.dao.impl.FavorDaoImpl" />
-	<bean id="notifyDao" class="mblog.persist.dao.impl.NotifyDaoImpl" />
-
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
 	<bean id="userService" class="mblog.persist.service.impl.UserServiceImpl" />

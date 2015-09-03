@@ -12,30 +12,27 @@ package mblog.persist.dao.impl;
 import java.util.Collection;
 import java.util.List;
 
-import mblog.lang.Consts;
-import mblog.lang.EnumPrivacy;
-import mtons.modules.lang.Const;
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import mblog.lang.Consts;
+import mblog.lang.EnumPrivacy;
 import mblog.persist.dao.PostDao;
 import mblog.persist.entity.PostPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.lang.Const;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  *
  */
-public class PostDaoImpl extends DaoImpl<PostPO> implements PostDao {
+@Repository(entity = PostPO.class)
+public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 	private static final long serialVersionUID = -8144066308316359853L;
-	
-	public PostDaoImpl() {
-		super(PostPO.class);
-	}
 	
 	@Override
 	public Session getSession() {

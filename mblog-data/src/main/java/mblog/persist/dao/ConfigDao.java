@@ -9,13 +9,13 @@
 */
 package mblog.persist.dao;
 
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 import mblog.persist.entity.ConfigPO;
 
 /**
  * @author langhsu
  *
  */
-public interface ConfigDao extends Dao<ConfigPO> {
+public interface ConfigDao extends BaseRepository<ConfigPO> {
 	ConfigPO findByName(String key);
 }

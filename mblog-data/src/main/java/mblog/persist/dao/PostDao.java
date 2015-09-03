@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 import mblog.lang.EnumPrivacy;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 import mtons.modules.pojos.Paging;
 
 import org.hibernate.Session;
@@ -24,7 +24,7 @@ import mblog.persist.entity.PostPO;
  * @author langhsu
  *
  */
-public interface PostDao extends Dao<PostPO> {
+public interface PostDao extends BaseRepository<PostPO> {
 	Session getSession();
 
 	/**

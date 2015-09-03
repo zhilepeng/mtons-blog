@@ -4,24 +4,76 @@
 	<div class="col-lg-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">站点配置
-				<a href="$base/admin/config/view" class="btn btn-mini btn-success pull-right">
-					<i class="fa fa-edit"></i> 编辑
-				</a>
 			</div>
 			<div class="panel-body">
-				<table class="table table-bordered">
-					<tr>
-						<th>名称</th>
-						<th>属性值</th>
-					</tr>
-					#foreach($row int $siteConfigs)
-						#set($config = $configs[$row.key])
-					<tr>
-						<td>$!{row.name}</td>
-						<td>$!{config.value}</td>
-					</tr>
-					#end
-				</table>
+                <form id="qForm" class="form-horizontal" method="post" action="update">
+                    #parse("/admin/message.vm")
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">站点名称</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_name" class="form-control" value="$!{configs['site_name'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">欢迎语</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_welcomes" class="form-control" value="$!{configs['site_welcomes'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">域名</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_domain" class="form-control" value="$!{configs['site_domain'].value}">
+                            <p class="help-block">示例: http://mtons.com</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">SEO META Keywords</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_keywords" class="form-control" value="$!{configs['site_keywords'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">SEO META Description</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_description" class="form-control" value="$!{configs['site_description'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">备案号</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="site_icp" class="form-control" value="$!{configs['site_icp'].value}">
+                            <p class="help-block">示例: 京ICP备12345678号</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">发布编辑器</label>
+                        <div class="col-lg-4">
+                            <select name="setting_editor" class="form-control" data-select="$!{configs['setting_editor'].value}">
+                                <option value="ueditor">ueditor</option>
+                                <option value="markdown">markdown</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">第三方登录-QQ回调地址</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="setting_oauth_qq" class="form-control" value="$!{configs['setting_oauth_qq'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">第三方登录-微博回调地址</label>
+                        <div class="col-lg-9">
+                            <input type="text" name="setting_oauth_weibo" class="form-control" value="$!{configs['setting_oauth_weibo'].value}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <button type="submit" class="btn btn-primary btn-small">提交</button>
+                        </div>
+                    </div>
+                </form>
 			</div>
 		</div>
 	</div>

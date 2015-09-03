@@ -9,6 +9,8 @@ package mblog.lang;
  *
  */
 public interface Consts {
+	String MTONS_CONFIG = "mtons.properties";
+
 	/**
 	 * 默认头像
 	 */
@@ -91,4 +93,7 @@ public interface Consts {
 	int NOTIFY_EVENT_COMMENT = 3; // 有人评论了你
 
 	int NOTIFY_EVENT_COMMENT_REPLY = 4; // 有人回复了你
+
+	String EMAIL_TEMPLATE_FORGOT = "forgot.vm";
+	String EMAIL_TEMPLATE_BIND = "bind.vm";
 }

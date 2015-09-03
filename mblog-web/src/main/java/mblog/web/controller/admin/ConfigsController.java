@@ -9,8 +9,10 @@
 */
 package mblog.web.controller.admin;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import mblog.data.Config;
 import mblog.persist.service.GroupService;
@@ -30,6 +32,7 @@ import mblog.web.controller.BaseController;
 import mblog.web.from.ConfigModel;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 系统配置
@@ -57,21 +60,24 @@ public class ConfigsController extends BaseController {
 
 		model.put("cacheNames", cacheNames);
 		model.put("configs", configService.findAll2Map());
-		model.put("siteConfigs", EnumConfig.values());
 		return "/admin/configs/main";
 	}
 	
-	@RequestMapping("/view")
-	public String view(ModelMap model) {
-		model.put("configs", configService.findAll2Map());
-		model.put("siteConfigs", EnumConfig.values());
-		return "/admin/configs/view";
-	}
-	
 	@RequestMapping("/update")
-	public String update(ConfigModel config, ModelMap model) {
-		configService.update(config.getConfigs());
-		return list(model);
+	public String update(HttpServletRequest request, ModelMap model) {
+		Map<String, String[]> params = request.getParameterMap();
+
+		List<Config> configs = new ArrayList<>();
+
+		params.forEach((k, v) -> {
+			Config conf = new Config();
+			conf.setKey(k);
+			conf.setValue(v[0]);
+
+			configs.add(conf);
+		});
+		configService.update(configs);
+		return "redirect:/admin/config/";
 	}
 	
 	@RequestMapping("/flush_cache")

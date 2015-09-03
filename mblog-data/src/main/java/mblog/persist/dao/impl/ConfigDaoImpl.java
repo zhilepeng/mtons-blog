@@ -9,20 +9,18 @@
 */
 package mblog.persist.dao.impl;
 
-import mtons.modules.persist.impl.DaoImpl;
 import mblog.persist.dao.ConfigDao;
 import mblog.persist.entity.ConfigPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu
  *
  */
-public class ConfigDaoImpl extends DaoImpl<ConfigPO> implements ConfigDao {
+@Repository(entity = ConfigPO.class)
+public class ConfigDaoImpl extends BaseRepositoryImpl<ConfigPO> implements ConfigDao {
 	private static final long serialVersionUID = 1661965983527190778L;
-
-	public ConfigDaoImpl() {
-		super(ConfigPO.class);
-	}
 
 	@Override
 	public ConfigPO findByName(String key) {

@@ -11,17 +11,15 @@ package mblog.persist.dao.impl;
 
 import mblog.persist.dao.OpenOauthDao;
 import mblog.persist.entity.OpenOauthPO;
-import mtons.modules.persist.impl.DaoImpl;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu on 2015/8/12.
  */
-public class OpenOauthDaoImpl extends DaoImpl<OpenOauthPO> implements OpenOauthDao {
+@Repository(entity = OpenOauthPO.class)
+public class OpenOauthDaoImpl extends BaseRepositoryImpl<OpenOauthPO> implements OpenOauthDao {
     private static final long serialVersionUID = 3953147809633630305L;
-
-    public OpenOauthDaoImpl() {
-        super(OpenOauthPO.class);
-    }
 
     @Override
     public OpenOauthPO getOauthToken(String accessToken) {

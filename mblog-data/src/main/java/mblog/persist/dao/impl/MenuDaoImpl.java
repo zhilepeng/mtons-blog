@@ -11,25 +11,23 @@ package mblog.persist.dao.impl;
 
 import java.util.List;
 
-import mtons.modules.lang.Const;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.MenuDao;
 import mblog.persist.entity.MenuPO;
-import mtons.modules.persist.impl.DaoImpl;
-import org.hibernate.criterion.Restrictions;
+import mtons.modules.annotation.Repository;
+import mtons.modules.lang.Const;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu
  *
  */
-public class MenuDaoImpl extends DaoImpl<MenuPO> implements MenuDao {
+@Repository(entity = MenuPO.class)
+public class MenuDaoImpl extends BaseRepositoryImpl<MenuPO> implements MenuDao {
 	private static final long serialVersionUID = 2564594993409371310L;
-
-	public MenuDaoImpl() {
-		super(MenuPO.class);
-	}
 
 	@Override
 	@SuppressWarnings("unchecked")

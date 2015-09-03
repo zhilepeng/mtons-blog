@@ -16,5 +16,7 @@ import java.util.Map;
  */
 public interface EmailSender {
 
-    void to(String template, String address, String subject, Map<String, Object> data);
+    void sendTemplete(String address, String subject, String template, Map<String, Object> data);
+
+    void sendText(String address, String subject, String content, boolean html);
 }

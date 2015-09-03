@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="$base/assets/vendors/markdown/editor.js"></script>
 
 <div style="display: none;">
-	<textarea id="content" name="content" rows="5"></textarea>
+	<textarea id="view_content" name="content" rows="5"></textarea>
 </div>
 <textarea id="markdown" name="markdown" rows="5" data-required
                                   data-describedby="message" data-description="content">$!{view.content}</textarea>
@@ -13,20 +13,15 @@
 
 function setContent(content) {
 	if (content != null && content.length > 0) {
-    	$('#content').text(content);
+    	$('#view_content').text(content);
 	}
 }
 $(function () {
-	if (mblog.browser.ios || mblog.browser.android) {
-		$('#content').addClass('form-control');
-		return;
-	} else {
-		var editor = new Editor({
-    		element: document.getElementById('markdown'),
-    		onChange: function (markdown, html) {
-    			$('#content').text(html);
-    		}
-    	});
-	}
+	var editor = new Editor({
+		element: document.getElementById('markdown'),
+		onChange: function (markdown, html) {
+			$('#view_content').text(html);
+		}
+	});
 })
 </script>

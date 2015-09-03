@@ -1,5 +1,5 @@
 
-<textarea id="content" name="content" class="form-control" rows="5" data-required data-describedby="message" data-description="content"></textarea>
+<textarea id="content" name="content" class="form-control" rows="5" data-required data-describedby="message" data-description="content">$!{view.content}</textarea>
 
 <script type="text/javascript">
 function setContent(content) {

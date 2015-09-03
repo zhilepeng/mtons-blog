@@ -9,14 +9,13 @@
 */
 package mblog.web.controller;
 
-import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.google.gson.Gson;
 import mblog.data.AccountProfile;
+import mblog.data.Attach;
+import mblog.extend.context.AppContext;
+import mblog.extend.upload.FileRepo;
+import mblog.shiro.authc.AccountSubject;
+import mtons.modules.pojos.Paging;
 import mtons.modules.utils.MD5Helper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -24,14 +23,11 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.gson.Gson;
-
-import mblog.data.Attach;
-import mblog.extend.context.AppContext;
-import mblog.extend.upload.FileRepo;
-import mblog.shiro.authc.AccountSubject;
-import mtons.modules.pojos.Paging;
-import mtons.modules.pojos.UserProfile;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Controller 基类
@@ -74,7 +70,24 @@ public class BaseController {
 		if (pn == null || pn == 0) {
 			pn = 1;
 		}
-		return new Paging(pn, 12);
+		return wrapPage(pn, 10);
+	}
+
+	/**
+	 * 包装分页对象
+	 *
+	 * @param pn 页码
+	 * @param pn 页码
+	 * @return
+	 */
+	protected Paging wrapPage(Integer pn, Integer maxResults) {
+		if (pn == null || pn == 0) {
+			pn = 1;
+		}
+		if (maxResults == null || maxResults == 0) {
+			maxResults = 10;
+		}
+		return new Paging(pn, maxResults);
 	}
 
 	protected String getSuffix(String name) {

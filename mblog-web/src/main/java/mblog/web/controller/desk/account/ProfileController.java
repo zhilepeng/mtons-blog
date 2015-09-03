@@ -97,7 +97,7 @@ public class ProfileController extends BaseController {
 			context.put("code", code);
 			context.put("type", Consts.VERIFY_BIND);
 
-			emailSender.to("bind.vm", email, "邮箱绑定验证", context);
+			emailSender.sendTemplete(email, "邮箱绑定验证", Consts.EMAIL_TEMPLATE_BIND, context);
 
 			data = Data.success("操作成功，已经发送验证邮件，请前往邮箱验证", Data.NOOP);
 		} catch (Exception e) {

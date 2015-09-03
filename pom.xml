@@ -150,12 +150,12 @@
 			<dependency>
 				<groupId>com.mtons</groupId>
 				<artifactId>mtons-lang</artifactId>
-				<version>1.0.3</version>
+				<version>1.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mtons</groupId>
 				<artifactId>mtons-persist</artifactId>
-				<version>1.0.3</version>
+				<version>1.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mtons.mblog</groupId>

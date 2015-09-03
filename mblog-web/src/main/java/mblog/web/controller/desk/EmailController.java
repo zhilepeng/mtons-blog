@@ -40,11 +40,11 @@ public class EmailController extends BaseController {
         Assert.notNull(userId, "缺少必要的参数");
         Assert.notNull(type, "缺少必要的参数");
 
-        String template = "bind.vm";
+        String template = Consts.EMAIL_TEMPLATE_BIND;
         String subject = "邮箱绑定验证";
 
         if (type == Consts.VERIFY_FORGOT) {
-            template = "forgot.vm";
+            template = Consts.EMAIL_TEMPLATE_FORGOT;
             subject = "找回密码";
         }
 
@@ -55,7 +55,7 @@ public class EmailController extends BaseController {
         context.put("userId", user.getId());
         context.put("code", code);
 
-        emailSender.to(template, user.getEmail(), subject, context);
+        emailSender.sendTemplete(user.getEmail(), subject, template, context);
 
         DataExt data = DataExt.success("邮件发送成功", Data.NOOP);
         model.put("data", data);

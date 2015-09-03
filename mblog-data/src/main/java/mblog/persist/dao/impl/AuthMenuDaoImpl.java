@@ -6,22 +6,15 @@ import org.hibernate.Query;
 
 import mblog.persist.dao.AuthMenuDao;
 import mblog.persist.entity.AuthMenuPO;
-import mtons.modules.persist.impl.DaoImpl;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
-public class AuthMenuDaoImpl extends DaoImpl<AuthMenuPO> implements AuthMenuDao{
-
-	/**
-	 *
-	 */
+@Repository(entity = AuthMenuPO.class)
+public class AuthMenuDaoImpl extends BaseRepositoryImpl<AuthMenuPO> implements AuthMenuDao{
 	private static final long serialVersionUID = 1L;
-
-	public AuthMenuDaoImpl(){
-		super(AuthMenuPO.class);
-	}
 
 	@Override
 	public List<AuthMenuPO> findByParentId(Long parentId) {
-		// TODO Auto-generated method stub
 		Query query = createQuery("from AuthMenuPO am where am.parent.id = ? order by am.sort");
 		query.setLong(0, parentId);
 		return query.list();

@@ -40,8 +40,7 @@ public class GalleryController extends BaseController {
 	@RequestMapping("/gallery")
 	public String view(Integer pn, ModelMap model, HttpServletRequest request) {
 		int groupId = ServletRequestUtils.getIntParameter(request, "g", 0);
-		Paging page = wrapPage(pn);
-		page.setMaxResults(jsonMaxResults);
+		Paging page = wrapPage(pn, jsonMaxResults);
 
 		page = postPlanet.gallery(page, groupId, Consts.order.NEWEST);
 		model.put("page", page);

@@ -8,6 +8,9 @@
 +---------------------------------------------------------------------------
 */
 
+/**
+ * 侧边栏
+ */
 define(function(require, exports, module) {
 	J = jQuery;
 	require('plugins');

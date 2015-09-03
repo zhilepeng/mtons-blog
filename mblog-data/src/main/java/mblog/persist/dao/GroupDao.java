@@ -10,7 +10,7 @@
 package mblog.persist.dao;
 
 import mblog.persist.entity.GroupPO;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @author langhsu
  *
  */
-public interface GroupDao extends Dao<GroupPO> {
+public interface GroupDao extends BaseRepository<GroupPO> {
 	List<GroupPO> findAll();
 	GroupPO getByKey(String key);
 }

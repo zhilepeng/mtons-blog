@@ -11,7 +11,7 @@ package mblog.persist.dao;
 
 import mblog.data.Feeds;
 import mblog.persist.entity.FeedsPO;
-import mtons.modules.persist.Dao;
+import mtons.modules.persist.BaseRepository;
 import mtons.modules.pojos.Paging;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
  * @author langhsu
  *
  */
-public interface FeedsDao extends Dao<FeedsPO> {
+public interface FeedsDao extends BaseRepository<FeedsPO> {
 	/**
 	 * 添加动态, 同时会分发给粉丝
 	 * 

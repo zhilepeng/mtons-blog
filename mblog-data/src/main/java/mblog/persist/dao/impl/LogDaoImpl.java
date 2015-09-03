@@ -12,9 +12,6 @@ package mblog.persist.dao.impl;
 import java.util.Date;
 import java.util.List;
 
-import mtons.modules.lang.Const;
-import mtons.modules.persist.impl.DaoImpl;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -22,17 +19,17 @@ import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.LogDao;
 import mblog.persist.entity.LogPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.lang.Const;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu
  *
  */
-public class LogDaoImpl extends DaoImpl<LogPO> implements LogDao {
+@Repository(entity = LogPO.class)
+public class LogDaoImpl extends BaseRepositoryImpl<LogPO> implements LogDao {
 	private static final long serialVersionUID = 7340674448192398350L;
-
-	public LogDaoImpl() {
-		super(LogPO.class);
-	}
 
 	@Override
 	@SuppressWarnings("unchecked")

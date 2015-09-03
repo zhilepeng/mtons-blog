@@ -1,8 +1,10 @@
 package mblog.persist.dao.impl;
 
 import mblog.persist.dao.FavorDao;
+import mblog.persist.entity.CommentPO;
 import mblog.persist.entity.FavorPO;
-import mtons.modules.persist.impl.DaoImpl;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -11,13 +13,11 @@ import java.util.List;
 /**
  * @author langhsu on 2015/8/31.
  */
-public class FavorDaoImpl extends DaoImpl<FavorPO> implements FavorDao {
+@Repository(entity = FavorPO.class)
+public class FavorDaoImpl extends BaseRepositoryImpl<FavorPO> implements FavorDao {
+	private static final long serialVersionUID = 2220117564378926421L;
 
-    public FavorDaoImpl() {
-        super(FavorPO.class);
-    }
-
-    @Override
+	@Override
     public FavorPO find(long ownId, long postId) {
         Criteria c = createCriteria();
         c.add(Restrictions.eq("ownId", ownId));

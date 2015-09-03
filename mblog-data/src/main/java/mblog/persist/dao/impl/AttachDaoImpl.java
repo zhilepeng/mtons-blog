@@ -9,27 +9,26 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.data.Attach;
-import mblog.persist.dao.AttachDao;
-import mblog.persist.entity.AttachPO;
-import mtons.modules.persist.impl.DaoImpl;
-import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
-
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
+
+import mblog.data.Attach;
+import mblog.persist.dao.AttachDao;
+import mblog.persist.entity.AttachPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu
  *
  */
-public class AttachDaoImpl extends DaoImpl<AttachPO> implements AttachDao {
+@Repository(entity = AttachPO.class)
+public class AttachDaoImpl extends BaseRepositoryImpl<AttachPO> implements AttachDao {
 	private static final long serialVersionUID = -3561107849267517664L;
-
-	public AttachDaoImpl() {
-		super(AttachPO.class);
-	}
 
 	@Override
 	public List<AttachPO> findByTarget(long toId) {

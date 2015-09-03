@@ -34,7 +34,7 @@
 	
 	${screen_content}
 		
-	<p class="small">Copyright © Mtons（<a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备13042759号</a>)
+	<p class="small">Copyright © Mtons（<a href="http://www.miitbeian.gov.cn/" target="_blank">$!{site_icp}</a>)
 	</p>
 	
 </body>

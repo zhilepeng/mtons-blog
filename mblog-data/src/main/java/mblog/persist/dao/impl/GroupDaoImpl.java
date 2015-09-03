@@ -9,24 +9,21 @@
 */
 package mblog.persist.dao.impl;
 
+import java.util.List;
+
 import mblog.persist.dao.GroupDao;
 import mblog.persist.entity.GroupPO;
+import mtons.modules.annotation.Repository;
 import mtons.modules.lang.Const;
-import mtons.modules.lang.EntityStatus;
-import mtons.modules.persist.impl.DaoImpl;
-
-import java.util.List;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu
  *
  */
-public class GroupDaoImpl extends DaoImpl<GroupPO> implements GroupDao {
+@Repository(entity = GroupPO.class)
+public class GroupDaoImpl extends BaseRepositoryImpl<GroupPO> implements GroupDao {
 	private static final long serialVersionUID = -3510165157507261158L;
-
-	public GroupDaoImpl() {
-		super(GroupPO.class);
-	}
 
 	@Override
 	public List<GroupPO> findAll() {

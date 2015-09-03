@@ -19,7 +19,7 @@ import java.net.URL;
 public class URLUtils {
 	
 	public static String getHost(String link) {
-		URL url = null;
+		URL url;
 		String host = "";
 		try {
 			url = new URL(link);

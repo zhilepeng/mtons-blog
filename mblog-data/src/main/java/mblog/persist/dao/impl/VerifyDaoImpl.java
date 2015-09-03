@@ -9,22 +9,22 @@
 */
 package mblog.persist.dao.impl;
 
-import mblog.persist.dao.VerifyDao;
-import mblog.persist.entity.VerifyPO;
-import mtons.modules.persist.impl.DaoImpl;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+
+import mblog.persist.dao.VerifyDao;
+import mblog.persist.entity.VerifyPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
 
 /**
  * @author langhsu on 2015/8/14.
  */
-public class VerifyDaoImpl extends DaoImpl<VerifyPO> implements VerifyDao  {
+@Repository(entity = VerifyPO.class)
+public class VerifyDaoImpl extends BaseRepositoryImpl<VerifyPO> implements VerifyDao  {
+	private static final long serialVersionUID = -8077903744203247894L;
 
-    public VerifyDaoImpl() {
-        super(VerifyPO.class);
-    }
-
-    @Override
+	@Override
     public VerifyPO get(long userId, int type) {
         Criteria c = createCriteria();
         c.add(Restrictions.eq("userId", userId));

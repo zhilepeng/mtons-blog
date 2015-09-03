@@ -35,7 +35,7 @@ public class RegController extends BaseController {
 	private EmailSender emailSender;
 	
 	@RequestMapping(value = "/reg", method = RequestMethod.GET)
-	public String view(ModelMap model) {
+	public String view() {
 		UserProfile profile = getSubject().getProfile();
 		if (profile != null) {
 			return "redirect:/home";
@@ -73,7 +73,7 @@ public class RegController extends BaseController {
 		data.put("code", code);
 		data.put("type", Consts.VERIFY_BIND);
 
-		emailSender.to("bind.vm", user.getEmail(), "邮箱绑定验证", data);
+		emailSender.sendTemplete(user.getEmail(), "邮箱绑定验证", Consts.EMAIL_TEMPLATE_BIND, data);
 	}
 
 }

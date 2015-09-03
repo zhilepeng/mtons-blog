@@ -11,26 +11,23 @@ package mblog.persist.dao.impl;
 
 import java.util.List;
 
-import mtons.modules.persist.impl.DaoImpl;
-import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.persist.dao.TagDao;
 import mblog.persist.entity.TagPO;
+import mtons.modules.annotation.Repository;
+import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
  * 
  */
-public class TagDaoImpl extends DaoImpl<TagPO> implements TagDao {
+@Repository(entity = TagPO.class)
+public class TagDaoImpl extends BaseRepositoryImpl<TagPO> implements TagDao {
 	private static final long serialVersionUID = 3787316111507159374L;
-
-	public TagDaoImpl() {
-		super(TagPO.class);
-	}
 
 	@Override
 	public TagPO getByName(String name) {

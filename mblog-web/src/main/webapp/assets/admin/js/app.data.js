@@ -328,7 +328,7 @@ $(document).ready(function() {
 	 */
 	$('select[data-select]').each(function() {
 		var id = $(this).attr('data-select');
-		if (id > -1) {
+		if (typeof(id) != 'undefined' && id.length > 0) {
 			$(this).val(id);
 		}
 	});
