@@ -13,10 +13,6 @@
     
     <bean id="appContext" class="mblog.extend.context.AppContext">
     	<property name="root" value="${store.root}"/>
-    	<property name="origDir" value="${store.origin}"/>
-    	<property name="thumbsDir" value="${store.thumbs}"/>
-    	<property name="avaDir" value="${store.avatar}"/>
-    	<property name="tempDir" value="${store.temp}"/>
     </bean>
     
     <bean id="jsonUtils" class="mblog.web.formatter.JsonUtils" />

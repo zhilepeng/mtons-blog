@@ -41,7 +41,7 @@
 				<prop key="hibernate.search.default.directory_provider">
     				${hibernate.search.store}
     			</prop>
-    			<prop key="hibernate.search.default.indexBase">${hibernate.search.indexs}</prop>
+    			<prop key="hibernate.search.default.indexBase">${store.root}/indexs</prop>
 			</props>
 		</property>
 		<!-- Entity package -->

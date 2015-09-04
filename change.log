@@ -11,7 +11,10 @@
 
 	5. 优化了所有的前端页面布局, 使得维护简单, 代码简洁
 	6. 视频列表页改版
-
+	7. 优化繁复的配置
+		(1). 删除{hibernate.search.indexs}配置，索引文件自动存放到 {store.root}/indexs, 如果以前你的indexs不在{store.root}
+			目录下, 没关系, copy过去即可。
+		(2). 去除这些配置：{store.origin}, {store.thumbs}, {store.avatar}, {store.temp}，变为不可更改
 
 2015-08-31
 关于2.0.0 beta1 升级
