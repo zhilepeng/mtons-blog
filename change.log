@@ -1,10 +1,20 @@
 2015-09-03
+关于2.0.0 beta2 升级
 	1. init.properties 中的 hibernate.search.indexs 配置移动到 mtons.properties
 	2. 升级发送邮件的代码，添加配置自检查
 	3. 升级系统配置功能，添加第三方登录地址管理和备案号管理
+		升级前请备案你的备案号和登录页的第三方回调链接, 这些都将保持到数据库去（mto_config）
+
+	4. 添加图片快照（固定尺寸），解决首页图片不齐带来的美观问题
+		mto_attachs 表添加 screenshot 字段
+		对于以前版本的升级sql: UPDATE mto_attachs SET screenshot = preview
+
+	5. 优化了所有的前端页面布局, 使得维护简单, 代码简洁
+	6. 视频列表页改版
+
 
 2015-08-31
-关于2.0 升级
+关于2.0.0 beta1 升级
 	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并
 	2. mto_user 表添加了 active_email、posts、comments、follows、fans、favors 等字段，请设置这些字段的默认值
 	3. 添加第三方登录，注意修改自己的openId (login.vm、mblog-web/resource/config.pro..  qqconnectconfig.pro...)

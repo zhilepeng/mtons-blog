@@ -1,3 +1,8 @@
+##
+## 布局-左边栏布局
+## - 小屏时自动上下布局
+## - 使用者：用户主页
+##
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -38,43 +43,40 @@
     <link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m99.png"/>
     <link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
 
+    #parse("/default/inc/params.vm")
 </head>
 <body>
-    #parse("/default/inc/params.vm")
-
     #parse("/default/inc/header.vm")
 
-<div class="wrap" id="wrap">
-    <div class="container">
-        <div class="row">
-            <div class="main clearfix">
-                <!-- left -->
-                <div class="col-xs-12 col-md-3 side-left">
-                    #parse("/default/home/right.vm")
-                </div>
+    <!--.site-main -->
+    <div class="wrap" id="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="main clearfix">
+                    <!-- left -->
+                    <div class="col-xs-12 col-md-3 side-left">
+                        #parse("/default/home/right.vm")
+                    </div>
 
-                <div class="col-xs-12 col-md-9 side-right">
-                    <!-- tab -->
-                    #parse("/default/home/top.vm")
-                    <!-- tab end -->
-
-                    ${screen_content}
+                    <div class="col-xs-12 col-md-9 side-right">
+                        <!-- tab -->
+                        #parse("/default/home/top.vm")
+                        <!-- tab end -->
+                        ${screen_content}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<!--.site-main -->
 
     #parse("/default/inc/footer.vm")
 
-<a href="#" class="site-scroll-top"></a>
+    <a href="#" class="site-scroll-top"></a>
 
-<script type="text/javascript">
-    seajs.use('main', function (main) {
-        main.init();
-    });
-</script>
+    <script type="text/javascript">
+        seajs.use('main', function (main) {
+            main.init();
+        });
+    </script>
 </body>
 </html>

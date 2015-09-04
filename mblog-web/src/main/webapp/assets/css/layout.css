@@ -76,8 +76,6 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 	.masonry-grid .masonry-entry.span_1_of_4 { width: 47.6% }
 
 	.site-content {width: 100%; max-width: 100%;}
-
-	.stream-item .thumbs .media {max-height: 120px;}
 }
 /* Mobile (Portrait & Landscape)
 ================================================== */
@@ -99,7 +97,6 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 
 	.player {width:400px; height:334px;}
 
-	.stream-head .user-info span.avatar-80 { width: 60px; height: 60px; }
 	.stream-head .user-post .act-icon { padding: 12px 20px; }
 }
 /* Mobile (Portrait only)
@@ -113,15 +110,9 @@ footer .footer-nav  ul li a { color: #b7bac1; display: block; padding: 0 8px; }
 
 	.player {
 		width: 320px;
-		height: 267px;
+		height: 200px;
 	}
 
-	.stream-item .thumbs .media {
-		max-height: 60px;
-	}
-
-	.stream-head .user-info {padding-left: 10px; padding-right: 10px;}
-	.stream-head .user-info span.avatar-80 { width: 45px; height: 45px; }
 	.stream-head .user-post .act-icon { padding: 20px 20px;}
 	.stream-head .user-post .act-icon i { font-size: 22px;}
 	.stream-head .user-post .act-icon .tip {display: none;}

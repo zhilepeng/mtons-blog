@@ -1,4 +1,4 @@
-#set($layout="default/layout/sign.vm")
+#set($layout="default/layout/columns_signin.vm")
 
 #set($title="注册成功!")
 

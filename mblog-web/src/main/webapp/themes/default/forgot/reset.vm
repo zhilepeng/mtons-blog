@@ -1,4 +1,5 @@
-#set($layout="default/layout/sign.vm")
+#set($layout="default/layout/columns_signin.vm")
+
 #set($title="重置密码")
 
 <div class="login">

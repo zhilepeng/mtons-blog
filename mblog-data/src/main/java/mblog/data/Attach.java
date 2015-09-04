@@ -23,6 +23,7 @@ public class Attach implements Serializable {
 	private long toId;
 	private String original;
 	private String preview;
+	private String screenshot;
 	private int width;
 	private int height;
 	private int status;
@@ -91,4 +92,11 @@ public class Attach implements Serializable {
 		this.store = store;
 	}
 
+	public String getScreenshot() {
+		return screenshot;
+	}
+
+	public void setScreenshot(String screenshot) {
+		this.screenshot = screenshot;
+	}
 }

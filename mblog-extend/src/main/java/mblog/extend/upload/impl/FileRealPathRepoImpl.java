@@ -9,6 +9,7 @@
 */
 package mblog.extend.upload.impl;
 
+import mblog.utils.ImageUtils;
 import mtons.modules.utils.GMagickUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -147,6 +148,16 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements FileRepo, 
 		
 		String dest = root + basePath + path;
 		GMagickUtils.scaleImageByWidth(file.getAbsolutePath(), dest, maxWidth);
+		return basePath + path;
+	}
+
+	@Override
+	public String storeScale(File file, String basePath, int width, int height) throws Exception {
+		String root = context.getRealPath("/");
+		String path = FileNameUtils.genPathAndFileName(getExt(file.getName()));
+
+		String dest = root + basePath + path;
+		ImageUtils.truncateImage(file.getAbsolutePath(), dest, width, height);
 		return basePath + path;
 	}
 

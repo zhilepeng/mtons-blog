@@ -1,27 +1,31 @@
+#set($layout="default/layout/columns_full.vm")
+
 #set($title = ${group.name})
 
-<div class="col-xs-12 col-md-12">
-	<ul class="videos clearfix">
-		#foreach($row in $page.results)
-			<li class="col-xs-12 col-sm-4 col-lg-3">
-				<div class="item">
+<div class="blocks clearfix">
+	#foreach($row in $page.results)
+    	<div class="col-xs-12 col-sm-4 col-lg-4">
+    		<div class="block">
+                <a class="block-thumbnail" href="$base/view/${row.id}">
+					<!--
+                    <div class="thumbnail-overlay"></div>
+                    -->
+            		<span class="play-button"></span>
 					#foreach($alb in ${row.albums})
 						#if ($velocityCount == 1)
-							<div class="item-img">
-								#albShow(${alb})
-								<span class="itag"><i class="fa fa-play-circle"></i></span>
-							</div>
+							#albShow(${alb})
 						#end
 					#end
-					<div class="txt">
-						#postLink($row)
-					</div>
+				</a>
+                <div class="block-contents">
+                    <p class="tit">$!{row.title}</p>
+                    <p class="desc">$!{row.summary}</p>
 				</div>
-			</li>
-		#end
-	</ul>
-	<div class="text-center clr">
-		#set($url = "$!{group.key}?ord=" + ${ord})
-    	#page($url $page 5)
-    </div>
+			</div>
+		</div>
+	#end
+</div>
+<div class="text-center clr">
+	#set($url = "$!{group.key}?ord=" + ${ord})
+	#page($url $page 5)
 </div>

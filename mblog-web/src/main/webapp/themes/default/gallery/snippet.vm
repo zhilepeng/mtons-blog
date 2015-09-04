@@ -1,4 +1,4 @@
-#set($layout="default/layout/noop.vm")
+#set($layout="default/layout/columns_noop.vm")
 
 ## 懒加载片段
 

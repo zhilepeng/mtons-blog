@@ -1,51 +1,32 @@
 #set($title = ${group.name})
 
-<!-- left -->
-<div class="col-xs-12 col-md-9 side-left">
-    <div class="shadow-box">
-		<!-- tab -->
-		<div class="filter">
-			<ul class="">
-            	<li><a #if($ord == 'newest') class="active" #end href="?ord=newest">最新的</a></li>
-           		<li><a #if($ord == 'hottest') class="active" #end href="?ord=hottest">热门的</a></li>
-				<!--
-            	<li><a href="/blogs/hottest">全部的</a></li>
-				-->
-        	</ul>
-		</div>
-		<!-- tab end -->
-		<!-- tab panes -->
-        <div class="stream-list qus-stream">
-			#foreach($row in $page.results)
-				#showAsk($row)
-			#end
-			
-			#if($page.results.size() == 0)
-    		<div class="stream-item">
-				该目录下还没有内容!
-            </div>
-			#end
-			
-		</div>
+<div class="shadow-box">
+	<!-- tab -->
+	<div class="filter">
+		<ul class="">
+			<li><a #if($ord == 'newest') class="active" #end href="?ord=newest">最新的</a></li>
+			<li><a #if($ord == 'hottest') class="active" #end href="?ord=hottest">热门的</a></li>
+			<!--
+			<li><a href="/blogs/hottest">全部的</a></li>
+			-->
+		</ul>
 	</div>
-	<div class="text-center clr">
-		#set($url = "$!{group.key}?ord=" + ${ord})
-    	#page($url $page 5)
-    </div>
-</div>
+	<!-- tab end -->
+	<!-- tab panes -->
+	<div class="stream-list qus-stream">
+		#foreach($row in $page.results)
+			#showAsk($row)
+		#end
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
-	<!--
-	<div class="search">
-		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">
-    		<div class="input-group custom-search-form">
-        		<input type="text" class="form-control" name="q" placeholder="搜索...">
-        		<span class="input-group-btn">
-        			<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-        		</span>
-        	</div>
-		</form>
+		#if($page.results.size() == 0)
+		<div class="stream-item">
+			该目录下还没有内容!
+		</div>
+		#end
+
 	</div>
-	-->
-	#parse("/default/inc/right.vm")
+</div>
+<div class="text-center clr">
+	#set($url = "$!{group.key}?ord=" + ${ord})
+	#page($url $page 5)
 </div>

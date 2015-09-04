@@ -1,3 +1,9 @@
+<div class="widget-box shadow-box">
+    <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
+    <ul class="tags m10 text-center" id="hottags" style="float: none;">
+        <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
+    </ul>
+</div>
 
 <div class="widget-box shadow-box">
 	<div class="title">
@@ -15,13 +21,6 @@
 	<ul class="box-list" id="latests">
         <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
 	</ul>
-</div>
-
-<div class="widget-box shadow-box">
-    <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
-    <ul class="tags m10 text-center" id="hottags" style="float: none;">
-        <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
-    </ul>
 </div>
 
 <script type="text/javascript">

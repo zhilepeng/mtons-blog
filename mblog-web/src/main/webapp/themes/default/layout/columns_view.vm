@@ -1,68 +1,113 @@
+##
+## 布局-详情页
+## - 左右布局
+## - 对于 keywords 和 description 进行了优化
+## - 对右边栏进行了单独定制
+##
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>$!{title} - $!{site_name}</title>
-	<meta name="keywords" content="Mtons博客,$!{tags}"/>
+	<meta name="keywords" content="mtons,$!{tags}"/>
 	<meta name="description" content="$!{summary}"/>
 
 	#parse("/default/inc/metas.vm")
 
 	<script src="$base/assets/vendors/pace/pace.min.js"></script>
 	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
-	
+
 	<link rel='stylesheet' media='all' href='$base/assets/vendors/font-awesome/css/font-awesome.min.css'/>
 	<link rel="stylesheet" media='all' href="$base/assets/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" media='all' href="$base/assets/vendors/animate/animate.min.css">
 	<link rel='stylesheet' media='all' href='$base/assets/css/style.css'/>
 	<link rel='stylesheet' media='all' href='$base/assets/css/layout.css'/>
 	<link rel='stylesheet' media='all' href='$base/assets/css/plugins.css'/>
-	
+
 	<link rel='stylesheet' media='all' href="$base/assets/vendors/baguette/baguetteBox.min.css"/>
-	
+
 	<!--[if lt IE 9]>
     <script src="$base/assets/js/html5.js"></script>
     <![endif]-->
-	
+
 	<script type="text/javascript" src="$base/assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="$base/assets/js/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="$base/assets/js/utils.js"></script>
-	
+
 	<script type="text/javascript" src="$base/assets/vendors/layer/layer.js"></script>
-	
+
 	<script type="text/javascript" src="$base/assets/js/sea.js"></script>
 	<script type="text/javascript" src="$base/assets/js/sea.config.js"></script>
-	
+
 	#foreach($j in $js)
 	<script type="text/javascript" src="$j"></script>
 	#end
-	
+
 	<!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m99.png"/>
     <link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
 
+	#parse("/default/inc/params.vm")
 </head>
 <body>
-	#parse("/default/inc/params.vm")
-
 	#parse("/default/inc/header.vm")
-	
+
+	<!--.site-main -->
 	<div class="wrap" id="wrap">
 		<div class="container">
 			<div class="row">
 				<div class="main clearfix">
-				${screen_content}
-    			</div>
+					<!-- left -->
+					<div class="col-xs-12 col-md-9 side-left">
+						${screen_content}
+					</div>
+					<!-- right sidebar-->
+					<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
+						<ul class="list-group about-user">
+							<li class="list-group-item user-card" >
+								<div class="ava">
+									<a href="$base/ta/${ret.author.id}">
+										#showAva(${ret.author.avatar}, "img-circle")
+									</a>
+								</div>
+								<div class="user-info">
+									<div class="nk mb10">#showName(${ret.author})</div>
+									<div class="mb6">
+										<a class="btn btn-success btn-xs" href="javascript:void(0);" data-id="${ret.author.id}" rel="follow">+ 关注</a>
+									</div>
+								</div>
+							</li>
+
+							<li class="list-group-item">
+								<div class="user-datas">
+									<ul>
+										<li><strong>${ret.author.posts}</strong><span>发布</span></li>
+										<li class="noborder"><strong>${ret.author.comments}</strong><span>评论</span></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<a class="btn btn-success btn-sm" href="javascript:void(0);" data-id="${ret.id}" rel="favor">喜欢</a>
+								<strong id="favors">${ret.favors}</strong> 喜欢
+							</li>
+						</ul>
+						#parse("/default/inc/right.vm")
+					</div>
+					<script type="text/javascript">
+                        seajs.use('view');
+                    </script>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!--.site-main -->
-	
+
 	#parse("/default/inc/footer.vm")
-	
+
 	<a href="#" class="site-scroll-top"></a>
-	
+
 	<script type="text/javascript">
     seajs.use('main', function (main) {
     	main.init();

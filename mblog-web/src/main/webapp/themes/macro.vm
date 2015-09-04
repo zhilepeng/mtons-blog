@@ -172,9 +172,9 @@ $user.username
 
 #macro (albShow $att)
 	#if($att.store == 1)
-        <img src="$base/assets/images/spinner.gif" data-original="${att.preview}"/>
+        <img src="$base/assets/images/spinner-overlay.gif" data-original="${att.screenshot}"/>
 	#else
-        <img src="$base/assets/images/spinner.gif" data-original="$base${att.preview}"/>
+        <img src="$base/assets/images/spinner-overlay.gif" data-original="$base${att.screenshot}"/>
 	#end
 #end
 

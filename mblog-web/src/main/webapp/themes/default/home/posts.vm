@@ -1,5 +1,5 @@
 #set($title = "我的主页")
-#set($layout="default/layout/home.vm")
+#set($layout="default/layout/columns_left_sidebar.vm")
 
 <div class="shadow-box">
 	<div class="filter">

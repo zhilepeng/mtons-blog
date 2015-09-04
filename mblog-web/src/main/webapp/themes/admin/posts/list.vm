@@ -7,7 +7,7 @@
     		<form id="qForm" method="post">
     			<input type="hidden" name="pn" value="${page.pageNo}" />
     			<div class="col-lg-4">
-    				<input type="text" name="key" class="input-small inline form-control" value="$!{key}" placeholder="请输入关键字" style="width:180px">
+    				<input type="text" name="title" class="input-small inline form-control" value="$!{title}" placeholder="请输入标题关键字" style="width:180px">
     				<button class="btn btn-small btn-white" type="submit">查询</button>
     			</div>
     		</form>

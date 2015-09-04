@@ -1,85 +1,45 @@
+#set($layout = "/default/layout/columns_view.vm")
+
 #set($title=$!{ret.title})
 #set($tags=$!{ret.tags})
 #set($summary=$!{ret.summary})
-#set($layout = "/default/layout/seo.vm")
 
-<div class="col-xs-12 col-md-9 side-left">
-    <div class="shadow-box">
-		<h1 class="post-title">$!{ret.title}</h1>
-		<div class="clearfix post-other">
-			<span class="pull-left author">
-				<a class="author-name" href="$base/ta/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
-			</span>
-			<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
-			<ul class="pull-left list-inline tag-box">
-				<li>$!{ret.tags}</li>
-			</ul>
-			<span class="pull-right action-box"> </span>
-		</div>
-		<div class="post-frame">
-			#if($ret.albums)
-				<div class="thumbs">
-    			#foreach($alb in $ret.albums)
-    				<div class="single-post-media">
-						<a title="${ret.title}" href="$base${alb.original}">
-							<img src="$base/assets/images/spinner.gif" data-original="$base${alb.original}" style="display: block;">
-						</a>
-					</div><!-- .post-thumbnail -->	
-				#end
-				</div>
-    		#end
-			<div class="post-content">
-				${ret.content}
+<div class="shadow-box">
+	<h1 class="post-title">$!{ret.title}</h1>
+	<div class="clearfix post-other">
+		<span class="pull-left author">
+			<a class="author-name" href="$base/ta/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
+		</span>
+		<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
+		<ul class="pull-left list-inline tag-box">
+			<li>$!{ret.tags}</li>
+		</ul>
+		<span class="pull-right action-box"> </span>
+	</div>
+	<div class="post-frame">
+		#if($ret.albums)
+			<div class="thumbs">
+			#foreach($alb in $ret.albums)
+				<div class="single-post-media">
+					<a title="${ret.title}" href="$base${alb.original}">
+						<img src="$base/assets/images/spinner.gif" data-original="$base${alb.original}" style="display: block;">
+					</a>
+				</div><!-- .post-thumbnail -->
+			#end
 			</div>
-			<div class="post-footer">
-				<div class="tip">分享到：</div>
-				<div class="shares">
-					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></div>
-					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-				</div>
+		#end
+		<div class="post-content">
+			${ret.content}
+		</div>
+		<div class="post-footer">
+			<div class="tip">分享到：</div>
+			<div class="shares">
+				<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></div>
+				<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 			</div>
 		</div>
 	</div>
-	<!-- post/end -->
-	
-	#parse("/default/group/ask/comments.vm")
 </div>
+<!-- post/end -->
 
-
-
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
-    <ul class="list-group about-user">
-        <li class="list-group-item user-card" >
-            <div class="ava">
-                <a href="$base/ta/${ret.author.id}">
-					#showAva(${ret.author.avatar}, "img-circle")
-				</a>
-            </div>
-            <div class="user-info">
-                <div class="nk mb10">#showName(${ret.author})</div>
-                <div class="mb6">
-                    <a class="btn btn-success btn-xs" href="javascript:void(0);" data-id="${ret.author.id}" rel="follow">+ 关注</a>
-                </div>
-            </div>
-        </li>
-
-        <li class="list-group-item">
-            <div class="user-datas">
-                <ul>
-                    <li><strong>${ret.author.posts}</strong><span>发布</span></li>
-                    <li class="noborder"><strong>${ret.author.comments}</strong><span>评论</span></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-	<ul class="list-group">
-		<li class="list-group-item">
-			<a class="btn btn-success btn-sm" href="javascript:void(0);" data-id="${ret.id}" rel="favor">喜欢</a>
-			<strong id="favors">${ret.favors}</strong> 喜欢
-		</li>
-	</ul>
-	#parse("/default/inc/right.vm")
-</div>
-<script type="text/javascript">
-    seajs.use('view');
-</script>
+#parse("/default/group/ask/comments.vm")

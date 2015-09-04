@@ -1,25 +1,18 @@
 #set($title = "$!{tag}")
 
-<!-- left -->
-<div class="col-xs-12 col-md-9 side-left">
-	<div class="shadow-box">
-		<div class="filter">
-			<div class="alert" style="margin-bottom:0">
-    		    <i class="fa fa-tag fa-lg"></i> $!{tag}
-    		</div>
-    	</div>
-        <div class="stream-list p-stream">
-        	#foreach($row in $page.results)
-				#showBlog($row)
-			#end
-        </div>
-    </div>
-    		
-    <div class="text-center clr">
-    	#page("$base/tag/$!{tag}" $page 5)
-    </div>
+<div class="shadow-box">
+	<div class="filter">
+		<div class="alert" style="margin-bottom:0">
+			<i class="fa fa-tag fa-lg"></i> $!{tag}
+		</div>
+	</div>
+	<div class="stream-list p-stream">
+		#foreach($row in $page.results)
+			#showBlog($row)
+		#end
+	</div>
 </div>
 
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
-	#parse("/default/inc/right.vm")
+<div class="text-center clr">
+	#page("$base/tag/$!{tag}" $page 5)
 </div>

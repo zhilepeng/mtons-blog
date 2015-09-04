@@ -31,6 +31,8 @@ public class AppContext {
 	 * 文件存储-压缩目录
 	 */
 	String thumbsDir = "/store/thumbs";
+
+	String screenshotDir = "/store/screenshot";
 	
 	/*
 	 * 文件存储-头像目录
@@ -94,5 +96,13 @@ public class AppContext {
 
 	public void setConfig(Map<String, String> config) {
 		this.config = config;
+	}
+
+	public String getScreenshotDir() {
+		return screenshotDir;
+	}
+
+	public void setScreenshotDir(String screenshotDir) {
+		this.screenshotDir = screenshotDir;
 	}
 }

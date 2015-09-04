@@ -1,143 +1,37 @@
 #set($title=$!{ret.title})
 #set($tags=$!{ret.tags})
 #set($summary=$!{ret.summary})
-#set($layout = "/default/layout/seo.vm")
+#set($layout="default/layout/columns_view.vm")
 
-<script type="text/javascript" src="$base/assets/js/app/comment.js"></script>
-
-<div class="col-xs-12 col-md-9 side-left">
-    <div class="shadow-box">
-		<h1 class="post-title">$!{ret.title}</h1>
-		<div class="clearfix post-other">
-			<span class="pull-left author">
-				<a class="author-name" href="$base/user/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
-			</span>
-			<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
-			<ul class="pull-left list-inline tag-box">
-				<li>$!{ret.tags}</li>
-			</ul>
-			<span class="pull-right action-box"> </span>
-		</div>
-		<div class="post-frame">
-			#if($ret.albums && (${ret.type} != 'video'))
-    			#foreach($row in $ret.albums)
-    				<div class="single-post-media">
-    					<img src="$base/assets/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
-    				</div><!-- .post-thumbnail -->	
-    			#end
-    		#end
-			<div class="post-content">
-				${ret.content}
-			</div>
-			<div class="post-footer">
-				<div class="tip">分享到：</div>
-				<div class="shares">
-					<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></div>
-					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-				</div>
-			</div>
-		</div>
+<div class="shadow-box">
+	<h1 class="post-title">$!{ret.title}</h1>
+	<div class="clearfix post-other">
+		<span class="pull-left author">
+			<a class="author-name" href="$base/user/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
+		</span>
+		<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
+		<ul class="pull-left list-inline tag-box">
+			<li>$!{ret.tags}</li>
+		</ul>
+		<span class="pull-right action-box"> </span>
 	</div>
-	<!-- post/end -->
-	
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<i class="fa fa-comments fa-fw"></i> 评论  (<i id="chat_count">0</i>)
+	<div class="post-frame">
+		#if($ret.albums && (${ret.type} != 'video'))
+			#foreach($row in $ret.albums)
+				<div class="single-post-media">
+					<img src="$base/assets/images/spinner.gif" data-original="$base${row.original}" style="display: block;">
+				</div><!-- .post-thumbnail -->
+			#end
+		#end
+		<div class="post-content">
+			${ret.content}
 		</div>
-		<div class="panel-body">
-			<ul class="chat" id="chat_container"><li><p>空空如也, 快来占沙发吧!</p></li></ul>
-			<div id="pager" class="text-center"></div>
-		</div>
-		<div class="panel-footer">
-			<div class="input-group" id="chat_reply" style="display:none;">
-                <p>回复:<span id="chat_to"></span></p>
-			</div>
-			<div class="input-group">
-				<input id="chat_text" type="text" class="form-control input-sm" placeholder="在这写点什么吧...">
-				<input type="hidden" value="0" name="chat_pid" id="chat_pid"/> 
-				<span class="input-group-btn">
-					<button class="btn btn-warning btn-sm" id="btn-chat">发送</button>
-				</span>
+		<div class="post-footer">
+			<div class="tip">分享到：</div>
+			<div class="shares">
+				<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a></div>
+				<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm bounceInRight animated">
-	<ul class="list-group">
-		<li class="list-group-item">
-			<a class="btn btn-success btn-sm" href="javascript:void(0);" data-id="${ret.id}" rel="favor">喜欢</a>
-			<strong id="favors">${ret.favors}</strong> 喜欢
-		</li>
-	</ul>
-	#parse("/default/inc/right.vm")
-</div>
-
-<script type="text/plain" id="chat">
-<li class="left clearfix {5}">
-	<span class="chat-img pull-left">
-		<img src="$base{0}" class="img-circle">
-	</span>
-	<div class="chat-body clearfix">
-		<div class="header">
-			<strong class="primary-font">{1}</strong>
-			<small class="pull-right text-muted">
-				<i class="fa fa-clock-o fa-fw"></i> {2}
-			</small>
-		</div>
-		<p>{3}</p>
-		 <p><a class="btn pull-right text-muted" onclick="goto('{4}', '{1}')">回复</a>
-	</div>
-</li>
-</script>
-
-<script type="text/javascript">
-function goto(pid, user) {
-    document.getElementById('chat_text').scrollIntoView();
-    $('#chat_text').focus();
-    $('#chat_text').val('');
-    $('#chat_to').text(user);
-    $('#chat_pid').val(pid);
-	
-	$('#chat_reply').show();
-}
-var container = $("#chat_container");
-var template = $('#chat')[0].text;
-
-$(function(){
-	$("img").lazyload({
-		 placeholder : "$base/assets/images/spinner.gif",
-		 effect      : "fadeIn"
-	});
-	
-	var comment = new Comment(container, {
-		load_url : '$base/comment/list/${ret.id}.json',
-		post_url : '$base/comment/submit.json',
-		toId : '${ret.id}',
-		onLoad : function (i, data, reply, clazz) {
-			var item = jQuery.format(template, data.author.avatar, data.author.name, data.created, 
-				data.content, reply, clazz);
-      		return item;
-        }
-	});
-	
-	// Favor
-	$('a[rel=favor]').click(function () {
-		var id = $(this).attr('data-id');
-		
-		if (parseInt(id) > 0) {
-			jQuery.getJSON('$base/post/favor.json', {'id': id}, function (ret) {
-				if (ret.code >=0) {
-					var favors = $('#favors').text();
-					$('#favors').text(parseInt(favors) + 1);
-				} else {
-					layer.msg(ret.message, {icon: 5});
-				}
-			});
-		}
-	});
-
-});
-</script>

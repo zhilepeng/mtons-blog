@@ -64,6 +64,7 @@ public class PostVideoController extends BaseController {
 		Attach att = new Attach();
 		att.setOriginal(thumbnail);
 		att.setPreview(thumbnail);
+		att.setScreenshot(thumbnail);
 		att.setStore(Consts.ATTACH_STORE_NETWORK);
 		return att;
 	}

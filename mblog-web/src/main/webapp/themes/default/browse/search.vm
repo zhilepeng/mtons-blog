@@ -2,44 +2,30 @@
 
 #set($results = $page.results)
 
-<!-- left -->
-<div class="col-xs-12 col-md-9 side-left">
-    <div class="shadow-box">
-		<div class="filter">
-			#if($results.size() == 0)
-				<div class="alert" style="margin-bottom:0">
-					<i class="fa fa-exclamation fa-lg"></i> 没有相关记录!
-				</div>
-    		#else
-    			<div class="alert" style="margin-bottom:0">
-    		     	 搜索 <strong>$!{q}</strong>, 共 ${page.totalCount} 个结果.
-    		    </div>
-			#end
-        </div>
-		<!-- tab panes -->
-        <div class="stream-list p-stream">
-			#foreach($row in $page.results)
-				#showBlog($row)
-			#end
-        </div>
-    </div>
-	<div class="text-center clr">
-    	#page("search?q=$!{q}" $page 5)
-    </div>
-</div>
-
-<div class="col-xs-12 col-md-3 side-right hidden-xs hidden-sm">
-	<!--
-    <div class="search">
-		<form class="form-inline clearfix" method="getByUsername" id="searchform" action="$base/browse/search">
-    		<div class="input-group custom-search-form">
-        		<input type="text" class="form-control" name="q" placeholder="搜索..." value="$!{q}">
-        		<span class="input-group-btn">
-        			<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-        		</span>
-        	</div>
-		</form>
+<div class="shadow-box">
+	<div class="filter">
+		#if($results.size() == 0)
+			<div class="alert" style="margin-bottom:0">
+				<i class="fa fa-exclamation fa-lg"></i> 没有相关记录!
+			</div>
+		#else
+			<div class="alert" style="margin-bottom:0">
+				 搜索 <strong>$!{q}</strong>, 共 ${page.totalCount} 个结果.
+			</div>
+		#end
 	</div>
-	-->
-	#parse("/default/inc/right.vm")
+	<!-- tab panes -->
+	<div class="stream-list p-stream">
+		#foreach($row in $page.results)
+			#showBlog($row)
+		#end
+	</div>
 </div>
+<div class="text-center clr">
+	#page("search?q=$!{q}" $page 5)
+</div>
+<script>
+$(function () {
+	$('input[name=q]', $('#_search_box')).val('$!{q}');
+});
+</script>
