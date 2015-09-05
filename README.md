@@ -24,6 +24,11 @@
 - [部署手册](https://www.zybuluo.com/langhsu/note/165902)
 - [系统配置](https://www.zybuluo.com/langhsu/note/165905)
 
+### 捐助
+如果您认为“MBLOG”确实给您带来方便和帮助，那么欢迎您捐赠。非常感谢，您的捐赠，是我们前进的动力。
+![支付宝二维码](http://git.oschina.net/uploads/images/2015/0905/135429_b3326bf1_116277.png "支付宝二维码")
+
+`支付宝二维码`
 
 ### 开源协议
 
