@@ -10,6 +10,11 @@
 		#foreach($row in $page.results)
 			#showBlog($row)
 		#end
+		#if($page.results.size() == 0)
+            <div class="stream-item">
+                <i class="fa fa-info-circle fa-lg"></i> 该标签下没发表过文章!
+            </div>
+		#end
 	</div>
 </div>
 

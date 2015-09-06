@@ -48,7 +48,7 @@
                     <label for="desc" class="col-sm-2 control-label no-padding-right">内容</label>
                     <input type="hidden" name="editor" value="$!{setting_editor}"/>
                     <div class="col-sm-8">
-                        #parse("/default/editor/$!{setting_editor}.vm")
+                        #parse("/default/editor/$!{site_editor}.vm")
                     </div>
                 </div>
             </div>

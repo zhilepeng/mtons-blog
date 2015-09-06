@@ -45,6 +45,8 @@ public class HomeController extends BaseController {
 	@Autowired
 	private FollowService followService;
 	@Autowired
+	private FavorService favorService;
+	@Autowired
 	private NotifyService notifyService;
 
 	/**
@@ -100,6 +102,24 @@ public class HomeController extends BaseController {
 		initUser(model);
 
 		return getView(Views.HOME_COMMENTS);
+	}
+
+	/**
+	 * 我喜欢过的文章
+	 * @param pn
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/home/favors")
+	public String favors(Integer pn, ModelMap model) {
+		Paging page = wrapPage(pn);
+		UserProfile profile = getSubject().getProfile();
+		favorService.pagingByOwnId(page, profile.getId());
+
+		model.put("page", page);
+		initUser(model);
+
+		return getView(Views.HOME_FAVORS);
 	}
 
 	/**

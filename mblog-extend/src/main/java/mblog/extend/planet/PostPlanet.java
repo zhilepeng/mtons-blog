@@ -70,11 +70,11 @@ public interface PostPlanet {
 	void post(Post post);
 
 	/**
-	 * 修改文章访问权限
+	 * 修改文章推荐状态
 	 * @param id
-	 * @param privacy
+	 * @param featured
 	 */
-	void updatePrivacy(long id, int privacy);
+	void updateFeatured(long id, int featured);
 
 	/**
 	 * 查询最近更新的文章

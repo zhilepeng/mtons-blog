@@ -69,11 +69,12 @@ public class PostPO {
 	private int privacy;  // 私密
 
 	private int images; // 图片统计
-	private int featured; // 推荐
+	private int featured; // 推荐状态
 	private int favors; // 喜欢数
 	private int comments; // 评论数
 	private int views; // 阅读数
-	private int status;
+
+	private int status; // 文章状态
 
 	public long getId() {
 		return id;

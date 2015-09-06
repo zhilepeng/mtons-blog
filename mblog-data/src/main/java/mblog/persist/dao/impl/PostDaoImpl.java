@@ -12,9 +12,12 @@ package mblog.persist.dao.impl;
 import java.util.Collection;
 import java.util.List;
 
+import mblog.utils.NumberUtils;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.lang.Consts;
@@ -52,6 +55,7 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 		}
 
 		q.add(Restrictions.eq("privacy", EnumPrivacy.OPEN.getIndex()));
+		q.desc("featured");
 		q.desc("created");
 		return q.list();
 	}
@@ -71,6 +75,7 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 		if (id > Const.ZERO) {
 			q.add(Restrictions.eq("id", id));
 		}
+		q.desc("featured");
 		q.desc("created");
 		return q.list();
 	}
@@ -114,6 +119,17 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 	@Override
 	public List<PostPO> findByIds(Collection<Long> ids) {
 		return find(Restrictions.in("id", ids));
+	}
+
+	@Override
+	public int maxFeatured() {
+		Criteria c = createCriteria();
+		c.setProjection(Projections.max("featured"));
+		Number num = (Number) c.uniqueResult();
+		if (num != null) {
+			return num.intValue();
+		}
+		return 0;
 	}
 
 }

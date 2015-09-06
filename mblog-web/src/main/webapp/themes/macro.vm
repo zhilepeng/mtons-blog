@@ -1,10 +1,6 @@
 ## 用户名称显示
 #macro(showName $user)
-	#if ($user.name)
-$user.name
-	#else
-$user.username
-	#end
+	$user.name
 #end
 
 ## 博文列表显示
@@ -29,7 +25,7 @@ $user.username
     </div>
     <div class="summary">
 		<a href="$base/view/${row.id}">
-        	<h2 class="title">$!{row.title}</h2>
+        	<div class="title">#showGroup($row true)<h2>$!{row.title}</h2></div>
         	<div class="excerpt wordbreak hidden-xs">$!{row.summary} </div>
         </a>
 		<!--前端图片显示样式-->
@@ -155,7 +151,7 @@ $user.username
 #end
 
 
-<#-- 分页链接A -->
+##-- 分页链接A --
 #macro (link $pageNo $idx $url)
 	#if ($idx == 0)
 		<li><span>...</span></li>
@@ -166,10 +162,12 @@ $user.username
     #end
 #end
 
+## 文章链接显示
 #macro (postLink $view)
 	<a href="$base/view/${view.id}">${view.title}</a>
 #end
 
+## 文章附件显示
 #macro (albShow $att)
 	#if($att.store == 1)
         <img src="$base/assets/images/spinner-overlay.gif" data-original="${att.screenshot}"/>
@@ -178,10 +176,26 @@ $user.username
 	#end
 #end
 
+## 用户头像显示
 #macro (showAva $avatar $clazz)
 	#if($avatar.startWitdh("http:"))
         <img class="$!{clazz}" src="$avatar"/>
 	#else
         <img class="$!{clazz}" src="$base$!{avatar}"/>
+	#end
+#end
+
+## 文章group显示
+#macro (showGroup $row $showFeatured)
+	#if ($row.featured > 1 && $showFeatured)
+    	<span class="label label-danger">推荐</span>
+	#elseif($row.group == 1)
+    	<span class="label label-success">文</span>
+	#elseif($row.group == 2)
+    	<span class="label label-info">图</span>
+	#elseif($row.group == 3)
+    	<span class="label label-violet">视频</span>
+	#elseif($row.group == 4)
+    	<span class="label label-warning">问</span>
 	#end
 #end

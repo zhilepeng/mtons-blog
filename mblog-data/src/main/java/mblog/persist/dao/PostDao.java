@@ -58,4 +58,6 @@ public interface PostDao extends BaseRepository<PostPO> {
 	List<PostPO> findHots(int maxResutls, long ignoreUserId);
 	List<PostPO> findByIds(Collection<Long> ids);
 
+	int maxFeatured();
+
 }

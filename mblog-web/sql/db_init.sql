@@ -60,18 +60,17 @@ CREATE TABLE `mto_config` (
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_99vo6d7ci4wlxruo3gd0q2jq8` (`key_`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_configs
 -- ----------------------------
 INSERT INTO `mto_config` VALUES ('1', 'site_name', '0', 'Mtons');
-INSERT INTO `mto_config` VALUES ('2', 'site_version', '0', '1.0.1');
-INSERT INTO `mto_config` VALUES ('3', 'site_welcomes', '0', 'Mtons, 轻松分享你的兴趣');
-INSERT INTO `mto_config` VALUES ('4', 'site_domain', '0', 'http://mtons.com');
-INSERT INTO `mto_config` VALUES ('5', 'site_keywords', '0', 'mtons,博客,社区,摄影,旅游,艺术,娱乐');
-INSERT INTO `mto_config` VALUES ('6', 'site_description', '0', 'Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择');
-INSERT INTO `mto_config` VALUES ('7', 'setting_editor', '1', 'ueditor');
+INSERT INTO `mto_config` VALUES ('2', 'site_welcomes', '0', 'Mtons, 轻松分享你的兴趣');
+INSERT INTO `mto_config` VALUES ('3', 'site_domain', '0', 'http://mtons.com');
+INSERT INTO `mto_config` VALUES ('4', 'site_keywords', '0', 'mtons,博客,社区,摄影,旅游,艺术,娱乐');
+INSERT INTO `mto_config` VALUES ('5', 'site_description', '0', 'Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择');
+INSERT INTO `mto_config` VALUES ('6', 'setting_editor', '1', 'ueditor');
 
 -- ----------------------------
 -- Table structure for mto_tags

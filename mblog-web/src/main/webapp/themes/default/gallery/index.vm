@@ -45,7 +45,7 @@
 function onFavor(event, id) {
 	var that = $(event);
 	if (parseInt(id) > 0) {
-		jQuery.getJSON('$base/post/favor.json', {'id': id}, function (ret) {
+		jQuery.getJSON('$base/account/favor.json', {'id': id}, function (ret) {
 			if (ret.code >=0) {
 				var favors = that.find('[data="count"]').text();
 				that.find('[data="count"]').text(parseInt(favors) + 1);

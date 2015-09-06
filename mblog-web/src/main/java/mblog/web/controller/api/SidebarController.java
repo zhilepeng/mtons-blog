@@ -82,7 +82,7 @@ public class SidebarController extends BaseController {
 		if (up != null) {
 			ignoreUserId = up.getId();
 		}
-		List<Post> rets = postPlanet.findRecents(8, ignoreUserId);
+		List<Post> rets = postPlanet.findRecents(6, ignoreUserId);
 		return rets;
 	}
 	
@@ -93,7 +93,7 @@ public class SidebarController extends BaseController {
 		if (up != null) {
 			ignoreUserId = up.getId();
 		}
-		List<Post> rets = postPlanet.findHots(8, ignoreUserId);
+		List<Post> rets = postPlanet.findHots(6, ignoreUserId);
 		return rets;
 	}
 	

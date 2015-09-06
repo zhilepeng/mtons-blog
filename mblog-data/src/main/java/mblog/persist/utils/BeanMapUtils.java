@@ -160,4 +160,9 @@ public class BeanMapUtils {
 		return ret;
 	}
 
+	public static Favor copy(FavorPO po) {
+		Favor ret = new Favor();
+		BeanUtils.copyProperties(po, ret);
+		return ret;
+	}
 }

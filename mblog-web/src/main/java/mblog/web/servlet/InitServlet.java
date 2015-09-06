@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import mblog.lang.Consts;
+import mblog.print.Printer;
 import org.apache.log4j.Logger;
 
 import mblog.utils.PropertiesLoader;
@@ -24,8 +25,7 @@ import mtons.modules.utils.GMagickUtils;
  */
 public class InitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Logger log = Logger.getLogger(getClass());
-    
+
     public InitServlet() {
         super();
     }
@@ -35,19 +35,19 @@ public class InitServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-    	System.out.println("+----------加载配置文件 start---------+");
-    	
-    	// 初始化配置文件
+        Printer.info("加载配置文件...");
+        // 初始化配置文件
     	try {
-    		PropertiesLoader p = new PropertiesLoader("/mtons.properties");
+    		PropertiesLoader p = new PropertiesLoader(Consts.MTONS_CONFIG);
     		String gmHome = p.getProperty(GMagickUtils.GMAGICK_HOME);
     		System.setProperty(GMagickUtils.GMAGICK_HOME, gmHome);
             System.setProperty(Consts.SYSTEM_VERSION, p.getProperty(Consts.SYSTEM_VERSION));
+
 		} catch (Exception e) {
-			log.error("系统初始化失败: " + Exceptions.getStackTraceAsString(e));
+            Printer.error("说实话, 我也不知道啥错, 你自己看吧", e);
             System.exit(0);
 		}
-        
-        System.out.println("+----------加载配置文件 end ----------+");
+
+        Printer.info("加载配置文件 OK !");
     }
 }

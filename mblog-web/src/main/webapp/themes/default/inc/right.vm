@@ -1,9 +1,11 @@
 <div class="widget-box shadow-box">
     <div class="title"><h3><i class="fa fa-tags"></i> 热门标签</h3></div>
-    <ul class="tags m10 text-center" id="hottags" style="float: none;">
+    <ul class="tags m10" id="hottags" style="float: none;">
         <li class="text-center"><img src="$base/assets/images/spinner.gif"></li>
     </ul>
 </div>
+
+#parse("/default/advs/right/250.vm")
 
 <div class="widget-box shadow-box">
 	<div class="title">

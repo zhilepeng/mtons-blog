@@ -116,7 +116,7 @@ public interface PostService {
 	 */
 	void update(Post p);
 
-	void updatePrivacy(long id, int privacy);
+	void updateFeatured(long id, int featured);
 	
 	/**
 	 * 删除

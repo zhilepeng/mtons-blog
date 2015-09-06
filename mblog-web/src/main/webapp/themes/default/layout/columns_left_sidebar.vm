@@ -12,37 +12,6 @@
     <meta name="keywords" content="mtons,$!{site_keywords}">
     <meta name="description" content="$!{site_description}">
 
-    #parse("/default/inc/metas.vm")
-
-    <script src="$base/assets/vendors/pace/pace.min.js"></script>
-    <link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
-
-    <link rel='stylesheet' media='all' href='$base/assets/vendors/font-awesome/css/font-awesome.min.css'/>
-    <link rel="stylesheet" media='all' href="$base/assets/vendors/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" media='all' href="$base/assets/vendors/animate/animate.min.css">
-    <link rel='stylesheet' media='all' href='$base/assets/css/style.css'/>
-    <link rel='stylesheet' media='all' href='$base/assets/css/layout.css'/>
-    <link rel='stylesheet' media='all' href='$base/assets/css/plugins.css'/>
-    <!--fancybox样式-->
-    <link rel='stylesheet' media='all' href="$base/assets/vendors/baguette/baguetteBox.min.css"/>
-
-    <script type="text/javascript" src="$base/assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="$base/assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="$base/assets/js/utils.js"></script>
-
-    <script type="text/javascript" src="$base/assets/vendors/layer/layer.js"></script>
-
-    <script type="text/javascript" src="$base/assets/js/sea.js"></script>
-    <script type="text/javascript" src="$base/assets/js/sea.config.js"></script>
-
-    <!--[if lt IE 9]>
-    <script src="$base/assets/js/html5.js"></script>
-    <![endif]-->
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m99.png"/>
-    <link rel="shortcut icon" href="http://mtons.com/assets/images/logo/m.png"/>
-
     #parse("/default/inc/params.vm")
 </head>
 <body>

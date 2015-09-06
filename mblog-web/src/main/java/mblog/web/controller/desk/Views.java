@@ -33,6 +33,7 @@ public interface Views {
 	String HOME_POSTS = "/home/posts";
 	String HOME_COMMENTS = "/home/comments";
 	String HOME_FOLLOWS = "/home/follows";
+	String HOME_FAVORS = "/home/favors";
 	String HOME_FANS = "/home/fans";
 	String HOME_NOTIFIES = "/home/notifies";
 

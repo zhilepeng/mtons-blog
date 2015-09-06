@@ -112,8 +112,8 @@ public class PostPlanetImpl implements PostPlanet {
 
 	@Override
 	@CacheEvict(value = "postsCaches", allEntries = true)
-	public void updatePrivacy(long id, int privacy) {
-		postService.updatePrivacy(id, privacy);
+	public void updateFeatured(long id, int featured) {
+		postService.updateFeatured(id, featured);
 	}
 
 	@Override

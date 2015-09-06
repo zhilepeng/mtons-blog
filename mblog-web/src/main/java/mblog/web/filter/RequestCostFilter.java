@@ -21,13 +21,17 @@ public class RequestCostFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        String reuqestURI = httpRequest.getRequestURI();
+        if (!reuqestURI.startsWith("/assets") &&  !reuqestURI.startsWith("/store")) {
+            StopWatch stopWatch = new StopWatch(System.currentTimeMillis() + "");
+            stopWatch.start();
+            chain.doFilter(request, response);
+            stopWatch.stop();
 
-        StopWatch stopWatch = new StopWatch(System.currentTimeMillis() + "");
-        stopWatch.start();
-        chain.doFilter(request, response);
-        stopWatch.stop();
-
-        log.debug(httpRequest.getRequestURI() + " -> request cost - " + stopWatch.getTotalTimeMillis());
+            log.debug( reuqestURI + " -> request cost - " + stopWatch.getTotalTimeMillis());
+        } else {
+            chain.doFilter(request, response);
+        }
     }
 
     @Override

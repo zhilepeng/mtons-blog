@@ -1,132 +1,30 @@
 #set($layout = "/admin/layout/default.vm")
 
 <div class="row m-t-large m-b">
-	<div class="col-lg-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">站点配置
-			</div>
-			<div class="panel-body">
-                <form id="qForm" class="form-horizontal" method="post" action="update">
-                    #parse("/admin/message.vm")
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">站点名称</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_name" class="form-control" value="$!{configs['site_name'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">欢迎语</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_welcomes" class="form-control" value="$!{configs['site_welcomes'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">域名</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_domain" class="form-control" value="$!{configs['site_domain'].value}">
-                            <p class="help-block">示例: http://mtons.com</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">SEO META Keywords</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_keywords" class="form-control" value="$!{configs['site_keywords'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">SEO META Description</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_description" class="form-control" value="$!{configs['site_description'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">备案号</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="site_icp" class="form-control" value="$!{configs['site_icp'].value}">
-                            <p class="help-block">示例: 京ICP备12345678号</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">发布编辑器</label>
-                        <div class="col-lg-4">
-                            <select name="setting_editor" class="form-control" data-select="$!{configs['setting_editor'].value}">
-                                <option value="ueditor">ueditor</option>
-                                <option value="markdown">markdown</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">第三方登录-QQ回调地址</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="setting_oauth_qq" class="form-control" value="$!{configs['setting_oauth_qq'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">第三方登录-微博回调地址</label>
-                        <div class="col-lg-9">
-                            <input type="text" name="setting_oauth_weibo" class="form-control" value="$!{configs['setting_oauth_weibo'].value}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-9 col-lg-offset-3">
-                            <button type="submit" class="btn btn-primary btn-small">提交</button>
-                        </div>
-                    </div>
-                </form>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-6">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				缓存管理
-			</div>
-			<div class="panel-body" style="height: 200px;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="media">
-                            <span class="pull-left thumb-small m-t-mini">
-                                <i class="fa fa-star-o"></i>
-                            </span>
-                            <div id="todo-1" class="pull-right text-primary m-t-small">
-                                <a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="flush_cache">
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <div class="h5">刷新Ehcache缓存</div>
-                                <small class="text-muted">
-                                    #foreach($row in $cacheNames)
-                                    <span>$row</span>
-                                    #end
-                                </small>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media">
-                            <span class="pull-left thumb-small m-t-mini">
-                                <i class="fa fa-star-o"></i>
-                            </span>
-                            <div id="todo-1" class="pull-right text-primary m-t-small">
-                                <a href="javascript:void(0);" class="btn btn-mini btn-success pull-right" data-action="flush_conf">
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <div class="h5">刷新系统变量缓存</div>
-                                <small class="text-muted">
-                                    <span>系统变量</span>
-                                    <span>导航菜单</span>
-                                </small>
-                            </div>
-                        </div>
-                    </li>
+    <div class="col-lg-7">
+        <section class="panel">
+            <header class="panel-heading">
+                <ul class="nav nav-tabs pull-left">
+                    <li class="active"><a href="#sites" data-toggle="tab"><i class="fa fa-globe"></i> 站点配置</a></li>
+                    <li class=""><a href="#settings" data-toggle="tab"><i class="fa fa-gear"></i> 系统配置</a></li>
+                    <li class=""><a href="#caches" data-toggle="tab"><i class="fa fa-inbox"></i> 缓存管理</a></li>
                 </ul>
-			</div>
-		</div>
-	</div>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="sites">
+                        #parse("/admin/configs/sites.vm")
+                    </div>
+                    <div class="tab-pane" id="settings">
+                        #parse("/admin/configs/settings.vm")
+                    </div>
+                    <div class="tab-pane" id="caches">
+                        #parse("/admin/configs/caches.vm")
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 
 <script type="text/javascript">

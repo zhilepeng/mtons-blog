@@ -51,7 +51,7 @@ public interface AttachService {
 	
 	/**
 	 * batch add
-	 * @param album
+	 * @param albums
 	 * @return last id
 	 */
 	long batchPost(long toId, List<Attach> albums);
@@ -61,4 +61,6 @@ public interface AttachService {
 	 * @param toId
 	 */
 	void deleteByToId(long toId);
+
+	void delete(long id);
 }

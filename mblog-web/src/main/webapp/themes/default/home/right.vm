@@ -42,6 +42,9 @@
 
         <ul class="list-group user-nav">
             <li class="list-group-item">
+                <a href="$base/home/favors"><i class="fa fa-heart-o"></i> 我的喜欢</a>
+            </li>
+            <li class="list-group-item">
                 <a href="$base/home/follows"><i class="fa fa-eye"></i> 我的关注</a>
             </li>
             <li class="list-group-item">

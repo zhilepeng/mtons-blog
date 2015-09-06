@@ -102,7 +102,7 @@ define(function(require, exports, module) {
 			var id = $(this).attr('data-id');
 
 			if (parseInt(id) > 0) {
-				jQuery.getJSON(app.base +'/post/favor.json', {'id': id}, function (ret) {
+				jQuery.getJSON(app.base +'/account/favor.json', {'id': id}, function (ret) {
 					if (ret.code >=0) {
 						var favors = $('#favors').text();
 						$('#favors').text(parseInt(favors) + 1);

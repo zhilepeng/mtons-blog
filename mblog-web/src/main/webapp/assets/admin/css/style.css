@@ -580,3 +580,8 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
   .toolbar a{width:25%;float: left;margin-bottom: 10px}
   .toolbar a:nth-child(5n){clear: left}
 }
+
+/* addons */
+.thumb-albums .preview { display: block; border: 1px solid #ebebeb; padding: 2px; height: 140px; overflow: hidden; }
+.thumb-albums .preview img {max-width: 100%; }
+.thumb-albums .btns {position: absolute; top: 5px; right: 5px;}

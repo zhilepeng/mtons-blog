@@ -20,6 +20,7 @@ import mblog.persist.service.ConfigService;
 import mblog.persist.service.GroupService;
 import mblog.persist.service.MenuService;
 
+import mblog.print.Printer;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
@@ -49,15 +50,19 @@ public class StartupListener implements InitializingBean, ServletContextAware {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-				System.out.println("+----------.站点初始化.----------+");
+				Printer.info("站点信息初始化...");
             	
             	List<Config> configs = configService.findAll();
             	Map<String, String> configMap = new HashMap<>();
 
             	if (configs.isEmpty()) {
-            		System.err.println("ERROR 站点配置信息加载失败");
+					Printer.error("配置信息加载失败,我猜,可能是没有导入初始化数据(db_init.sql)导致的");
 					System.exit(1);
             	} else {
+
+					if (configs.size() < 13) {
+						Printer.warn("嗯哼,系统检测到'系统配置'有更新,而你好像错过了什么, 赶紧去后台'系统配置'里检查下吧!");
+					}
             		configs.forEach(conf -> {
 						servletContext.setAttribute(conf.getKey(), conf.getValue());
 						configMap.put(conf.getKey(), conf.getValue());
@@ -70,11 +75,9 @@ public class StartupListener implements InitializingBean, ServletContextAware {
             	
             	servletContext.setAttribute("menus", menuService.findAll());
 
-				System.out.println("+----------------------------+");
-				System.out.println("+-----Mblog加载完毕,可以正常使用-----+");
-				System.out.println("+----------------------------+");
+				Printer.info("OK, mblog 加载完了");
             }
-        }, 2 * Consts.TIME_MIN);
+        }, 3 * Consts.TIME_MIN);
     }
 
 	@Override

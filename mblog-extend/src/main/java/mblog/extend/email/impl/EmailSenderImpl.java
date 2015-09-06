@@ -10,21 +10,17 @@
 package mblog.extend.email.impl;
 
 import mblog.extend.context.AppContext;
-import mblog.extend.context.Global;
 import mblog.extend.email.EmailSender;
-import mblog.lang.Consts;
-import mblog.lang.EnumConfig;
+import mblog.lang.SiteConfig;
 import mtons.modules.exception.MtonsException;
 import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PostConstruct;
 import javax.mail.internet.MimeMessage;
 import java.util.Map;
 import java.util.Properties;
@@ -42,6 +38,7 @@ public class EmailSenderImpl implements EmailSender {
     // 发送器
     private JavaMailSenderImpl sender;
     private String domain;
+    private boolean inited = false;
 
     @Override
     public void sendTemplete(String address, String subject, String template, Map<String, Object> data) {
@@ -53,6 +50,7 @@ public class EmailSenderImpl implements EmailSender {
 
     @Override
     public void sendText(String address, String subject, String content, boolean html) {
+        init();
         MimeMessage msg = sender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(msg, true, "UTF-8");
@@ -70,14 +68,17 @@ public class EmailSenderImpl implements EmailSender {
         }
     }
 
-    @PostConstruct
     public void init() {
-        String host = Global.getConfig("mail.host");
-        String username = Global.getConfig("mail.username");
-        String password = Global.getConfig("mail.password");
+        // 如果加载完毕直接返回
+        if (inited) {
+            return;
+        }
+        String host = appContext.getConfig().get(SiteConfig.SITE_MAIL_HS);
+        String username = appContext.getConfig().get(SiteConfig.SITE_MAIL_UN);
+        String password = appContext.getConfig().get(SiteConfig.SITE_MAIL_PW);
 
         if (StringUtils.isEmpty(host) || StringUtils.isEmpty(username) ||  StringUtils.isEmpty(password)) {
-            throw new MtonsException(Consts.MTONS_CONFIG + " 文件中的 mail.* 相关配置不完整!");
+            throw new MtonsException(" 系统配置中的 mail.* 相关配置不完整, 不能正常使用邮件服务!");
         }
 
         sender = new JavaMailSenderImpl();
@@ -87,15 +88,18 @@ public class EmailSenderImpl implements EmailSender {
         sender.setPassword(password);
 
         Properties props = new Properties();
-        props.setProperty("mail.smtp.auth", Global.getConfig("mail.auth"));
-        props.setProperty("mail.smtp.timeout", Global.getConfig("mail.timeout"));
+        props.setProperty("mail.smtp.auth", "true");
+        props.setProperty("mail.smtp.timeout", "25000");
 
         sender.setJavaMailProperties(props);
+
+        // 标记加载完毕
+        inited = true;
     }
 
     private String getDomain() {
         if (domain == null) {
-            domain = appContext.getConfig().get(EnumConfig.SITE_DOMAIN.getKey());
+            domain = appContext.getConfig().get(SiteConfig.SITE_DOMAIN);
             if (domain.endsWith("/")) {
                 domain = domain.substring(0, domain.lastIndexOf("/"));
             }

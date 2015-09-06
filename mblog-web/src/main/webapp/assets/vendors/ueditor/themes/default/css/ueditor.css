@@ -133,7 +133,7 @@ div.edui-box {
 }
 /*UI工具栏、编辑区域、底部*/
 .edui-default .edui-editor {
-    border: 1px solid #d4d4d4;
+    border: 1px solid #ccc;
     background-color: white;
     position: relative;
     overflow: visible;
@@ -153,7 +153,7 @@ div.edui-box {
 }
 
 .edui-default .edui-editor-toolbarboxouter {
-    border-bottom: 1px solid #d4d4d4;
+    border-bottom: 1px solid #ccc;
     background-color: #fafafa;
     -webkit-border-radius: 2px 2px 0 0;
     -moz-border-radius: 2px 2px 0 0;

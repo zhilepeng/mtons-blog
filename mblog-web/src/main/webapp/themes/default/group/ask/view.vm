@@ -11,9 +11,13 @@
 			<a class="author-name" href="$base/ta/${ret.author.id}" target="_blank">#showName(${ret.author})</a>
 		</span>
 		<time class="pull-left time">$date.format('yyyy-MM-dd', $ret.created)</time>
-		<ul class="pull-left list-inline tag-box">
-			<li>$!{ret.tags}</li>
-		</ul>
+        <ul class="tags">
+			#foreach($tag in $ret.tagsArray)
+                <li>
+                    <a class="tag tag-sm" href="$base/tag/${tag}/">$tag</a>
+                </li>
+			#end
+        </ul>
 		<span class="pull-right action-box"> </span>
 	</div>
 	<div class="post-frame">

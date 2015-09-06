@@ -106,4 +106,10 @@ public class AttachServiceImpl implements AttachService {
 		attachDao.deleteByToId(toId);
 	}
 
+	@Override
+	@Transactional
+	public void delete(long id) {
+		attachDao.deleteById(id);
+	}
+
 }

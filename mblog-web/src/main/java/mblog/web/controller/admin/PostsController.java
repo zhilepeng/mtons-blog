@@ -11,6 +11,7 @@ package mblog.web.controller.admin;
 
 import java.util.List;
 
+import mblog.lang.Consts;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;
@@ -58,17 +59,10 @@ public class PostsController extends BaseController {
 		return "/admin/posts/list";
 	}
 	
-	@RequestMapping("/view")
-	public String view(Long id, ModelMap model) {
-		Post ret = postService.get(id);
-		model.put("view", ret);
-		return "/admin/posts/view";
-	}
 	/**
 	 * 跳转到文章编辑方法
 	 * @param id
 	 * @param model
-	 * @param P
 	 * @return
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -91,12 +85,13 @@ public class PostsController extends BaseController {
 		return "redirect:/admin/posts/list";
 	}
 
-	@RequestMapping("/privacy")
-	public @ResponseBody Data updatePrivacy(Long id, Integer privacy) {
+	@RequestMapping("/featured")
+	public @ResponseBody Data featured(Long id, HttpServletRequest request) {
 		Data data = Data.failure("操作失败");
+		int featured = ServletRequestUtils.getIntParameter(request, "featured", Consts.FEATURED_ACTIVE);
 		if (id != null) {
 			try {
-				postPlanet.updatePrivacy(id, privacy);
+				postPlanet.updateFeatured(id, featured);
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

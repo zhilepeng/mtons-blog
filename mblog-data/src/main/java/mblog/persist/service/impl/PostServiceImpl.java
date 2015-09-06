@@ -326,16 +326,21 @@ public class PostServiceImpl implements PostService {
 			po.setSummary(trimSummary(p.getContent()));
 			po.setContent(p.getContent());//内容
 			po.setTags(p.getTags());//标签
+			po.setPrivacy(p.getPrivacy());
 		}
 	}
 
 	@Override
 	@Transactional
-	public void updatePrivacy(long id, int privacy) {
+	public void updateFeatured(long id, int featured) {
 		PostPO po = postDao.get(id);
 
 		if (po != null) {
-			po.setPrivacy(privacy);//标题
+			int max = featured;
+			if (Consts.FEATURED_ACTIVE == featured) {
+				max = postDao.maxFeatured() + 1;
+			}
+			po.setFeatured(max);
 		}
 	}
 

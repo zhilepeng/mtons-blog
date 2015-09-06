@@ -5,6 +5,7 @@ import mblog.persist.entity.CommentPO;
 import mblog.persist.entity.FavorPO;
 import mtons.modules.annotation.Repository;
 import mtons.modules.persist.impl.BaseRepositoryImpl;
+import mtons.modules.pojos.Paging;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -29,5 +30,12 @@ public class FavorDaoImpl extends BaseRepositoryImpl<FavorPO> implements FavorDa
             return rets.get(0);
         }
         return null;
+    }
+
+    @Override
+    public List<FavorPO> paingByOwnId(Paging paging, long ownId) {
+        PagingQuery<FavorPO> q = pagingQuery(paging, Restrictions.eq("ownId", ownId));
+        q.desc("created");
+        return q.list();
     }
 }

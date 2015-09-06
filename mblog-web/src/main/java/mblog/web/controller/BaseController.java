@@ -155,7 +155,7 @@ public class BaseController {
 				alb.setPreview(preview);
 
 				// 创建快照
-				String screenshot = fileRepo.storeScale(temp, appContext.getThumbsDir(), 225, 140);
+				String screenshot = fileRepo.storeScale(temp, appContext.getScreenshotDir(), 225, 140);
 				alb.setScreenshot(screenshot);
 
 			} catch (Exception e) {

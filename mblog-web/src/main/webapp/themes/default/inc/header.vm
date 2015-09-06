@@ -23,16 +23,18 @@
             </form>
         </div>
     </div>
+    <!--
     <div class="thirdlogin">
         <div class="pd50">
             <h4>用第三方帐号直接登录</h4>
             <ul>
-                <li id="sinal"><a href="$!{setting_oauth_weibo}">微博帐号注册</a></li>
-                <li id="qql" style="margin-right: 0px;"><a href="$!{setting_oauth_qq}">QQ帐号注册</a></li>
+                <li id="sinal"><a href="http://www.198zone.com">微博帐号注册</a></li>
+                <li id="qql" style="margin-right: 0px;"><a href="http://www.198zone.com">QQ帐号注册</a></li>
             </ul>
             <div class="clear"></div>
         </div>
     </div>
+    -->
 </div>
 <!-- 弹出层代码结束-->
 

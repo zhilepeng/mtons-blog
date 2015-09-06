@@ -4,8 +4,6 @@
 <div class="shadow-box no-bg">
 	<div class="filter">
 		<ul class="">
-			<li><a href="$base/home">动态</a></li>
-			<li><a href="$base/home?method=posts">我的文章</a></li>
 			<li><a class="active" href="$base/home?method=comments">我的评论</a></li>
 		</ul>
 	</div>

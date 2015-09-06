@@ -50,12 +50,12 @@ footer .mode-link { margin: 15px auto 25px; }
 footer .mode-link .t-h3 { font-size: 14px; color: #b7bac1; line-height: 24px; border-bottom: 1px solid #484c57; }
 footer .mode-link .t-h3 a { color: #b7bac1; }
 footer .mode-link ul.list-inline li { line-height: 26px; }
-footer .mode-link ul.list-inline li a { color: #707682; font-size: 12px; }
-footer .mode-link ul.list-inline li a:hover { color: #b3c3d6; text-decoration: underline; }
+footer .mode-link ul.list-inline li a { color: #9398A2; font-size: 12px; }
+footer .mode-link ul.list-inline li a:hover { color: #b3c3d6; }
 
 footer .copy-right { margin-top: 25px; position: relative; }
 footer .copy-right { border-bottom: 1px solid #31353c; line-height: 28px; padding-bottom: 20px; display: block; }
-footer .copy-right,footer .copy-right span a { color: #707682; font-size: 12px;}
+footer .copy-right,footer .copy-right span a { color: #9398A2; font-size: 12px;}
 
 footer .footer-nav { background-color: #2d3037; height: 40px; line-height: 40px; border-bottom: 1px solid #26292e; text-align: center; }
 footer .footer-nav ul { margin: 0 auto; display: inline-block; }
