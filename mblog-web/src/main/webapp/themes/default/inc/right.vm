@@ -5,8 +5,6 @@
     </ul>
 </div>
 
-#parse("/default/advs/right/250.vm")
-
 <div class="widget-box shadow-box">
 	<div class="title">
 		<h3><i class="fa fa-area-chart"></i> 热门文章</h3>

@@ -1,4 +1,4 @@
-2015-09-03
+2015-09-06
 关于2.0.0 beta2 升级
 	1. init.properties 中的 hibernate.search.indexs 配置移动到 mtons.properties
 	2. 升级发送邮件的代码，添加配置自检查
@@ -15,7 +15,12 @@
 		(1). 删除{hibernate.search.indexs}配置，索引文件自动存放到 {store.root}/indexs, 如果以前你的indexs不在{store.root}
 			目录下, 没关系, copy过去即可。
 		(2). 去除这些配置：{store.origin}, {store.thumbs}, {store.avatar}, {store.temp}，变为不可更改
-
+	8. 文章列表页带徽章
+	9. 添加‘我的喜欢’页面
+	10. 调整系统配置参数，mto_config 中的参数 settings 开头的全部改为 site 开头
+	11. 后台文章添加置顶功能
+	12. 后台文章编辑添加图片管理功能
+	
 2015-08-31
 关于2.0.0 beta1 升级
 	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并

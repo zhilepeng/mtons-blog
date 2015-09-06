@@ -1,0 +1,49 @@
+<form id="qForm" class="form-horizontal" method="post" action="update">
+    #parse("/admin/message.vm")
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">发布编辑器</label>
+        <div class="col-lg-2">
+            <select name="site_editor" class="form-control" data-select="$!{configs['site_editor'].value}">
+                <option value="ueditor">ueditor</option>
+                <option value="markdown">markdown</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">第三方登录-QQ回调地址</label>
+        <div class="col-lg-6">
+            <input type="text" name="site_oauth_qq" class="form-control" value="$!{configs['site_oauth_qq'].value}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">第三方登录-微博回调地址</label>
+        <div class="col-lg-6">
+            <input type="text" name="site_oauth_weibo" class="form-control" value="$!{configs['site_oauth_weibo'].value}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">邮件-服务地址</label>
+        <div class="col-lg-3">
+            <input type="text" name="site_mail_host" class="form-control" value="$!{configs['site_mail_host'].value}">
+            <p class="help-block">示例: smtp.163.com</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">邮件-用户名</label>
+        <div class="col-lg-3">
+            <input type="text" name="site_mail_username" class="form-control" value="$!{configs['site_mail_username'].value}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">邮件-密码</label>
+        <div class="col-lg-3">
+            <input type="text" name="site_mail_password" class="form-control" value="$!{configs['site_mail_password'].value}">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-9 col-lg-offset-3">
+            <button type="submit" class="btn btn-primary btn-small">提交</button>
+        </div>
+    </div>
+</form>
