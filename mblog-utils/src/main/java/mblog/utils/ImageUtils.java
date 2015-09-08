@@ -17,7 +17,9 @@ public class ImageUtils extends GMagickUtils {
 
     public static boolean truncateImage(String ori, String dest, int width, int height) throws IOException, InterruptedException, IM4JavaException {
         File oriFile = new File(ori);
-
+        
+        validate(oriFile, dest);
+        
         BufferedImage src = ImageIO.read(oriFile); // 读入文件
         int w = src.getWidth();
         int h = src.getHeight();
