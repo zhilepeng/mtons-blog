@@ -415,3 +415,4 @@ ul,li,h1,h2,h3,p,ol { padding: 0; margin: 0; list-style: none; }
 .videos .item-img img { width: 100%; display: block; position: relative; }
 .videos .item .itag {position: absolute; padding: 4px 10px; bottom: 0; font-size: 26px; color: #fff; }
 .videos .item  .txt{ padding-top: 10px; padding-bottom: 10px; font-size: 15px; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+

@@ -46,6 +46,7 @@
                 /admin/users/pwd**=authc,perms[admin:users:edit]
                 /admin/config/**=authc,perms[admin:config:view]
                 /admin/config/updtate**=authc,perms[admin:config:edit]
+                /admin/roles/**=authc,perms[admin:roles:view]
             </value>
         </property>
     </bean>

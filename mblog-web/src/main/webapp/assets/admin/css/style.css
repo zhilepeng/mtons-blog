@@ -580,3 +580,12 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
   .toolbar a{width:25%;float: left;margin-bottom: 10px}
   .toolbar a:nth-child(5n){clear: left}
 }
+
+/* role */
+.form-wrapper{
+	margin:0 15px;
+}
+
+.add-role-btn{
+	margin:0 15px 20px 15px;
+}

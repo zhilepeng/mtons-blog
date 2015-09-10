@@ -23,6 +23,8 @@
 	<bean id="feedsDao" class="mblog.persist.dao.impl.FeedsDaoImpl" />
 
 	<bean id="favorDao" class="mblog.persist.dao.impl.FavorDaoImpl" />
+	<bean id="authMenuDao" class="mblog.persist.dao.impl.AuthMenuDaoImpl"/>
+	<bean id="roleDao" class="mblog.persist.dao.impl.RoleDaoImpl"/>
 
 	<!-- Service -->
 	<bean id="configService" class="mblog.persist.service.impl.ConfigServiceImpl" />
@@ -43,4 +45,6 @@
 	<bean id="feedsService" class="mblog.persist.service.impl.FeedsServiceImpl" />
 
 	<bean id="favorService" class="mblog.persist.service.impl.FavorServiceImpl" />
+	<bean id="authMenuService" class="mblog.persist.service.impl.AuthMenuServiceImpl"/>
+	<bean id="roleService" class="mblog.persist.service.impl.RoleServiceImpl"/>
 </beans>
