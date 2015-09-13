@@ -31,6 +31,13 @@ public interface SiteConfig {
      */
     String SITE_OAUTH_QQ = "site_oauth_qq"; // 第三方登录-QQ回调地址
     String SITE_OAUTH_WEIBO = "site_oauth_weibo"; // 第三方登录-微博回调地址
-
+    String SITE_OAUTH_DOUBAN = "site_oauth_douban";	// 第三方登录-豆瓣回调地址
+    String QQ_APP_ID = "qq_app_id";			// QQ互联APP_ID
+    String QQ_APP_KEY = "qq_app_key";		// QQ互联APP_KEY
+    String WEIBO_CLIENT_ID = "weibo_client_id";		// 微博应用CLIENT_ID
+    String WEIBO_CLIENT_SERCRET = "weibo_client_sercret";	// 微博应用CLIENT_SERCRET
+    String DOUBAN_API_KEY = "douban_api_key";		// 豆瓣API_KEY
+    String DOUBAN_SECRET_KEY = "douban_secret_key";		// 豆瓣SECRET_KEY
+    
     String SITE_EDITOR = "site_editor"; // 文本编辑器
 }

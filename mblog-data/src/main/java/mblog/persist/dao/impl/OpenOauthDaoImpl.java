@@ -31,4 +31,9 @@ public class OpenOauthDaoImpl extends BaseRepositoryImpl<OpenOauthPO> implements
         return findUniqueBy("userId", userId);
     }
 
+	@Override
+	public OpenOauthPO getOauthUserId(String oauthUserId) {
+		return findUniqueBy("oauthUserId", oauthUserId);
+	}
+
 }

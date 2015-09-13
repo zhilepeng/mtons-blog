@@ -88,4 +88,16 @@ public class OpenOauthServiceImpl implements OpenOauthService {
         openOauthDao.save(po);
     }
 
+	@Override
+	@Transactional
+	public OpenOauth getOauthByOauthUserId(String oauthUserId) {
+		OpenOauthPO po = openOauthDao.getOauthUserId(oauthUserId);
+        OpenOauth vo = null;
+        if (po != null) {
+            vo = new OpenOauth();
+            BeanUtils.copyProperties(po, vo);
+        }
+        return vo;
+	}
+
 }

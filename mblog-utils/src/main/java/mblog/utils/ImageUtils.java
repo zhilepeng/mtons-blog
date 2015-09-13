@@ -8,7 +8,12 @@ import org.im4java.core.IMOperation;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * @author langhsu on 2015/9/4.
@@ -43,4 +48,33 @@ public class ImageUtils extends GMagickUtils {
         convert.run(op);
         return true;
     }
+    
+    /**
+     * 下载远程图片到本地，用于第三方登录下载头像
+     * @param urlString		图片链接
+     * @param savePath		保存路径
+     * @param filename		文件名称
+     * @throws Exception
+     * @author A蛋壳  2015年9月13日 上午9:40:17
+     */
+    public static void download(String urlString, String savePath, String filename) throws Exception {
+		
+		URL url = new URL(urlString);	// 构造URL
+		URLConnection connection = url.openConnection();	// 打开连接
+		connection.setConnectTimeout(5 * 1000);		// 设置请求超时时间
+		InputStream is = connection.getInputStream();	// 输入流
+		
+		byte[] bs = new byte[1024];		// 1K的数据缓存
+		int len;
+		File sf = new File(savePath);
+		if(!sf.exists()) {
+			sf.mkdirs();
+		}
+		OutputStream os = new FileOutputStream(savePath + File.separator + filename);
+		while((len = is.read(bs)) != -1){
+			os.write(bs, 0, len);
+		}
+		os.close();
+		is.close();
+	}
 }

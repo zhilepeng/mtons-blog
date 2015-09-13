@@ -585,3 +585,10 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
 .thumb-albums .preview { display: block; border: 1px solid #ebebeb; padding: 2px; height: 140px; overflow: hidden; }
 .thumb-albums .preview img {max-width: 100%; }
 .thumb-albums .btns {position: absolute; top: 5px; right: 5px;}
+
+.group-left-border{
+	border-left: 2px solid #CCCCCC;
+	background-color: #F7F8F9;
+	margin: 10px 0 10px 0;
+	padding: 20px 0 5px 0;
+}

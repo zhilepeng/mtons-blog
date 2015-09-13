@@ -40,8 +40,9 @@
     </form>
     <div class="with-line">使用第三方帐号登录</div>
     <div class="buttons">
-        <a href="$!{site_oauth_weibo}" title="微博帐号登录" rel="nofollow" class="weibo"></a>
-        <a href="$!{site_oauth_qq}" title="QQ帐号登录" rel="nofollow" class="qzone"></a>
+        <a href="$base/oauth/callback/call_weibo" title="微博帐号登录" rel="nofollow" class="weibo"></a>
+        <a href="$base/oauth/callback/call_qq" title="QQ帐号登录" rel="nofollow" class="qzone"></a>
+        <a href="$base/oauth/callback/call_douban" title="豆瓣帐号登录" rel="nofollow" class="douban"></a>
     </div>
 </div>
 

@@ -84,20 +84,6 @@
 			<artifactId>shiro-spring</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>qq</groupId>
-			<artifactId>Sdk4J</artifactId>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/Sdk4J.jar</systemPath>
-		</dependency>
-
-		<dependency>
-			<groupId>sina</groupId>
-			<artifactId>weibo4j-oauth2</artifactId>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/weibo4j-oauth2.jar</systemPath>
-		</dependency>
-
 	</dependencies>
 
 	<build>

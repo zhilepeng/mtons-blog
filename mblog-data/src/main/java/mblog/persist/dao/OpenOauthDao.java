@@ -19,5 +19,7 @@ import mtons.modules.persist.BaseRepository;
 public interface OpenOauthDao extends BaseRepository<OpenOauthPO> {
     OpenOauthPO getOauthToken(String accessToken);
 
+    OpenOauthPO getOauthUserId(String oauthUserId);
+    
     OpenOauthPO getOauthToken(long userId);
 }

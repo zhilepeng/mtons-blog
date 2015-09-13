@@ -26,6 +26,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,8 +86,15 @@ public class ConfigsController extends BaseController {
 	public @ResponseBody Data flushFiledia() {
 		// 刷新系统变量
 		List<Config> configs = configService.findAll();
-		configs.forEach(conf -> servletContext.setAttribute(conf.getKey(), conf.getValue()));
 
+		Map<String, String> configMap = new HashMap<>();
+		configs.forEach(conf -> {
+			servletContext.setAttribute(conf.getKey(), conf.getValue());
+			configMap.put(conf.getKey(), conf.getValue());
+		});
+		
+		appContext.setConfig(configMap);
+		
 		// 刷新文章Group
 		servletContext.setAttribute("groups", groupService.findAll());
 
