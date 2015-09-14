@@ -1,22 +1,7 @@
 package mblog.web.controller.desk;
 
-import com.mblog.api.oauth.APIConfig;
-import com.mblog.api.oauth.OauthDouban;
-import com.mblog.api.oauth.OauthQQ;
-import com.mblog.api.oauth.OauthSina;
-import com.mblog.api.oauth.util.OpenOauthBean;
-import com.mblog.api.oauth.util.TokenUtil;
-import mblog.data.OpenOauth;
-import mblog.data.User;
-import mblog.extend.context.AppContext;
-import mblog.lang.Consts;
-import mblog.lang.SiteConfig;
-import mblog.persist.service.OpenOauthService;
-import mblog.persist.service.UserService;
-import mblog.utils.ImageUtils;
-import mblog.web.controller.BaseController;
-import mtons.modules.exception.MtonsException;
-import mtons.modules.utils.Text;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -31,11 +16,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.File;
-import java.util.UUID;
+import com.mblog.api.oauth.APIConfig;
+import com.mblog.api.oauth.OauthDouban;
+import com.mblog.api.oauth.OauthQQ;
+import com.mblog.api.oauth.OauthSina;
+import com.mblog.api.oauth.util.OpenOauthBean;
+import com.mblog.api.oauth.util.TokenUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import mblog.data.OpenOauth;
+import mblog.data.User;
+import mblog.extend.context.AppContext;
+import mblog.lang.Consts;
+import mblog.lang.SiteConfig;
+import mblog.persist.service.OpenOauthService;
+import mblog.persist.service.UserService;
+import mblog.utils.ImageUtils;
+import mblog.web.controller.BaseController;
+import mtons.modules.exception.MtonsException;
+import mtons.modules.utils.Text;
 
 /**
  * 第三方登录回调
@@ -113,6 +111,7 @@ public class CallbackController extends BaseController {
         openOauth.setOauthUserId(openOauthBean.getOauthUserId());
         openOauth.setOauthType(openOauthBean.getOauthType());
         openOauth.setRefreshToken(openOauthBean.getRefreshToken());
+        openOauth.setUsername(openOauthBean.getUsername());
         openOauth.setNickname(openOauthBean.getNickname());
         openOauth.setAvatar(openOauthBean.getAvatar());
 
@@ -123,7 +122,7 @@ public class CallbackController extends BaseController {
             return getView(Views.OAUTH_REG);
         }
         String username = userService.get(thirdToken.getUserId()).getUsername();
-        return login(username, openOauth.getOauthUserId(), request);
+        return login(username, thirdToken.getAccessToken(), request);
     }
 
     /**
@@ -192,7 +191,7 @@ public class CallbackController extends BaseController {
             return getView(Views.OAUTH_REG);
         }
         String username = userService.get(thirdToken.getUserId()).getUsername();
-        return login(username, openOauth.getOauthUserId(), request);
+        return login(username, thirdToken.getAccessToken(), request);
     }
 
     /**
@@ -261,7 +260,7 @@ public class CallbackController extends BaseController {
             return getView(Views.OAUTH_REG);
         }
         String username = userService.get(thirdToken.getUserId()).getUsername();
-        return login(username, openOauth.getOauthUserId(), request);
+        return login(username, thirdToken.getAccessToken(), request);
     }
     
     /**
@@ -337,7 +336,7 @@ public class CallbackController extends BaseController {
         User user = new User();
         user.setUsername(openOauth.getUsername());
         user.setName(openOauth.getNickname());
-        user.setPassword(openOauth.getOauthUserId());
+        user.setPassword(openOauth.getAccessToken());
 
         user.setSource(openOauth.getOauthType());
 
