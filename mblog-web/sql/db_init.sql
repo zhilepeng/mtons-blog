@@ -70,7 +70,7 @@ INSERT INTO `mto_config` VALUES ('2', 'site_welcomes', '0', 'Mtons, 轻松分享
 INSERT INTO `mto_config` VALUES ('3', 'site_domain', '0', 'http://mtons.com');
 INSERT INTO `mto_config` VALUES ('4', 'site_keywords', '0', 'mtons,博客,社区,摄影,旅游,艺术,娱乐');
 INSERT INTO `mto_config` VALUES ('5', 'site_description', '0', 'Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择');
-INSERT INTO `mto_config` VALUES ('6', 'setting_editor', '1', 'ueditor');
+INSERT INTO `mto_config` VALUES ('6', 'site_editor', '1', 'ueditor');
 
 -- ----------------------------
 -- Table structure for mto_tags
