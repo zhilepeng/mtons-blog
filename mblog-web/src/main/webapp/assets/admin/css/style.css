@@ -586,9 +586,17 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
 .thumb-albums .preview img {max-width: 100%; }
 .thumb-albums .btns {position: absolute; top: 5px; right: 5px;}
 
+.filter {display: inline-block;}
+
 .group-left-border{
-	border-left: 2px solid #CCCCCC;
-	background-color: #F7F8F9;
-	margin: 10px 0 10px 0;
-	padding: 20px 0 5px 0;
+  border-left: 2px solid #CCCCCC;
+  background-color: #F7F8F9;
+  margin-bottom: 10px;
+  padding: 15px 0 15px;
+}
+.group-left-border .group-title {
+  margin-bottom: 15px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: #B4BBBA;
 }
