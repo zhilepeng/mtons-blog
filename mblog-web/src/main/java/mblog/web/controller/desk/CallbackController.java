@@ -297,7 +297,7 @@ public class CallbackController extends BaseController {
                 username = user.getUsername();
             }
         }
-        return login(username, openOauth.getOauthUserId(), request);
+        return login(username, openOauth.getAccessToken(), request);
     }
 
     /**
