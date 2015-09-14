@@ -86,7 +86,7 @@ public interface UserService {
 
 	AccountProfile updateActiveEmail(long id, int activeEmail);
 	
-	void updateRole(long id, int roleId);
+	void updateRole(long id, Long[] roleIds);
 	
 	/**
 	 * 分页查询

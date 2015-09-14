@@ -8,6 +8,7 @@ import mblog.persist.entity.UserPO;
 import mtons.modules.persist.impl.DaoImpl;
 import mtons.modules.pojos.Paging;
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -51,6 +52,8 @@ public class UserDaoImpl extends DaoImpl<UserPO> implements UserDao {
 			));
 		}
 		q.desc("id");
+		Criteria criteria = createCriteria();
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		return q.list();
 	}
 

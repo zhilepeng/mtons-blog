@@ -29,11 +29,6 @@ public class RolePO {
 	
 	private String name;
 	
-	@ManyToMany(mappedBy = "roles", fetch=FetchType.LAZY)
-	@Fetch(FetchMode.SUBSELECT)
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-	private List<UserPO> users = new ArrayList<UserPO>();
-	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "mto_role_menu", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "menu_id") })
 	@Fetch(FetchMode.SUBSELECT)
@@ -56,13 +51,6 @@ public class RolePO {
 		this.name = name;
 	}
 
-	public List<UserPO> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<UserPO> users) {
-		this.users = users;
-	}
 
 	public List<AuthMenuPO> getAuthMenus() {
 		return authMenus;

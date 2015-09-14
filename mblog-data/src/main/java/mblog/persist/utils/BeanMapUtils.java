@@ -32,6 +32,13 @@ public class BeanMapUtils {
 		}
 		User ret = new User();
 		BeanUtils.copyProperties(po, ret, USER_IGNORE);
+		List<RolePO> rolePOs = po.getRoles();
+		List<Role> roles = new ArrayList<Role>();
+		for(RolePO rolePo :rolePOs){
+			Role role = copy(rolePo);
+			roles.add(role);
+		}
+		ret.setRoles(roles);
 		return ret;
 	}
 	

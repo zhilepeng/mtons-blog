@@ -17,8 +17,22 @@
 					<label class="col-lg-2 control-label">角色</label>
 					<div class="col-lg-8">
 						#foreach($role in $roles)
+							#set($hasRole ="false")
 						<label class="checkbox-inline">
-                          <input type="checkbox" name="roleIds" value="$role.id"> $role.name
+							#foreach($userRole in $view.roles)
+								#if($userRole.id==$role.id)
+									#set($hasRole = "true")
+									#break
+								#end
+								
+							#end
+							
+							#if($hasRole=="true")
+								<input type="checkbox" name="roleIds" value="$role.id" checked="checked"> $role.name
+							#else
+								<input type="checkbox" name="roleIds" value="$role.id"> $role.name
+							#end
+							
                         </label>
 						#end
 						

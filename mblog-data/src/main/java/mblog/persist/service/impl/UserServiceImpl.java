@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,6 +19,7 @@ import org.springframework.util.Assert;
 import mblog.data.AccountProfile;
 import mblog.data.AuthMenu;
 import mblog.data.User;
+import mblog.persist.dao.RoleDao;
 import mblog.persist.dao.UserDao;
 import mblog.persist.entity.AuthMenuPO;
 import mblog.persist.entity.RolePO;
@@ -33,6 +35,9 @@ import mtons.modules.utils.MD5Helper;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private RoleDao roleDao;
 	
 	@Override
 	@Transactional
@@ -200,11 +205,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void updateRole(long id, int roleId) {
+	public void updateRole(long id, Long[] roleIds) {
+		List<RolePO> rolePOs = new ArrayList<RolePO>();
+		for(Long roleId:roleIds){
+			RolePO rolePO = roleDao.get(roleId);
+			rolePOs.add(rolePO);
+		}
 		UserPO po = userDao.get(id);
 		
 		if (po != null) {
-			po.setRoleId(roleId);
+			po.setRoles(rolePOs);
 		}
 	}
 	
@@ -212,6 +222,20 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = true)
 	public void paging(Paging paging, String key) {
 		List<UserPO> list = userDao.paging(paging, key);
+		//TODO 不知道为啥，当一个用户有多角色时，查询出来的用户会显示重复的，下面这段去掉重复
+//		Set<UserPO> userSet = new HashSet<UserPO>();
+//		for(int i=0;i<list.size();i++){
+//			userSet.add(list.get(i));
+////			for(int j=i+1;j<list.size();j++){
+////				if(list.get(i).equals(list.get(j))){
+////					list.remove(i);
+////				}
+////			}
+//		}
+//		list.clear();
+//		for(UserPO userPO : userSet){
+//			list.add(userPO);
+//		}
 		List<User> rets = new ArrayList<>();
 		
 		for (UserPO po : list) {

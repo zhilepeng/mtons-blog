@@ -54,7 +54,12 @@ public class UsersController extends BaseController {
 	@RequestMapping("/update_role")
 	public String update(long id, String roleIds) {
 		System.out.println(roleIds);
-		/*userService.updateRole(id, roleId);*/
+		String[] roleStrIds = roleIds.split(",");
+		Long[] ids = new Long[roleStrIds.length];
+		for(int i=0;i<ids.length;i++){
+			ids[i] = Long.valueOf(roleStrIds[i]);
+		}
+		userService.updateRole(id, ids);
 		return "redirect:/admin/users/list";
 	}
 	

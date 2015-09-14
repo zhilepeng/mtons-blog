@@ -33,8 +33,9 @@
     					<td>$!{row.name}</td>
     					<td>$!{row.email}</td>
 						<td>
-							#if($row.roleId == 1) 管理员
-							#else 普通用户 #end
+							#foreach($role in $row.roles)
+								$!role.name 
+							#end
 						</td>
     					<td>
     					#if($row.status == 0)
