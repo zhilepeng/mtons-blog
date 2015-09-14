@@ -53,11 +53,10 @@ public class ImageUtils extends GMagickUtils {
      * 下载远程图片到本地，用于第三方登录下载头像
      * @param urlString		图片链接
      * @param savePath		保存路径
-     * @param filename		文件名称
      * @throws Exception
      * @author A蛋壳  2015年9月13日 上午9:40:17
      */
-    public static void download(String urlString, String savePath, String filename) throws Exception {
+    public static void download(String urlString, String savePath) throws Exception {
 		
 		URL url = new URL(urlString);	// 构造URL
 		URLConnection connection = url.openConnection();	// 打开连接
@@ -67,10 +66,13 @@ public class ImageUtils extends GMagickUtils {
 		byte[] bs = new byte[1024];		// 1K的数据缓存
 		int len;
 		File sf = new File(savePath);
-		if(!sf.exists()) {
-			sf.mkdirs();
-		}
-		OutputStream os = new FileOutputStream(savePath + File.separator + filename);
+		if (sf.getParentFile() != null && sf.getParentFile().exists() == false) {
+            if (sf.getParentFile().mkdirs() == false) {
+                throw new IOException("Destination '" + savePath + "' directory cannot be created");
+            }
+        }
+		
+		OutputStream os = new FileOutputStream(savePath);
 		while((len = is.read(bs)) != -1){
 			os.write(bs, 0, len);
 		}
