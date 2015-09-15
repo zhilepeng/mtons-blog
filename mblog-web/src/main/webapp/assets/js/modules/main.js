@@ -10,6 +10,7 @@
 
 define(function(require, exports, module) {
     var plugins = require('plugins');
+	var Authc = require('authc');
     require('bootstrap');
 
     var wpexLocalize = {
@@ -101,6 +102,11 @@ define(function(require, exports, module) {
 		$('a[rel=favor]').click(function () {
 			var id = $(this).attr('data-id');
 
+			if (!Authc.isAuthced()) {
+				Authc.showLogin();
+				return false;
+			}
+
 			if (parseInt(id) > 0) {
 				jQuery.getJSON(app.base +'/account/favor.json', {'id': id}, function (ret) {
 					if (ret.code >=0) {
@@ -117,6 +123,11 @@ define(function(require, exports, module) {
 		$('a[rel=follow]').click(function () {
 			var that = $(this);
 			var id = that.attr('data-id');
+
+			if (!Authc.isAuthced()) {
+				Authc.showLogin();
+				return false;
+			}
 
 			if (parseInt(id) > 0) {
 				jQuery.getJSON(app.base +'/account/follow.json', {'id': id}, function (ret) {

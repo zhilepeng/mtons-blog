@@ -36,27 +36,4 @@ $!{site_metas}
 	
 	window.UEDITOR_HOME_URL = '$base/assets/vendors/ueditor/';
 	
-    function callLogin() {
-        $('#loginalert').modal();
-    }
-
-    function doLogin() {
-        var un = $('#alt_un').val();
-        var pw = $('#alt_pw').val();
-        jQuery.post('$base/api/login.json', {'username': un, 'password': pw}, function (ret) {
-            if (ret && ret.code == 0) {
-                //$('#loginalert').modal('hide');
-                //window.app.login = ret.data.id;
-                window.location.reload();
-            } else {
-                $('#login_warning').text(ret.message).show();
-            }
-        });
-    }
-
-    $(function () {
-        $('#alt_login').click(function () {
-            doLogin();
-        });
-    })
 </script>

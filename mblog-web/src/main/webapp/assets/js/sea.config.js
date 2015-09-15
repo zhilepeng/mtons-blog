@@ -7,6 +7,7 @@ seajs.config({
 
             /* modules */
         'main': 'modules/main',
+        'authc': 'modules/authc',
         'sidebox': 'modules/sidebox',
         'post': 'modules/post',
         'upload': 'modules/upload',
@@ -16,6 +17,7 @@ seajs.config({
         'avatar': 'modules/avatar',
         'editor': 'modules/editor',
         'view': 'modules/view',
+        'webuploader': 'modules/webuploader',
 
             /* vendors */
         'bootstrap': 'vendors/bootstrap/js/bootstrap.min',
@@ -24,6 +26,8 @@ seajs.config({
         'pace': 'vendors/pace/pace.min',
         'pjax': 'vendors/pjax/jquery.pjax',
         'dmuploader': 'vendors/uploader/dmuploader',
+        'webuploader.min': 'vendors/webuploader/webuploader.min',
+        'webuploader.css': 'vendors/webuploader/webuploader.css',
         'jcrop': 'vendors/jcrop/jquery.jcrop.min',
         'validate': 'vendors/validate/jquery-validate',
         'lazyload': 'vendors/lazyload/jquery.lazyload',

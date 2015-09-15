@@ -11,6 +11,7 @@
 define(function(require, exports, module) {
 	J = jQuery;
 	require('plugins');
+	var Authc = require('authc');
 	
 	ContentConstants = {
 		id : 0,
@@ -134,10 +135,11 @@ define(function(require, exports, module) {
         	var opts = this.options;
         	var that = this;
 
-			if (window.app.login.length <= 0) {
-				callLogin();
+			if (!Authc.isAuthced()) {
+				Authc.showLogin();
 				return false;
 			}
+
         	if (text.length == 0) {
         		layer.msg('请输入内容再提交!', {icon: 2});
         		return false;

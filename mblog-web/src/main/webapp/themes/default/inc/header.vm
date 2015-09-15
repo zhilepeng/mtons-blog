@@ -1,4 +1,4 @@
-<!-- 弹出框开始-->
+<!-- Login dialog BEGIN -->
 <div id="loginalert" style="display: none; top: 0px;" class="fade in">
     <div class="pd20 loginpd">
         <h3><i class="closealert fr" data-dismiss="modal" aria-label="Close"></i><div class="clear"></div></h3>
@@ -16,27 +16,25 @@
                 <div class="loginbtn">
                     <div class="loginsubmit fl"><input type="button" value="登录" id="alt_login" class="btn"></div>
                     <!--
-                    <div class="fr" style="margin:26px 0 0 0;"><a href="http://www.198zone.com/">忘记密码?</a></div>
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="##">忘记密码?</a></div>
                     -->
                     <div class="clear"></div>
                 </div>
             </form>
         </div>
     </div>
-    <!--
     <div class="thirdlogin">
         <div class="pd50">
             <h4>用第三方帐号直接登录</h4>
             <ul>
-                <li id="sinal"><a href="http://www.198zone.com">微博帐号注册</a></li>
-                <li id="qql" style="margin-right: 0px;"><a href="http://www.198zone.com">QQ帐号注册</a></li>
+                <li id="sinal"><a href="$base/oauth/callback/call_weibo">微博帐号注册</a></li>
+                <li id="qql" style="margin-right: 0px;"><a href="$base/oauth/callback/call_qq">QQ帐号注册</a></li>
             </ul>
             <div class="clear"></div>
         </div>
     </div>
-    -->
 </div>
-<!-- 弹出层代码结束-->
+<!-- Login dialog END -->
 
 <div class="top-wrap">
     <nav class="navbar navbar-inverse" role="navigation">
