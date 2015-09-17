@@ -119,5 +119,13 @@ public class AuthMenu implements Serializable{
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "AuthMenu{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", sort=" + sort +
+				'}';
+	}
 }

@@ -10,7 +10,10 @@ import mblog.persist.dao.AuthMenuDao;
 import mblog.persist.entity.AuthMenuPO;
 import mblog.persist.service.AuthMenuService;
 import mblog.persist.utils.BeanMapUtils;
+import org.springframework.transaction.annotation.Transactional;
 
+
+@Transactional
 public class AuthMenuServiceImpl implements AuthMenuService {
 	
 	@Autowired
@@ -28,6 +31,40 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 			}
 		}
 		return authMenus;
+	}
+
+	@Override
+	public List<AuthMenu> tree(Long id) {
+		List<AuthMenu> menus = new ArrayList<>();
+		AuthMenuPO authMenuPO = authMenuDao.get(id);
+		AuthMenu authMenu = BeanMapUtils.copy(authMenuPO);
+		menus.add(authMenu);
+		if(authMenu.getChildren()!=null){
+			List<AuthMenu> sortedList = sort(authMenu.getChildren());
+			for (AuthMenu po: authMenu.getChildren()){
+				menus.addAll(tree(po.getId()));
+			}
+		}
+		return menus;
+	}
+
+	@Override
+	public AuthMenu get(Long id) {
+		AuthMenu authMenu = BeanMapUtils.copy(authMenuDao.get(id));
+		return authMenu;
+	}
+
+	private List<AuthMenu> sort(List<AuthMenu> list) {
+		for(int i=0;i<list.size();i++){
+			for(int j=list.size()-1;j>i;j--){
+				if(list.get(i).getSort()>list.get(j).getSort()){
+					AuthMenu temp = list.get(i);
+					list.set(i,list.get(j));
+					list.set(j,temp);
+				}
+			}
+		}
+		return list;
 	}
 
 }

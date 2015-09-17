@@ -47,6 +47,7 @@
                 /admin/config/**=authc,perms[admin:config:view]
                 /admin/config/updtate**=authc,perms[admin:config:edit]
                 /admin/roles/**=authc,perms[admin:roles:view]
+                /admin/authMenus/**=authc,perms[admin:authMenus:view]
             </value>
         </property>
     </bean>
