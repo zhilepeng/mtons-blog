@@ -34,10 +34,10 @@
                         <td>$!{row.sort}</td>
                         <td class="text-center">
 
-                            <a href="$base/admin/authMenus/form?id=${row.id}" class="btn btn-mini btn-primary">
+                            <a href="$base/admin/authMenus/view?id=${row.id}" class="btn btn-mini btn-primary">
                                 <i class="fa fa-check-square-o"></i> 修改
                             </a>
-                            <a href="$base/admin/authMenus/form?parentId=${row.id}" class="btn btn-mini btn-primary">
+                            <a href="$base/admin/authMenus/view?parentId=${row.id}" class="btn btn-mini btn-primary">
                                 <i class="fa fa-check-square-o"></i> 添加下级菜单
                             </a>
                             <a href="$base/admin/authMenus/delete?id=${row.id}" class="btn btn-mini"><i class="fa fa-check-square-o"></i> 删除</a>
@@ -45,7 +45,7 @@
                     </tr>
                     #end
             </table>
-            <a class="btn add-role-btn" href="$base/admin/authMenus/form">添加菜单</a>
+            <a class="btn add-role-btn" href="$base/admin/authMenus/view">添加菜单</a>
         </div>
     </div>
 </div>

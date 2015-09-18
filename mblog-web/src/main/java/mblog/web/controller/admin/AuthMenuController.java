@@ -38,11 +38,11 @@ public class AuthMenuController extends BaseController{
         return "/admin/authMenus/list";
     }
 
-    @RequestMapping(value = "form")
-    public String form(@RequestParam(required = false) Long parentId, AuthMenu authMenu, Model model) {
+    @RequestMapping(value = "view")
+    public String view(@RequestParam(required = false) Long parentId, AuthMenu authMenu, Model model) {
         model.addAttribute("parentId",parentId);
         model.addAttribute("authMenu", authMenu);
-        return "/admin/authMenus/form";
+        return "/admin/authMenus/view";
     }
 
     @RequestMapping("/save")

@@ -28,7 +28,7 @@
     					<td>$!{row.name}</td>
                         <td class="text-center">
 							
-							<a href="$base/admin/roles/form?id=${row.id}" class="btn btn-mini btn-primary">
+							<a href="$base/admin/roles/view?id=${row.id}" class="btn btn-mini btn-primary">
     							<i class="fa fa-check-square-o"></i> 修改
     						</a>
 							<a href="$base/admin/roles/delete?id=${row.id}" class="btn btn-mini"><i class="fa fa-check-square-o"></i> 删除</a>
@@ -37,7 +37,7 @@
     				#end
     			</tbody>
     		</table>
-			<a class="btn add-role-btn" href="$base/admin/roles/form">添加角色</a>
+			<a class="btn add-role-btn" href="$base/admin/roles/view">添加角色</a>
     	</div>
 	</div>
 	<footer class="panel-footer">
@@ -49,45 +49,3 @@
 	</footer>
 </div>
           
-<script type="text/javascript">
-var J = jQuery;
-
-function ajaxReload(json){
-    if(json.code >= 0){
-        if(json.message != null && json.message != ''){
-			layer.msg(json.message, {icon: 1});
-        }
-        $('#qForm').submit();
-    }else{
-		layer.msg(json.message, {icon: 2});
-    }
-}
-
-$(function() {
-	// 停用
-    $('#dataGrid a[data-action="close"]').bind('click', function(){
-		var that = $(this);
-		layer.confirm('该账号停用后，将不能登录系统，确定要停用?', {
-            btn: ['确定','取消'], //按钮
-            shade: false //不显示遮罩
-        }, function(){
-			 J.getJSON('$base/admin/users/close', {id: that.attr('data-id'), active: false}, ajaxReload);
-        }, function(){
-        });
-        return false;
-    });
-	
-    // 激活
-    $('#dataGrid a[data-action="open"]').bind('click', function(){
-		var that = $(this);
-		layer.confirm('该账号激活后，将可访问系统中的已授权功能，确定要激活?', {
-            btn: ['确定','取消'], //按钮
-            shade: false //不显示遮罩
-        }, function(){
-			 J.getJSON('$base/admin/users/open', {id: that.attr('data-id'), active: true}, ajaxReload);
-        }, function(){
-        });
-        return false;
-    });
-})
-</script>

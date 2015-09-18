@@ -37,10 +37,10 @@ public class RoleController extends BaseController {
 		return "/admin/roles/list";
 	}
 	
-	@RequestMapping(value = "form")
-	public String form(Role role, Model model) {
+	@RequestMapping(value = "view")
+	public String view(Role role, Model model) {
 		model.addAttribute("role", role);
-		return "/admin/roles/form";
+		return "/admin/roles/view";
 	}
 	
 	@RequestMapping("/save")
