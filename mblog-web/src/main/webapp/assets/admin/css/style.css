@@ -599,4 +599,12 @@ input[type="text"], select, textarea{min-width: 40px;height: auto;}
   margin-left: 20px;
   font-weight: bold;
   color: #B4BBBA;
+
+/* role */
+.form-wrapper{
+	margin:0 15px;
+}
+
+.add-role-btn{
+	margin:0 15px 20px 15px;
 }

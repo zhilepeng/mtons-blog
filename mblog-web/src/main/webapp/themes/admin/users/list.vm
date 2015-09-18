@@ -33,10 +33,8 @@
     					<td>$!{row.name}</td>
     					<td>$!{row.email}</td>
 						<td>
-							#if($row.roleId == 1)
-								<span class="label label-danger">管理员</span>
-							#else
-                                <span class="label label-info">普通用户</span>
+							#foreach($role in $row.roles)
+								$!role.name
 							#end
 						</td>
     					<td>

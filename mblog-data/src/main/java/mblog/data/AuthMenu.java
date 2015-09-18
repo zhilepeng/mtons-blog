@@ -97,4 +97,78 @@ public class AuthMenu implements Serializable{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AuthMenu other = (AuthMenu) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthMenu{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", sort=" + sort +
+				'}';
+	}
+
+	public Node toNode(){
+		Node node = new Node();
+		node.setId(this.getId());
+		node.setName(this.getName());
+		if(this.getParent()!=null){
+			node.setpId(this.getParent().getId());
+		}
+		else{
+			node.setpId(0L);
+		}
+		return node;
+	}
+
+	public class Node{
+		private Long id;
+		private Long pId;
+		private String name;
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Long getpId() {
+			return pId;
+		}
+
+		public void setpId(Long pId) {
+			this.pId = pId;
+		}
+	}
 }

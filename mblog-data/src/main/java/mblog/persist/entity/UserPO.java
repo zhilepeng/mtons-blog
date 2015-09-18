@@ -25,6 +25,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -85,9 +86,10 @@ public class UserPO {
 	@Column(name = "role_id")
 	private int roleId;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	@OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+
 	private List<RolePO> roles = new ArrayList<RolePO>();
 
 	@Column(name = "active_email")

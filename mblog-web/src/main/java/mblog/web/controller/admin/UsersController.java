@@ -9,10 +9,6 @@
 */
 package mblog.web.controller.admin;
 
-import mtons.modules.lang.Const;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.Paging;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,8 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import mblog.data.User;
 import mblog.lang.EnumRole;
+import mblog.persist.service.RoleService;
 import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
+import mtons.modules.lang.Const;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -34,6 +34,9 @@ import mblog.web.controller.BaseController;
 public class UsersController extends BaseController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping("/list")
 	public String list(Integer pn, String key, ModelMap model) {
@@ -48,13 +51,19 @@ public class UsersController extends BaseController {
 	public String view(Long id, ModelMap model) {
 		User view = userService.get(id);
 		model.put("view", view);
-		model.put("roles", EnumRole.values());
+		model.put("roles", roleService.getAll());
 		return "/admin/users/view";
 	}
 	
 	@RequestMapping("/update_role")
-	public String update(long id, int roleId) {
-		userService.updateRole(id, roleId);
+	public String update(long id, String roleIds) {
+		System.out.println(roleIds);
+		String[] roleStrIds = roleIds.split(",");
+		Long[] ids = new Long[roleStrIds.length];
+		for(int i=0;i<ids.length;i++){
+			ids[i] = Long.valueOf(roleStrIds[i]);
+		}
+		userService.updateRole(id, ids);
 		return "redirect:/admin/users/list";
 	}
 	

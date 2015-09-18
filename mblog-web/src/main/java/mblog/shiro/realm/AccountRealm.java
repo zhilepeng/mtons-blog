@@ -41,7 +41,6 @@ public class AccountRealm extends AuthorizingRealm {
             User user = userService.getByUsername(username);
             if (user != null){
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-                EnumRole role = EnumRole.getEnum(user.getRoleId());
                 List<AuthMenu> menuList = userService.getMenuList(user.getId());
                 for (AuthMenu menu : menuList){
     				if (StringUtils.isNotBlank(menu.getPermission())){

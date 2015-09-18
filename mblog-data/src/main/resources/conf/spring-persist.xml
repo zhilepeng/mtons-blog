@@ -26,4 +26,7 @@
 	<bean id="favorService" class="mblog.persist.service.impl.FavorServiceImpl" />
 	<bean id="notifyService" class="mblog.persist.service.impl.NotifyServiceImpl" />
 
+	<bean id="authMenuService" class="mblog.persist.service.impl.AuthMenuServiceImpl"/>
+	<bean id="roleService" class="mblog.persist.service.impl.RoleServiceImpl"/>
+
 </beans>

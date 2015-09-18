@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -51,6 +52,8 @@ public class UserDaoImpl extends BaseRepositoryImpl<UserPO> implements UserDao {
 			));
 		}
 		q.desc("id");
+		Criteria criteria = createCriteria();
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		return q.list();
 	}
 
