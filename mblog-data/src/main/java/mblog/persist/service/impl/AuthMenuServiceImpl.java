@@ -3,6 +3,8 @@ package mblog.persist.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import mblog.persist.entity.RolePO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import mblog.data.AuthMenu;
@@ -52,6 +54,27 @@ public class AuthMenuServiceImpl implements AuthMenuService {
 	public AuthMenu get(Long id) {
 		AuthMenu authMenu = BeanMapUtils.copy(authMenuDao.get(id));
 		return authMenu;
+	}
+
+	@Override
+	public void save(AuthMenu authMenu) {
+		AuthMenuPO po = new AuthMenuPO();
+		BeanUtils.copyProperties(authMenu, po);
+		if(authMenu.getParent()!=null){
+			po.setParent(authMenuDao.get(authMenu.getParent().getId()));
+		}
+		authMenuDao.saveOrUpdate(po);
+	}
+
+	@Override
+	public void delete(Long id) {
+		AuthMenuPO authMenuPO = authMenuDao.get(id);
+		if(authMenuPO.getChildren()!=null){
+			for(AuthMenuPO po : authMenuPO.getChildren()){
+				delete(po.getId());
+			}
+		}
+		authMenuDao.delete(authMenuPO);
 	}
 
 	private List<AuthMenu> sort(List<AuthMenu> list) {

@@ -7,6 +7,7 @@ import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-/**
- * Created by 011938 on 2015/9/17.
- */
 @Controller
 @RequestMapping("/admin/authMenus")
 public class AuthMenuController extends BaseController{
@@ -37,6 +35,29 @@ public class AuthMenuController extends BaseController{
     public String list(ModelMap model) {
         List<AuthMenu> list = authMenuService.tree(1L);
         model.put("list", list);
-        return "/admin/authMenu/list";
+        return "/admin/authMenus/list";
+    }
+
+    @RequestMapping(value = "form")
+    public String form(@RequestParam(required = false) Long parentId, AuthMenu authMenu, Model model) {
+        model.addAttribute("parentId",parentId);
+        model.addAttribute("authMenu", authMenu);
+        return "/admin/authMenus/form";
+    }
+
+    @RequestMapping("/save")
+    public String save(@RequestParam(required = false) Long parentId,AuthMenu authMenu,Model model){
+        if(parentId!=null && parentId>0){
+            AuthMenu parent = authMenuService.get(parentId);
+            authMenu.setParent(parent);
+        }
+        authMenuService.save(authMenu);
+        return "redirect:/admin/authMenus/list";
+    }
+
+    @RequestMapping("/delete")
+    public String delete(Long id,Model model){
+        authMenuService.delete(id);
+        return "redirect:/admin/authMenus/list";
     }
 }

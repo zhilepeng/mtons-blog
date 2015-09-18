@@ -12,4 +12,8 @@ public interface AuthMenuService {
 	List<AuthMenu> tree(Long id);
 
 	AuthMenu get(Long id);
+
+	void save(AuthMenu authMenu);
+
+	void delete(Long id);
 }
