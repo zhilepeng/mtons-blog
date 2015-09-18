@@ -1,5 +1,6 @@
 package mblog.web.controller.admin;
 
+import com.alibaba.fastjson.JSONArray;
 import mblog.data.AuthMenu;
 import mblog.data.Role;
 import mblog.persist.service.AuthMenuService;
@@ -12,7 +13,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -60,4 +63,23 @@ public class AuthMenuController extends BaseController{
         authMenuService.delete(id);
         return "redirect:/admin/authMenus/list";
     }
+
+    @RequestMapping("treeView")
+    public String treeView(){
+        return "/admin/authMenus/treeView";
+    }
+
+    @RequestMapping("tree")
+    @ResponseBody
+    public List<AuthMenu.Node> tree(){
+        List<AuthMenu> list = authMenuService.tree(1L);
+        List<AuthMenu.Node> nodes = new ArrayList<>();
+        for(AuthMenu authMenu : list){
+            AuthMenu.Node node = authMenu.toNode();
+            nodes.add(node);
+        }
+        return nodes;
+    }
 }
+
+

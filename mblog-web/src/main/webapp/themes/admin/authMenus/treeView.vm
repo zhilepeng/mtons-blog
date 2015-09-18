@@ -1,0 +1,43 @@
+#set($layout = "/default/layout/noop.vm")
+<html>
+<head>
+    <link rel="stylesheet" href="$base/assets/vendors/zTree_v3/css/demo.css" type="text/css">
+    <link rel="stylesheet" href="$base/assets/vendors/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="$base/assets/vendors/zTree_v3/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="$base/assets/vendors/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+    <SCRIPT type="text/javascript">
+        <!--
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick
+            }
+        };
+        var zNodes;
+        window.fuck = $.fn.zTree
+        $(document).ready(function(){
+            jQuery.ajax({url:"$base/admin/authMenus/tree",success:function(data){
+                zNodes = data;
+                console.log(zNodes)
+                fuck.init($("#treeDemo"), setting, zNodes);
+
+            },dataType:"json"});
+
+        });
+
+        function zTreeOnClick(event, treeId, treeNode) {
+            alert(treeNode.tId + ", " + treeNode.name);
+        };
+        //-->
+    </SCRIPT>
+</head>
+<body>
+<div class="zTreeDemoBackground left">
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+</body>
+</html>

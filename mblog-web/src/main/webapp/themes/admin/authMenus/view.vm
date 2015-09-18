@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label for="parentId" class="col-lg-2 control-label">上级菜单：</label>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" placeholder="请输入菜单名称" name="parentId" value="#if($!parentId)$!parentId#else$!authMenu.parent.id#end">
+                            <input id="parentId" type="text" class="form-control"  readonly="readonly" placeholder="请选择上级菜单" name="parentId" value="#if($!parentId)$!parentId#else$!authMenu.parent.id#end">
                         </div>
                     </div>
     				<div class="form-group">
@@ -50,3 +50,18 @@
 	
 </div>
           
+<script>
+    $(function(){
+        $("#parentId").click(function(){
+            //iframe层-父子操作
+            layer.open({
+                type: 2,
+                area: ['250px', '530px'],
+                fix: false, //不固定
+                maxmin: false,
+                content: '$base/admin/authMenus/treeView'
+            });
+        });
+    });
+
+</script>

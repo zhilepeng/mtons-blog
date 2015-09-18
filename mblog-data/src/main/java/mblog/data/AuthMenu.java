@@ -128,4 +128,47 @@ public class AuthMenu implements Serializable{
 				", sort=" + sort +
 				'}';
 	}
+
+	public Node toNode(){
+		Node node = new Node();
+		node.setId(this.getId());
+		node.setName(this.getName());
+		if(this.getParent()!=null){
+			node.setpId(this.getParent().getId());
+		}
+		else{
+			node.setpId(0L);
+		}
+		return node;
+	}
+
+	public class Node{
+		private Long id;
+		private Long pId;
+		private String name;
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Long getpId() {
+			return pId;
+		}
+
+		public void setpId(Long pId) {
+			this.pId = pId;
+		}
+	}
 }
