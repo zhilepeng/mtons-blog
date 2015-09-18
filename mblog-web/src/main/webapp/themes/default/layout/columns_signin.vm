@@ -12,9 +12,6 @@
 
 	$!{site_metas}
 
-	<script src="$base/assets/vendors/pace/pace.min.js"></script>
-	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
-	
 	<!-- v3 -->
 	<link rel="stylesheet" href="$base/assets/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="$base/assets/css/login.css">

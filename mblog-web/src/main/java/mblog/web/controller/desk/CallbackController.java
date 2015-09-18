@@ -44,14 +44,14 @@ import mtons.modules.utils.Text;
 @RequestMapping("/oauth/callback")
 public class CallbackController extends BaseController {
     private Logger logger = Logger.getLogger(this.getClass());
-    
+
     private static final String SESSION_STATE = "_SESSION_STATE_";
 
     @Autowired
     private OpenOauthService openOauthService;
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private AppContext appContext;
 
@@ -63,12 +63,12 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/call_weibo")
     public void callWeibo(HttpServletRequest request, HttpServletResponse response){
-    	response.setContentType("text/html;charset=utf-8");
-    	try {
-    		APIConfig.getInstance().setOpenid_sina(appContext.getConfig().get(SiteConfig.WEIBO_CLIENT_ID));
-    		APIConfig.getInstance().setOpenkey_sina(appContext.getConfig().get(SiteConfig.WEIBO_CLIENT_SERCRET));
-    		APIConfig.getInstance().setRedirect_sina(appContext.getConfig().get(SiteConfig.SITE_OAUTH_WEIBO));
-    		
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            APIConfig.getInstance().setOpenid_sina(appContext.getConfig().get(SiteConfig.WEIBO_CLIENT_ID));
+            APIConfig.getInstance().setOpenkey_sina(appContext.getConfig().get(SiteConfig.WEIBO_CLIENT_SERCRET));
+            APIConfig.getInstance().setRedirect_sina(appContext.getConfig().get(SiteConfig.SITE_OAUTH_WEIBO));
+
             String state = TokenUtil.randomState();
             request.getSession().setAttribute(SESSION_STATE, state);
             response.sendRedirect(OauthSina.me().getAuthorizeUrl(state));
@@ -76,7 +76,7 @@ public class CallbackController extends BaseController {
             throw new MtonsException("跳转到微博授权接口时发生异常");
         }
     }
-    
+
     /**
      * 微博回调
      *
@@ -88,23 +88,23 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/weibo")
     public String callback4Weibo(String code, String state, HttpServletRequest request, ModelMap model) throws Exception {
-    	// --
-    	String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
+        // --
+        String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
         // 取消了授权
         if (StringUtils.isBlank(state) || StringUtils.isBlank(session_state) || !state.equals(session_state) || StringUtils.isBlank(code)) {
-        	throw new MtonsException("缺少必要的参数");
+            throw new MtonsException("缺少必要的参数");
         }
         request.getSession().removeAttribute(SESSION_STATE);
         // --
-        
+
         OpenOauthBean openOauthBean = null;
         try {
-        	openOauthBean = OauthSina.me().getUserBeanByCode(code);
-		} catch (Exception e) {
-			throw new MtonsException("解析信息时发生错误");
-		}
-        
-    	OpenOauth openOauth = new OpenOauth();
+            openOauthBean = OauthSina.me().getUserBeanByCode(code);
+        } catch (Exception e) {
+            throw new MtonsException("解析信息时发生错误");
+        }
+
+        OpenOauth openOauth = new OpenOauth();
         openOauth.setOauthCode(code);
         openOauth.setAccessToken(openOauthBean.getAccessToken());
         openOauth.setExpireIn(openOauthBean.getNickname());
@@ -133,12 +133,12 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/call_qq")
     public void callQQ(HttpServletRequest request, HttpServletResponse response){
-    	response.setContentType("text/html;charset=utf-8");
-    	try {
-    		APIConfig.getInstance().setOpenid_qq(appContext.getConfig().get(SiteConfig.QQ_APP_ID));
-    		APIConfig.getInstance().setOpenkey_qq(appContext.getConfig().get(SiteConfig.QQ_APP_KEY));
-    		APIConfig.getInstance().setRedirect_qq(appContext.getConfig().get(SiteConfig.SITE_OAUTH_QQ));
-    		
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            APIConfig.getInstance().setOpenid_qq(appContext.getConfig().get(SiteConfig.QQ_APP_ID));
+            APIConfig.getInstance().setOpenkey_qq(appContext.getConfig().get(SiteConfig.QQ_APP_KEY));
+            APIConfig.getInstance().setRedirect_qq(appContext.getConfig().get(SiteConfig.SITE_OAUTH_QQ));
+
             String state = TokenUtil.randomState();
             request.getSession().setAttribute(SESSION_STATE, state);
             response.sendRedirect(OauthQQ.me().getAuthorizeUrl(state));
@@ -146,7 +146,7 @@ public class CallbackController extends BaseController {
             throw new MtonsException("跳转到QQ授权接口时发生异常");
         }
     }
-    
+
     /**
      * QQ回调
      *
@@ -157,23 +157,23 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/qq")
     public String callback4QQ(String code, String state, HttpServletRequest request, ModelMap model) {
-    	// --
-    	String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
+        // --
+        String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
         // 取消了授权
         if (StringUtils.isBlank(state) || StringUtils.isBlank(session_state) || !state.equals(session_state) || StringUtils.isBlank(code)) {
-        	throw new MtonsException("缺少必要的参数");
+            throw new MtonsException("缺少必要的参数");
         }
         request.getSession().removeAttribute(SESSION_STATE);
         // --
-        
+
         OpenOauthBean openOauthBean = null;
         try {
-        	openOauthBean = OauthQQ.me().getUserBeanByCode(code);
-		} catch (Exception e) {
-			throw new MtonsException("解析信息时发生错误");
-		}
-        
-    	OpenOauth openOauth = new OpenOauth();
+            openOauthBean = OauthQQ.me().getUserBeanByCode(code);
+        } catch (Exception e) {
+            throw new MtonsException("解析信息时发生错误");
+        }
+
+        OpenOauth openOauth = new OpenOauth();
         openOauth.setOauthCode(code);
         openOauth.setAccessToken(openOauthBean.getAccessToken());
         openOauth.setExpireIn(openOauthBean.getNickname());
@@ -202,12 +202,12 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/call_douban")
     public void callDouban(HttpServletRequest request, HttpServletResponse response){
-    	response.setContentType("text/html;charset=utf-8");
-    	try {
-    		APIConfig.getInstance().setOpenid_douban(appContext.getConfig().get(SiteConfig.DOUBAN_API_KEY));
-    		APIConfig.getInstance().setOpenkey_douban(appContext.getConfig().get(SiteConfig.DOUBAN_SECRET_KEY));
-    		APIConfig.getInstance().setRedirect_douban(appContext.getConfig().get(SiteConfig.SITE_OAUTH_DOUBAN));
-    		
+        response.setContentType("text/html;charset=utf-8");
+        try {
+            APIConfig.getInstance().setOpenid_douban(appContext.getConfig().get(SiteConfig.DOUBAN_API_KEY));
+            APIConfig.getInstance().setOpenkey_douban(appContext.getConfig().get(SiteConfig.DOUBAN_SECRET_KEY));
+            APIConfig.getInstance().setRedirect_douban(appContext.getConfig().get(SiteConfig.SITE_OAUTH_DOUBAN));
+
             String state = TokenUtil.randomState();
             request.getSession().setAttribute(SESSION_STATE, state);
             response.sendRedirect(OauthDouban.me().getAuthorizeUrl(state));
@@ -215,7 +215,7 @@ public class CallbackController extends BaseController {
             throw new MtonsException("跳转到豆瓣授权接口时发生异常");
         }
     }
-    
+
     /**
      * 豆瓣回调
      * @param code
@@ -226,23 +226,23 @@ public class CallbackController extends BaseController {
      */
     @RequestMapping("/douban")
     public String callBack4Douban(String code, String state, HttpServletRequest request, ModelMap model){
-    	// --
-    	String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
+        // --
+        String session_state = (String) request.getSession().getAttribute(SESSION_STATE);
         // 取消了授权
         if (StringUtils.isBlank(state) || StringUtils.isBlank(session_state) || !state.equals(session_state) || StringUtils.isBlank(code)) {
-        	throw new MtonsException("缺少必要的参数");
+            throw new MtonsException("缺少必要的参数");
         }
         request.getSession().removeAttribute(SESSION_STATE);
         // --
-        
+
         OpenOauthBean openOauthBean = null;
         try {
-        	openOauthBean = OauthDouban.me().getUserBeanByCode(code);
-		} catch (Exception e) {
-			throw new MtonsException("解析信息时发生错误");
-		}
-        
-    	OpenOauth openOauth = new OpenOauth();
+            openOauthBean = OauthDouban.me().getUserBeanByCode(code);
+        } catch (Exception e) {
+            throw new MtonsException("解析信息时发生错误");
+        }
+
+        OpenOauth openOauth = new OpenOauth();
         openOauth.setOauthCode(code);
         openOauth.setAccessToken(openOauthBean.getAccessToken());
         openOauth.setExpireIn(openOauthBean.getNickname());
@@ -262,13 +262,13 @@ public class CallbackController extends BaseController {
         String username = userService.get(thirdToken.getUserId()).getUsername();
         return login(username, thirdToken.getAccessToken(), request);
     }
-    
+
     /**
      * 执行第三方绑定
      * @param openOauth
      * @param request
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     @RequestMapping("/bind_oauth")
     public String bindOauth(OpenOauth openOauth, HttpServletRequest request) throws Exception {
@@ -283,12 +283,12 @@ public class CallbackController extends BaseController {
             User user = userService.getByUsername(username);
             if(user == null){
                 User u = userService.register(wrapUser(openOauth));
-                
+
                 // ===将远程图片下载到本地===
                 String ava100 = appContext.getAvaDir() + getAvaPath(u.getId(), 100);
                 ImageUtils.download(openOauth.getAvatar(), fileRepo.getRoot() + ava100);
                 userService.updateAvatar(u.getId(), ava100);
-                
+
                 thirdToken = new OpenOauth();
                 BeanUtils.copyProperties(openOauth, thirdToken);
                 thirdToken.setUserId(u.getId());
@@ -307,11 +307,11 @@ public class CallbackController extends BaseController {
      * @param request
      * @return
      */
-    private String login(String username, String oauthUserId, HttpServletRequest request) {
+    private String login(String username, String accessToken, HttpServletRequest request) {
         String ret = getView(Views.LOGIN);
 
         if (StringUtils.isNotBlank(username)) {
-            AuthenticationToken token = createToken(username, oauthUserId);
+            AuthenticationToken token = createToken(username, accessToken);
 
             try {
                 SecurityUtils.getSubject().login(token);
@@ -348,10 +348,10 @@ public class CallbackController extends BaseController {
         }
         return  user;
     }
-    
+
     public String getAvaPath(long uid, int size) {
-		String base = Text.filePath(uid, Consts.FILE_PATH_SEED, 2);
-		return String.format("/%s/%d.jpg", base, size);
-	}
-    
+        String base = Text.filePath(uid, Consts.FILE_PATH_SEED, 2);
+        return String.format("/%s/%d.jpg", base, size);
+    }
+
 }

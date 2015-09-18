@@ -1,10 +1,10 @@
 .uploader {
-	border: 2px dotted #ebebeb;
-	width: 100%;
+	border: 2px dashed #e6e6e6;
 	color: #92AAB0;
+	background: url(./images/image.png) center 5px no-repeat;
 	text-align: center;
 	vertical-align: middle;
-	padding: 15px 0px;
+	padding: 70px 0px 10px;
 	margin-bottom: 10px;
 	font-size: 200%;
 	cursor: default;
@@ -24,18 +24,14 @@
 }
 
 .uploader div.browser label {
-	background-color: #5a7bc2;
-	padding: 5px 15px;
+	background-color: #00b7ee;
 	color: white;
-	padding: 6px 0px;
-	font-size: 40%;
-	font-weight: bold;
+	padding: 6px 30px;
+	font-size: 14px;
 	cursor: pointer;
 	border-radius: 2px;
 	position: relative;
 	overflow: hidden;
-	display: block;
-	width: 300px;
 	margin: 10px auto 0px auto;
 }
 
@@ -56,7 +52,7 @@
 }
 
 .uploader div.browser label:hover {
-	background-color: #427fed;
+	background-color: #00a2d4;
 }
 
 .uploader-file-id {
@@ -90,13 +86,22 @@
 .uploader-image-preview {
 	float:left;
 	margin-right: 10px;
-	margin-top: 4px;
-	height: 56px;
-	width: 56px;
-
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+	height: 60px;
+	width: 60px;
+	overflow: hidden;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+	-o-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+	-webit-transition: 200ms ease-out;
+	-moz-transition: 200ms ease-out;
+	-o-transition: 200ms ease-out;
+	-ms-transition: 200ms ease-out;
+	transition: 200ms ease-out;
 }
 
 .uploader-close {
@@ -109,3 +114,5 @@
 .uploader-item {margin-bottom: 15px;}
 .uploader-item:last-child {margin-bottom: 0;}
 .uploader-item .progress {margin-bottom: 0;}
+
+.uploader-item .progress {height: 10px; margin-top: 8px;}

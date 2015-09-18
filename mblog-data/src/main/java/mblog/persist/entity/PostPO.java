@@ -12,8 +12,10 @@ package mblog.persist.entity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.*;
-import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.NumericField;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -32,18 +34,25 @@ public class PostPO {
 	@DocumentId
 	private long id;
 
+	@Field
+	@NumericField
 	@Column(name = "group_", length = 5)
 	private int group;
 
-	@Field(name = "title", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
+	@Field
 	@Column(name = "title", length = 64)
 	private String title; // 标题
 	
-	@Field(name = "summary", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
+	@Field
 	private String summary; // 摘要
 
-	@Field(name = "tags", index = Index.YES, analyze = Analyze.YES, store = Store.YES)
+	@Field
 	private String tags; // 标签
+
+	@Field
+	@NumericField
+	@Column(name = "author_id")
+	private long authorId; // 作者
 	
 	private String editor; // 编辑器
 	
@@ -62,9 +71,6 @@ public class PostPO {
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date created;
-
-	@Column(name = "author_id")
-	private long authorId; // 作者
 
 	private int privacy;  // 私密
 

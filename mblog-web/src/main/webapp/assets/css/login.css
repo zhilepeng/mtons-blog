@@ -16,6 +16,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+a { text-decoration: none; }
+a:hover, a:focus, a:active { text-decoration: none; }
+
 h1 {
 	font-size: 2em;
 	margin: .67em 0;
@@ -31,13 +34,13 @@ label {
 }
 
 input[type=text],input[type=password],textarea {
-	border: 0;
 	border: 1px solid #dddedf;
 	padding: .5em;
 	font-size: 14px;
 	width: 100%;
 	box-sizing: border-box;
-	box-shadow: none;
+	box-shadow: none!important;
+	-webkit-box-shadow: none!important;
 	margin-bottom: 10px;
 }
 
@@ -94,6 +97,8 @@ input[type=text],input[type=password],textarea {
 	font-size: 14px;
 	color: #ccc;
 }
+
+.sign .small a {color: #ccc;}
 
 .sign .border {
 	border-radius: 0;
@@ -214,17 +219,14 @@ input[type=text],input[type=password],textarea {
 /* Mobile (Landscape)
 ================================================== */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-	.sign .login {
-		width: auto;
-		margin-left: 15px;
-		margin-right: 15px;
-	}
+
 }
 /* Mobile (Portrait only)
 ================================================== */
 @media only screen and (max-width: 479px) {
 	.sign .login {
 		width: auto;
+		margin-top: 15px;
 		margin-left: 15px;
 		margin-right: 15px;
 	}

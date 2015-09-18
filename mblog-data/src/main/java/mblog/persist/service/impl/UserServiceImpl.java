@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private RoleDao roleDao;
-	
+
 	@Override
 	@Transactional
 	public AccountProfile login(String username, String password) {

@@ -12,9 +12,9 @@
     <hr>
     <form action="login" method="post">
         <div id="message">
-			#if($message)
+            #if($message)
                 <div class="alert alert-danger">$!{message}</div>
-			#end
+            #end
         </div>
         <label for="id_email">登录名:</label>
         <div id="id_email">

@@ -57,5 +57,13 @@ $(function() {
         }
         return false;
     });
+
+    // 重建索引
+    $('a[data-action="flush_indexs"]').bind('click', function(){
+        if(confirm('确定要重建文章索引吗？')){
+            J.getJSON('$base/admin/config/flush_indexs.json', ajaxReload);
+        }
+        return false;
+    });
 })
 </script>

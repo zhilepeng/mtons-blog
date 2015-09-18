@@ -10,8 +10,8 @@ import java.io.IOException;
  */
 public class ImageUtilsTest {
     public static void main(String[] args) throws InterruptedException, IOException, IM4JavaException {
-        String ori = "F:\\data\\102446ci0ykm50de5dt3y6.gif";
-        String dest = "F:\\data\\image.gif";
+        String ori = "F:\\data\\thumbnail.png";
+        String dest = "F:\\data\\image.png";
         ImageUtils.truncateImage(ori, dest, 225, 140);
     }
 }

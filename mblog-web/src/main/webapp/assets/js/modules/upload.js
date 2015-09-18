@@ -21,14 +21,14 @@ define(function(require, exports, module) {
 			}
 			var template = '<div id="album-file' + i + '" class="uploader-item">' +
 							   '<button type="button" class="close uploader-close" data-action="remove-album"><span>×</span></button>' +
-			                   '<img src="http://placehold.it/48.png" class="uploader-image-preview" />' +
+			                   '<div class="uploader-image-preview"><img src="http://placehold.it/48.png" /></div>' +
 			                   '<span class="uploader-file-id">第' + (i + 1) + '张</span> - <span class="uploader-file-name">' + filename + '</span> <span class="uploader-file-size">(' + $.album.humanizeSize(file.size) + ')</span><br />状态: <span class="uploader-file-status">等待上传</span>'+
 			                   '<div class="progress active">'+
 			                       '<div class="progress-bar progress-bar-success" role="progressbar" style="width: 0%;">'+
 			                           '<span class="sr-only">0% Complete</span>'+
 			                       '</div>'+
 			                   '</div>'+
-			                   '<input type="hidden" name="albums[' + i + '].original" value=""/>' +
+			                   '<input type="hidden" name="delayImages" value=""/>' +
 			               '</div>';
 			               
 			var i = $(id).attr('file-counter');
@@ -82,7 +82,7 @@ define(function(require, exports, module) {
 				var reader = new FileReader();
 
 				// 获取最后添加的图片
-				var img = $('#upload-albums').find('.uploader-image-preview').eq(0);
+				var img = $('#upload-albums').find('.uploader-image-preview>img').eq(0);
 
 				reader.onload = function(e) {
 					img.attr('src', e.target.result);

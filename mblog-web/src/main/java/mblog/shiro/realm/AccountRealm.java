@@ -29,7 +29,7 @@ public class AccountRealm extends AuthorizingRealm {
     public AccountRealm() {
         super(new AllowAllCredentialsMatcher());
         setAuthenticationTokenClass(UsernamePasswordToken.class);
-        
+
         //FIXME: 暂时禁用Cache
         setCachingEnabled(false);
     }
@@ -43,13 +43,13 @@ public class AccountRealm extends AuthorizingRealm {
                 SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
                 List<AuthMenu> menuList = userService.getMenuList(user.getId());
                 for (AuthMenu menu : menuList){
-    				if (StringUtils.isNotBlank(menu.getPermission())){
-    					// 添加基于Permission的权限信息
-    					for (String permission : StringUtils.split(menu.getPermission(),",")){
-    						info.addStringPermission(permission);
-    					}
-    				}
-    			}
+                    if (StringUtils.isNotBlank(menu.getPermission())){
+                        // 添加基于Permission的权限信息
+                        for (String permission : StringUtils.split(menu.getPermission(),",")){
+                            info.addStringPermission(permission);
+                        }
+                    }
+                }
 //                info.addRole(role.getKey());
 //                for (Role r : user.getRoles()) {
 //                    info.addRole(r.getName());
@@ -68,23 +68,23 @@ public class AccountRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-    	AccountProfile profile = getAccount(userService, token);
+        AccountProfile profile = getAccount(userService, token);
 
         if(profile.getStatus() == Const.STATUS_CLOSED){
             throw new LockedAccountException(profile.getName());
         }
-        
+
         AccountAuthenticationInfo info = new AccountAuthenticationInfo(token.getPrincipal(), token.getCredentials(), getName());
         info.setProfile(profile);
-        
+
         return info;
     }
 
     public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+        this.userService = userService;
+    }
 
-	protected AccountProfile getAccount(UserService userService, AuthenticationToken token){
+    protected AccountProfile getAccount(UserService userService, AuthenticationToken token){
         UsernamePasswordToken upToken = (UsernamePasswordToken)token;
         return userService.login(upToken.getUsername(), String.valueOf(upToken.getPassword()));
     }

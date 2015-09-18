@@ -18,14 +18,16 @@ public interface SiteConfig {
 
     String SITE_ICP = "site_icp"; // 备案号
 
+    String SITE_EDITOR = "site_editor"; // 文本编辑器
+
     /**
      * 系统类配置
      */
 
     String SITE_MAIL_HS = "site_mail_host"; // 邮件服务地址
     String SITE_MAIL_UN = "site_mail_username"; // 邮件账号名
-    String SITE_MAIL_PW = "site_mail_password"; // 邮件密码
 
+    String SITE_MAIL_PW = "site_mail_password"; // 邮件密码
     /**
      * 第三方回调地址
      */
@@ -37,7 +39,6 @@ public interface SiteConfig {
     String WEIBO_CLIENT_ID = "weibo_client_id";		// 微博应用CLIENT_ID
     String WEIBO_CLIENT_SERCRET = "weibo_client_sercret";	// 微博应用CLIENT_SERCRET
     String DOUBAN_API_KEY = "douban_api_key";		// 豆瓣API_KEY
+
     String DOUBAN_SECRET_KEY = "douban_secret_key";		// 豆瓣SECRET_KEY
-    
-    String SITE_EDITOR = "site_editor"; // 文本编辑器
 }

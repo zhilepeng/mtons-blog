@@ -26,6 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -127,37 +129,35 @@ public class BaseController {
 		}
 	}
 	
-	protected void handleAlbums(List<Attach> albums) {
-		if (albums == null || albums.isEmpty()) {
-			return;
+	protected List<Attach> handleAlbums(String[] albums) {
+		if (albums == null || albums.length == 0) {
+			return Collections.emptyList();
 		}
 
-		Iterator<Attach> it = albums.iterator();
+		List<Attach> rets = new ArrayList<>();
 
-		while (it.hasNext()) {
-			Attach alb = it.next();
-
-			if (alb == null ||  StringUtils.isBlank(alb.getOriginal())) {
-				it.remove();
+		for (String album : albums) {
+			if (StringUtils.isBlank(album)) {
 				continue;
 			}
 
 			String root = fileRepo.getRoot();
-			File temp = new File(root + alb.getOriginal());
-
+			File temp = new File(root + album);
+			Attach item = new Attach();
 			try {
 				// 保存原图
 				String orig = fileRepo.storeScale(temp, appContext.getOrigDir(), 750);
-				alb.setOriginal(orig);
+				item.setOriginal(orig);
 
 				// 创建缩放图片
 				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 305);
-				alb.setPreview(preview);
+				item.setPreview(preview);
 
 				// 创建快照
 				String screenshot = fileRepo.storeScale(temp, appContext.getScreenshotDir(), 225, 140);
-				alb.setScreenshot(screenshot);
+				item.setScreenshot(screenshot);
 
+				rets.add(item);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -166,6 +166,8 @@ public class BaseController {
 				}
 			}
 		}
+
+		return rets;
 	}
 	
 }

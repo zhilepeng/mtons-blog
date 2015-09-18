@@ -22,9 +22,9 @@ public class ImageUtils extends GMagickUtils {
 
     public static boolean truncateImage(String ori, String dest, int width, int height) throws IOException, InterruptedException, IM4JavaException {
         File oriFile = new File(ori);
-        
+
         validate(oriFile, dest);
-        
+
         BufferedImage src = ImageIO.read(oriFile); // 读入文件
         int w = src.getWidth();
         int h = src.getHeight();
@@ -48,7 +48,7 @@ public class ImageUtils extends GMagickUtils {
         convert.run(op);
         return true;
     }
-    
+
     /**
      * 下载远程图片到本地，用于第三方登录下载头像
      * @param urlString		图片链接
@@ -57,26 +57,26 @@ public class ImageUtils extends GMagickUtils {
      * @author A蛋壳  2015年9月13日 上午9:40:17
      */
     public static void download(String urlString, String savePath) throws Exception {
-		
-		URL url = new URL(urlString);	// 构造URL
-		URLConnection connection = url.openConnection();	// 打开连接
-		connection.setConnectTimeout(5 * 1000);		// 设置请求超时时间
-		InputStream is = connection.getInputStream();	// 输入流
-		
-		byte[] bs = new byte[1024];		// 1K的数据缓存
-		int len;
-		File sf = new File(savePath);
-		if (sf.getParentFile() != null && sf.getParentFile().exists() == false) {
+
+        URL url = new URL(urlString);	// 构造URL
+        URLConnection connection = url.openConnection();	// 打开连接
+        connection.setConnectTimeout(5 * 1000);		// 设置请求超时时间
+        InputStream is = connection.getInputStream();	// 输入流
+
+        byte[] bs = new byte[1024];		// 1K的数据缓存
+        int len;
+        File sf = new File(savePath);
+        if (sf.getParentFile() != null && sf.getParentFile().exists() == false) {
             if (sf.getParentFile().mkdirs() == false) {
                 throw new IOException("Destination '" + savePath + "' directory cannot be created");
             }
         }
-		
-		OutputStream os = new FileOutputStream(savePath);
-		while((len = is.read(bs)) != -1){
-			os.write(bs, 0, len);
-		}
-		os.close();
-		is.close();
-	}
+
+        OutputStream os = new FileOutputStream(savePath);
+        while((len = is.read(bs)) != -1){
+            os.write(bs, 0, len);
+        }
+        os.close();
+        is.close();
+    }
 }

@@ -3,7 +3,7 @@
 
 <div class="profile">
 	<div class="container">
-		<div class="avatar bounceInDown animated">
+		<div class="avatar animated fadeInDown">
 			#showAva(${user.avatar}, "img-circle")
 		</div>
 		<h1>#showName(${user})</h1>

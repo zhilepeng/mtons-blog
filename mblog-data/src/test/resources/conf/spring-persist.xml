@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
   	http://www.springframework.org/schema/beans/spring-beans.xsd"
-	default-autowire="byName">
+	   default-autowire="byName">
 
 	<!-- Dao -->
 	<bean id="configDao" class="mblog.persist.dao.impl.ConfigDaoImpl" />
@@ -13,7 +13,7 @@
 	<bean id="postDao" class="mblog.persist.dao.impl.PostDaoImpl" />
 	<bean id="attachDao" class="mblog.persist.dao.impl.AttachDaoImpl" />
 	<bean id="tagDao" class="mblog.persist.dao.impl.TagDaoImpl" />
-	
+
 	<bean id="groupDao" class="mblog.persist.dao.impl.GroupDaoImpl" />
 	<bean id="menuDao" class="mblog.persist.dao.impl.MenuDaoImpl" />
 	<bean id="openOauthDao" class="mblog.persist.dao.impl.OpenOauthDaoImpl" />
@@ -34,7 +34,7 @@
 	<bean id="postService" class="mblog.persist.service.impl.PostServiceImpl" />
 	<bean id="attachService" class="mblog.persist.service.impl.AttachServiceImpl" />
 	<bean id="tagService" class="mblog.persist.service.impl.TagServiceImpl" />
-	
+
 	<bean id="groupService" class="mblog.persist.service.impl.GroupServiceImpl" />
 	<bean id="menuService" class="mblog.persist.service.impl.MenuServiceImpl" />
 	<bean id="userEventService" class="mblog.persist.service.impl.UserEventServiceImpl" />

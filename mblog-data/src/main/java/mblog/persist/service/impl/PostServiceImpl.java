@@ -100,7 +100,6 @@ public class PostServiceImpl implements PostService {
 	@Transactional(readOnly = true)
 	public void search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException {
 		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-//	    fullTextSession.createIndexer().startAndWait();
 	    SearchFactory sf = fullTextSession.getSearchFactory();
 	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
 
@@ -451,5 +450,13 @@ public class PostServiceImpl implements PostService {
 		Map<Long, User> userMap = userService.findMapByIds(uids);
 
 		posts.forEach(p -> p.setAuthor(userMap.get(p.getAuthorId())));
+	}
+
+	@Override
+	@Transactional
+	public void resetIndexs() {
+		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
+		//异步
+		fullTextSession.createIndexer(PostPO.class).start();
 	}
 }

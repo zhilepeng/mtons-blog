@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 文章操作
  * @author langhsu
@@ -52,13 +54,14 @@ public class PostController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String post(Post blog) {
+	public String post(Post blog, HttpServletRequest request) {
 		
 		if (blog != null && StringUtils.isNotBlank(blog.getTitle())) {
-			UserProfile up = getSubject().getProfile();
+			UserProfile profile = getSubject().getProfile();
 			
-			handleAlbums(blog.getAlbums());
-			blog.setAuthorId(up.getId());
+			String[] ablums = request.getParameterValues("delayImages");
+			blog.setAlbums(handleAlbums(ablums));
+			blog.setAuthorId(profile.getId());
 			
 			postPlanet.post(blog);
 		}

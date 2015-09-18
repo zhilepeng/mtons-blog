@@ -22,13 +22,13 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "mto_role")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class RolePO {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	private String name;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "mto_role_menu", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "menu_id") })
 	@Fetch(FetchMode.SUBSELECT)
@@ -59,7 +59,7 @@ public class RolePO {
 	public void setAuthMenus(List<AuthMenuPO> authMenus) {
 		this.authMenus = authMenus;
 	}
-	
-	
+
+
 
 }

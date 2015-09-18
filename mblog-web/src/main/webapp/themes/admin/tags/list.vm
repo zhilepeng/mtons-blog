@@ -3,10 +3,10 @@
 <div class="panel m-t-large m-b">
 	<header class="panel-heading">标签管理</header>
 	<div class="panel-body">
-    	<div class="row text-small">
+    	<div class="filter">
     		<form id="qForm" method="post">
     			<input type="hidden" name="pn" value="${page.pageNo}" />
-    			<div class="col-lg-2">
+    			<div class="pull-left" style="width: 150px;">
     				<select name="order" class="input-small inline form-control" style="width:130px" data-select="$!{order}">
     					<option value="">选择排序</option>
 						<option value="id">ID</option>
@@ -15,10 +15,13 @@
 						<option value="hots">搜索热度</option>
 					</select>
     			</div>
-    			<div class="col-lg-4">
+                <div class="pull-left" style="width: 190px;">
     				<input type="text" name="key" class="input-small inline form-control" value="$!{key}" placeholder="请输入关键字" style="width:180px">
-    				<button class="btn btn-small btn-white" type="submit">查询</button>
+
     			</div>
+                <div class="pull-left">
+                    <button class="btn btn-small btn-white" type="submit">查询</button>
+				</div>
     		</form>
     	</div>
     	<div class="pull-out m-t-small">
@@ -77,7 +80,7 @@
 	<footer class="panel-footer">
 		<div class="row">
 			<div class="col-lg-12 text-right text-center-sm">                
-				#page("list" $page 5)
+				#page("list?order=$!{order}" $page 5)
 			</div>
 		</div>
 	</footer>

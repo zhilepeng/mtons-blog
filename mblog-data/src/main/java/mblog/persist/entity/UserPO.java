@@ -33,9 +33,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * 用户信息
- * 
+ *
  * @author langhsu
- * 
+ *
  */
 @Entity
 @Table(name = "mto_users")
@@ -47,12 +47,12 @@ public class UserPO {
 
 	@Column(name = "username", unique = true, length = 64)
 	private String username; // 用户名
-	
+
 	@Column(name = "password", length = 64)
 	private String password; // 密码
 
 	private String avatar;  // 头像
-	
+
 	@Column(name = "name", length = 18)
 	private String name;  // 昵称
 
@@ -60,7 +60,7 @@ public class UserPO {
 
 	@Column(name = "email", unique = true, length = 128)
 	private String email;  // 邮箱
-	
+
 	@Column(name = "mobile", length = 11)
 	private String mobile;  // 手机号
 
@@ -85,9 +85,9 @@ public class UserPO {
 
 	@Column(name = "role_id")
 	private int roleId;
-	
+
 	@OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	@JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 
 	private List<RolePO> roles = new ArrayList<RolePO>();

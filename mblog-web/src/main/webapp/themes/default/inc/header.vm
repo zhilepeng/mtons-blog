@@ -36,6 +36,7 @@
 </div>
 <!-- Login dialog END -->
 
+<!-- Header BEGIN -->
 <div class="top-wrap">
     <nav class="navbar navbar-inverse" role="navigation">
     	#parse("/default/inc/browse_tips.vm")
@@ -53,7 +54,7 @@
     			<ul class="nav navbar-nav">
 					#if($profile)
     				<li data="home">
-    					<a href="$base/home" nav="home">HOME</a>
+    					<a href="$base/home" nav="home">主页</a>
     				</li>
 					#end
 					
@@ -73,6 +74,21 @@
     			
     			<ul class="nav navbar-nav navbar-right sign">
     				#if($profile)
+					<li class="dropdown">
+                        <a href="#" class="publish dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-magic"></i> 发布
+                        </a>
+                    	<ul class="dropdown-menu publishs" role="menu">
+						#foreach($g in $groups)
+                        	<li>
+                                <a href="$base/post/new/${g.key}">
+                                    <i class="${g.icon} icon"></i>
+                                    <span>${g.alias}</span>
+                                </a>
+							</li>
+						#end
+						</ul>
+					</li>
     				<li class="dropdown">
     					<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
     						<img class="img-circle" src="$base${profile.avatar}">
@@ -112,3 +128,4 @@ $(function () {
     });
 });
 </script>
+<!-- Header END -->

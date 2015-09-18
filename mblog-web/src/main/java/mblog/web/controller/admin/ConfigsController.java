@@ -13,6 +13,7 @@ import mblog.data.Config;
 import mblog.persist.service.ConfigService;
 import mblog.persist.service.GroupService;
 import mblog.persist.service.MenuService;
+import mblog.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 系统配置
@@ -49,7 +46,9 @@ public class ConfigsController extends BaseController {
 	private MenuService menuService;
 	@Autowired
 	private ServletContext servletContext;
-	
+	@Autowired
+	private PostService postService;
+
 	@RequestMapping("/")
 	public String list(ModelMap model) {
 		Collection<String> cacheNames = ehcacheManager.getCacheNames();
@@ -92,14 +91,20 @@ public class ConfigsController extends BaseController {
 			servletContext.setAttribute(conf.getKey(), conf.getValue());
 			configMap.put(conf.getKey(), conf.getValue());
 		});
-		
+
 		appContext.setConfig(configMap);
-		
+
 		// 刷新文章Group
 		servletContext.setAttribute("groups", groupService.findAll());
 
 		// 刷新菜单
 		servletContext.setAttribute("menus", menuService.findAll());
+		return Data.success("操作成功", Data.NOOP);
+	}
+
+	@RequestMapping("/flush_indexs")
+	public @ResponseBody Data flushIndexs() {
+		postService.resetIndexs();
 		return Data.success("操作成功", Data.NOOP);
 	}
 	

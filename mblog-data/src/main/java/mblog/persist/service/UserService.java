@@ -30,13 +30,13 @@ public interface UserService {
 	 * @return
 	 */
 	AccountProfile login(String username, String password);
-	
+
 	/**
 	 * 注册
 	 * @param user
 	 */
 	User register(User user);
-	
+
 	/**
 	 * 修改用户信息
 	 * @param user
@@ -57,7 +57,7 @@ public interface UserService {
 	 * @return
 	 */
 	User get(long id);
-	
+
 	User getByUsername(String username);
 
 	/**
@@ -67,14 +67,14 @@ public interface UserService {
 	 * @return
 	 */
 	AccountProfile updateAvatar(long id, String path);
-	
+
 	/**
 	 * 修改密码
 	 * @param id
 	 * @param newPassword
 	 */
 	void updatePassword(long id, String newPassword);
-	
+
 	/**
 	 * 修改密码
 	 * @param id
@@ -82,7 +82,7 @@ public interface UserService {
 	 * @param newPassword
 	 */
 	void updatePassword(long id, String oldPassword, String newPassword);
-	
+
 	/**
 	 * 修改用户状态
 	 * @param id
@@ -91,9 +91,9 @@ public interface UserService {
 	void updateStatus(long id, int status);
 
 	AccountProfile updateActiveEmail(long id, int activeEmail);
-	
+
 	void updateRole(long id, Long[] roleIds);
-	
+
 	/**
 	 * 分页查询
 	 * @param paging
@@ -101,6 +101,6 @@ public interface UserService {
 	void paging(Paging paging, String key);
 
 	Map<Long, User> findMapByIds(Set<Long> ids);
-	
+
 	List<AuthMenu> getMenuList(long id);
 }

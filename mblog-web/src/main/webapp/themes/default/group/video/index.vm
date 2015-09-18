@@ -24,6 +24,11 @@
 			</div>
 		</div>
 	#end
+	#if($page.results.size() == 0)
+        <div class="stream-item">
+            该目录下还没有内容!
+        </div>
+	#end
 </div>
 <div class="text-center clr">
 	#set($url = "$!{group.key}?ord=" + ${ord})

@@ -9,17 +9,15 @@
 */
 package mblog.persist.service;
 
+import mblog.data.Post;
+import mblog.lang.EnumPrivacy;
+import mtons.modules.pojos.Paging;
+import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import mblog.lang.EnumPrivacy;
-import mtons.modules.pojos.Paging;
-
-import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
-
-import mblog.data.Post;
 
 /**
  * 文章管理
@@ -157,4 +155,6 @@ public interface PostService {
 	 */
 	void unfavor(long userId, long postId);
 
+
+	void resetIndexs();
 }

@@ -34,10 +34,10 @@ import mtons.modules.pojos.Paging;
 public class UsersController extends BaseController {
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@RequestMapping("/list")
 	public String list(Integer pn, String key, ModelMap model) {
 		Paging page = wrapPage(pn);
@@ -46,7 +46,7 @@ public class UsersController extends BaseController {
 		model.put("key", key);
 		return "/admin/users/list";
 	}
-	
+
 	@RequestMapping("/view")
 	public String view(Long id, ModelMap model) {
 		User view = userService.get(id);
@@ -54,7 +54,7 @@ public class UsersController extends BaseController {
 		model.put("roles", roleService.getAll());
 		return "/admin/users/view";
 	}
-	
+
 	@RequestMapping("/update_role")
 	public String update(long id, String roleIds) {
 		System.out.println(roleIds);
@@ -66,14 +66,14 @@ public class UsersController extends BaseController {
 		userService.updateRole(id, ids);
 		return "redirect:/admin/users/list";
 	}
-	
+
 	@RequestMapping(value = "/pwd", method = RequestMethod.GET)
 	public String pwsView(Long id, ModelMap model) {
 		User ret = userService.get(id);
 		model.put("view", ret);
 		return "/admin/users/pwd";
 	}
-	
+
 	@RequestMapping(value = "/pwd", method = RequestMethod.POST)
 	public String pwd(Long id, String newPassword, ModelMap model) {
 		User ret = userService.get(id);
@@ -87,14 +87,14 @@ public class UsersController extends BaseController {
 		}
 		return "/admin/users/pwd";
 	}
-	
+
 	@RequestMapping("/open")
 	public @ResponseBody Data open(Long id) {
 		userService.updateStatus(id, Const.STATUS_NORMAL);
 		Data data = Data.success("操作成功", Data.NOOP);
 		return data;
 	}
-	
+
 	@RequestMapping("/close")
 	public @ResponseBody Data close(Long id) {
 		userService.updateStatus(id, Const.STATUS_CLOSED);

@@ -29,7 +29,7 @@ public class BeanMapUtils {
 	public static String[] USER_IGNORE = new String[]{"password", "extend", "roles"};
 
 	public static String[] POST_IGNORE_LIST = new String[]{"markdown", "content"};
-	
+
 	public static User copy(UserPO po) {
 		if (po == null) {
 			return null;
@@ -45,7 +45,7 @@ public class BeanMapUtils {
 		ret.setRoles(roles);
 		return ret;
 	}
-	
+
 	public static AccountProfile copyPassport(UserPO po) {
 		AccountProfile passport = new AccountProfile(po.getId(), po.getUsername());
 		passport.setName(po.getName());
@@ -76,7 +76,7 @@ public class BeanMapUtils {
 		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
-	
+
 	public static Post copy(PostPO po, int level) {
 		Post d = new Post();
 		if (level > 0) {
@@ -86,13 +86,13 @@ public class BeanMapUtils {
 		}
 		return d;
 	}
-	
+
 	public static Attach copy(AttachPO po) {
 		Attach ret = new Attach();
 		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
-	
+
 	public static Tag copy(TagPO po) {
 		if (po == null) {
 			return null;
@@ -101,14 +101,14 @@ public class BeanMapUtils {
 		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
-	
+
 	public static List<Tag> convertTags(long postId, String tags) {
 		if (StringUtils.isBlank(tags)) {
 			return Collections.emptyList();
 		}
 		List<Tag> ret = new ArrayList<>();
 		String[] ts = StringUtils.split(tags, Consts.SEPARATOR);
-		
+
 		for (String t : ts) {
 			Tag tag = new Tag();
 			tag.setName(t);
@@ -116,16 +116,16 @@ public class BeanMapUtils {
 			tag.setPosts(1);
 			ret.add(tag);
 		}
-		
+
 		return ret;
 	}
-	
+
 	public static Group copy(GroupPO po) {
 		Group r = new Group();
 		BeanUtils.copyProperties(po, r);
 		return r;
 	}
-	
+
 	public static AuthMenu copy(AuthMenuPO po,String... ignore){
 		AuthMenu am = new AuthMenu();
 		List<AuthMenu> children = new ArrayList<AuthMenu>();
@@ -142,7 +142,7 @@ public class BeanMapUtils {
 		am.setChildren(children);
 		return am;
 	}
-	
+
 	public static Role copy(RolePO po){
 		Role r = new Role();
 		BeanUtils.copyProperties(po, r,"users","authMenus");

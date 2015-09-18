@@ -139,6 +139,7 @@ public class PostPlanetImpl implements PostPlanet {
 			atts.forEach(a -> {
 				fileRepo.deleteFile(a.getPreview());
 				fileRepo.deleteFile(a.getOriginal());
+				fileRepo.deleteFile(a.getScreenshot());
 			});
 		}
 
@@ -157,6 +158,7 @@ public class PostPlanetImpl implements PostPlanet {
 				atts.forEach(a -> {
 					fileRepo.deleteFile(a.getPreview());
 					fileRepo.deleteFile(a.getOriginal());
+					fileRepo.deleteFile(a.getScreenshot());
 				});
 			}
 

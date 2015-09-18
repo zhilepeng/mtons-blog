@@ -2,7 +2,7 @@
 $!{site_metas}
 
 <script src="$base/assets/vendors/pace/pace.min.js"></script>
-<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+<link href="$base/assets/vendors/pace/themes/pace-theme-bounce.css" rel="stylesheet" />
 
 <link rel='stylesheet' media='all' href='$base/assets/vendors/font-awesome/css/font-awesome.min.css'/>
 <link rel="stylesheet" media='all' href="$base/assets/vendors/bootstrap/css/bootstrap.min.css">
@@ -10,6 +10,7 @@ $!{site_metas}
 <link rel='stylesheet' media='all' href='$base/assets/css/style.css'/>
 <link rel='stylesheet' media='all' href='$base/assets/css/layout.css'/>
 <link rel='stylesheet' media='all' href='$base/assets/css/plugins.css'/>
+<link rel='stylesheet' media='all' href='$base/assets/css/addons.css'/>
 
 <link rel='stylesheet' media='all' href="$base/assets/vendors/baguette/baguetteBox.min.css"/>
 
@@ -31,9 +32,8 @@ $!{site_metas}
 
     window.app = {
         base: '$base',
-        login: '$!{profile.id}'
+        LOGIN_TOKEN: '$!{profile.id}'
     };
 	
 	window.UEDITOR_HOME_URL = '$base/assets/vendors/ueditor/';
-	
 </script>

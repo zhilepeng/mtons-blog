@@ -7,7 +7,6 @@
 |
 +---------------------------------------------------------------------------
 */
-
 /*.container */
 @media (min-width: 1200px) {
 	.container {
@@ -25,11 +24,21 @@
 .navbar .nav .signin, .navbar .nav .signup {
 	padding: 7px 12px; margin: 8px 6px; border-radius: 2px; color: #fff; text-align: center;
 }
-.navbar .nav .signin { border: 1px solid #1cba11; }
-.navbar .nav .signup { border: 1px solid #00aed1; }
+.navbar .nav .signin { background-color: #00aed1; }
+.navbar .nav .signup { background-color: #1cba11; }
 
-.navbar .nav .signin:hover { background-color: #25D618; }
-.navbar .nav .signup:hover { background-color: #22BBDA; }
+.navbar .nav .signin:hover { background-color: #22BBDA; }
+.navbar .nav .signup:hover { background-color: #25D618; }
+
+.navbar .nav .publish {
+	padding: 3px 15px; margin: 12px 6px; border-radius: 2px; color: #fff; text-align: center; background-color: #22BBDA;
+}
+
+.navbar .nav .publish:hover { background-color: #00aed1; }
+
+.navbar .nav .publishs { }
+.navbar .nav .publishs>li>a { padding: 5px 30px; }
+.navbar .nav .publishs .icon { width: 18px; }
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }
