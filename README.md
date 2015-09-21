@@ -36,3 +36,5 @@
 如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mtons相关版权信息链接
 
 QQ交流群：378433412
+
+官网: [http://mtons.com](http://mtons.com)
