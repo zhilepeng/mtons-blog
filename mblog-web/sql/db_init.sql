@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50522
 File Encoding         : 65001
 
-Date: 2015-09-18 15:04:45
+Date: 2015-09-23 21:28:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,7 +51,7 @@ CREATE TABLE `mto_auth_menu` (
   PRIMARY KEY (`id`),
   KEY `FK_fynq2bfwabynqmnauw69b7ulc` (`parent_id`),
   CONSTRAINT `FK_fynq2bfwabynqmnauw69b7ulc` FOREIGN KEY (`parent_id`) REFERENCES `mto_auth_menu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_auth_menu
@@ -59,22 +59,22 @@ CREATE TABLE `mto_auth_menu` (
 INSERT INTO `mto_auth_menu` VALUES ('1', '根目录', '', '', '1', '/', null, null);
 INSERT INTO `mto_auth_menu` VALUES ('2', '后台管理', null, 'admin', '1', 'admin', '1', null);
 INSERT INTO `mto_auth_menu` VALUES ('3', '我的主页', null, '', '1', '', '1', null);
-INSERT INTO `mto_auth_menu` VALUES ('4', '文章管理', null, 'admin:posts:view', '2', 'admin/posts/list', '2', 'fa fa-edit icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('5', '文章修改', null, 'admin:posts:edit', '1', null, '4', null);
-INSERT INTO `mto_auth_menu` VALUES ('6', '用户管理', null, 'admin:users:view', '3', 'admin/users/list', '2', 'fa fa-user icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('7', '禁用用户', null, 'admin:users:edit', '1', null, '6', null);
-INSERT INTO `mto_auth_menu` VALUES ('8', '修改密码', null, 'admin:users:edit', '1', null, '6', null);
-INSERT INTO `mto_auth_menu` VALUES ('9', '评论管理', null, 'admin:comments:view', '4', 'admin/comments/list', '2', 'fa fa-comments-o icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('10', '删除评论', null, 'admin:comments:edit', '1', null, '9', null);
-INSERT INTO `mto_auth_menu` VALUES ('11', '标签管理', null, 'admin:tags:view', '5', 'admin/tags/list', '2', 'fa fa-tags icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('12', '删除标签', null, 'admin:tags:edit', '1', null, '11', null);
-INSERT INTO `mto_auth_menu` VALUES ('13', '修改标签', null, 'admin:tags:edit', '2', null, '11', null);
-INSERT INTO `mto_auth_menu` VALUES ('14', '推荐标签', null, 'admin:tags:edit', '3', null, '11', null);
-INSERT INTO `mto_auth_menu` VALUES ('15', '系统配置', null, 'admin:config:view', '6', 'admin/config/', '2', 'fa fa-cog icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('16', '修改配置', null, 'admin:config:edit', '1', null, '15', null);
+INSERT INTO `mto_auth_menu` VALUES ('4', '文章管理', null, 'posts:view', '2', 'admin/posts/list', '2', 'fa fa-edit icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('5', '文章修改', null, 'posts:edit', '1', null, '4', null);
+INSERT INTO `mto_auth_menu` VALUES ('6', '用户管理', null, 'users:view', '3', 'admin/users/list', '2', 'fa fa-user icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('7', '禁用用户', null, 'users:edit', '1', '', '6', null);
+INSERT INTO `mto_auth_menu` VALUES ('8', '修改密码', null, 'users:edit', '1', null, '6', null);
+INSERT INTO `mto_auth_menu` VALUES ('9', '评论管理', null, 'comments:view', '4', 'admin/comments/list', '2', 'fa fa-comments-o icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('10', '删除评论', null, 'comments:edit', '1', null, '9', null);
+INSERT INTO `mto_auth_menu` VALUES ('11', '标签管理', null, 'tags:view', '5', 'admin/tags/list', '2', 'fa fa-tags icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('12', '删除标签', null, 'tags:edit', '1', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('13', '修改标签', null, 'tags:edit', '2', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('14', '推荐标签', null, 'tags:edit', '3', null, '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('15', '系统配置', null, 'config:view', '6', 'admin/config/', '2', 'fa fa-cog icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('16', '修改配置', null, 'config:edit', '1', null, '15', null);
 INSERT INTO `mto_auth_menu` VALUES ('17', 'dashboard', null, 'admin', '1', 'admin', '2', 'fa fa-dashboard icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('18', '角色管理', null, 'admin:roles:view', '7', 'admin/roles/list', '2', 'fa fa-dashboard icon-xlarge');
-INSERT INTO `mto_auth_menu` VALUES ('19', '菜单管理', null, 'admin:authMenus:view', '8', 'admin/authMenus/list', '2', 'fa fa-edit icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('18', '角色管理', null, 'roles:view', '7', 'admin/roles/list', '2', 'fa fa-dashboard icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('19', '菜单管理', null, 'authMenus:view', '8', 'admin/authMenus/list', '2', 'fa fa-edit icon-xlarge');
 
 -- ----------------------------
 -- Table structure for mto_comments
@@ -275,13 +275,14 @@ CREATE TABLE `mto_role` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_role
 -- ----------------------------
 INSERT INTO `mto_role` VALUES ('1', '管理员');
 INSERT INTO `mto_role` VALUES ('2', '普通用户');
+INSERT INTO `mto_role` VALUES ('3', '半个管理员');
 
 -- ----------------------------
 -- Table structure for mto_role_menu
@@ -375,12 +376,12 @@ CREATE TABLE `mto_users` (
   `posts` int(11) NOT NULL,
   `signature` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mto_users
 -- ----------------------------
-INSERT INTO `mto_users` VALUES ('1', '2015-08-06 17:52:41', 'admin@mtons.com', '2015-09-18 14:38:41', null, '3TGCQF25BLHU9R7IQUITN0FCC5', '0', 'admin', '小豆丁', '/dist/images/ava/default.png', '2015-07-26 11:08:36', '0', '1', '0', '1', '0', '0', '0', '0', '0', null);
+INSERT INTO `mto_users` VALUES ('1', '2015-08-06 17:52:41', 'admin@mtons.com', '2015-09-23 21:21:12', null, '3TGCQF25BLHU9R7IQUITN0FCC5', '0', 'admin', '小豆丁', '/dist/images/ava/default.png', '2015-07-26 11:08:36', '0', '1', '0', '1', '0', '0', '0', '0', '0', null);
 
 -- ----------------------------
 -- Table structure for mto_users_open_oauth
@@ -409,9 +410,10 @@ DROP TABLE IF EXISTS `mto_user_role`;
 CREATE TABLE `mto_user_role` (
   `user_id` bigint(20) NOT NULL,
   `role_id` bigint(20) NOT NULL,
-  UNIQUE KEY `UK_fhtla2vc199mv0ru2r2kvakha` (`role_id`),
   KEY `FK_fhtla2vc199mv0ru2r2kvakha` (`role_id`),
-  KEY `FK_b4m7ef0uvkr4efrscf8r1ehy2` (`user_id`)
+  KEY `FK_b4m7ef0uvkr4efrscf8r1ehy2` (`user_id`),
+  CONSTRAINT `FK_b4m7ef0uvkr4efrscf8r1ehy2` FOREIGN KEY (`user_id`) REFERENCES `mto_users` (`id`),
+  CONSTRAINT `FK_fhtla2vc199mv0ru2r2kvakha` FOREIGN KEY (`role_id`) REFERENCES `mto_role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -441,6 +443,6 @@ CREATE TABLE `mto_verify` (
 -- ----------------------------
 -- Records of mto_verify
 -- ----------------------------
-INSERT INTO `mto_verify` VALUES ('1', '9234319298', '2015-09-08 14:34:19', '2015-09-08 15:04:19', '0', 'i@yuanye.li', null, '1', '2');
+INSERT INTO `mto_verify` VALUES ('1', '5708745295', '2015-09-22 16:39:03', '2015-09-22 17:09:03', '0', 'i@yuanye.li', null, '1', '2');
 INSERT INTO `mto_verify` VALUES ('2', '3488696085', '2015-09-10 16:02:53', '2015-09-10 16:32:53', '0', 'aaa.qq@qq.com', null, '1', '15');
 INSERT INTO `mto_verify` VALUES ('3', '9354005478', '2015-09-10 16:03:17', '2015-09-10 16:33:17', '0', 'qqq@qq.com', null, '1', '16');
