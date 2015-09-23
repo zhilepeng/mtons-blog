@@ -28,5 +28,11 @@
         <scope>application</scope>
         <class>mblog.shiro.support.Permission</class>
     </tool>
+
+    <tool>
+        <key>auth</key>
+        <scope>application</scope>
+        <class>mblog.web.tool.AuthMenuTool</class>
+    </tool>
     
 </toolbox>

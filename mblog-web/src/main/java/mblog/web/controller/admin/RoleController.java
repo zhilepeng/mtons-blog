@@ -1,5 +1,7 @@
 package mblog.web.controller.admin;
 
+import mblog.data.AuthMenu;
+import mblog.persist.service.AuthMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,17 @@ import mblog.persist.service.RoleService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Paging;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/roles")
 public class RoleController extends BaseController {
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private AuthMenuService authMenuService;
 	
 	@ModelAttribute("role")
 	public Role get(@RequestParam(required=false) String id) {
@@ -44,7 +52,17 @@ public class RoleController extends BaseController {
 	}
 	
 	@RequestMapping("/save")
-	public String save(Role role,Model model){
+	public String save(Role role,Model model,String menus){
+		String[] menusIds = menus.split(",");
+		List<AuthMenu> menuList = new ArrayList<>();
+		for(String menuId : menusIds){
+			if(menuId!=null&&!menuId.equals("")){
+				Long id = Long.valueOf(menuId);
+				AuthMenu menu = authMenuService.get(id);
+				menuList.add(menu);
+			}
+		}
+		role.setAuthMenus(menuList);
 		roleService.save(role);
 		return "redirect:/admin/roles/list";
 	}

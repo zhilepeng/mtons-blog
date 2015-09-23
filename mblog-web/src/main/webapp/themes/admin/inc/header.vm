@@ -38,8 +38,8 @@
 <!-- nav -->
 <nav id="nav" class="nav-primary visible-lg nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-		#foreach($menu in $profile.authMenus)
-			#if($menu.parent.id==2)
+		#foreach($menu in ${auth.findByParentId(2)})
+            #if($shiro.hasPermission($menu.permission))
                 <li><a href="$base/$menu.url" nav="$menu.sort"><i class="$menu.icon"></i>$menu.name</a></li>
 			#end
 		#end
