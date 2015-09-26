@@ -3,18 +3,10 @@
  */
 package mblog.data.test;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import mblog.persist.dao.OpenOauthDao;
-import mblog.persist.entity.OpenOauthPO;
-import mblog.persist.entity.UserPO;
 import mblog.persist.service.UserService;
-import mtons.modules.utils.MD5Helper;
 
 /**
  * 第三方登录用户-升级代码

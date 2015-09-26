@@ -9,6 +9,10 @@
 */
 package mblog.persist.service.impl;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 import mblog.data.OpenOauth;
 import mblog.data.User;
 import mblog.persist.dao.OpenOauthDao;
@@ -17,10 +21,7 @@ import mblog.persist.entity.OpenOauthPO;
 import mblog.persist.entity.UserPO;
 import mblog.persist.service.OpenOauthService;
 import mblog.persist.utils.BeanMapUtils;
-import mtons.modules.utils.MD5Helper;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import mtons.modules.security.MD5;
 
 /**
  * 第三方登录授权管理
@@ -71,7 +72,7 @@ public class OpenOauthServiceImpl implements OpenOauthService {
         if (po != null) {
             UserPO upo = userDao.get(userId);
 
-            String pwd = MD5Helper.md5(po.getAccessToken());
+            String pwd = MD5.md5(po.getAccessToken());
             // 判断用户密码 和 登录状态
             if (pwd.equals(upo.getPassword())) {
                 return true;

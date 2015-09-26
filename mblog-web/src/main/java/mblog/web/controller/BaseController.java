@@ -9,27 +9,29 @@
 */
 package mblog.web.controller;
 
-import com.google.gson.Gson;
-import mblog.data.AccountProfile;
-import mblog.data.Attach;
-import mblog.extend.context.AppContext;
-import mblog.extend.upload.FileRepo;
-import mblog.shiro.authc.AccountSubject;
-import mtons.modules.pojos.Paging;
-import mtons.modules.utils.MD5Helper;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import com.google.gson.Gson;
+
+import mblog.data.AccountProfile;
+import mblog.data.Attach;
+import mblog.extend.context.AppContext;
+import mblog.extend.upload.FileRepo;
+import mblog.shiro.authc.AccountSubject;
+import mtons.modules.pojos.Paging;
+import mtons.modules.security.MD5;
 
 /**
  * Controller 基类
@@ -59,7 +61,7 @@ public class BaseController {
 	}
 
 	protected AuthenticationToken createToken(String username, String password) {
-		return new UsernamePasswordToken(username, MD5Helper.md5(password));
+		return new UsernamePasswordToken(username, MD5.md5(password));
 	}
 
 	/**

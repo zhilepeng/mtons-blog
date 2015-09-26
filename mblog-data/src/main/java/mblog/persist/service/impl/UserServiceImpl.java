@@ -14,15 +14,19 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.util.Assert;
 
 import mblog.data.AccountProfile;
@@ -38,17 +42,9 @@ import mblog.persist.service.NotifyService;
 import mblog.persist.service.UserService;
 import mblog.persist.utils.BeanMapUtils;
 import mtons.modules.exception.MtonsException;
-import mtons.modules.lang.Const;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Paging;
-import mtons.modules.utils.MD5Helper;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
-import java.util.*;
+import mtons.modules.security.MD5;
 
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -106,7 +102,7 @@ public class UserServiceImpl implements UserService {
 		BeanUtils.copyProperties(user, po);
 
 		Date now = Calendar.getInstance().getTime();
-		po.setPassword(MD5Helper.md5(user.getPassword()));
+		po.setPassword(MD5.md5(user.getPassword()));
 		po.setStatus(EntityStatus.ENABLED);
 		po.setActiveEmail(EntityStatus.ENABLED);
 		po.setCreated(now);
@@ -190,7 +186,7 @@ public class UserServiceImpl implements UserService {
 		Assert.hasLength(newPassword, "密码不能为空!");
 
 		if (null != po) {
-			po.setPassword(MD5Helper.md5(newPassword));
+			po.setPassword(MD5.md5(newPassword));
 		}
 	}
 
@@ -202,8 +198,8 @@ public class UserServiceImpl implements UserService {
 		Assert.hasLength(newPassword, "密码不能为空!");
 
 		if (po != null) {
-			Assert.isTrue(MD5Helper.md5(oldPassword).equals(po.getPassword()), "当前密码不正确");
-			po.setPassword(MD5Helper.md5(newPassword));
+			Assert.isTrue(MD5.md5(oldPassword).equals(po.getPassword()), "当前密码不正确");
+			po.setPassword(MD5.md5(newPassword));
 		}
 	}
 
