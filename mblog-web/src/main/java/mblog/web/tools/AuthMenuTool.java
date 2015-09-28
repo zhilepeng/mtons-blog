@@ -1,4 +1,4 @@
-package mblog.web.tool;
+package mblog.web.tools;
 
 import java.util.List;
 

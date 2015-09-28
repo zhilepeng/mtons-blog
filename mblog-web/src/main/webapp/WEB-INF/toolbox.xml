@@ -32,7 +32,7 @@
     <tool>
         <key>auth</key>
         <scope>application</scope>
-        <class>mblog.web.tool.AuthMenuTool</class>
+        <class>mblog.web.tools.AuthMenuTool</class>
     </tool>
 
 </toolbox>

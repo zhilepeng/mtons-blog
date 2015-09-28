@@ -1,4 +1,4 @@
-package mblog.web.from;
+package mblog.base.data;
 
 public class UMEditorResult {
 	private String name;
