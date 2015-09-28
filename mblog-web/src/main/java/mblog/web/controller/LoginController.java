@@ -9,10 +9,10 @@
 */
 package mblog.web.controller;
 
-import mblog.data.BadgesCount;
-import mblog.data.Notify;
-import mblog.lang.Consts;
-import mblog.persist.service.NotifyService;
+import mblog.base.lang.Consts;
+import mblog.core.data.BadgesCount;
+import mblog.core.data.Notify;
+import mblog.core.persist.service.NotifyService;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.desk.Views;
 import org.apache.commons.lang.StringUtils;

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.data.AuthMenu;
-import mblog.data.Role;
-import mblog.persist.service.AuthMenuService;
-import mblog.persist.service.RoleService;
+import mblog.core.data.AuthMenu;
+import mblog.core.data.Role;
+import mblog.core.persist.service.AuthMenuService;
+import mblog.core.persist.service.RoleService;
 import mblog.web.controller.BaseController;
 
 @Controller

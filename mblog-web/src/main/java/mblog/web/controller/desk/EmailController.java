@@ -1,12 +1,12 @@
 package mblog.web.controller.desk;
 
-import mblog.data.AccountProfile;
-import mblog.data.User;
-import mblog.extend.data.DataExt;
-import mblog.extend.email.EmailSender;
-import mblog.lang.Consts;
-import mblog.persist.service.UserService;
-import mblog.persist.service.VerifyService;
+import mblog.base.data.DataExt;
+import mblog.base.email.EmailSender;
+import mblog.base.lang.Consts;
+import mblog.core.data.AccountProfile;
+import mblog.core.data.User;
+import mblog.core.persist.service.UserService;
+import mblog.core.persist.service.VerifyService;
 import mblog.web.controller.BaseController;
 import mtons.modules.exception.MtonsException;
 import mtons.modules.pojos.Data;

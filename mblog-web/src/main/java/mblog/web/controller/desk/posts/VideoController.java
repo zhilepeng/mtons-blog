@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.extend.analysis.videos.VideoAnalysis;
-import mblog.extend.data.Video;
+import mblog.base.analysis.videos.VideoAnalysis;
+import mblog.base.data.Video;
 
 /**
  * 视频信息抓取

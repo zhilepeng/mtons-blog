@@ -5,8 +5,6 @@ package mblog.web.controller.desk.comment;
 
 import javax.servlet.http.HttpServletRequest;
 
-import mblog.extend.event.NotifyEvent;
-import mblog.lang.Consts;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
-import mblog.data.Comment;
-import mblog.extend.planet.CommentPlanet;
-import mblog.persist.service.PostService;
+import mblog.base.lang.Consts;
+import mblog.core.data.Comment;
+import mblog.core.event.NotifyEvent;
+import mblog.core.persist.service.PostService;
+import mblog.core.planet.CommentPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;

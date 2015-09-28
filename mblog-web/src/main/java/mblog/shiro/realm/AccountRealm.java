@@ -2,14 +2,6 @@ package mblog.shiro.realm;
 
 import java.util.List;
 
-import mblog.data.AccountProfile;
-import mblog.data.AuthMenu;
-import mblog.data.User;
-import mblog.lang.EnumRole;
-import mblog.persist.service.UserService;
-import mblog.shiro.authc.AccountAuthenticationInfo;
-import mtons.modules.lang.Const;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -21,9 +13,17 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.util.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import mblog.core.data.AccountProfile;
+import mblog.core.data.AuthMenu;
+import mblog.core.data.User;
+import mblog.core.persist.service.UserService;
+import mblog.shiro.authc.AccountAuthenticationInfo;
+import mtons.modules.lang.Const;
 
 public class AccountRealm extends AuthorizingRealm {
+	@Autowired
     private UserService userService;
 
     public AccountRealm() {
@@ -78,10 +78,6 @@ public class AccountRealm extends AuthorizingRealm {
         info.setProfile(profile);
 
         return info;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 
     protected AccountProfile getAccount(UserService userService, AuthenticationToken token){

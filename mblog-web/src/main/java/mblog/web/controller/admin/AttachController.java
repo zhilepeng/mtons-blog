@@ -1,7 +1,7 @@
 package mblog.web.controller.admin;
 
-import mblog.data.BadgesCount;
-import mblog.persist.service.AttachService;
+import mblog.core.data.BadgesCount;
+import mblog.core.persist.service.AttachService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import org.springframework.beans.factory.annotation.Autowired;

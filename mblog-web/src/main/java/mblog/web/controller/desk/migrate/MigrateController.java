@@ -9,11 +9,11 @@
 */
 package mblog.web.controller.desk.migrate;
 
-import mblog.data.Post;
-import mblog.data.User;
-import mblog.extend.planet.PostPlanet;
-import mblog.persist.service.PostService;
-import mblog.persist.service.UserService;
+import mblog.core.data.Post;
+import mblog.core.data.User;
+import mblog.core.persist.service.PostService;
+import mblog.core.persist.service.UserService;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;

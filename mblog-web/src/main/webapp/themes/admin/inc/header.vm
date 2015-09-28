@@ -24,11 +24,11 @@
         <li class="dropdown shift" data-toggle="shift:appendTo" data-target=".nav-primary .nav">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus"></i> POST <b class="caret hidden-sm-only"></b></a>
             <ul class="dropdown-menu">
-				#foreach($g in $groups)
+                #foreach($g in $groups)
                     <li>
                         <a href="$base/post/new/${g.key}" target="_blank">${g.alias}</a>
                     </li>
-				#end
+                #end
             </ul>
         </li>
     </ul>
@@ -38,11 +38,11 @@
 <!-- nav -->
 <nav id="nav" class="nav-primary visible-lg nav-vertical">
     <ul class="nav" data-spy="affix" data-offset-top="50">
-		#foreach($menu in ${auth.findByParentId(2)})
+        #foreach($menu in ${auth.findByParentId(2)})
             #if($shiro.hasPermission($menu.permission))
                 <li><a href="$base/$menu.url" nav="$menu.sort"><i class="$menu.icon"></i>$menu.name</a></li>
-			#end
-		#end
+            #end
+        #end
     </ul>
 </nav>
 <!-- / nav -->

@@ -20,6 +20,7 @@ import mtons.modules.pojos.Data;
 
 import org.apache.log4j.Logger;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -32,6 +33,7 @@ import com.google.gson.Gson;
  * @author langhsu
  *
  */
+@Component
 public class DefaultExceptionHandler implements HandlerExceptionResolver {
 	private Logger log = Logger.getLogger(getClass());
 	

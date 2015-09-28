@@ -14,10 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mblog.data.Tag;
-import mblog.extend.planet.TagPlanet;
-import mblog.persist.service.PostService;
-import mblog.persist.service.TagService;
+import mblog.core.data.Tag;
+import mblog.core.persist.service.PostService;
+import mblog.core.persist.service.TagService;
+import mblog.core.planet.TagPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

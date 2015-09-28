@@ -11,7 +11,6 @@ package mblog.web.controller.admin;
 
 import java.util.List;
 
-import mblog.lang.Consts;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;
@@ -25,9 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.data.Post;
-import mblog.extend.planet.PostPlanet;
-import mblog.persist.service.PostService;
+import mblog.base.lang.Consts;
+import mblog.core.data.Post;
+import mblog.core.persist.service.PostService;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;

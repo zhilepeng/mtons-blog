@@ -1,8 +1,8 @@
 package mblog.web.controller.desk.account;
 
-import mblog.extend.event.NotifyEvent;
-import mblog.lang.Consts;
-import mblog.persist.service.FollowService;
+import mblog.base.lang.Consts;
+import mblog.core.event.NotifyEvent;
+import mblog.core.persist.service.FollowService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;

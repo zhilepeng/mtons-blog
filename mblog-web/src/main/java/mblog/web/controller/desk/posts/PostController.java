@@ -3,10 +3,10 @@
  */
 package mblog.web.controller.desk.posts;
 
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.extend.planet.PostPlanet;
-import mblog.persist.service.GroupService;
+import mblog.core.data.Group;
+import mblog.core.data.Post;
+import mblog.core.persist.service.GroupService;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Data;

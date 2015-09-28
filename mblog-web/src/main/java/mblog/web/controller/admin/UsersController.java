@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.data.User;
-import mblog.lang.EnumRole;
-import mblog.persist.service.RoleService;
-import mblog.persist.service.UserService;
+import mblog.base.lang.EnumRole;
+import mblog.core.data.User;
+import mblog.core.persist.service.RoleService;
+import mblog.core.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Data;

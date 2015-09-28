@@ -9,12 +9,12 @@
 */
 package mblog.web.controller.desk.user;
 
-import mblog.data.AccountProfile;
-import mblog.data.BadgesCount;
-import mblog.data.User;
-import mblog.extend.planet.CommentPlanet;
-import mblog.lang.EnumPrivacy;
-import mblog.persist.service.*;
+import mblog.base.lang.EnumPrivacy;
+import mblog.core.data.AccountProfile;
+import mblog.core.data.BadgesCount;
+import mblog.core.data.User;
+import mblog.core.persist.service.*;
+import mblog.core.planet.CommentPlanet;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;

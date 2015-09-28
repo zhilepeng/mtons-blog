@@ -9,10 +9,10 @@
 */
 package mblog.web.controller.api;
 
-import mblog.data.Post;
-import mblog.data.Tag;
-import mblog.extend.planet.PostPlanet;
-import mblog.extend.planet.TagPlanet;
+import mblog.core.data.Post;
+import mblog.core.data.Tag;
+import mblog.core.planet.PostPlanet;
+import mblog.core.planet.TagPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;

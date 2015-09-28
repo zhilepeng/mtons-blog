@@ -3,11 +3,12 @@
  */
 package mblog.web.controller.desk.account;
 
-import mblog.data.User;
-import mblog.extend.email.EmailSender;
-import mblog.extend.planet.UserPlanet;
-import mblog.lang.Consts;
-import mblog.persist.service.VerifyService;
+import mblog.base.email.EmailSender;
+import mblog.base.lang.Consts;
+import mblog.core.data.User;
+import mblog.core.persist.service.UserService;
+import mblog.core.persist.service.VerifyService;
+import mblog.core.planet.UserPlanet;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;
 
@@ -18,7 +19,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 

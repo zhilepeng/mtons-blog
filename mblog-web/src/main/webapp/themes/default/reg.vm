@@ -66,7 +66,7 @@
                     conditional : '<div class="alert alert-danger">邮箱格式不合法</div>'
                 },
                 username : {
-                    conditional : '<div class="alert alert-danger">只能是字母/字母+数字的组合</div>'
+                    conditional : '<div class="alert alert-danger">只能是字母/字母+数字的组合,不少于5位</div>'
                 }
             }
         });

@@ -9,11 +9,11 @@
 */
 package mblog.web.controller.admin;
 
-import mblog.data.Config;
-import mblog.persist.service.ConfigService;
-import mblog.persist.service.GroupService;
-import mblog.persist.service.MenuService;
-import mblog.persist.service.PostService;
+import mblog.core.data.Config;
+import mblog.core.persist.service.ConfigService;
+import mblog.core.persist.service.GroupService;
+import mblog.core.persist.service.MenuService;
+import mblog.core.persist.service.PostService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import org.springframework.beans.factory.annotation.Autowired;

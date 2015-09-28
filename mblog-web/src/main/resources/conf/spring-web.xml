@@ -1,8 +1,8 @@
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
     default-autowire="byName">
     
-	<bean name="propertiesConfiger" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>classpath:init.properties</value>
@@ -10,25 +10,20 @@
 			</list>
 		</property>
 	</bean>
-    
-    <bean id="appContext" class="mblog.extend.context.AppContext">
-    	<property name="root" value="${store.root}"/>
-    </bean>
-    
-    <bean id="jsonUtils" class="mblog.web.formatter.JsonUtils" />
-    
-    <bean id="startupListener" class="mblog.web.listener.StartupListener" />
+	<bean name="propertiesConfiger" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties" ref="configProperties"/>
+	</bean>
     
     <!--
 	
 	文件绝对路径存储：
-    <bean id="fileRepo" class="mblog.extend.upload.impl.FileRepoImpl" />
+    <bean id="fileRepo" class="mblog.base.upload.impl.FileRepoImpl" />
     
 	文件相对项目根路径存储：
-	<bean id="fileRepo" class="mblog.extend.upload.impl.FileRealPathRepoImpl" />
+	<bean id="fileRepo" class="mblog.base.upload.impl.FileRealPathRepoImpl" />
 	
     -->
     
-    <bean id="fileRepo" class="mblog.extend.upload.impl.FileRealPathRepoImpl" />
+    <bean id="fileRepo" class="mblog.base.upload.impl.FileRealPathRepoImpl" />
     
 </beans>

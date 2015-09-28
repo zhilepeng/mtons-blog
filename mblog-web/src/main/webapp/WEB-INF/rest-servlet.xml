@@ -35,10 +35,10 @@
 	</mvc:annotation-driven>
 	
 	<!--对静态资源文件的访问 -->
-	<mvc:resources mapping="/assets/**" location="/assets/" />
-	<mvc:resources mapping="/error/**" location="/error/" />
-	<mvc:resources mapping="/store/**" location="/store/" />
-	<mvc:resources mapping="*.txt" location="/" />
+	<mvc:resources mapping="/assets/**" location="/assets/" cache-period="31556926"/>
+	<mvc:resources mapping="/error/**" location="/error/" cache-period="31556926"/>
+	<mvc:resources mapping="/store/**" location="/store/" cache-period="31556926"/>
+	<mvc:resources mapping="*.txt" location="/" cache-period="31556926"/>
 	
 	<!-- Web层基于注解的扫描路径 -->
 	<context:component-scan base-package="mblog.web.controller" />
@@ -61,18 +61,7 @@
 	
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/themes/" />
-		<property name="velocityProperties">
-			<props>
-				<prop key="input.encoding">utf-8</prop>
-				<prop key="output.encoding">utf-8</prop>
-				<prop key="contentType">text/html;charset=UTF-8</prop>
-				<prop key="file.resource.loader.cache">false</prop>
-				<prop key="file.resource.loader.modificationCheckInterval">1</prop>
-				<prop key="velocimacro.library.autoreload">true</prop>
-				<prop key="velocimacro.permissions.allowInline">true</prop>
-				<prop key="velocimacro.library">macro.vm</prop>
-			</props>
-		</property>
+		<property name="configLocation" value="classpath:velocity.properties" />
 	</bean>
 
 	<!-- 最大上传文件为2M -->
@@ -80,11 +69,9 @@
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="2097152" />
 		<property name="maxInMemorySize" value="40960" />
-		<property name="uploadTempDir" value="store/upload_temp" />
+		<property name="uploadTempDir" value="store/_temp" />
 	</bean>
 	
-	<bean id="exceptionResolver" class="mblog.web.exceptions.DefaultExceptionHandler" />
-
 	<!-- 配置基础拦截器 -->
 	<mvc:interceptors>
         <bean class="mblog.web.interceptor.BaseInterceptor"/>  

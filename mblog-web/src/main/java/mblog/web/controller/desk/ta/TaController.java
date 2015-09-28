@@ -9,10 +9,10 @@
 */
 package mblog.web.controller.desk.ta;
 
-import mblog.data.User;
-import mblog.extend.planet.PostPlanet;
-import mblog.extend.planet.UserPlanet;
-import mblog.lang.EnumPrivacy;
+import mblog.base.lang.EnumPrivacy;
+import mblog.core.data.User;
+import mblog.core.planet.PostPlanet;
+import mblog.core.planet.UserPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;

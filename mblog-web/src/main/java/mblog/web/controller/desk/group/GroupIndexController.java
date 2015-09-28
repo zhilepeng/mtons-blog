@@ -18,9 +18,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mblog.data.Group;
-import mblog.extend.planet.GroupPlanet;
-import mblog.extend.planet.PostPlanet;
+import mblog.core.data.Group;
+import mblog.core.planet.GroupPlanet;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;

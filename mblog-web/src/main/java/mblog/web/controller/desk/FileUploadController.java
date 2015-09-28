@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
-import mblog.extend.context.Global;
+import mblog.base.context.Global;
 import mblog.web.controller.BaseController;
 import mblog.web.from.UMEditorResult;
 

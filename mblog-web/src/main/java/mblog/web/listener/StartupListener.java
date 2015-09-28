@@ -13,22 +13,25 @@ import java.util.*;
 
 import javax.servlet.ServletContext;
 
-import mblog.data.Config;
-import mblog.extend.context.AppContext;
-import mblog.lang.Consts;
-import mblog.persist.service.ConfigService;
-import mblog.persist.service.GroupService;
-import mblog.persist.service.MenuService;
-
-import mblog.print.Printer;
+import mblog.base.context.AppContext;
+import mblog.base.lang.Consts;
+import mblog.base.print.Printer;
+import mblog.base.utils.PropertiesLoader;
+import mblog.core.data.Config;
+import mblog.core.persist.service.ConfigService;
+import mblog.core.persist.service.GroupService;
+import mblog.core.persist.service.MenuService;
+import mtons.modules.utils.GMagickUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
 /**
  * @author langhsu
  *
  */
+@Component
 public class StartupListener implements InitializingBean, ServletContextAware {
 	@Autowired
 	private ConfigService configService;
@@ -40,7 +43,28 @@ public class StartupListener implements InitializingBean, ServletContextAware {
 	private AppContext appContext;
 	
 	private ServletContext servletContext;
-	
+
+	/**
+	 * 加载参数到系统
+	 *
+	 */
+	private void loadParams() {
+		Printer.info("加载配置文件...");
+		// 初始化配置文件
+		try {
+			PropertiesLoader p = new PropertiesLoader(Consts.MTONS_CONFIG);
+			String gmHome = p.getProperty(GMagickUtils.GMAGICK_HOME);
+			System.setProperty(GMagickUtils.GMAGICK_HOME, gmHome);
+			System.setProperty(Consts.SYSTEM_VERSION, p.getProperty(Consts.SYSTEM_VERSION));
+
+		} catch (Exception e) {
+			Printer.error("说实话, 我也不知道啥错, 你自己看吧", e);
+			System.exit(0);
+		}
+
+		Printer.info("加载配置文件 OK !");
+	}
+
 	/**
 	 * 加载配置信息到系统
 	 * 
@@ -87,6 +111,7 @@ public class StartupListener implements InitializingBean, ServletContextAware {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		loadParams();
 		loadConfig();
 	}
 

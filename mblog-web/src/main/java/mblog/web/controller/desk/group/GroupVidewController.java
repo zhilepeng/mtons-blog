@@ -9,11 +9,11 @@
 */
 package mblog.web.controller.desk.group;
 
-import mblog.data.Group;
-import mblog.data.Post;
-import mblog.extend.planet.GroupPlanet;
-import mblog.extend.planet.PostPlanet;
-import mblog.persist.service.PostService;
+import mblog.core.data.Group;
+import mblog.core.data.Post;
+import mblog.core.persist.service.PostService;
+import mblog.core.planet.GroupPlanet;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import org.springframework.beans.factory.annotation.Autowired;

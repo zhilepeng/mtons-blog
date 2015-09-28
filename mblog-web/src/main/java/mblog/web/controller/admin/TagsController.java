@@ -18,9 +18,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mblog.data.Tag;
-import mblog.extend.planet.TagPlanet;
-import mblog.persist.service.TagService;
+import mblog.core.data.Tag;
+import mblog.core.persist.service.TagService;
+import mblog.core.planet.TagPlanet;
 import mblog.web.controller.BaseController;
 
 /**

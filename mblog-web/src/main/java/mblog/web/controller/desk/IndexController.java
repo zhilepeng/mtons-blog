@@ -9,8 +9,8 @@
 */
 package mblog.web.controller.desk;
 
-import mblog.extend.planet.PostPlanet;
-import mblog.lang.Consts;
+import mblog.base.lang.Consts;
+import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;

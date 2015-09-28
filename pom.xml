@@ -6,9 +6,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>mblog-utils</module>
-		<module>mblog-data</module>
-		<module>mblog-extend</module>
+		<module>mblog-base</module>
+		<module>mblog-core</module>
 		<module>mblog-web</module>
 	</modules>
 
@@ -95,6 +94,11 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -143,12 +147,12 @@
 			<!-- local -->
 			<dependency>
 				<groupId>com.mtons.mblog</groupId>
-				<artifactId>mblog-data</artifactId>
+				<artifactId>mblog-base</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mtons.mblog</groupId>
-				<artifactId>mblog-extend</artifactId>
+				<artifactId>mblog-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -162,11 +166,7 @@
 				<artifactId>mtons-persist</artifactId>
 				<version>1.1.3</version>
 			</dependency>
-			<dependency>
-				<groupId>com.mtons.mblog</groupId>
-				<artifactId>mblog-utils</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>

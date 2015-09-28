@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
  * @author langhsu
  * 
  */
+@Component
 public class JsonUtils {
 	private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
 	private static final ObjectMapper mapper;

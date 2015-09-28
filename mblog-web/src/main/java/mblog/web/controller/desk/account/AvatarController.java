@@ -22,10 +22,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import mblog.data.AccountProfile;
-import mblog.extend.context.AppContext;
-import mblog.lang.Consts;
-import mblog.persist.service.UserService;
+import mblog.base.context.AppContext;
+import mblog.base.lang.Consts;
+import mblog.core.data.AccountProfile;
+import mblog.core.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 
