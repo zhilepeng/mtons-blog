@@ -9,23 +9,18 @@
 */
 package mblog.web.controller;
 
-import mblog.base.lang.Consts;
-import mblog.core.data.BadgesCount;
-import mblog.core.data.Notify;
-import mblog.core.persist.service.NotifyService;
-import mblog.shiro.authc.AccountSubject;
-import mblog.web.controller.desk.Views;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import mblog.web.controller.desk.Views;
 
 /**
  * 登录页
@@ -33,8 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class LoginController extends BaseController {
-    @Autowired
-    private NotifyService notifyService;
 
     /**
      * 跳转登录页

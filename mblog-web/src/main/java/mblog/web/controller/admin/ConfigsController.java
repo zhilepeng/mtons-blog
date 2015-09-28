@@ -59,6 +59,7 @@ public class ConfigsController extends BaseController {
 	}
 	
 	@RequestMapping("/update")
+	@SuppressWarnings("unchecked")
 	public String update(HttpServletRequest request, ModelMap model) {
 		Map<String, String[]> params = request.getParameterMap();
 

@@ -9,11 +9,20 @@
 */
 package mblog.web.controller.desk.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import mblog.base.lang.EnumPrivacy;
 import mblog.core.data.AccountProfile;
-import mblog.core.data.BadgesCount;
 import mblog.core.data.User;
-import mblog.core.persist.service.*;
+import mblog.core.persist.service.FavorService;
+import mblog.core.persist.service.FeedsService;
+import mblog.core.persist.service.FollowService;
+import mblog.core.persist.service.NotifyService;
+import mblog.core.persist.service.PostService;
+import mblog.core.persist.service.UserService;
 import mblog.core.planet.CommentPlanet;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
@@ -21,11 +30,6 @@ import mblog.web.controller.desk.Views;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 import mtons.modules.pojos.UserProfile;
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 用户主页

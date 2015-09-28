@@ -19,7 +19,6 @@ import org.springframework.web.util.HtmlUtils;
 import mblog.base.lang.Consts;
 import mblog.core.data.Comment;
 import mblog.core.event.NotifyEvent;
-import mblog.core.persist.service.PostService;
 import mblog.core.planet.CommentPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
@@ -35,8 +34,6 @@ import mtons.modules.pojos.UserProfile;
 public class CommentController extends BaseController {
 	@Autowired
 	private CommentPlanet commentPlanet;
-	@Autowired
-	private PostService postService;
 	@Autowired
 	private ApplicationContext applicationContext;
 
