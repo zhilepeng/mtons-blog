@@ -133,6 +133,8 @@ public class AuthMenu implements Serializable{
 		Node node = new Node();
 		node.setId(this.getId());
 		node.setName(this.getName());
+		node.setOpen(true);
+		node.setChecked(false);
 		if(this.getParent()!=null){
 			node.setpId(this.getParent().getId());
 		}
@@ -146,6 +148,8 @@ public class AuthMenu implements Serializable{
 		private Long id;
 		private Long pId;
 		private String name;
+		private boolean open = true;
+		private boolean checked = false;
 
 		public Long getId() {
 			return id;
@@ -169,6 +173,33 @@ public class AuthMenu implements Serializable{
 
 		public void setpId(Long pId) {
 			this.pId = pId;
+		}
+
+		public boolean isOpen() {
+			return open;
+		}
+
+		public void setOpen(boolean open) {
+			this.open = open;
+		}
+
+		public boolean isChecked() {
+			return checked;
+		}
+
+		public void setChecked(boolean checked) {
+			this.checked = checked;
+		}
+
+		@Override
+		public String toString() {
+			return "Node{" +
+					"id=" + id +
+					", pId=" + pId +
+					", name='" + name + '\'' +
+					", open=" + open +
+					", checked=" + checked +
+					'}';
 		}
 	}
 }

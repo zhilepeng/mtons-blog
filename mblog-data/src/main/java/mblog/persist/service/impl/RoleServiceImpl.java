@@ -3,6 +3,9 @@ package mblog.persist.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import mblog.data.AuthMenu;
+import mblog.persist.dao.AuthMenuDao;
+import mblog.persist.entity.AuthMenuPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,9 @@ public class RoleServiceImpl implements RoleService{
 	
 	@Autowired
 	private RoleDao roleDao;
+
+	@Autowired
+	private AuthMenuDao authMenuDao;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -44,7 +50,14 @@ public class RoleServiceImpl implements RoleService{
 	@Transactional(readOnly=false)
 	public void save(Role role){
 		RolePO rolePO = new RolePO();
+		List<AuthMenu> authMenus = role.getAuthMenus();
+		List<AuthMenuPO> authMenuPOs = new ArrayList<>();
+		for(AuthMenu authMenu : authMenus){
+			AuthMenuPO authMenuPO = authMenuDao.get(authMenu.getId());
+			authMenuPOs.add(authMenuPO);
+		}
 		BeanUtils.copyProperties(role, rolePO);
+		rolePO.setAuthMenus(authMenuPOs);
 		roleDao.saveOrUpdate(rolePO);
 	}
 

@@ -1,11 +1,8 @@
 package mblog.web.controller.admin;
 
-import com.alibaba.fastjson.JSONArray;
-import mblog.data.AuthMenu;
-import mblog.data.Role;
-import mblog.persist.service.AuthMenuService;
-import mblog.web.controller.BaseController;
-import mtons.modules.pojos.Paging;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
+import mblog.data.AuthMenu;
+import mblog.data.Role;
+import mblog.persist.service.AuthMenuService;
+import mblog.persist.service.RoleService;
+import mblog.web.controller.BaseController;
 
 @Controller
 @RequestMapping("/admin/authMenus")
@@ -24,6 +24,9 @@ public class AuthMenuController extends BaseController{
 
     @Autowired
     private AuthMenuService authMenuService;
+
+    @Autowired
+    private RoleService roleService;
 
     @ModelAttribute("authMenu")
     public AuthMenu get(@RequestParam(required=false) String id) {
@@ -43,7 +46,12 @@ public class AuthMenuController extends BaseController{
 
     @RequestMapping(value = "view")
     public String view(@RequestParam(required = false) Long parentId, AuthMenu authMenu, Model model) {
+        if(parentId==null){
+            parentId = 1L;
+        }
+        AuthMenu parent = authMenuService.get(parentId);
         model.addAttribute("parentId",parentId);
+        model.addAttribute("parent",parent);
         model.addAttribute("authMenu", authMenu);
         return "/admin/authMenus/view";
     }
@@ -65,21 +73,38 @@ public class AuthMenuController extends BaseController{
     }
 
     @RequestMapping("treeView")
-    public String treeView(){
+    public String treeView(String parentId,Model model){
+        model.addAttribute("parentId",parentId);
         return "/admin/authMenus/treeView";
     }
 
     @RequestMapping("tree")
     @ResponseBody
-    public List<AuthMenu.Node> tree(){
+    public List<AuthMenu.Node> tree(@RequestParam(required = false) Long roleId){
+        List<AuthMenu> authedMenus = null;
+        if(roleId!=null&&roleId!=0){
+            Role role = roleService.get(roleId);
+            authedMenus = role.getAuthMenus();
+        }
         List<AuthMenu> list = authMenuService.tree(1L);
         List<AuthMenu.Node> nodes = new ArrayList<>();
-        for(AuthMenu authMenu : list){
-            AuthMenu.Node node = authMenu.toNode();
-            nodes.add(node);
+        if(authedMenus!=null){
+            for(AuthMenu authMenu : list){
+                AuthMenu.Node node = authMenu.toNode();
+                for(AuthMenu authedMenu : authedMenus){
+                    if(authedMenu.getId()==authMenu.getId()){
+                        node.setChecked(true);
+                    }
+                }
+                nodes.add(node);
+            }
+        }
+        else{
+            for(AuthMenu authMenu : list){
+                AuthMenu.Node node = authMenu.toNode();
+                nodes.add(node);
+            }
         }
         return nodes;
     }
 }
-
-
