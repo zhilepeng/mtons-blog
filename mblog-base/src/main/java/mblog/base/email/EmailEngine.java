@@ -15,4 +15,13 @@ import org.springframework.ui.velocity.VelocityEngineFactoryBean;
 public class EmailEngine extends VelocityEngineFactoryBean {
 	@Value("#{configProperties['velocity.resource']}")
 	private String resourceLoaderPath;
+
+	public String getResourceLoaderPath() {
+		return resourceLoaderPath;
+	}
+
+	public void setResourceLoaderPath(String resourceLoaderPath) {
+		this.resourceLoaderPath = resourceLoaderPath;
+	}
+	
 }
