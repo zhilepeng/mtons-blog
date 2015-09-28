@@ -185,4 +185,23 @@ public class PostPlanetImpl implements PostPlanet {
 		postService.unfavor(userId, postId);
 	}
 
+	/**
+	 * 文章修改：获取某会员文章
+	 */
+	@Override
+	@Cacheable(value = "postsCaches", key = "'view_' + #id + 'authorId_' + #authorId")
+	public Post get(Long id, long authorId) {
+		return postService.get(id, authorId);
+	}
+
+	/**
+	 * 更新文章：更新文章并清空缓存
+	 * @param p
+	 */
+	@Override
+	@CacheEvict(value = "postsCaches", allEntries = true)
+	public void update(Post p) {
+		postService.update(p);
+	}
+
 }

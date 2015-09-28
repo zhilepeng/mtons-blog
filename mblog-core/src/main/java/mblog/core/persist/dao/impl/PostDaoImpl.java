@@ -131,4 +131,24 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 		return 0;
 	}
 
+	/**
+	 * 文章修改：获取某会员文章
+	 */
+	@Override
+	public PostPO get(Long id, long authorId) {
+		Paging paging = new Paging();
+		paging.setMaxResults(1);
+		paging.setPageNo(0);
+		PagingQuery<PostPO> q = pagingQuery(paging);
+		if (authorId > 0) {
+			q.add(Restrictions.eq("id", id));
+			q.add(Restrictions.eq("authorId", authorId));
+		}
+		q.desc("created");
+		if(q.list() != null && q.list().size() != 0){
+			return q.list().get(0);
+		}
+		return null;
+	}
+
 }

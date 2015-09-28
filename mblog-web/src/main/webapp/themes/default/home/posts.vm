@@ -52,7 +52,8 @@
 						#end
 					</ul>
 					<div class="pull-right hidden-xs">
-						<a class="act" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
+						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${row.id}">修改</a>
+						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
 					</div>
 				</div>
 			</div>
@@ -73,6 +74,7 @@
 
 <script type="text/javascript">
 $(function() {
+	// delete
 	$('a[data-evt=trash]').click(function () {
 		var id = $(this).attr('data-id');
 
@@ -91,6 +93,12 @@ $(function() {
         }, function(){
 
         });
+	});
+	
+	// edit
+	$('a[data-evt=edit]').click(function () {
+		var id = $(this).attr('data-id');
+		window.location.href='$base/post/update/' + id;
 	});
 })
 </script>

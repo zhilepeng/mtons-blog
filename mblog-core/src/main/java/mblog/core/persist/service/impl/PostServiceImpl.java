@@ -463,4 +463,21 @@ public class PostServiceImpl implements PostService {
 		//异步
 		fullTextSession.createIndexer(PostPO.class).start();
 	}
+
+	/**
+	 * 文章修改：获取某会员文章
+	 */
+	@Override
+	@Transactional
+	public Post get(Long id, long authorId) {
+		PostPO po = postDao.get(id, authorId);
+		Post d = null;
+		if (po != null) {
+			d = BeanMapUtils.copy(po, 1);
+
+			d.setAuthor(userService.get(d.getAuthorId()));
+			d.setAlbums(attachService.findByTarget(d.getId()));
+		}
+		return d;
+	}
 }

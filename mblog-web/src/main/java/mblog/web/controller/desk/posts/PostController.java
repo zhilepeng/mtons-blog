@@ -6,6 +6,7 @@ package mblog.web.controller.desk.posts;
 import mblog.core.data.Group;
 import mblog.core.data.Post;
 import mblog.core.persist.service.GroupService;
+import mblog.core.persist.service.PostService;
 import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.View;
 
 /**
  * 文章操作
@@ -34,6 +36,8 @@ public class PostController extends BaseController {
 	private PostPlanet postPlanet;
 	@Autowired
 	private GroupService groupService;
+	@Autowired
+	private PostService postService;
 
 	/**
 	 * 发布文章页
@@ -88,4 +92,33 @@ public class PostController extends BaseController {
 		return data;
 	}
 
+	/**
+	 * 修改文章
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/update/{id}")
+	public String toUpdate(@PathVariable Long id, ModelMap model) {
+		UserProfile up = getSubject().getProfile();
+		Post ret = postPlanet.get(id, up.getId());
+		model.put("view", ret);
+		if(ret == null){
+			return Views.REDIRECT_HOME;
+		}
+		return getView(Views.HOME_POSTS_UPDATE);
+	}
+	
+	/**
+	 * 更新文章方法
+	 * @author LBB
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String subUpdate(Post p) {
+		UserProfile up = getSubject().getProfile();
+		if (p != null && p.getAuthor().getId() == up.getId()) {
+			postPlanet.update(p);
+		}
+		return String.format(Views.REDIRECT_POSTS_UPDATE, String.valueOf(p.getId()));
+	}
 }
