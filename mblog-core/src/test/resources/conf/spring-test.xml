@@ -12,7 +12,8 @@
 	   default-autowire="byName">
 
 	<context:annotation-config />
-
+	<context:component-scan base-package="mblog.*"/>
+	
 	<bean name="propertiesConfiger" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
@@ -52,7 +53,7 @@
 		<!-- Entity package -->
 		<property name="packagesToScan">
 			<list>
-				<value>mblog.persist.entity</value>
+				<value>mblog.core.persist.entity</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
