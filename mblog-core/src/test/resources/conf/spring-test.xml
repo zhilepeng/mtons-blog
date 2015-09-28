@@ -3,24 +3,24 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xmlns:context="http://www.springframework.org/schema/context"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd 
-    http://www.springframework.org/schema/tx 
-    http://www.springframework.org/schema/tx/spring-tx.xsd 
-    http://www.springframework.org/schema/context 
-    http://www.springframework.org/schema/context/spring-context.xsd"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	   default-autowire="byName">
 
 	<context:annotation-config />
 	<context:component-scan base-package="mblog.*"/>
 	
-	<bean name="propertiesConfiger" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>classpath:init.properties</value>
 				<value>classpath:mtons.properties</value>
 			</list>
 		</property>
+	</bean>
+	<bean name="propertiesConfiger" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties" ref="configProperties"/>
 	</bean>
 
 	<!-- Persistent related config -->
@@ -65,5 +65,10 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="txManager" />
-
+	
+	<!-- Beans -->
+	<bean id="appContext" class="mblog.base.context.AppContext">
+		<property name="root" value="${store.root}"/>
+	</bean>
+	<bean id="fileRepo" class="mblog.base.upload.impl.FileRepoImpl"  />
 </beans>
