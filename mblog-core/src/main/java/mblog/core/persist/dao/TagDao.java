@@ -21,6 +21,6 @@ import mtons.modules.pojos.Paging;
  */
 public interface TagDao extends BaseRepository<TagPO> {
 	TagPO getByName(String name);
-	List<TagPO> tops(int maxResutls);
+	List<TagPO> tops(int maxResults);
 	List<TagPO> paging(Paging paging, String key, String order);
 }

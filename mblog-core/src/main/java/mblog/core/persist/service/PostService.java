@@ -67,19 +67,19 @@ public interface PostService {
 	
 	/**
 	 * 查询最近更新 - 按发布时间排序
-	 * @param maxResutls
+	 * @param maxResults
 	 * @param ignoreUserId
 	 * @return
 	 */
-	List<Post> findLatests(int maxResutls, long ignoreUserId);
+	List<Post> findLatests(int maxResults, long ignoreUserId);
 
 	/**
 	 * 查询热门文章 - 按浏览次数排序
-	 * @param maxResutls
+	 * @param maxResults
 	 * @param ignoreUserId
 	 * @return
 	 */
-	List<Post> findHots(int maxResutls, long ignoreUserId);
+	List<Post> findHots(int maxResults, long ignoreUserId);
 	
 	/**
 	 * 根据Ids查询 - 单图

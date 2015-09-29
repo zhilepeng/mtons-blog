@@ -179,8 +179,8 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Post> findLatests(int maxResutls, long ignoreUserId) {
-		List<PostPO> list = postDao.findLatests(maxResutls, ignoreUserId);
+	public List<Post> findLatests(int maxResults, long ignoreUserId) {
+		List<PostPO> list = postDao.findLatests(maxResults, ignoreUserId);
 		List<Post> rets = new ArrayList<>();
 
 		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));
@@ -190,8 +190,8 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Post> findHots(int maxResutls, long ignoreUserId) {
-		List<PostPO> list = postDao.findHots(maxResutls, ignoreUserId);
+	public List<Post> findHots(int maxResults, long ignoreUserId) {
+		List<PostPO> list = postDao.findHots(maxResults, ignoreUserId);
 		List<Post> rets = new ArrayList<>();
 
 		list.forEach(po -> rets.add(BeanMapUtils.copy(po, 0)));

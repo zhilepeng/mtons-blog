@@ -21,11 +21,11 @@ import mtons.modules.pojos.Paging;
 public interface TagService {
 	/**
 	 * top 查询 Tag
-	 * @param maxResutls
+	 * @param maxResults
 	 * @param loadPost 是否加载 tag 最后更新文章
 	 * @return
 	 */
-	List<Tag> topTags(int maxResutls, boolean loadPost);
+	List<Tag> topTags(int maxResults, boolean loadPost);
 	
 	Tag get(long id);
 	

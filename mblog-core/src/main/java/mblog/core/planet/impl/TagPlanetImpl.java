@@ -30,9 +30,9 @@ public class TagPlanetImpl implements TagPlanet {
 	private TagService tagService;
 
 	@Override
-	@Cacheable(value = "tagsCaches", key = "'top_tags_' + #maxResutls + '_' + #loadPost")
-	public List<Tag> topTags(int maxResutls, boolean loadPost) {
-		return tagService.topTags(maxResutls, loadPost);
+	@Cacheable(value = "tagsCaches", key = "'top_tags_' + #maxResults + '_' + #loadPost")
+	public List<Tag> topTags(int maxResults, boolean loadPost) {
+		return tagService.topTags(maxResults, loadPost);
 	}
 
 	@Override

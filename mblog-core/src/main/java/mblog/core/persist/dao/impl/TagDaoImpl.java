@@ -12,7 +12,9 @@ package mblog.core.persist.dao.impl;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.core.persist.dao.TagDao;
@@ -35,11 +37,14 @@ public class TagDaoImpl extends BaseRepositoryImpl<TagPO> implements TagDao {
 	}
 
 	@Override
-	public List<TagPO> tops(int maxResutls) {
-		TopQuery<TagPO> q = topQuery(maxResutls);
-		q.desc("featured");
-		q.desc("id");
-		return q.list();
+	@SuppressWarnings("unchecked")
+	public List<TagPO> tops(int maxResults) {
+		Criteria c = createCriteria();
+		c.setMaxResults(maxResults);
+		
+		c.addOrder(Order.desc("featured"));
+		c.addOrder(Order.desc("id"));
+		return c.list();
 	}
 
 	@Override

@@ -79,20 +79,20 @@ public interface PostPlanet {
 	/**
 	 * 查询最近更新的文章
 	 *
-	 * @param maxResutls
+	 * @param maxResults
 	 * @param ignoreUserId
 	 * @return
 	 */
-	List<Post> findRecents(int maxResutls, long ignoreUserId);
+	List<Post> findRecents(int maxResults, long ignoreUserId);
 
 	/**
 	 * 查询热门文章
 	 *
-	 * @param maxResutls
+	 * @param maxResults
 	 * @param ignoreUserId
 	 * @return
 	 */
-	List<Post> findHots(int maxResutls, long ignoreUserId);
+	List<Post> findHots(int maxResults, long ignoreUserId);
 
 	/**
 	 * 删除文章, 且刷新缓存

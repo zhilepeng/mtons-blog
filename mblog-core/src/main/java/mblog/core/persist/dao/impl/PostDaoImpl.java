@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -94,25 +95,31 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 	}
 
 	@Override
-	public List<PostPO> findLatests(int maxResutls, long ignoreUserId) {
-		TopQuery<PostPO> q = topQuery(maxResutls);
-		q.add(Restrictions.neOrIsNotNull("title", ""));
+	@SuppressWarnings("unchecked")
+	public List<PostPO> findLatests(int maxResults, long ignoreUserId) {
+		Criteria c = createCriteria();
+		
+		c.add(Restrictions.neOrIsNotNull("title", ""));
 		if (ignoreUserId > 0) {
-			q.add(Restrictions.ne("authorId", ignoreUserId));
+			c.add(Restrictions.ne("authorId", ignoreUserId));
 		}
-		q.desc("created");
-		return q.list();
+		c.addOrder(Order.desc("created"));
+		c.setMaxResults(maxResults);
+		return c.list();
 	}
 	
 	@Override
-	public List<PostPO> findHots(int maxResutls, long ignoreUserId) {
-		TopQuery<PostPO> q = topQuery(maxResutls);
-		q.add(Restrictions.neOrIsNotNull("title", ""));
+	@SuppressWarnings("unchecked")
+	public List<PostPO> findHots(int maxResults, long ignoreUserId) {
+		Criteria c = createCriteria();
+		
+		c.add(Restrictions.neOrIsNotNull("title", ""));
 //		if (ignoreUserId > 0) {
 //			q.add(Restrictions.ne("author.id", ignoreUserId));
 //		}
-		q.desc("views");
-		return q.list();
+		c.addOrder(Order.desc("views"));
+		c.setMaxResults(maxResults);
+		return c.list();
 	}
 
 	@Override

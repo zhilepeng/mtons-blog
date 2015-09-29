@@ -54,8 +54,8 @@ public interface PostDao extends BaseRepository<PostPO> {
 	 */
 	List<PostPO> pagingByAuthorId(Paging paging, long userId, EnumPrivacy privacy);
 
-	List<PostPO> findLatests(int maxResutls, long ignoreUserId);
-	List<PostPO> findHots(int maxResutls, long ignoreUserId);
+	List<PostPO> findLatests(int maxResults, long ignoreUserId);
+	List<PostPO> findHots(int maxResults, long ignoreUserId);
 	List<PostPO> findByIds(Collection<Long> ids);
 
 	int maxFeatured();

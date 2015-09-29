@@ -22,7 +22,7 @@ import mblog.core.data.Tag;
  *
  */
 public interface TagPlanet {
-	List<Tag> topTags(int maxResutls, boolean loadPost);
+	List<Tag> topTags(int maxResults, boolean loadPost);
 	void delete(long id);
 	boolean cacheFlush();
 }

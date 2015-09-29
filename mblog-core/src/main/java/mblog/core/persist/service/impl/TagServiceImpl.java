@@ -44,8 +44,8 @@ public class TagServiceImpl implements TagService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Tag> topTags(int maxResutls, boolean loadPost) {
-		List<TagPO> list = tagDao.tops(maxResutls);
+	public List<Tag> topTags(int maxResults, boolean loadPost) {
+		List<TagPO> list = tagDao.tops(maxResults);
 		List<Tag> rets = new ArrayList<>();
 		
 		Set<Long> postIds = new HashSet<>();
