@@ -158,11 +158,4 @@ public interface PostService {
 
 	void resetIndexs();
 
-	/**
-	 * 文章修改：获取某会员文章
-	 * @param id
-	 * @param authorId
-	 * @return
-	 */
-	Post get(Long id, long authorId);
 }

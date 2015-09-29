@@ -60,12 +60,4 @@ public interface PostDao extends BaseRepository<PostPO> {
 
 	int maxFeatured();
 
-	/**
-	 * 文章修改：获取某会员文章
-	 * @param id
-	 * @param authorId
-	 * @return
-	 */
-	PostPO get(Long id, long authorId);
-
 }

@@ -124,15 +124,6 @@ public interface PostPlanet {
 	void unfavor(long userId, long postId);
 
 	/**
-	 * 更新文章：获取对应会员文章
-	 * @param id	文章ID
-	 * @param authorId		作者ID
-	 * @return
-	 * @author A蛋壳  2015年9月28日 下午8:45:24
-	 */
-	Post get(Long id, long authorId);
-	
-	/**
 	 * 更新文章：更新文章并清空缓存
 	 * @param p
 	 */

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package mblog.web.controller.desk.posts;
 
@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,14 +60,14 @@ public class PostController extends BaseController {
 	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String post(Post blog, HttpServletRequest request) {
-		
+
 		if (blog != null && StringUtils.isNotBlank(blog.getTitle())) {
 			UserProfile profile = getSubject().getProfile();
-			
+
 			String[] ablums = request.getParameterValues("delayImages");
 			blog.setAlbums(handleAlbums(ablums));
 			blog.setAuthorId(profile.getId());
-			
+
 			postPlanet.post(blog);
 		}
 		return Views.REDIRECT_HOME;
@@ -100,14 +101,16 @@ public class PostController extends BaseController {
 	@RequestMapping("/update/{id}")
 	public String toUpdate(@PathVariable Long id, ModelMap model) {
 		UserProfile up = getSubject().getProfile();
-		Post ret = postPlanet.get(id, up.getId());
+		Post ret = postPlanet.getPost(id);
+
+		Assert.notNull(ret, "该文章已被删除");
+
+		Assert.isTrue(ret.getAuthorId() == up.getId(), "该文章不属于你");
+
 		model.put("view", ret);
-		if(ret == null){
-			return Views.REDIRECT_HOME;
-		}
 		return getView(Views.HOME_POSTS_UPDATE);
 	}
-	
+
 	/**
 	 * 更新文章方法
 	 * @author LBB
