@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import mblog.base.lang.Consts;
-import mblog.base.utils.PropertiesLoader;
+import mtons.modules.utils.PropertiesLoader;
 
 /**
  * mblog 全局配置类

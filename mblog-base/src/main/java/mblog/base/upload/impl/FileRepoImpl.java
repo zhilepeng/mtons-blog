@@ -9,7 +9,12 @@
 */
 package mblog.base.upload.impl;
 
-import mtons.modules.utils.GMagickUtils;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import mblog.base.context.AppContext;
 import mblog.base.upload.FileRepo;
-import mblog.base.utils.FileNameUtils;
 import mblog.base.utils.ImageUtils;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import mtons.modules.utils.FileNameUtils;
+import mtons.modules.utils.GMagickUtils;
 
 /**
  * @author langhsu
