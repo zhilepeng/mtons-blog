@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Role implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -14,6 +16,7 @@ public class Role implements Serializable{
 	
 	//private List<User> users = new ArrayList<User>(); // 拥有用户列表
 	
+	@JsonIgnore
 	private List<AuthMenu> authMenus = new ArrayList<AuthMenu>(); // 拥有菜单列表
 
 	public long getId() {
