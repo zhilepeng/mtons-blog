@@ -52,7 +52,9 @@
 						#end
 					</ul>
 					<div class="pull-right hidden-xs">
+						#if($row.group != 3)
 						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${row.id}">修改</a>
+						#end
 						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
 					</div>
 				</div>
