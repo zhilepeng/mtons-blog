@@ -40,7 +40,7 @@ public class OpenOauthServiceImpl implements OpenOauthService {
     public User getUserByOauthToken(String oauth_token) {
         OpenOauthPO thirdToken = openOauthDao.getOauthToken(oauth_token);
         UserPO userPO = userDao.get(thirdToken.getId());
-        return BeanMapUtils.copy(userPO);
+        return BeanMapUtils.copy(userPO, 0);
     }
 
     @Override

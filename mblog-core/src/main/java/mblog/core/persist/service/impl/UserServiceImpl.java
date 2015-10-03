@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
 
 		userDao.save(po);
 
-		return BeanMapUtils.copy(po);
+		return BeanMapUtils.copy(po, 0);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
 		UserPO po = userDao.get(id);
 		User ret = null;
 		if (po != null) {
-			ret = BeanMapUtils.copy(po);
+			ret = BeanMapUtils.copy(po, 0);
 		}
 		return ret;
 	}
@@ -153,7 +153,7 @@ public class UserServiceImpl implements UserService {
 		UserPO po = userDao.getByUsername(username);
 		User ret = null;
 		if (po != null) {
-			ret = BeanMapUtils.copy(po);
+			ret = BeanMapUtils.copy(po, 1);
 		}
 		return ret;
 	}
@@ -250,7 +250,7 @@ public class UserServiceImpl implements UserService {
 		List<User> rets = new ArrayList<>();
 
 		for (UserPO po : list) {
-			User u = BeanMapUtils.copy(po);
+			User u = BeanMapUtils.copy(po , 1);
 			rets.add(u);
 		}
 		paging.setResults(rets);
@@ -266,7 +266,7 @@ public class UserServiceImpl implements UserService {
 		Map<Long, User> ret = new HashMap<>();
 
 		list.forEach(po -> {
-			ret.put(po.getId(), BeanMapUtils.copy(po));
+			ret.put(po.getId(), BeanMapUtils.copy(po, 0));
 		});
 		return ret;
 	}

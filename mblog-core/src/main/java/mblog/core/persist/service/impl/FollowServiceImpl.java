@@ -87,7 +87,7 @@ public class FollowServiceImpl implements FollowService {
 		List<User> rets = new ArrayList<>();
 
 		for (FollowPO po : list) {
-			rets.add(BeanMapUtils.copy(po.getFollow()));
+			rets.add(BeanMapUtils.copy(po.getFollow(), 0));
 		}
 		paging.setResults(rets);
 	}
@@ -99,7 +99,7 @@ public class FollowServiceImpl implements FollowService {
 		List<User> rets = new ArrayList<>();
 
 		for (FollowPO po : list) {
-			rets.add(BeanMapUtils.copy(po.getUser()));
+			rets.add(BeanMapUtils.copy(po.getUser(), 0));
 		}
 		paging.setResults(rets);
 	}

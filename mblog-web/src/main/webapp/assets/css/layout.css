@@ -37,8 +37,11 @@
 .navbar .nav .publish:hover { background-color: #00aed1; }
 
 .navbar .nav .publishs { }
-.navbar .nav .publishs>li>a { padding: 5px 30px; }
-.navbar .nav .publishs .icon { width: 18px; }
+.navbar .nav .publishs>li>a { padding: 5px 30px; font-size: 15px;}
+.navbar .nav .publishs .icon { width: 18px; margin-right: 10px;}
+
+.navbar .nav .publishs li:nth-child(n) a {color: #A576F7;}
+.navbar .nav .publishs li:nth-child(2n) a {color: #5EBCF2;}
 
 .navbar .nav .ava { padding: 4px 12px; margin: 4px 0 4px 0; transition: .15s all ease; }
 .navbar .nav .logout { font-size: 18px; padding: 4px 12px; margin: 12px 15px 5px 0px; transition: .15s all ease; }

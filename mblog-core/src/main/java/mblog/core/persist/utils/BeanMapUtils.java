@@ -30,19 +30,22 @@ public class BeanMapUtils {
 
 	public static String[] POST_IGNORE_LIST = new String[]{"markdown", "content"};
 
-	public static User copy(UserPO po) {
+	public static User copy(UserPO po, int level) {
 		if (po == null) {
 			return null;
 		}
 		User ret = new User();
 		BeanUtils.copyProperties(po, ret, USER_IGNORE);
-		List<RolePO> rolePOs = po.getRoles();
-		List<Role> roles = new ArrayList<Role>();
-		for(RolePO rolePo :rolePOs){
-			Role role = copy(rolePo);
-			roles.add(role);
+		
+		if (level > 0) {
+			List<RolePO> rolePOs = po.getRoles();
+			List<Role> roles = new ArrayList<Role>();
+			for(RolePO rolePo :rolePOs){
+				Role role = copy(rolePo);
+				roles.add(role);
+			}
+			ret.setRoles(roles);
 		}
-		ret.setRoles(roles);
 		return ret;
 	}
 
