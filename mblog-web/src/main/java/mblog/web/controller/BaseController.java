@@ -9,27 +9,29 @@
 */
 package mblog.web.controller;
 
-import com.google.gson.Gson;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import mblog.base.context.AppContext;
-import mblog.base.upload.FileRepo;
-import mblog.core.data.AccountProfile;
-import mblog.core.data.Attach;
-import mblog.shiro.authc.AccountSubject;
-import mtons.modules.pojos.Paging;
-import mtons.modules.security.MD5;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.google.gson.Gson;
+
+import mblog.base.context.AppContext;
+import mblog.base.upload.FileRepoFactory;
+import mblog.core.data.AccountProfile;
+import mblog.core.data.Attach;
+import mblog.shiro.authc.AccountSubject;
+import mtons.modules.pojos.Paging;
+import mtons.modules.security.MD5;
 
 /**
  * Controller 基类
@@ -43,7 +45,7 @@ public class BaseController {
 	@Autowired
 	protected AppContext appContext;
 	@Autowired
-	protected FileRepo fileRepo;
+	protected FileRepoFactory fileRepoFactory;
 
 	/**
 	 * 获取登录信息
@@ -141,20 +143,20 @@ public class BaseController {
 				continue;
 			}
 
-			String root = fileRepo.getRoot();
+			String root = fileRepoFactory.select().getRoot();
 			File temp = new File(root + album);
 			Attach item = new Attach();
 			try {
 				// 保存原图
-				String orig = fileRepo.storeScale(temp, appContext.getOrigDir(), 750);
+				String orig = fileRepoFactory.select().storeScale(temp, appContext.getOrigDir(), 750);
 				item.setOriginal(orig);
 
 				// 创建缩放图片
-				String preview = fileRepo.storeScale(temp, appContext.getThumbsDir(), 305);
+				String preview = fileRepoFactory.select().storeScale(temp, appContext.getThumbsDir(), 305);
 				item.setPreview(preview);
 
 				// 创建快照
-				String screenshot = fileRepo.storeScale(temp, appContext.getScreenshotDir(), 225, 140);
+				String screenshot = fileRepoFactory.select().storeScale(temp, appContext.getScreenshotDir(), 225, 140);
 				item.setScreenshot(screenshot);
 
 				rets.add(item);

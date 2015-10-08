@@ -70,7 +70,7 @@ public class FileUploadController extends BaseController {
 			else{
 				if (this.checkFileType(fileName)) {
 					try {
-						String path = fileRepo.storeScale(file, appContext.getThumbsDir(), 600);
+						String path = fileRepoFactory.select().storeScale(file, appContext.getThumbsDir(), 600);
 						data.setName(fileName);
 						data.setOriginalName(fileName);
 						data.setType(getSuffix(fileName));

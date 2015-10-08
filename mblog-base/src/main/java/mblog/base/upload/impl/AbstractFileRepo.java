@@ -9,20 +9,36 @@
 */
 package mblog.base.upload.impl;
 
-import mtons.modules.exception.MtonsException;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.Iterator;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
+
+import mblog.base.upload.FileRepo;
+import mblog.base.upload.FileRepoFactory;
+import mtons.modules.exception.MtonsException;
 
 /**
  * @author langhsu
  *
  */
-public abstract class AbstractFileRepo {
+public abstract class AbstractFileRepo implements FileRepo {
+	@Autowired
+	private FileRepoFactory fileRepoFactory;
+	
+	public abstract String getKey();
+	
 	// 文件允许格式
 	protected String[] allowFiles = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
+	
+	@PostConstruct
+	public void init() {
+		fileRepoFactory.addRepo(getKey(), this);
+	}
 	
 	protected void validateFile(MultipartFile file) {
 		if (file == null || file.isEmpty()) {

@@ -19,11 +19,11 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
 import mblog.base.context.AppContext;
-import mblog.base.upload.FileRepo;
 import mblog.base.utils.ImageUtils;
 import mtons.modules.utils.FileNameUtils;
 import mtons.modules.utils.GMagickUtils;
@@ -32,7 +32,8 @@ import mtons.modules.utils.GMagickUtils;
  * @author langhsu
  *
  */
-public class FileRealPathRepoImpl extends AbstractFileRepo implements FileRepo, ServletContextAware {
+@Service("fileRealPathRepo")
+public class FileRealPathRepoImpl extends AbstractFileRepo implements ServletContextAware {
 	private Logger log = Logger.getLogger(this.getClass());
 
 	@Autowired
@@ -200,6 +201,11 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements FileRepo, 
 			file.delete();
 			log.info("fileRepo delete " + storePath);
 		}
+	}
+
+	@Override
+	public String getKey() {
+		return "relative";
 	}
 
 }

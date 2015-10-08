@@ -58,9 +58,9 @@ public class UploadController extends BaseController {
     		String path;
     		
 			if (scale != null && scale == true) {
-				path = fileRepo.tempScale(file, appContext.getTempDir(), size);
+				path = fileRepoFactory.select().tempScale(file, appContext.getTempDir(), size);
 			} else {
-				path = fileRepo.temp(file, appContext.getTempDir());
+				path = fileRepoFactory.select().temp(file, appContext.getTempDir());
 			}
 			data = Data.success("", path);
 		} catch (Exception e) {
