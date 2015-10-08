@@ -19,8 +19,8 @@
 			</a>
         </div>
         <div class="counts">
-            <span class="act"><i class="praise_icon"></i>${row.favors}</span>
-            <span class="act"><i class="comment_icon"></i>${row.comments}</span>
+            <span class="act"><i class="praise_icon"></i>#number(${row.favors})</span>
+            <span class="act"><i class="comment_icon"></i>#number(${row.comments})</span>
         </div>
     </div>
     <div class="summary">

@@ -16,3 +16,12 @@ mblog.browser = function() {
 }();
 
 this.mblog = mblog;
+
+var numberScale = function (num) {
+    var ret = num;
+
+    if (num > 1000) {
+        ret = num / 1000 + 'k';
+    }
+    return ret;
+}

@@ -263,11 +263,11 @@ label {font-weight: normal;}
 .widget-box .box-list li span { display: inline-block; margin-right: 5px; font-size: 12px; color: #999; line-height: 30px; }
 .widget-box .box-list li span.last { float: left; width: 24px; margin-right: 6px; }
 .widget-box .box-list li span.last i { background-color: #7f8c8d; border-radius: 50%; font-style: normal; height: 20px; padding: 2px 6px; line-height: 20px; margin: 5px auto; color: #fff; }
-.widget-box .box-list li span.name {width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.widget-box .box-list li span.name {width: 135px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
 
-.box-list li:nth-child(1) span.last i{background-color: #f4c414;}
-.box-list li:nth-child(2) span.last i{background-color: #f4c414;}
+.box-list li:nth-child(1) span.last i{background-color: #e71f19;}
+.box-list li:nth-child(2) span.last i{background-color: #e76b19;}
 .box-list li:nth-child(3) span.last i{background-color: #f4c414;}
 
 .about-user {margin-bottom: 15px;}
