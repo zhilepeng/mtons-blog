@@ -21,7 +21,7 @@ var numberScale = function (num) {
     var ret = num;
 
     if (num > 1000) {
-        ret = num / 1000 + 'k';
+        ret = (num / 1000).toFixed(1) + 'k';
     }
     return ret;
 }
