@@ -17,11 +17,6 @@ public interface Consts {
 	String AVATAR = "/assets/images/ava/default.png";
 	
 	/**
-	 * 文件目录步进
-	 */
-	int FILE_PATH_SEED = 997;
-
-	/**
 	 * 分隔符
 	 */
 	String SEPARATOR = ",";

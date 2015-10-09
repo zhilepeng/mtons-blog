@@ -26,6 +26,7 @@ import com.mblog.api.oauth.util.TokenUtil;
 import mblog.base.context.AppContext;
 import mblog.base.lang.Consts;
 import mblog.base.lang.SiteConfig;
+import mblog.base.utils.FilePathUtils;
 import mblog.base.utils.ImageUtils;
 import mblog.core.data.OpenOauth;
 import mblog.core.data.User;
@@ -350,8 +351,8 @@ public class CallbackController extends BaseController {
     }
 
     public String getAvaPath(long uid, int size) {
-        String base = Text.filePath(uid, Consts.FILE_PATH_SEED, 2);
-        return String.format("/%s/%d.jpg", base, size);
-    }
+		String base = FilePathUtils.getAvatar(uid);
+		return String.format("/%s_%d.jpg", base, size);
+	}
 
 }

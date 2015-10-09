@@ -11,10 +11,6 @@ package mblog.web.controller.desk.account;
 
 import java.io.File;
 
-import mtons.modules.pojos.Data;
-import mtons.modules.utils.GMagickUtils;
-import mtons.modules.utils.Text;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import mblog.base.context.AppContext;
-import mblog.base.lang.Consts;
+import mblog.base.utils.FilePathUtils;
 import mblog.core.data.AccountProfile;
 import mblog.core.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Data;
+import mtons.modules.utils.GMagickUtils;
 
 /**
  * @author langhsu
@@ -93,7 +91,7 @@ public class AvatarController extends BaseController {
 	}
 	
 	public String getAvaPath(long uid, int size) {
-		String base = Text.filePath(uid, Consts.FILE_PATH_SEED, 2);
-		return String.format("/%s/%d.jpg", base, size);
+		String base = FilePathUtils.getAvatar(uid);
+		return String.format("/%s_%d.jpg", base, size);
 	}
 }
