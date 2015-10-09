@@ -1,3 +1,10 @@
+2015-10-09
+2.2.1 升级
+	1. 更改了头像路径生成规则
+	2. 升级了配置图片存储策略, 通过 mtons.properties 中的 store.repo 属性配置
+	3. 修改了右侧文章列表显示bug(当阅读次数过1k时会换行)
+	4. 升级了图片访问配置, 通过 mtons.properties 中 resource.domain 属性可开启图片单独域名
+
 2015-09-06
 关于2.0.0 beta2 升级
 	1. init.properties 中的 hibernate.search.indexs 配置移动到 mtons.properties
@@ -20,7 +27,7 @@
 	10. 调整系统配置参数，mto_config 中的参数 settings 开头的全部改为 site 开头
 	11. 后台文章添加置顶功能
 	12. 后台文章编辑添加图片管理功能
-	
+
 2015-08-31
 关于2.0.0 beta1 升级
 	1. 去除了 mto_user_extend 表，将 extend 里面的数据和 mto_user 合并
