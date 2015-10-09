@@ -1,10 +1,9 @@
 ﻿## MBLOG
 
-> mblog (mtons blog) 是一个简单的内容分享社区, 希望为用户提供一个纯粹、高质的交流平台. 
+> mblog (mtons blog)开源博客系统,是一个简单、大气、美观、支持多端（PC,Mobile,Pad）访问的的多人博客系统, 采用Java语言开发,基于MySQL数据库;具有性能优异、简单实用、安全稳定、支持全文检索的特点。
 
 ### 技术选型：
 
-* **服务端**
 * JDK8
 * SSH (Spring、SpringMVC、Hibernate）
 * 安全权限 Shiro
@@ -12,8 +11,6 @@
 * 缓存 Ehcache
 * 视图模板 Velocity
 * 其它 Jsoup、fastjson、GraphicsMagick
-
-* **前端**
 * jQuery、Seajs
 * Bootstrap 前端框架
 * UEditor/Markdown编辑器
@@ -25,7 +22,7 @@
 - [系统配置](https://www.zybuluo.com/langhsu/note/165905)
 
 ### 捐助
-如果您认为“MBLOG”确实给您带来方便和帮助，那么欢迎您捐赠。您的捐赠，是我们前进的动力。
+如果您认为“MBLOG”确实给您带来方便和帮助，那么欢迎您捐赠。您的捐赠会用于,贴补项目网站域名注册、服务器托管、带宽租用等运营成本。
 
 ![支付宝二维码](http://git.oschina.net/uploads/images/2015/0905/135429_b3326bf1_116277.png "支付宝二维码")
 
@@ -36,5 +33,3 @@
 如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mtons相关版权信息链接
 
 QQ交流群：378433412
-
-官网: [http://mtons.com](http://mtons.com)
