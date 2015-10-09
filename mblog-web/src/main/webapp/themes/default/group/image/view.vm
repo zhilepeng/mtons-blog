@@ -25,11 +25,11 @@
 			<div class="thumbs">
 			#foreach($alb in $ret.albums)
 				<div class="single-post-media">
-					<a title="${ret.title}" href="$base${alb.original}">
+					<a title="${ret.title}" href="#resource(${alb.original})">
 						#if($att.store == 1)
-							<img src="$base/assets/images/spinner.gif" data-original="${alb.original}"/>
+							<img src="$base/assets/images/spinner.gif" data-original="#resource(${alb.original})"/>
 						#else
-							<img src="$base/assets/images/spinner.gif" data-original="$base${alb.original}"/>
+							<img src="$base/assets/images/spinner.gif" data-original="#resource(${alb.original})"/>
 						#end
 					</a>
 				</div><!-- .post-thumbnail -->

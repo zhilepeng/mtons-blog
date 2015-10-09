@@ -41,7 +41,7 @@
 							#foreach($alb in ${row.post.albums})
 								#if ($velocityCount <= 3)
 									<div class="media col-xs-4 col-sm-4 col-md-4">
-										<a title="${row.post.title}" href="$base${alb.original}">
+										<a title="${row.post.title}" href="#resource(${alb.original})">
 											#albShow($!alb)
 										</a>
 									</div>

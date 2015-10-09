@@ -37,12 +37,6 @@
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
 			<scope>compile</scope>
 			<exclusions>

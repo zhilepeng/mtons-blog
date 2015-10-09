@@ -15,6 +15,7 @@ import java.io.Writer;
  * Created by langhsu on 2015/10/8.
  */
 public class NumberDirective extends Directive {
+	
     @Override
     public String getName() {
         return "number";

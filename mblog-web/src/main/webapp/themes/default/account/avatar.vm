@@ -27,7 +27,7 @@
 				</label>
 			</div>
 			<div class="update_ava">
-				<img src="$base${profile.avatar}" id="target" alt="[Jcrop Example]" />
+				<img src="#resource(${profile.avatar})" id="target" alt="[Jcrop Example]" />
 			</div>
 
 			<div class="form-group">

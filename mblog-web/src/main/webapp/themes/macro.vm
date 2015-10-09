@@ -19,8 +19,8 @@
 			</a>
         </div>
         <div class="counts">
-            <span class="act"><i class="praise_icon"></i>#number(${row.favors})</span>
-            <span class="act"><i class="comment_icon"></i>#number(${row.comments})</span>
+            <span class="act"><i class="praise_icon"></i>${row.favors}</span>
+            <span class="act"><i class="comment_icon"></i>${row.comments}</span>
         </div>
     </div>
     <div class="summary">
@@ -35,7 +35,7 @@
 			#foreach($alb in ${row.albums})
     			#if ($velocityCount <= 3)
     			<div class="media col-xs-4 col-sm-4 col-md-4">
-        			<a title="${row.title}" href="$base${alb.original}">
+        			<a title="${row.title}" href="#resource(${alb.original})">
 						#albShow($!alb)
         			</a>
     			</div>
@@ -172,7 +172,7 @@
 	#if($att.store == 1)
         <img src="$base/assets/images/spinner-overlay.png" data-original="${att.screenshot}"/>
 	#else
-        <img src="$base/assets/images/spinner-overlay.png" data-original="$base${att.screenshot}"/>
+        <img src="$base/assets/images/spinner-overlay.png" data-original="#resource(${att.screenshot})"/>
 	#end
 #end
 
@@ -181,7 +181,7 @@
 	#if($avatar.startWitdh("http:"))
         <img class="$!{clazz}" src="$avatar"/>
 	#else
-        <img class="$!{clazz}" src="$base$!{avatar}"/>
+        <img class="$!{clazz}" src="#resource($!{avatar})"/>
 	#end
 #end
 

@@ -7,7 +7,7 @@
 		#if($!{row.album})
 		<div class="g-thumb">
 			<a href="$base/view/${row.id}">
-				<img src="$base${row.album.preview}">
+				<img src="#resource(${row.album.preview})">
 			</a>
 		</div>
 		#end
