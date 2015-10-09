@@ -18,8 +18,8 @@
 
 
 ### 相关文档
-- [部署手册](https://www.zybuluo.com/langhsu/note/165902)
-- [系统配置](https://www.zybuluo.com/langhsu/note/165905)
+- [部署手册](http://mblog.mtons.com/deploy.html)
+- [系统配置](http://mblog.mtons.com/config.html)
 
 ### 捐助
 感谢那些支持,鼓励和帮助过`mblog`项目的同学,感谢你们。您的捐赠会用于,贴补项目网站域名注册、服务器托管、带宽租用等运营成本。
