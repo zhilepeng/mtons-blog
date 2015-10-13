@@ -1,4 +1,4 @@
-<meta property="mtons:mblog" content="2.0.0-beta3">
+<meta property="mtons:mblog" content="2.2.1">
 $!{site_metas}
 
 <script src="$base/assets/vendors/pace/pace.min.js"></script>
