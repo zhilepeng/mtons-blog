@@ -18,7 +18,9 @@
                 <tr>
                     <th width="80" style="text-align: center">#</th>
                     <th>用户名</th>
+                    #if($shiro.hasPermission("roles:edit"))
                     <th width="300" style="text-align: center">操作</th>
+                    #end
                 </tr>
                 </thead>
                 <tbody>
@@ -26,6 +28,7 @@
                     <tr>
                         <td class="text-center">${row.id}</td>
                         <td>$!{row.name}</td>
+                        #if($shiro.hasPermission("roles:edit"))
                         <td class="text-center">
 
                             <a href="$base/admin/roles/view?id=${row.id}" class="btn btn-mini btn-primary">
@@ -33,11 +36,14 @@
                             </a>
                             <a href="$base/admin/roles/delete?id=${row.id}" class="btn btn-mini"><i class="fa fa-check-square-o"></i> 删除</a>
                         </td>
+                        #end
                     </tr>
 					#end
                 </tbody>
             </table>
+            #if($shiro.hasPermission("roles:edit"))
             <a class="btn add-role-btn" href="$base/admin/roles/view">添加角色</a>
+            #end
         </div>
     </div>
     <footer class="panel-footer">

@@ -33,7 +33,9 @@
     					<th>文章数</th>
     					<th>搜索热度</th>
     					<th>状态</th>
+						#if($shiro.hasPermission("tags:edit"))
     					<th width="200"></th>
+						#end
     				</tr>
     			</thead>
     			<tbody>
@@ -43,6 +45,7 @@
                         <td>${row.name}</td>
     					<td>${row.posts}</td>
     					<td>${row.hots}</td>
+
     					<td>
     						#if(${row.featured} == 1)
     							<span class="label label-success">推荐</span>
@@ -54,6 +57,7 @@
     							<span class="label label-warning">锁定</span>
 							#end
     					</td>
+						#if($shiro.hasPermission("tags:edit"))
                         <td class="text-center">
                         	#if(${row.featured} == 1)
                         		<a href="javascript:void(0);" class="btn btn-mini btn-info" data-id="${row.id}" data-status="0" data-action="featured">
@@ -71,6 +75,7 @@
     							<i class="fa fa-bitbucket"></i> 删除
     						</a>
     					</td>
+						#end
                     </tr>
     				#end
     			</tbody>

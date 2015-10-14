@@ -24,7 +24,9 @@
 						<th>目标Id</th>
     					<th>作者</th>
     					<th>发表日期</th>
-    					<th width="200"></th>
+						#if($shiro.hasPermission("comments:edit"))
+    						<th width="200"></th>
+						#end
     				</tr>
     			</thead>
     			<tbody>
@@ -38,11 +40,13 @@
 						<td>$!{row.toId}</td>
     					<td>$!{row.author.username}</td>
     					<td>$date.format('yyyy-MM-dd', $row.created)</td>
-                        <td class="text-center" align="left">
-    						<a href="javascript:void(0);" class="btn btn-mini btn-white" data-id="${row.id}" data-action="delete">
-    							<i class="fa fa-bitbucket"></i> 删除
-    						</a>
-    					</td>
+						#if($shiro.hasPermission("comments:edit"))
+							<td class="text-center" align="left">
+								<a href="javascript:void(0);" class="btn btn-mini btn-white" data-id="${row.id}" data-action="delete">
+									<i class="fa fa-bitbucket"></i> 删除
+								</a>
+							</td>
+						#end
                     </tr>
     				#end
     			</tbody>

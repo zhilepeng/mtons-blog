@@ -22,7 +22,9 @@
     					<th>邮箱</th>
 						<th>角色</th>
     					<th>状态</th>
+						#if($shiro.hasPermission("users:edit"))
     					<th width="300"></th>
+						#end
     				</tr>
     			</thead>
     			<tbody>
@@ -44,6 +46,7 @@
     						<span class="label label-default">禁用</span>
     					#end
     					</td>
+						#if($shiro.hasPermission("users:edit"))
                         <td class="text-center">
 							#if(${row.id} != 1)
 								#if(${row.status} == 0)
@@ -66,6 +69,7 @@
 								<a href="javascript:void(0);" class="btn btn-mini disabled"><i class="fa fa-check-square-o"></i> 不可编辑</a>
 							#end
     					</td>
+						#end
                     </tr>
     				#end
     			</tbody>

@@ -1,4 +1,4 @@
-#set($layout = "/default/layout/noop.vm")
+#set($layout = "/default/layout/columns_noop.vm")
 <html>
 <head>
     <link rel="stylesheet" href="$base/assets/vendors/zTree_v3/css/demo.css" type="text/css">

@@ -189,6 +189,15 @@ INSERT INTO `mto_auth_menu` VALUES ('16', '修改配置', null, 'config:edit', '
 INSERT INTO `mto_auth_menu` VALUES ('17', 'dashboard', null, 'admin', '1', 'admin', '2', 'fa fa-dashboard icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('18', '角色管理', null, 'roles:view', '7', 'admin/roles/list', '2', 'fa fa-dashboard icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('19', '菜单管理', null, 'authMenus:view', '8', 'admin/authMenus/list', '2', 'fa fa-edit icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('21', '菜单修改', null, 'authMenus:edit', '0', '', '19', null);
+INSERT INTO `mto_auth_menu` VALUES ('22', '角色修改', null, 'roles:edit', '0', null, '18', null);
+INSERT INTO `mto_auth_menu` VALUES ('23', '文章查看', null, 'posts:view', '1', '', '4', null);
+INSERT INTO `mto_auth_menu` VALUES ('24', '用户查看', null, 'users:view', '1', '', '6', null);
+INSERT INTO `mto_auth_menu` VALUES ('25', '评论查看', null, 'comments:view', '1', '', '9', null);
+INSERT INTO `mto_auth_menu` VALUES ('26', '标签查看', null, 'tags:view', '1', '', '11', null);
+INSERT INTO `mto_auth_menu` VALUES ('27', '角色查看', null, 'roles:view', '1', '', '18', null);
+INSERT INTO `mto_auth_menu` VALUES ('28', '菜单查看', null, 'authMenus:view', '1', '', '19', null);
+
 
 -- ----------------------------
 -- Table structure for mto_role
@@ -221,25 +230,33 @@ CREATE TABLE `mto_role_menu` (
 -- ----------------------------
 -- Records of mto_role_menu
 -- ----------------------------
-INSERT INTO `mto_role_menu` VALUES ('1', '4');
-INSERT INTO `mto_role_menu` VALUES ('1', '6');
-INSERT INTO `mto_role_menu` VALUES ('1', '2');
 INSERT INTO `mto_role_menu` VALUES ('1', '1');
-INSERT INTO `mto_role_menu` VALUES ('1', '3');
+INSERT INTO `mto_role_menu` VALUES ('1', '2');
+INSERT INTO `mto_role_menu` VALUES ('1', '4');
 INSERT INTO `mto_role_menu` VALUES ('1', '5');
+INSERT INTO `mto_role_menu` VALUES ('1', '23');
+INSERT INTO `mto_role_menu` VALUES ('1', '6');
 INSERT INTO `mto_role_menu` VALUES ('1', '7');
 INSERT INTO `mto_role_menu` VALUES ('1', '8');
+INSERT INTO `mto_role_menu` VALUES ('1', '24');
 INSERT INTO `mto_role_menu` VALUES ('1', '9');
 INSERT INTO `mto_role_menu` VALUES ('1', '10');
+INSERT INTO `mto_role_menu` VALUES ('1', '25');
 INSERT INTO `mto_role_menu` VALUES ('1', '11');
 INSERT INTO `mto_role_menu` VALUES ('1', '12');
 INSERT INTO `mto_role_menu` VALUES ('1', '13');
 INSERT INTO `mto_role_menu` VALUES ('1', '14');
+INSERT INTO `mto_role_menu` VALUES ('1', '26');
 INSERT INTO `mto_role_menu` VALUES ('1', '15');
 INSERT INTO `mto_role_menu` VALUES ('1', '16');
 INSERT INTO `mto_role_menu` VALUES ('1', '17');
 INSERT INTO `mto_role_menu` VALUES ('1', '18');
+INSERT INTO `mto_role_menu` VALUES ('1', '22');
+INSERT INTO `mto_role_menu` VALUES ('1', '27');
 INSERT INTO `mto_role_menu` VALUES ('1', '19');
+INSERT INTO `mto_role_menu` VALUES ('1', '21');
+INSERT INTO `mto_role_menu` VALUES ('1', '28');
+INSERT INTO `mto_role_menu` VALUES ('1', '3');
 
 -- ----------------------------
 -- Table structure for mto_user_role

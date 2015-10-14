@@ -46,8 +46,12 @@
                 /admin/users/pwd**=authc,perms[users:edit]
                 /admin/config/**=authc,perms[config:view]
                 /admin/config/updtate**=authc,perms[config:edit]
-                /admin/roles/**=authc,perms[roles:view]
-                /admin/authMenus/**=authc,perms[authMenus:view]
+                /admin/roles/list=authc,perms[roles:view]
+                /admin/roles/save=authc,perms[roles:edit]
+                /admin/roles/view=authc,perms[roles:edit]
+                /admin/authMenus/list=authc,perms[authMenus:view]
+                /admin/authMenus/save=authc,perms[authMenus:edit]
+                /admin/authMenus/view=authc,perms[authMenus:edit]
             </value>
         </property>
     </bean>

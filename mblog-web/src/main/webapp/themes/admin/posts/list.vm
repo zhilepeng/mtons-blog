@@ -25,7 +25,9 @@
     					<th>发表日期</th>
 						<th>访问</th>
         				<th>推荐</th>
-    					<th width="240"></th>
+						#if($shiro.hasPermission("posts:edit"))
+    						<th width="240"></th>
+						#end
     				</tr>
     			</thead>
     			<tbody>
@@ -53,6 +55,7 @@
 								<span class="label label-info">置顶</span>
 							#end
 						</td>
+						#if($shiro.hasPermission("posts:edit"))
                         <td class="text-center" align="left">
     						<a href="$base/admin/posts/update?id=${row.id}" class="btn btn-mini btn-info">
     							<i class="fa fa-edit"></i>编辑
@@ -71,6 +74,7 @@
     							<i class="fa fa-bitbucket"></i> 删除
     						</a>
     					</td>
+						#end
                     </tr>
     				#end
     			</tbody>
@@ -79,9 +83,11 @@
 	</div>
 	<footer class="panel-footer">
 		<div class="row">
+			#if($shiro.hasPermission("posts:edit"))
 			<div class="col-lg-6">
 				<a href="javascrit:void(0);" class="btn btn-mini btn-success" data-action="batch_del">批量删除</a>
 			</div>
+			#end
 			<div class="col-lg-6 text-right text-center-sm">                
 				#page("list" $page 5)
 			</div>
