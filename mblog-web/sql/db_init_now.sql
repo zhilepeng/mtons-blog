@@ -186,7 +186,7 @@ INSERT INTO `mto_auth_menu` VALUES ('13', '修改标签', null, 'tags:edit', '2'
 INSERT INTO `mto_auth_menu` VALUES ('14', '推荐标签', null, 'tags:edit', '3', null, '11', null);
 INSERT INTO `mto_auth_menu` VALUES ('15', '系统配置', null, 'config:view', '6', 'admin/config/', '2', 'fa fa-sun-o icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('16', '修改配置', null, 'config:edit', '1', null, '15', null);
-INSERT INTO `mto_auth_menu` VALUES ('17', 'dashboard', null, 'admin', '1', 'admin', '2', 'fa fa-dashboard icon-xlarge');
+INSERT INTO `mto_auth_menu` VALUES ('17', '仪表盘', null, 'admin', '1', 'admin', '2', 'fa fa-dashboard icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('18', '角色管理', null, 'roles:view', '7', 'admin/roles/list', '2', 'fa fa fa-registered icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('19', '菜单管理', null, 'authMenus:view', '8', 'admin/authMenus/list', '2', 'fa fa-reorder icon-xlarge');
 INSERT INTO `mto_auth_menu` VALUES ('21', '菜单修改', null, 'authMenus:edit', '0', '', '19', null);
