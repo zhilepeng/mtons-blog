@@ -49,7 +49,7 @@ public class EmailSenderImpl implements EmailSender {
     @Override
     public void sendTemplete(String address, String subject, String template, Map<String, Object> data) {
         data.put("domain", getDomain());
-        final String html = VelocityEngineUtils.mergeTemplateIntoString(emailEngine.getObject(), template, "UTF-8", data);
+        final String html = VelocityEngineUtils.mergeTemplateIntoString(emailEngine.getEngine(), template, "UTF-8", data);
 
         sendText(address, subject, html, true);
     }
