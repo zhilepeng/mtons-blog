@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mblog.base.lang.Consts;
+import mblog.core.biz.PostBiz;
 import mblog.core.event.NotifyEvent;
-import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.UserProfile;
@@ -22,7 +22,7 @@ import mtons.modules.pojos.UserProfile;
 @RequestMapping("/account")
 public class FavorController extends BaseController {
     @Autowired
-    private PostPlanet postPlanet;
+    private PostBiz postBiz;
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -38,7 +38,7 @@ public class FavorController extends BaseController {
         if (id != null) {
             try {
                 UserProfile up = getSubject().getProfile();
-                postPlanet.favor(up.getId(), id);
+                postBiz.favor(up.getId(), id);
 
                 sendNotify(up.getId(), id);
 
@@ -62,7 +62,7 @@ public class FavorController extends BaseController {
         if (id != null) {
             try {
                 UserProfile up = getSubject().getProfile();
-                postPlanet.unfavor(up.getId(), id);
+                postBiz.unfavor(up.getId(), id);
                 data = Data.success("操作成功!", Data.NOOP);
             } catch (Exception e) {
                 data = Data.failure(e.getMessage());

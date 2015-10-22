@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
 */
-package mblog.core.planet.impl;
+package mblog.core.biz.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,13 +23,13 @@ import org.springframework.stereotype.Service;
 
 import mblog.base.lang.EnumPrivacy;
 import mblog.base.upload.FileRepo;
+import mblog.core.biz.PostBiz;
 import mblog.core.data.Attach;
 import mblog.core.data.Post;
 import mblog.core.event.FeedsEvent;
 import mblog.core.persist.service.AttachService;
 import mblog.core.persist.service.FeedsService;
 import mblog.core.persist.service.PostService;
-import mblog.core.planet.PostPlanet;
 import mtons.modules.pojos.Paging;
 
 /**
@@ -37,7 +37,7 @@ import mtons.modules.pojos.Paging;
  * 
  */
 @Service
-public class PostPlanetImpl implements PostPlanet {
+public class PostBizImpl implements PostBiz {
 	@Autowired
 	private PostService postService;
 	@Autowired

@@ -16,6 +16,8 @@ import mtons.modules.security.MD5;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -104,6 +106,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "usersCaches", key = "#user.getId()")
 	public AccountProfile update(User user) {
 		UserPO po = userDao.get(user.getId());
 		if (null != po) {
@@ -138,6 +141,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value = "usersCaches", key = "#userId")
 	public User get(long id) {
 		UserPO po = userDao.get(id);
 		User ret = null;

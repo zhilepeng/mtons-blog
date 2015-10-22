@@ -9,18 +9,19 @@
 */
 package mblog.web.controller.desk.ta;
 
-import mblog.base.lang.EnumPrivacy;
-import mblog.core.data.User;
-import mblog.core.planet.PostPlanet;
-import mblog.core.planet.UserPlanet;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-import mtons.modules.pojos.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import mblog.base.lang.EnumPrivacy;
+import mblog.core.biz.PostBiz;
+import mblog.core.data.User;
+import mblog.core.persist.service.UserService;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Paging;
 
 /**
  * 访问他人主页
@@ -30,15 +31,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TaController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postBiz;
 	@Autowired
-	private UserPlanet userPlanet;
+	private UserService userService;
 	
 	@RequestMapping("/ta/{uid}")
 	public String home(@PathVariable Long uid, Integer pn, ModelMap model) {
-		User user = userPlanet.getUser(uid);
+		User user = userService.get(uid);
 		Paging page = wrapPage(pn);
-		page = postPlanet.pagingByAuthorId(page, uid, EnumPrivacy.OPEN);
+		page = postBiz.pagingByAuthorId(page, uid, EnumPrivacy.OPEN);
 		
 		model.put("user", user);
 		model.put("page", page);

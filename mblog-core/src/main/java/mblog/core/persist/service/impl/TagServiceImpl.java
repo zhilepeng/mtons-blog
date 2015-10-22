@@ -18,6 +18,8 @@ import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +46,7 @@ public class TagServiceImpl implements TagService {
 	
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value = "tagsCaches", key = "'top_tags_' + #maxResults + '_' + #loadPost")
 	public List<Tag> topTags(int maxResults, boolean loadPost) {
 		List<TagPO> list = tagDao.tops(maxResults);
 		List<Tag> rets = new ArrayList<>();
@@ -167,6 +170,7 @@ public class TagServiceImpl implements TagService {
 	
 	@Override
 	@Transactional
+	@CacheEvict(value = "tagsCaches", allEntries = true)
 	public void delete(long id) {
 		tagDao.deleteById(id);
 	}

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,12 +44,14 @@ public class GroupServiceImpl implements GroupService {
 
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value = "groupsCaches", key = "'g_' + #id")
 	public Group getById(int id) {
 		return BeanMapUtils.copy(groupDao.get(id));
 	}
 
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value = "groupsCaches", key = "'g_' + #key")
 	public Group getByKey(String key) {
 		return BeanMapUtils.copy(groupDao.getByKey(key));
 	}

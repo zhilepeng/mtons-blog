@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mblog.base.lang.EnumPrivacy;
 import mblog.core.data.AccountProfile;
 import mblog.core.data.User;
+import mblog.core.persist.service.CommentService;
 import mblog.core.persist.service.FavorService;
 import mblog.core.persist.service.FeedsService;
 import mblog.core.persist.service.FollowService;
 import mblog.core.persist.service.NotifyService;
 import mblog.core.persist.service.PostService;
 import mblog.core.persist.service.UserService;
-import mblog.core.planet.CommentPlanet;
 import mblog.shiro.authc.AccountSubject;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
@@ -43,7 +43,7 @@ public class HomeController extends BaseController {
 	@Autowired
 	private FeedsService feedsService;
 	@Autowired
-	private CommentPlanet commentPlanet;
+	private CommentService commentService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -100,7 +100,7 @@ public class HomeController extends BaseController {
 	public String comments(Integer pn, ModelMap model) {
 		Paging page = wrapPage(pn);
 		AccountSubject subject = getSubject();
-		page = commentPlanet.paging4Home(page, subject.getProfile().getId());
+		page = commentService.paging4Home(page, subject.getProfile().getId());
 
 		model.put("page", page);
 		initUser(model);

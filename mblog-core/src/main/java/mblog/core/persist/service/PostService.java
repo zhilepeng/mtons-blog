@@ -9,15 +9,13 @@
 */
 package mblog.core.persist.service;
 
-import mblog.base.lang.EnumPrivacy;
-import mblog.core.data.Post;
-import mtons.modules.pojos.Paging;
-import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import mblog.base.lang.EnumPrivacy;
+import mblog.core.data.Post;
+import mtons.modules.pojos.Paging;
 
 /**
  * 文章管理
@@ -49,21 +47,16 @@ public interface PostService {
 	 * 根据关键字搜索
 	 * @param paging
 	 * @param q
-	 * @throws InterruptedException
-	 * @throws IOException
-	 * @throws InvalidTokenOffsetsException
+	 * @throws Exception 
 	 */
-	void search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException;
+	void search(Paging paging, String q) throws Exception;
 	
 	/**
 	 * 搜索 Tag
 	 * @param paging
 	 * @param tag
-	 * @throws InterruptedException
-	 * @throws IOException
-	 * @throws InvalidTokenOffsetsException
 	 */
-	void searchByTag(Paging paging, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException;
+	void searchByTag(Paging paging, String tag);
 	
 	/**
 	 * 查询最近更新 - 按发布时间排序

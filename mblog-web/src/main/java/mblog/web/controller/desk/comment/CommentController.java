@@ -19,7 +19,7 @@ import org.springframework.web.util.HtmlUtils;
 import mblog.base.lang.Consts;
 import mblog.core.data.Comment;
 import mblog.core.event.NotifyEvent;
-import mblog.core.planet.CommentPlanet;
+import mblog.core.persist.service.CommentService;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;
@@ -33,14 +33,14 @@ import mtons.modules.pojos.UserProfile;
 @RequestMapping("/comment")
 public class CommentController extends BaseController {
 	@Autowired
-	private CommentPlanet commentPlanet;
+	private CommentService commentService;
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@RequestMapping("/list/{toId}")
 	public @ResponseBody Paging view(Integer pn, @PathVariable Long toId) {
 		Paging page = wrapPage(pn);
-		page = commentPlanet.paging(page, toId);
+		page = commentService.paging(page, toId);
 		return page;
 	}
 	
@@ -65,7 +65,7 @@ public class CommentController extends BaseController {
 			
 			c.setPid(pid);
 			
-			commentPlanet.post(c);
+			commentService.post(c);
 
 			sendNotify(up.getId(), toId, pid);
 			
@@ -80,7 +80,7 @@ public class CommentController extends BaseController {
 		if (id != null) {
 			UserProfile up = getSubject().getProfile();
 			try {
-				commentPlanet.delete(id, up.getId());
+				commentService.delete(id, up.getId());
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

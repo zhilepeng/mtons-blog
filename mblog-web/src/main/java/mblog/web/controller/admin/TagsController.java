@@ -9,9 +9,6 @@
 */
 package mblog.web.controller.admin;
 
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.Paging;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,8 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import mblog.core.data.Tag;
 import mblog.core.persist.service.TagService;
-import mblog.core.planet.TagPlanet;
 import mblog.web.controller.BaseController;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -32,8 +30,6 @@ import mblog.web.controller.BaseController;
 public class TagsController extends BaseController {
 	@Autowired
 	private TagService tagService;
-	@Autowired
-	private TagPlanet tagPlanet;
 	
 	@RequestMapping("/list")
 	public String list(Integer pn, String key, String order, ModelMap model) {
@@ -93,7 +89,7 @@ public class TagsController extends BaseController {
 		Data data = Data.failure("操作失败");
 		if (id != null) {
 			try {
-				tagPlanet.delete(id);
+				tagService.delete(id);
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

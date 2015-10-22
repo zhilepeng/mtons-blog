@@ -18,9 +18,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import mblog.core.biz.PostBiz;
 import mblog.core.data.Group;
-import mblog.core.planet.GroupPlanet;
-import mblog.core.planet.PostPlanet;
+import mblog.core.persist.service.GroupService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
@@ -33,9 +33,9 @@ import mtons.modules.pojos.Paging;
 @Controller
 public class GroupIndexController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postBiz;
 	@Autowired
-	private GroupPlanet groupPlanet;
+	private GroupService groupService;
 	
 	private static String DEFAULT_ORDER = "newest";
 	
@@ -45,10 +45,10 @@ public class GroupIndexController extends BaseController {
 		// init params
 		Paging page = wrapPage(pn);
 		String order = ServletRequestUtils.getStringParameter(request, "ord", DEFAULT_ORDER);
-		Group group = groupPlanet.getByKey(groupKey);
+		Group group = groupService.getByKey(groupKey);
 		
 		// query
-		page = postPlanet.paging(page, group.getId(), order);
+		page = postBiz.paging(page, group.getId(), order);
 		
 		// callback params
 		model.put("page", page);

@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
 */
-package mblog.core.planet;
+package mblog.core.biz;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,7 +24,7 @@ import mblog.core.data.Post;
  * @author langhsu
  *
  */
-public interface PostPlanet {
+public interface PostBiz {
 	/**
 	 * 分页查询文章
 	 * 

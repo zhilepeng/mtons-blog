@@ -5,8 +5,6 @@ package mblog.web.controller.desk.tags;
 
 import java.util.List;
 
-import mtons.modules.pojos.Paging;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mblog.core.data.Tag;
 import mblog.core.persist.service.PostService;
 import mblog.core.persist.service.TagService;
-import mblog.core.planet.TagPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Paging;
 
 /**
  * 发现
@@ -31,15 +29,13 @@ public class TagsController extends BaseController {
 	@Autowired
 	private PostService postService;
 	@Autowired
-	private TagPlanet tagPlanet;
-	@Autowired
 	private TagService tagService;
 	
 	private int maxResults = 12;
 	
 	@RequestMapping("/tags")
 	public String view(ModelMap model) {
-		List<Tag> tags = tagPlanet.topTags(maxResults, true);
+		List<Tag> tags = tagService.topTags(maxResults, true);
 		model.put("tags", tags);
 		return getView(Views.TAGS_INDEX);
 	}

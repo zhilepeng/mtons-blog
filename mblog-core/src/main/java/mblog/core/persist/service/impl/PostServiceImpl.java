@@ -9,7 +9,6 @@
 */
 package mblog.core.persist.service.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,18 +20,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.search.Sort;
-import org.apache.lucene.search.SortField;
-import org.apache.lucene.search.highlight.Highlighter;
-import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
-import org.apache.lucene.search.highlight.QueryScorer;
-import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
-import org.hibernate.search.FullTextQuery;
-import org.hibernate.search.FullTextSession;
-import org.hibernate.search.Search;
-import org.hibernate.search.SearchFactory;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,81 +87,30 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	public void search(Paging paging, String q) throws InterruptedException, IOException, InvalidTokenOffsetsException {
-		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
-	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-
-		org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("title","summary","tags").matching(q).createQuery();
-
-		FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
-	    query.setFirstResult(paging.getFirstResult());
-	    query.setMaxResults(paging.getMaxResults());
-
-	    StandardAnalyzer standardAnalyzer = new StandardAnalyzer();
-	    SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
-        QueryScorer queryScorer = new QueryScorer(luceneQuery);
-        Highlighter highlighter = new Highlighter(formatter, queryScorer);
-        
-		List<PostPO> list = query.list();
-	    int resultSize = query.getResultSize();
-	    
-	    List<Post> rets = new ArrayList<>();
+	public void search(Paging paging, String q) throws Exception {
+		List<Post> list = postDao.search(paging, q);
 
 		HashSet<Long> ids = new HashSet<>();
 		HashSet<Long> uids = new HashSet<>();
 
-		for (PostPO po : list) {
-			Post m = BeanMapUtils.copy(po, 0);
-
-			// 处理高亮
-			String title = highlighter.getBestFragment(standardAnalyzer, "title", m.getTitle());
-			String summary = highlighter.getBestFragment(standardAnalyzer, "summary", m.getSummary());
-
-			if (StringUtils.isNotEmpty(title)) {
-				m.setTitle(title);
-			}
-			if (StringUtils.isNotEmpty(summary)) {
-				m.setSummary(summary);
-			}
-			rets.add(m);
-			
+		for (Post po : list) {
 			ids.add(po.getId());
 			uids.add(po.getAuthorId());
 		}
 
 		// 加载相册
-		buildAttachs(rets, ids);
+		buildAttachs(list, ids);
 
 		// 加载用户信息
-		buildUsers(rets, uids);
+		buildUsers(list, uids);
 
-		paging.setTotalCount(resultSize);
-		paging.setResults(rets);
+		paging.setResults(list);
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	@SuppressWarnings("unchecked")
-	public void searchByTag(Paging paigng, String tag) throws InterruptedException, IOException, InvalidTokenOffsetsException {
-		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
-	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.phrase().onField("tags").sentence(tag).createQuery();
-
-	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
-	    query.setFirstResult(paigng.getFirstResult());
-	    query.setMaxResults(paigng.getMaxResults());
-
-		Sort sort = new Sort(new SortField("id", SortField.Type.LONG, true));
-		query.setSort(sort);
-
-		List<PostPO> list = query.list();
-	    int resultSize = query.getResultSize();
-	    
-		paigng.setTotalCount(resultSize);
-		paigng.setResults(toPosts(list, true));
+	public void searchByTag(Paging paigng, String tag) {
+		paigng.setResults(toPosts(postDao.searchByTag(paigng, tag), true));
 	}
 	
 	@Override
@@ -411,6 +347,12 @@ public class PostServiceImpl implements PostService {
 
 		po.setFavors(po.getFavors() - Consts.IDENTITY_STEP);
 	}
+	
+	@Override
+	@Transactional
+	public void resetIndexs() {
+		postDao.resetIndexs();
+	}
 
 	/**
 	 * 截取文章内容
@@ -454,14 +396,6 @@ public class PostServiceImpl implements PostService {
 		Map<Long, User> userMap = userService.findMapByIds(uids);
 
 		posts.forEach(p -> p.setAuthor(userMap.get(p.getAuthorId())));
-	}
-
-	@Override
-	@Transactional
-	public void resetIndexs() {
-		FullTextSession fullTextSession = Search.getFullTextSession(postDao.getSession());
-		//异步
-		fullTextSession.createIndexer(PostPO.class).start();
 	}
 
 }

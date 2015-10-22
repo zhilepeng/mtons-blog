@@ -14,4 +14,14 @@
 		<property name="properties" ref="configProperties"/>
 	</bean>
     
+    <!--
+	
+	文件绝对路径存储：
+    <bean id="fileRepo" class="mblog.base.upload.impl.FileRepoImpl" />
+    
+	文件相对项目根路径存储：
+	<bean id="fileRepo" class="mblog.base.upload.impl.FileRealPathRepoImpl" />
+	
+    -->
+    
 </beans>

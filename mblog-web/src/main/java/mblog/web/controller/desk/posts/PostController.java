@@ -3,15 +3,8 @@
  */
 package mblog.web.controller.desk.posts;
 
-import mblog.core.data.Group;
-import mblog.core.data.Post;
-import mblog.core.persist.service.GroupService;
-import mblog.core.persist.service.PostService;
-import mblog.core.planet.PostPlanet;
-import mblog.web.controller.BaseController;
-import mblog.web.controller.desk.Views;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.View;
+import mblog.core.biz.PostBiz;
+import mblog.core.data.Group;
+import mblog.core.data.Post;
+import mblog.core.persist.service.GroupService;
+import mblog.web.controller.BaseController;
+import mblog.web.controller.desk.Views;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 
 /**
  * 文章操作
@@ -34,11 +33,9 @@ import javax.swing.text.View;
 @RequestMapping("/post")
 public class PostController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postPlanet;
 	@Autowired
 	private GroupService groupService;
-	@Autowired
-	private PostService postService;
 
 	/**
 	 * 发布文章页

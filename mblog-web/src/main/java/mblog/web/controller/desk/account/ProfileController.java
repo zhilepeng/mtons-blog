@@ -3,14 +3,8 @@
  */
 package mblog.web.controller.desk.account;
 
-import mblog.base.email.EmailSender;
-import mblog.base.lang.Consts;
-import mblog.core.data.User;
-import mblog.core.persist.service.UserService;
-import mblog.core.persist.service.VerifyService;
-import mblog.core.planet.UserPlanet;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +13,15 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import mblog.base.email.EmailSender;
+import mblog.base.lang.Consts;
+import mblog.core.data.User;
+import mblog.core.persist.service.UserService;
+import mblog.core.persist.service.VerifyService;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
-
-import java.util.HashMap;
-import java.util.Map;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 
 /**
  * @author langhsu
@@ -35,8 +33,6 @@ public class ProfileController extends BaseController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private UserPlanet userPlanet;
-	@Autowired
 	private VerifyService verifyService;
 	@Autowired
 	private EmailSender emailSender;
@@ -44,7 +40,7 @@ public class ProfileController extends BaseController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String view(ModelMap model) {
 		UserProfile profile = getSubject().getProfile();
-		User view = userPlanet.getUser(profile.getId());
+		User view = userService.get(profile.getId());
 		model.put("view", view);
 		return getView(Views.ACCOUNT_PROFILE);
 	}
@@ -60,10 +56,10 @@ public class ProfileController extends BaseController {
 			user.setName(name);
 			user.setSignature(signature);
 
-			putProfile(userPlanet.update(user));
+			putProfile(userService.update(user));
 
 			// put 最新信息
-			User view = userPlanet.getUser(profile.getId());
+			User view = userService.get(profile.getId());
 			model.put("view", view);
 
 			data = Data.success("操作成功", Data.NOOP);

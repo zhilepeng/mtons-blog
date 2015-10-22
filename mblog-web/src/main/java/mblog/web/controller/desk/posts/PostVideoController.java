@@ -9,9 +9,9 @@ import java.util.Collections;
 import mblog.base.analysis.videos.VideoAnalysis;
 import mblog.base.data.Video;
 import mblog.base.lang.Consts;
+import mblog.core.biz.PostBiz;
 import mblog.core.data.Attach;
 import mblog.core.data.Post;
-import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.UserProfile;
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/post")
 public class PostVideoController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postPlanet;
 	@Autowired
 	private VideoAnalysis videoAnalysis;
 	

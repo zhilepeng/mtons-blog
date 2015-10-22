@@ -6,7 +6,7 @@ package mblog.web.controller.desk.group;
 import javax.servlet.http.HttpServletRequest;
 
 import mblog.base.lang.Consts;
-import mblog.core.planet.PostPlanet;
+import mblog.core.biz.PostBiz;
 import mblog.web.controller.BaseController;
 import mblog.web.controller.desk.Views;
 import mtons.modules.pojos.Paging;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GalleryController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postBiz;
 	
 	private int jsonMaxResults = 8;
 
@@ -42,7 +42,7 @@ public class GalleryController extends BaseController {
 		int groupId = ServletRequestUtils.getIntParameter(request, "g", 0);
 		Paging page = wrapPage(pn, jsonMaxResults);
 
-		page = postPlanet.gallery(page, groupId, Consts.order.NEWEST);
+		page = postBiz.gallery(page, groupId, Consts.order.NEWEST);
 		model.put("page", page);
 		model.put("groupId", groupId);
 		return getView(Views.BROWSE_GALLERY);
@@ -61,7 +61,7 @@ public class GalleryController extends BaseController {
 		Paging page = wrapPage(pn);
 		page.setMaxResults(jsonMaxResults);
 		
-		page = postPlanet.gallery(page, groupId, Consts.order.NEWEST);
+		page = postBiz.gallery(page, groupId, Consts.order.NEWEST);
 		model.put("page", page);
 		model.put("groupId", groupId);
 		return getView(Views.BROWSE_GALLERY_SNIPPET);

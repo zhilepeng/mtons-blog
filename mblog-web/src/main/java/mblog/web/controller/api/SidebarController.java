@@ -9,13 +9,8 @@
 */
 package mblog.web.controller.api;
 
-import mblog.core.data.Post;
-import mblog.core.data.Tag;
-import mblog.core.planet.PostPlanet;
-import mblog.core.planet.TagPlanet;
-import mblog.web.controller.BaseController;
-import mtons.modules.pojos.Data;
-import mtons.modules.pojos.UserProfile;
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -29,7 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import mblog.core.biz.PostBiz;
+import mblog.core.data.Post;
+import mblog.core.data.Tag;
+import mblog.core.persist.service.TagService;
+import mblog.web.controller.BaseController;
+import mtons.modules.pojos.Data;
+import mtons.modules.pojos.UserProfile;
 
 /**
  * 侧边栏数据加载
@@ -41,9 +42,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class SidebarController extends BaseController {
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postBiz;
 	@Autowired
-	private TagPlanet tagPlanet;
+	private TagService tagService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody Data login(String username, String password, ModelMap model) {
@@ -82,7 +83,7 @@ public class SidebarController extends BaseController {
 		if (up != null) {
 			ignoreUserId = up.getId();
 		}
-		List<Post> rets = postPlanet.findRecents(6, ignoreUserId);
+		List<Post> rets = postBiz.findRecents(6, ignoreUserId);
 		return rets;
 	}
 	
@@ -93,13 +94,13 @@ public class SidebarController extends BaseController {
 		if (up != null) {
 			ignoreUserId = up.getId();
 		}
-		List<Post> rets = postPlanet.findHots(6, ignoreUserId);
+		List<Post> rets = postBiz.findHots(6, ignoreUserId);
 		return rets;
 	}
 	
 	@RequestMapping("/hot_tags.json")
 	public @ResponseBody List<Tag> hotTags() {
-		List<Tag> rets = tagPlanet.topTags(12, false);
+		List<Tag> rets = tagService.topTags(12, false);
 		return rets;
 	}
 	

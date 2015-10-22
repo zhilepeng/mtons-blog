@@ -35,10 +35,16 @@
 	</mvc:annotation-driven>
 	
 	<!--对静态资源文件的访问 -->
-	<mvc:resources mapping="/assets/**" location="/assets/" cache-period="31556926"/>
-	<mvc:resources mapping="/error/**" location="/error/" cache-period="31556926"/>
-	<mvc:resources mapping="/store/**" location="/store/" cache-period="31556926"/>
-	<mvc:resources mapping="*.txt" location="/" cache-period="31556926"/>
+	<mvc:default-servlet-handler />
+	
+	<mvc:resources mapping="/assets/**" location="/assets/" cache-period="31556926">
+		<mvc:resource-chain resource-cache="false" auto-registration="false">
+			<mvc:resolvers>
+	        	<bean class="org.springframework.web.servlet.resource.GzipResourceResolver"/>
+	        	<bean class="org.springframework.web.servlet.resource.PathResourceResolver"/>
+	        </mvc:resolvers>
+        </mvc:resource-chain>
+	</mvc:resources>
 	
 	<!-- Web层基于注解的扫描路径 -->
 	<context:component-scan base-package="mblog.web.controller" />

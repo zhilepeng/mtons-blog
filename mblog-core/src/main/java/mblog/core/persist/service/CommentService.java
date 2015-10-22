@@ -23,14 +23,14 @@ import mtons.modules.pojos.Paging;
 public interface CommentService {
 	void paging4Admin(Paging paging, String key);
 
-	void paging4Home(Paging paging, long authorId);
+	Paging paging4Home(Paging paging, long authorId);
 
 	/**
 	 * 查询评论列表
 	 * @param paging
 	 * @param toId
 	 */
-	void paging(Paging paging, long toId);
+	Paging paging(Paging paging, long toId);
 
 	Map<Long, Comment> findByIds(Set<Long> ids);
 	

@@ -12,6 +12,8 @@ package mblog.core.persist.service.impl;
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -64,7 +66,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public void paging4Home(Paging paging, long authorId) {
+	@Cacheable(value = "commentsCaches", key = "'lth_' + #authorId + '_' + #paging.getPageNo() + '_' + #paging.getMaxResults()")
+	public Paging paging4Home(Paging paging, long authorId) {
 		List<CommentPO> list = commentDao.paging(paging, Const.ZERO, authorId, true);
 
 		List<Comment> rets = new ArrayList<>();
@@ -99,11 +102,14 @@ public class CommentServiceImpl implements CommentService {
 		buildPosts(rets, postIds);
 
 		paging.setResults(rets);
+		
+		return paging;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public void paging(Paging paging, long toId) {
+	@Cacheable(value = "commentsCaches", key = "'lt_' + #toId + '_' + #paging.getPageNo() + '_' + #paging.getMaxResults()")
+	public Paging paging(Paging paging, long toId) {
 		List<CommentPO> list = commentDao.paging(paging, toId, Const.ZERO, true);
 		
 		List<Comment> rets = new ArrayList<>();
@@ -135,6 +141,8 @@ public class CommentServiceImpl implements CommentService {
 		buildUsers(rets, uids);
 
 		paging.setResults(rets);
+		
+		return paging;
 	}
 
 	@Override
@@ -155,6 +163,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "commentsCaches", allEntries = true)
 	public long post(Comment comment) {
 		CommentPO po = new CommentPO();
 		
@@ -171,12 +180,14 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "commentsCaches", allEntries = true)
 	public void delete(List<Long> ids) {
 		commentDao.deleteByIds(ids);
 	}
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "commentsCaches", allEntries = true)
 	public void delete(long id, long authorId) {
 		CommentPO po = commentDao.get(id);
 		if (po != null) {

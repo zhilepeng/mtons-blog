@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mblog.core.persist.service.CommentService;
-import mblog.core.planet.CommentPlanet;
 import mblog.web.controller.BaseController;
 import mtons.modules.pojos.Data;
 import mtons.modules.pojos.Paging;
@@ -33,8 +32,6 @@ import mtons.modules.pojos.Paging;
 public class CommentsController extends BaseController {
 	@Autowired
 	private CommentService commentService;
-	@Autowired
-	private CommentPlanet commentPlanet;
 	
 	@RequestMapping("/list")
 	public String list(Integer pn, String key, ModelMap model) {
@@ -50,7 +47,7 @@ public class CommentsController extends BaseController {
 		Data data = Data.failure("操作失败");
 		if (id != null) {
 			try {
-				commentPlanet.delete(id);
+				commentService.delete(id);
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

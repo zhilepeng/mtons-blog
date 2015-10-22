@@ -34,7 +34,6 @@ import mblog.core.persist.service.OpenOauthService;
 import mblog.core.persist.service.UserService;
 import mblog.web.controller.BaseController;
 import mtons.modules.exception.MtonsException;
-import mtons.modules.utils.Text;
 
 /**
  * 第三方登录回调

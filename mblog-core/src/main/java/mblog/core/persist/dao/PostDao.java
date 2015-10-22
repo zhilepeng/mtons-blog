@@ -12,21 +12,17 @@ package mblog.core.persist.dao;
 import java.util.Collection;
 import java.util.List;
 
+import mblog.base.lang.EnumPrivacy;
+import mblog.core.data.Post;
+import mblog.core.persist.entity.PostPO;
 import mtons.modules.persist.BaseRepository;
 import mtons.modules.pojos.Paging;
-
-import org.hibernate.Session;
-
-import mblog.base.lang.EnumPrivacy;
-import mblog.core.persist.entity.PostPO;
 
 /**
  * @author langhsu
  *
  */
 public interface PostDao extends BaseRepository<PostPO> {
-	Session getSession();
-
 	/**
 	 * 前台查询
 	 * @param paging
@@ -59,5 +55,9 @@ public interface PostDao extends BaseRepository<PostPO> {
 	List<PostPO> findByIds(Collection<Long> ids);
 
 	int maxFeatured();
+	
+	List<Post> search(Paging paging, String q) throws Exception;
+	List<PostPO> searchByTag(Paging paigng, String tag);
+	void resetIndexs();
 
 }

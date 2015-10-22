@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import mblog.base.lang.Consts;
+import mblog.core.biz.PostBiz;
 import mblog.core.data.Post;
 import mblog.core.persist.service.PostService;
-import mblog.core.planet.PostPlanet;
 import mblog.web.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class PostsController extends BaseController {
 	@Autowired
 	private PostService postService;
 	@Autowired
-	private PostPlanet postPlanet;
+	private PostBiz postBiz;
 	
 	@RequestMapping("/list")
 	public String list(Integer pn, String title, ModelMap model, HttpServletRequest request) {
@@ -91,7 +91,7 @@ public class PostsController extends BaseController {
 		int featured = ServletRequestUtils.getIntParameter(request, "featured", Consts.FEATURED_ACTIVE);
 		if (id != null) {
 			try {
-				postPlanet.updateFeatured(id, featured);
+				postBiz.updateFeatured(id, featured);
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());
@@ -105,7 +105,7 @@ public class PostsController extends BaseController {
 		Data data = Data.failure("操作失败");
 		if (id != null) {
 			try {
-				postPlanet.delete(id);
+				postBiz.delete(id);
 				data = Data.success("操作成功", Data.NOOP);
 			} catch (Exception e) {
 				data = Data.failure(e.getMessage());

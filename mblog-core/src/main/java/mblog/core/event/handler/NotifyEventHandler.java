@@ -1,12 +1,12 @@
 package mblog.core.event.handler;
 
 import mblog.base.lang.Consts;
+import mblog.core.biz.PostBiz;
 import mblog.core.data.Notify;
 import mblog.core.data.Post;
 import mblog.core.event.NotifyEvent;
 import mblog.core.persist.service.NotifyService;
 import mblog.core.persist.service.PostService;
-import mblog.core.planet.PostPlanet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -21,7 +21,7 @@ public class NotifyEventHandler implements ApplicationListener<NotifyEvent> {
     @Autowired
     private NotifyService notifyService;
     @Autowired
-    private PostPlanet postPlanet;
+    private PostBiz postPlanet;
     @Autowired
     private PostService postService;
 
