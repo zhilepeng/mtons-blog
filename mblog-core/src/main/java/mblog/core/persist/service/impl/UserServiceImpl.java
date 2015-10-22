@@ -142,8 +142,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly = true)
 	@Cacheable(value = "usersCaches", key = "#userId")
-	public User get(long id) {
-		UserPO po = userDao.get(id);
+	public User get(long userId) {
+		UserPO po = userDao.get(userId);
 		User ret = null;
 		if (po != null) {
 			ret = BeanMapUtils.copy(po, 0);
