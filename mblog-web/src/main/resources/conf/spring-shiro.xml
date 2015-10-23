@@ -61,9 +61,9 @@
         <property name="filterChainDefinitions">
             <value>
                 /login = anon
-                /home* = authc
-                /home/** = authc
-                /post/** = authc
+                /home* = user
+                /home/** = user
+                /post/** = user
                 /account/** = authc
                 /admin = authc,perms[admin]
                 /admin/index = authc,perms[admin]
