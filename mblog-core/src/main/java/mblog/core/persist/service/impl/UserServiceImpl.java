@@ -73,6 +73,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
+	public AccountProfile login(String username) {
+		UserPO po = userDao.getByUsername(username);
+		AccountProfile u = null;
+
+		Assert.notNull(po, "账户不存在");
+
+//		Assert.state(po.getStatus() != Const.STATUS_CLOSED, "您的账户已被封禁");
+		po.setLastLogin(Calendar.getInstance().getTime());
+
+		u = BeanMapUtils.copyPassport(po);
+
+		BadgesCount badgesCount = new BadgesCount();
+		badgesCount.setNotifies(notifyService.unread4Me(u.getId()));
+
+		u.setBadgesCount(badgesCount);
+
+		return u;
+	}
+
+	@Override
+	@Transactional
 	public User register(User user) {
 		Assert.notNull(user, "Parameter user can not be null!");
 
