@@ -32,6 +32,13 @@ public interface UserService {
 	AccountProfile login(String username, String password);
 
 	/**
+	 * 登录,用于记住登录时获取用户信息
+	 * @param username
+	 * @return
+	 */
+	AccountProfile login(String username);
+
+	/**
 	 * 注册
 	 * @param user
 	 */

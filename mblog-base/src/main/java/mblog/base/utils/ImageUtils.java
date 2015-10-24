@@ -1,6 +1,8 @@
 package mblog.base.utils;
 
 import mtons.modules.utils.GMagickUtils;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.log4j.Logger;
 import org.im4java.core.ConvertCmd;
 import org.im4java.core.IM4JavaException;
 import org.im4java.core.IMOperation;
@@ -19,6 +21,7 @@ import java.net.URLConnection;
  * @author langhsu on 2015/9/4.
  */
 public class ImageUtils extends GMagickUtils {
+    private static Logger log = Logger.getLogger(ImageUtils.class);
 
     public static boolean truncateImage(String ori, String dest, int width, int height) throws IOException, InterruptedException, IM4JavaException {
         File oriFile = new File(ori);
@@ -79,4 +82,127 @@ public class ImageUtils extends GMagickUtils {
         os.close();
         is.close();
     }
+
+    /**
+     * 根据最大宽度图片压缩
+     *
+     * @param ori     原图位置
+     * @param dest    目标位置
+     * @param maxSize 指定压缩后最大边长
+     * @return boolean
+     * @throws IOException
+     */
+    public static boolean compressImageByWidth(String ori, String dest, int maxSize) throws IOException {
+        File oriFile = new File(ori);
+        GMagickUtils.validate(oriFile, dest);
+
+        BufferedImage src = ImageIO.read(oriFile); // 读入文件
+        int w = src.getWidth();
+        int h = src.getHeight();
+
+        log.debug("origin with/height " + w + "/" + h);
+
+        int size = (int) Math.max(w, h);
+        int tow = w;
+        int toh = h;
+
+        if (size > maxSize) {
+            if (w > maxSize) {
+                tow = maxSize;
+                toh = h * maxSize / w;
+            } else {
+                tow = w * maxSize / h;
+                toh = maxSize;
+            }
+        }
+        compressImageByWidth(ori, dest, tow, toh);
+        return true;
+    }
+
+    public static void compressImageByWidth(String ori, String dest, int width, int height) throws IOException {
+        File destFile = new File(dest);
+        if (destFile.exists()) {
+            destFile.delete();
+        }
+        log.debug("scaled with/height : " + width + "/" + height);
+        Thumbnails.of(ori).size(width, height).toFile(dest);
+    }
+
+    /**
+     * 图片压缩,各个边安比例压缩
+     *
+     * @param ori     原图位置
+     * @param dest    目标位置
+     * @param maxSize 指定压缩后最大边长
+     * @return boolean
+     * @throws IOException
+     */
+    public static boolean compressImage(String ori, String dest, int maxSize) throws IOException {
+        File oriFile = new File(ori);
+        validate(oriFile, dest);
+
+        BufferedImage src = ImageIO.read(oriFile); // 读入文件
+        int w = src.getWidth();
+        int h = src.getHeight();
+
+        log.debug("origin with/height " + w + "/" + h);
+
+        int size = (int) Math.max(w, h);
+        int tow = w;
+        int toh = h;
+
+        if (size > maxSize) {
+            if (w > maxSize) {
+                tow = maxSize;
+                toh = h * maxSize / w;
+            } else {
+                tow = w * maxSize / h;
+                toh = maxSize;
+            }
+        }
+
+        log.debug("scaled with/height : " + tow + "/" + toh);
+
+        compressImageByWidth(ori, dest, tow, toh);
+
+        return true;
+    }
+
+    /**
+     * 裁剪图片
+     *
+     * @param ori  源图片路径
+     * @param dest 处理后图片路径
+     * @param x    起始X坐标
+     * @param y    起始Y坐标
+     * @param width  裁剪宽度
+     * @param height  裁剪高度
+     * @return boolean
+     *
+     * @throws java.io.IOException io异常
+     * @throws IM4JavaException    im4j 异常
+     * @throws InterruptedException 中断异常
+     */
+    public static boolean truncateImage(String ori, String dest, int x, int y, int width, int height) throws IOException, InterruptedException, IM4JavaException {
+        File oriFile = new File(ori);
+
+        validate(oriFile, dest);
+
+        IMOperation op = new IMOperation();
+        op.addImage(ori);
+
+        /** width：裁剪的宽度 * height：裁剪的高度 * x：裁剪的横坐标 * y：裁剪纵坐标 */
+        op.crop(width, height, x, y);
+        op.addImage(dest);
+        ConvertCmd convert = new ConvertCmd(true);
+        convert.run(op);
+
+
+        return true;
+    }
+
+    public static boolean truncateImage(String ori, String dest, int x, int y, int size) throws IOException, InterruptedException, IM4JavaException {
+        return truncateImage(ori, dest, x, y, size, size);
+    }
+
 }

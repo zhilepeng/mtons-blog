@@ -3,6 +3,40 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="byName">
 
+    <!-- rememberMe-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <!-- 30天 -->
+        <property name="maxAge" value="2592000"/>
+    </bean>
+
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager"
+          class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!--<property name="cipherKey" value="\#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>-->
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="simpleSessionFactory" class="org.apache.shiro.session.mgt.SimpleSessionFactory"/>
+    <!--会话Cookie模板-->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <!-- 1800秒 30分钟-->
+        <property name="maxAge" value="1800"/>
+    </bean>
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionFactory" ref="simpleSessionFactory"/>
+        <property name="globalSessionTimeout" value="10000"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionValidationInterval" value="10000" />
+    </bean>
+
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm">
             <bean class="mblog.shiro.realm.AccountRealm"/>
@@ -10,6 +44,9 @@
         <property name="subjectFactory">
             <bean class="mblog.shiro.authc.AccountSubjectFactory"/>
         </property>
+
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -24,10 +61,10 @@
         <property name="filterChainDefinitions">
             <value>
                 /login = anon
-                /home* = authc
-                /home/** = authc
-                /post/** = authc
-                /account/** = authc
+                /home* = user
+                /home/** = user
+                /post/** = user
+                /account/** = user
                 /admin = authc,perms[admin]
                 /admin/index = authc,perms[admin]
                 /admin/posts/**=authc,perms[posts:view]

@@ -11,16 +11,14 @@ package mblog.web.controller;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import mblog.web.controller.desk.Views;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 登录页
@@ -46,7 +44,7 @@ public class LoginController extends BaseController {
      * @return
      */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String username, String password, ModelMap model) {
+	public String login(String username, String password,@RequestParam(value = "rememberMe",defaultValue = "0") int rememberMe, ModelMap model) {
 		String ret = getView(Views.LOGIN);
 		
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
@@ -58,7 +56,11 @@ public class LoginController extends BaseController {
         	model.put("message", "用户名或密码错误");
             return ret;
         }
-        
+
+        if (rememberMe == 1) {
+            ((UsernamePasswordToken) token).setRememberMe(true);
+        }
+
         try {
             SecurityUtils.getSubject().login(token);
 

@@ -9,6 +9,7 @@
 */
 package mblog.shiro.authc;
 
+import mblog.core.persist.service.UserService;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.mgt.SubjectFactory;
 import org.apache.shiro.session.Session;
@@ -17,8 +18,12 @@ import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.subject.WebSubjectContext;
 
 import mblog.core.data.AccountProfile;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AccountSubjectFactory implements SubjectFactory {
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public Subject createSubject(SubjectContext context) {
@@ -37,6 +42,17 @@ public class AccountSubjectFactory implements SubjectFactory {
             	profile = (AccountProfile)session.getAttribute("profile");
             }
             subject = doCreate(wsc, profile);
+            boolean isRemembered = subject.isRemembered();
+            if (session == null) {
+                wsc.setSessionCreationEnabled(true);
+                subject.getSession(true);
+            }
+            if (isRemembered && profile == null) {
+                Object username = subject.getPrincipal();
+                profile = userService.login((String) username);
+                subject.getSession(true).setTimeout(1000*60*30);
+                subject.getSession(true).setAttribute("profile", profile);
+            }
         }
         
 
