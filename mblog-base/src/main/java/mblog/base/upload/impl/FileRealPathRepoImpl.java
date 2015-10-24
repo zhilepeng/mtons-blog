@@ -16,7 +16,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
-import net.coobird.thumbnailator.Thumbnails;
+import mblog.base.utils.ImageHandleUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements ServletCon
 	private AppContext appContext;
 	
 	private ServletContext context;
-	
+
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.context = servletContext;
@@ -81,10 +81,7 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements ServletCon
 			String scaleName = FileNameUtils.genFileName(getExt(file.getOriginalFilename()));
 			String dest = root + basePath + "/" + scaleName;
 
-			//GMagickUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
-
-			//GM换成Thumbnailator
-			ImageUtils.compressImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+			ImageHandleUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
 
 			path = basePath + "/" + scaleName;
 		} catch (Exception e) {
@@ -139,9 +136,8 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements ServletCon
 			
 			// 根据临时文件生成略缩图
 			String dest = root + basePath + path;
-			//GMagickUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
-			//GM换成Thumbnailator
-			ImageUtils.compressImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+			ImageHandleUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -156,9 +152,7 @@ public class FileRealPathRepoImpl extends AbstractFileRepo implements ServletCon
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getName()));
 		
 		String dest = root + basePath + path;
-//		GMagickUtils.scaleImageByWidth(file.getAbsolutePath(), dest, maxWidth);
-		//GM换成Thumbnailator
-		ImageUtils.compressImageByWidth(file.getAbsolutePath(), dest, maxWidth);
+		ImageHandleUtils.scaleImageByWidth(file.getAbsolutePath(), dest, maxWidth);
 
 		return basePath + path;
 	}

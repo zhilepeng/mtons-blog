@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import mblog.base.context.AppContext;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,9 @@ import mblog.core.persist.service.ConfigService;
 public class ConfigServiceImpl implements ConfigService {
 	@Autowired
 	private ConfigDao configDao;
+
+	@Autowired
+	private AppContext appContext;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -68,6 +72,7 @@ public class ConfigServiceImpl implements ConfigService {
 				BeanUtils.copyProperties(st, entity);
 				configDao.save(entity);
 			}
+			appContext.getConfig().put(entity.getKey(), entity.getValue()); //更新全局变量
 		}
 	}
 
@@ -82,6 +87,13 @@ public class ConfigServiceImpl implements ConfigService {
 		}
 		return ret;
 	}
-	
+
+	public String findConfigValueByName(String key) {
+		ConfigPO entity = configDao.findByName(key);
+		if (entity != null) {
+			return entity.getValue();
+		}
+		return null;
+	}
 	
 }
