@@ -73,6 +73,7 @@ public class ConfigServiceImpl implements ConfigService {
 				configDao.save(entity);
 			}
 			appContext.getConfig().put(entity.getKey(), entity.getValue()); //更新全局变量
+			appContext.getServletContext().setAttribute(entity.getKey(),entity.getValue()); //更新容器全局变量
 		}
 	}
 
