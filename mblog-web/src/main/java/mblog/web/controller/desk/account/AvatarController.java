@@ -11,6 +11,7 @@ package mblog.web.controller.desk.account;
 
 import java.io.File;
 
+import mblog.base.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -72,7 +73,9 @@ public class AvatarController extends BaseController {
 				GMagickUtils.truncateImage(temp.getAbsolutePath(), scalePath, x.intValue(), y.intValue(), width.intValue());
 				
 				// 对结果图片进行压缩
-				GMagickUtils.scaleImage(scalePath, dest, 100);
+				//GMagickUtils.scaleImage(scalePath, dest, 100);
+				//GM换成Thumbnailator
+				ImageUtils.compressImage(scalePath, dest, 100);
 				
 				AccountProfile user = userService.updateAvatar(profile.getId(), ava100);
 				putProfile(user);

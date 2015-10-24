@@ -64,7 +64,7 @@
                 /home* = user
                 /home/** = user
                 /post/** = user
-                /account/** = authc
+                /account/** = user
                 /admin = authc,perms[admin]
                 /admin/index = authc,perms[admin]
                 /admin/posts/**=authc,perms[posts:view]
