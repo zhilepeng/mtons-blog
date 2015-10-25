@@ -9,17 +9,22 @@
 */
 package mblog.base.context;
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletContext;
 
 /**
  * @author langhsu
  * 
  */
 @Component
-public class AppContext {
+public class AppContext implements ServletContextAware {
 	
 	/*
 	 * 文件存储-根目录
@@ -54,6 +59,11 @@ public class AppContext {
 	 * - 在 StartupListener 类中加载
 	 */
 	public Map<String, String> config;
+
+	/**
+	 * 容器全局变量
+	 */
+	private ServletContext servletContext;
 
 	public String getRoot() {
 		return root;
@@ -101,6 +111,12 @@ public class AppContext {
 
 	public void setConfig(Map<String, String> config) {
 		this.config = config;
+		//同步更新容器全局变量
+		Iterator<Map.Entry<String, String>> iter = config.entrySet().iterator();
+		while (iter.hasNext()){
+			Map.Entry<String, String> e = iter.next();
+			servletContext.setAttribute(e.getKey(), e.getValue());
+		}
 	}
 
 	public String getScreenshotDir() {
@@ -109,5 +125,14 @@ public class AppContext {
 
 	public void setScreenshotDir(String screenshotDir) {
 		this.screenshotDir = screenshotDir;
+	}
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+	}
+
+	public ServletContext getServletContext() {
+		return servletContext;
 	}
 }

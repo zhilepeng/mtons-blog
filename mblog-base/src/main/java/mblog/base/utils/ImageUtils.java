@@ -92,7 +92,7 @@ public class ImageUtils extends GMagickUtils {
      * @return boolean
      * @throws IOException
      */
-    public static boolean compressImageByWidth(String ori, String dest, int maxSize) throws IOException {
+    public static boolean scaleImageByWidth(String ori, String dest, int maxSize) throws IOException {
         File oriFile = new File(ori);
         GMagickUtils.validate(oriFile, dest);
 
@@ -115,11 +115,11 @@ public class ImageUtils extends GMagickUtils {
                 toh = maxSize;
             }
         }
-        compressImageByWidth(ori, dest, tow, toh);
+        scale(ori, dest, tow, toh);
         return true;
     }
 
-    public static void compressImageByWidth(String ori, String dest, int width, int height) throws IOException {
+    public static void scale(String ori, String dest, int width, int height) throws IOException {
         File destFile = new File(dest);
         if (destFile.exists()) {
             destFile.delete();
@@ -129,7 +129,7 @@ public class ImageUtils extends GMagickUtils {
     }
 
     /**
-     * 图片压缩,各个边安比例压缩
+     * 图片压缩,各个边按比例压缩
      *
      * @param ori     原图位置
      * @param dest    目标位置
@@ -137,7 +137,7 @@ public class ImageUtils extends GMagickUtils {
      * @return boolean
      * @throws IOException
      */
-    public static boolean compressImage(String ori, String dest, int maxSize) throws IOException {
+    public static boolean scaleImage(String ori, String dest, int maxSize) throws IOException {
         File oriFile = new File(ori);
         validate(oriFile, dest);
 
@@ -163,7 +163,7 @@ public class ImageUtils extends GMagickUtils {
 
         log.debug("scaled with/height : " + tow + "/" + toh);
 
-        compressImageByWidth(ori, dest, tow, toh);
+        scale(ori, dest, tow, toh);
 
         return true;
     }
@@ -188,15 +188,7 @@ public class ImageUtils extends GMagickUtils {
 
         validate(oriFile, dest);
 
-        IMOperation op = new IMOperation();
-        op.addImage(ori);
-
-        /** width：裁剪的宽度 * height：裁剪的高度 * x：裁剪的横坐标 * y：裁剪纵坐标 */
-        op.crop(width, height, x, y);
-        op.addImage(dest);
-        ConvertCmd convert = new ConvertCmd(true);
-        convert.run(op);
-
+        Thumbnails.of(ori).sourceRegion(x, y, width, height).size(width,height).keepAspectRatio(false).toFile(dest);
 
         return true;
     }

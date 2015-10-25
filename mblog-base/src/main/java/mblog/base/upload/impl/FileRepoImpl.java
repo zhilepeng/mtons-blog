@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import net.coobird.thumbnailator.Thumbnails;
+import mblog.base.utils.ImageHandleUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 import mblog.base.context.AppContext;
 import mblog.base.utils.ImageUtils;
 import mtons.modules.utils.FileNameUtils;
-import mtons.modules.utils.GMagickUtils;
 
 /**
  * @author langhsu
@@ -36,7 +35,7 @@ public class FileRepoImpl extends AbstractFileRepo {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Autowired
 	private AppContext appContext;
-	
+
 	@Override
 	public String temp(MultipartFile file, String basePath) throws IOException {
 		validateFile(file);
@@ -70,10 +69,9 @@ public class FileRepoImpl extends AbstractFileRepo {
 			// 根据临时文件生成略缩图
 			String scaleName = FileNameUtils.genFileName(getExt(file.getOriginalFilename()));
 			String dest = root + basePath + "/" + scaleName;
-			
-			//GMagickUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
-			//GM换成Thumbnailator
-			ImageUtils.compressImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+
+			ImageHandleUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+
 			path = basePath + "/" + scaleName;
 		} catch (Exception e) {
 			throw e;
@@ -126,9 +124,8 @@ public class FileRepoImpl extends AbstractFileRepo {
 			
 			// 根据临时文件生成略缩图
 			String dest = realPath + basePath + path;
-			//GMagickUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
-			//GM换成Thumbnailator
-			ImageUtils.compressImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
+
+			ImageHandleUtils.scaleImageByWidth(temp.getAbsolutePath(), dest, maxWidth);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -141,16 +138,12 @@ public class FileRepoImpl extends AbstractFileRepo {
 	@Override
 	public String storeScale(File file, String basePath, int maxWidth) throws Exception {
 		String root = appContext.getRoot();
-		
+
 		String path = FileNameUtils.genPathAndFileName(getExt(file.getName()));
 		
 		String dest = root + basePath + path;
 
-//		GMagickUtils.scaleImageByWidth(file.getAbsolutePath(), dest, maxWidth);
-
-		//GM换成Thumbnailator
-		ImageUtils.compressImageByWidth(file.getAbsolutePath(), dest, maxWidth);
-
+		ImageHandleUtils.scaleImageByWidth(file.getAbsolutePath(), dest, maxWidth);
 		return basePath + path;
 	}
 

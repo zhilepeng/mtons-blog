@@ -93,7 +93,7 @@ public class StartupListener implements InitializingBean, ServletContextAware {
 						Printer.warn("嗯哼,系统检测到'系统配置'有更新,而你好像错过了什么, 赶紧去后台'系统配置'里检查下吧!");
 					}
             		configs.forEach(conf -> {
-						servletContext.setAttribute(conf.getKey(), conf.getValue());
+//						servletContext.setAttribute(conf.getKey(), conf.getValue());
 						configMap.put(conf.getKey(), conf.getValue());
 					});
             	}

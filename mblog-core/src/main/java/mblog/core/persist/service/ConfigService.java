@@ -37,4 +37,12 @@ public interface ConfigService {
 	 * @param configs
 	 */
 	void update(List<Config> configs);
+
+	/**
+	 * 根据key查找相应的值
+	 *
+	 * @param key
+	 * @return
+	 */
+	String findConfigValueByName(String key);
 }

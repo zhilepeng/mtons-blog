@@ -11,7 +11,9 @@ package mblog.web.controller.desk.account;
 
 import java.io.File;
 
+import mblog.base.utils.ImageHandleUtils;
 import mblog.base.utils.ImageUtils;
+import mblog.core.persist.service.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,7 +41,7 @@ public class AvatarController extends BaseController {
 	private AppContext appContext;
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value = "/avatar", method = RequestMethod.GET)
 	public String view() {
 		return getView(Views.ACCOUNT_AVATAR);
@@ -70,13 +72,10 @@ public class AvatarController extends BaseController {
 		        }
 		        // 在目标目录下生成截图
 		        String scalePath = f.getParent() + "/" + profile.getId() + ".jpg";
-				GMagickUtils.truncateImage(temp.getAbsolutePath(), scalePath, x.intValue(), y.intValue(), width.intValue());
-				
+
 				// 对结果图片进行压缩
-				//GMagickUtils.scaleImage(scalePath, dest, 100);
-				//GM换成Thumbnailator
-				ImageUtils.compressImage(scalePath, dest, 100);
-				
+				ImageHandleUtils.scaleImage(scalePath, dest, 100);
+
 				AccountProfile user = userService.updateAvatar(profile.getId(), ava100);
 				putProfile(user);
 				
