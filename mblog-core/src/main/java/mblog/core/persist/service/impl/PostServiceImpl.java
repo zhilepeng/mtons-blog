@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import mblog.core.persist.entity.PostAttribute;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -216,6 +217,15 @@ public class PostServiceImpl implements PostService {
 			po.setSummary(post.getSummary());
 		}
 
+		if (post.getAttribute() != null) {
+			// 保存扩展
+			PostAttribute extend = new PostAttribute();
+			extend.setVideoUrl(post.getAttribute().getVideoUrl());
+			extend.setVideoBody(post.getAttribute().getVideoBody());
+			extend.setPost(po);
+			po.setAttribute(extend);
+		}
+
 		postDao.save(po);
 		
 		// 处理相册
@@ -262,10 +272,38 @@ public class PostServiceImpl implements PostService {
 
 		if (po != null) {
 			po.setTitle(p.getTitle());//标题
-			po.setSummary(trimSummary(p.getContent()));
+
+			// 处理摘要
+			if (StringUtils.isBlank(p.getSummary())) {
+				po.setSummary(trimSummary(p.getContent()));
+			} else {
+				po.setSummary(p.getSummary());
+			}
+
 			po.setContent(p.getContent());//内容
 			po.setTags(p.getTags());//标签
 			po.setPrivacy(p.getPrivacy());
+
+			// 处理相册
+			if (p.getAlbums() != null) {
+				long lastImageId = attachService.batchPost(po.getId(), p.getAlbums());
+				po.setLastImageId(lastImageId);
+				po.setImages(po.getImages() + p.getAlbums().size());
+			}
+
+			// 保存扩展
+			if (p.getAttribute() != null) {
+				PostAttribute extend = po.getAttribute();
+
+				if (extend != null) {
+					extend.setVideoUrl(p.getAttribute().getVideoUrl());
+					extend.setVideoBody(p.getAttribute().getVideoBody());
+				} else {
+					extend = p.getAttribute();
+					extend.setPost(po);
+					po.setAttribute(extend);
+				}
+			}
 		}
 	}
 

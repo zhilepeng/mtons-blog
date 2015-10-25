@@ -31,8 +31,8 @@ public interface Views {
 
 	String HOME_FEEDS = "/home/feeds";
 	String HOME_POSTS = "/home/posts";
-	String HOME_POSTS_UPDATE = "/home/update";
-	String REDIRECT_HOME_POSTS = "redirect:/home/posts";
+
+	String REDIRECT_HOME_POSTS = "redirect:/home?method=posts";
 	String REDIRECT_POSTS_UPDATE = "redirect:/view/%s";
 	String HOME_COMMENTS = "/home/comments";
 	String HOME_FOLLOWS = "/home/follows";
@@ -59,4 +59,5 @@ public interface Views {
 	String ROUTE_POST_PUBLISH = "/group/%s/post";
 	String ROUTE_POST_INDEX = "/group/%s/index";
 	String ROUTE_POST_VIEW = "/group/%s/view";
+	String ROUTE_POST_UPDATE = "/group/%s/update";
 }

@@ -82,6 +82,10 @@ public class PostPO {
 
 	private int status; // 文章状态
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private PostAttribute attribute;
+
 	public long getId() {
 		return id;
 	}
@@ -224,5 +228,13 @@ public class PostPO {
 
 	public void setPrivacy(int privacy) {
 		this.privacy = privacy;
+	}
+
+	public PostAttribute getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(PostAttribute attribute) {
+		this.attribute = attribute;
 	}
 }

@@ -5,6 +5,7 @@ package mblog.web.controller.desk.posts;
 
 import javax.servlet.http.HttpServletRequest;
 
+import mblog.core.persist.service.AttachService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,8 @@ public class PostController extends BaseController {
 	private PostBiz postPlanet;
 	@Autowired
 	private GroupService groupService;
+	@Autowired
+	private AttachService attachService;
 
 	/**
 	 * 发布文章页
@@ -67,7 +70,7 @@ public class PostController extends BaseController {
 
 			postPlanet.post(blog);
 		}
-		return Views.REDIRECT_HOME;
+		return Views.REDIRECT_HOME_POSTS;
 	}
 
 	/**
@@ -95,7 +98,7 @@ public class PostController extends BaseController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/update/{id}")
+	@RequestMapping("/to_update/{id}")
 	public String toUpdate(@PathVariable Long id, ModelMap model) {
 		UserProfile up = getSubject().getProfile();
 		Post ret = postPlanet.getPost(id);
@@ -103,9 +106,11 @@ public class PostController extends BaseController {
 		Assert.notNull(ret, "该文章已被删除");
 
 		Assert.isTrue(ret.getAuthorId() == up.getId(), "该文章不属于你");
+		Group group = groupService.getById(ret.getGroup());
 
 		model.put("view", ret);
-		return getView(Views.HOME_POSTS_UPDATE);
+		model.put("group", group);
+		return routeView(Views.ROUTE_POST_UPDATE, group.getTemplate());
 	}
 
 	/**
@@ -113,12 +118,30 @@ public class PostController extends BaseController {
 	 * @author LBB
 	 * @return
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String subUpdate(Post p) {
+	@RequestMapping(value = "/update/{groupKey}", method = RequestMethod.POST)
+	public String subUpdate(Post p, HttpServletRequest request) {
 		UserProfile up = getSubject().getProfile();
-		if (p != null && p.getAuthor().getId() == up.getId()) {
+		if (p != null && p.getAuthorId() == up.getId()) {
+			String[] ablums = request.getParameterValues("delayImages");
+			p.setAlbums(handleAlbums(ablums));
 			postPlanet.update(p);
 		}
-		return String.format(Views.REDIRECT_POSTS_UPDATE, String.valueOf(p.getId()));
+		return Views.REDIRECT_HOME_POSTS;
 	}
+
+	@RequestMapping("/delete_album")
+	public @ResponseBody Data deleteAlbum(Long id) {
+		Data data = Data.failure("操作失败");
+		if (id != null) {
+			try {
+				attachService.delete(id);
+				data = Data.success("操作成功", Data.NOOP);
+			} catch (Exception e) {
+				data = Data.failure(e.getMessage());
+			}
+		}
+		return data;
+	}
+
+
 }

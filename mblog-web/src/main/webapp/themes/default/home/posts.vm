@@ -52,9 +52,7 @@
 						#end
 					</ul>
 					<div class="pull-right hidden-xs">
-						#if($row.group != 3)
 						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${row.id}">修改</a>
-						#end
 						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="${row.id}">删除</a>
 					</div>
 				</div>
@@ -100,7 +98,7 @@ $(function() {
 	// edit
 	$('a[data-evt=edit]').click(function () {
 		var id = $(this).attr('data-id');
-		window.location.href='$base/post/update/' + id;
+		window.location.href='$base/post/to_update/' + id;
 	});
 })
 </script>

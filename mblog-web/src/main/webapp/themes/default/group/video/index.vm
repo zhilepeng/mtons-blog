@@ -2,8 +2,9 @@
 
 #set($title = ${group.name})
 
+#contents(${group.id}, 'paging')
 <div class="blocks clearfix">
-	#foreach($row in $page.results)
+	#foreach($row in $paging.results)
     	<div class="col-xs-12 col-sm-4 col-lg-4">
     		<div class="block">
                 <a class="block-thumbnail" href="$base/view/${row.id}">
@@ -24,7 +25,7 @@
 			</div>
 		</div>
 	#end
-	#if($page.results.size() == 0)
+	#if($paging.results.size() == 0)
         <div class="stream-item">
             该目录下还没有内容!
         </div>
@@ -32,5 +33,6 @@
 </div>
 <div class="text-center clr">
 	#set($url = "$!{group.key}?ord=" + ${ord})
-	#page($url $page 5)
+	#page($url $paging 5)
 </div>
+#end

@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import mblog.core.persist.entity.PostAttribute;
 import org.apache.commons.lang.StringUtils;
 
 import mblog.base.lang.Consts;
@@ -48,6 +49,7 @@ public class Post implements Serializable {
 	private List<Attach> albums;
 	private Attach album;
 	private User author;
+	private PostAttribute attribute;
 	
 	public long getId() {
 		return id;
@@ -222,5 +224,13 @@ public class Post implements Serializable {
 
 	public void setPrivacy(int privacy) {
 		this.privacy = privacy;
+	}
+
+	public PostAttribute getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(PostAttribute attribute) {
+		this.attribute = attribute;
 	}
 }
