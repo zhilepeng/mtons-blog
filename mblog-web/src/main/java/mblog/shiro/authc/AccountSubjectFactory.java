@@ -17,6 +17,7 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.subject.WebSubjectContext;
 
+import mblog.base.lang.Consts;
 import mblog.core.data.AccountProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,7 +51,8 @@ public class AccountSubjectFactory implements SubjectFactory {
             if (isRemembered && profile == null) {
                 Object username = subject.getPrincipal();
                 profile = userService.login((String) username);
-                subject.getSession(true).setTimeout(1000*60*30);
+                
+                subject.getSession(true).setTimeout(30 * 60 * Consts.TIME_MIN);
                 subject.getSession(true).setAttribute("profile", profile);
             }
         }
