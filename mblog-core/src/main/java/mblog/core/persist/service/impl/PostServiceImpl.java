@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import mblog.core.persist.entity.PostAttribute;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,7 @@ import mblog.core.data.Post;
 import mblog.core.data.Tag;
 import mblog.core.data.User;
 import mblog.core.persist.dao.PostDao;
+import mblog.core.persist.entity.PostAttribute;
 import mblog.core.persist.entity.PostPO;
 import mblog.core.persist.service.AttachService;
 import mblog.core.persist.service.FavorService;
@@ -219,9 +219,7 @@ public class PostServiceImpl implements PostService {
 
 		if (post.getAttribute() != null) {
 			// 保存扩展
-			PostAttribute extend = new PostAttribute();
-			extend.setVideoUrl(post.getAttribute().getVideoUrl());
-			extend.setVideoBody(post.getAttribute().getVideoBody());
+			PostAttribute extend = post.getAttribute();
 			extend.setPost(po);
 			po.setAttribute(extend);
 		}

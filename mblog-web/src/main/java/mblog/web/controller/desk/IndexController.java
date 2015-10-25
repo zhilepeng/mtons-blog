@@ -9,9 +9,11 @@
 */
 package mblog.web.controller.desk;
 
-import org.apache.commons.lang.StringUtils;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mblog.base.lang.Consts;
@@ -25,12 +27,8 @@ import mblog.web.controller.BaseController;
 public class IndexController extends BaseController{
 	
 	@RequestMapping(value= {"/", "/index"})
-	public String root(Integer pn, String ord, ModelMap model) {
-		String order = Consts.order.NEWEST;
-		if (StringUtils.isNotBlank(ord)) {
-			order = ord;
-		}
-		model.put("pn", pn);
+	public String root(ModelMap model, HttpServletRequest request) {
+		String order = ServletRequestUtils.getStringParameter(request, "ord", Consts.order.NEWEST);
 		model.put("ord", order);
 		return getView(Views.INDEX);
 	}
