@@ -36,7 +36,7 @@ public interface UserService {
 	 * @param username
 	 * @return
 	 */
-	AccountProfile login(String username);
+	AccountProfile getProfileByName(String username);
 
 	/**
 	 * 注册

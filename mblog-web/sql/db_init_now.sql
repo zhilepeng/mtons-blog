@@ -197,6 +197,10 @@ INSERT INTO `mto_auth_menu` VALUES ('25', '评论查看', null, 'comments:view',
 INSERT INTO `mto_auth_menu` VALUES ('26', '标签查看', null, 'tags:view', '1', '', '11', null);
 INSERT INTO `mto_auth_menu` VALUES ('27', '角色查看', null, 'roles:view', '1', '', '18', null);
 INSERT INTO `mto_auth_menu` VALUES ('28', '菜单查看', null, 'authMenus:view', '1', '', '19', null);
+INSERT INTO `mto_auth_menu` VALUES ('29', '友情链接', NULL, 'friendLink:view', '8', 'admin/friendLink/list', '2', 'fa fa-link');
+INSERT INTO `mto_auth_menu` VALUES ('30', '友情链接修改', NULL, 'friendLink:edit', '0', '', '29', NULL);
+INSERT INTO `mto_auth_menu` VALUES ('31', '友情链接查看', NULL, 'friendLink:view', '0', '', '29', NULL);
+
 
 
 -- ----------------------------
@@ -257,6 +261,9 @@ INSERT INTO `mto_role_menu` VALUES ('1', '19');
 INSERT INTO `mto_role_menu` VALUES ('1', '21');
 INSERT INTO `mto_role_menu` VALUES ('1', '28');
 INSERT INTO `mto_role_menu` VALUES ('1', '3');
+INSERT INTO `mto_role_menu` VALUES ('1', '29');
+INSERT INTO `mto_role_menu` VALUES ('1', '30');
+INSERT INTO `mto_role_menu` VALUES ('1', '31');
 
 -- ----------------------------
 -- Table structure for mto_user_role

@@ -175,4 +175,10 @@ public class BeanMapUtils {
 		BeanUtils.copyProperties(po, ret);
 		return ret;
 	}
+
+	public static FriendLink copy(FriendLinkPO po) {
+		FriendLink ret = new FriendLink();
+		BeanUtils.copyProperties(po, ret);
+		return ret;
+	}
 }

@@ -50,7 +50,7 @@ public class AccountSubjectFactory implements SubjectFactory {
             }
             if (isRemembered && profile == null) {
                 Object username = subject.getPrincipal();
-                profile = userService.login((String) username);
+                profile = userService.getProfileByName((String) username);
                 
                 subject.getSession(true).setTimeout(30 * 60 * Consts.TIME_MIN);
                 subject.getSession(true).setAttribute("profile", profile);

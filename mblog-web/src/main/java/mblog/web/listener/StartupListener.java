@@ -17,6 +17,7 @@ import java.util.TimerTask;
 
 import javax.servlet.ServletContext;
 
+import mblog.core.persist.service.FriendLinkService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,6 +47,8 @@ public class StartupListener implements InitializingBean, ServletContextAware {
 	private MenuService menuService;
 	@Autowired
 	private AppContext appContext;
+	@Autowired
+	private FriendLinkService friendLinkService;
 	
 	private ServletContext servletContext;
 
@@ -103,6 +106,8 @@ public class StartupListener implements InitializingBean, ServletContextAware {
             	servletContext.setAttribute("groups", groupService.findAll());
             	
             	servletContext.setAttribute("menus", menuService.findAll());
+
+				servletContext.setAttribute("friendLinks", friendLinkService.findAll());
 
 				Printer.info("OK, mblog 加载完了");
             }

@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public AccountProfile login(String username) {
+	public AccountProfile getProfileByName(String username) {
 		UserPO po = userDao.getByUsername(username);
 		AccountProfile u = null;
 
