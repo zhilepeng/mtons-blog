@@ -37,7 +37,6 @@ public class User implements Serializable {
 	private Date lastLogin;
 	private String signature; // 个性签名
 
-	private int roleId;
 	private int status;
 	private int activeEmail;
 
@@ -121,14 +120,6 @@ public class User implements Serializable {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
-	}
-
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
 	}
 
 	public List<Role> getRoles() {

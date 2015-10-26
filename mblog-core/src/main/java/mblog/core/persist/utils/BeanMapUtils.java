@@ -55,7 +55,6 @@ public class BeanMapUtils {
 		passport.setEmail(po.getEmail());
 		passport.setAvatar(po.getAvatar());
 		passport.setLastLogin(po.getLastLogin());
-		passport.setRoleId(po.getRoleId());
 		passport.setStatus(po.getStatus());
 		passport.setActiveEmail(po.getActiveEmail());
 
