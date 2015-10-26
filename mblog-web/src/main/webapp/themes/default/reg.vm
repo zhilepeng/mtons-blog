@@ -5,7 +5,7 @@
     <a href="$base/index">
         <img src="$base/assets/images/logo/m90.png" height="72" width="72">
     </a>
-    <h1>注册你的 Clannad 账号</h1>
+    <h1>$!{site_welcomes}</h1>
     <a href="$base/login" class="signup-link gapps"><span>已有账号, 登录</span></a>
     <hr>
     <form action="reg" method="post">
