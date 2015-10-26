@@ -37,8 +37,8 @@
                     <!-- /D&D Zone -->
 
                     <div class="panel panel-default">
-                        <div class="panel-body demo-panel-files" id='upload-albums'>
-                            #if($view.albums.size == 0)
+                        <div class="panel-body demo-panel-files" id='upload-albums' file-counter="$!{view.albums.size()}">
+                            #if($view.albums.size() == 0)
                                 <span class="demo-note">您还没有上传图片</span>
                             #else
                                 #foreach($row in $view.albums)
@@ -46,9 +46,9 @@
                                         <button type="button" class="close uploader-close" rel="remove-album" rowId="${row.id}"><span>×</span></button>
                                         <div class="uploader-image-preview">
                                             <img src="$base${row.screenshot}"></div>
-                                        <span class="uploader-file-id">第1张</span> -
-                                        <span class="uploader-file-name">14125148jtk9.jpg</span>
-                                        <span class="uploader-file-size">(82.53 kB)</span><br>状态: <span class="uploader-file-status uploader-file-status-default uploader-file-status-success">上传完成</span>
+                                        <span class="uploader-file-id">第${velocityCount}张</span> -
+                                        <span class="uploader-file-name">${row.screenshot}</span>
+                                        <span class="uploader-file-size">(已保存)</span><br>状态: <span class="uploader-file-status uploader-file-status-default uploader-file-status-success">上传完成</span>
                                         <div class="progress active"><div class="progress-bar progress-bar-success" role="progressbar" style="width: 100%;"><span class="sr-only">已上传 100%</span></div></div>
                                     </div>
                                 #end

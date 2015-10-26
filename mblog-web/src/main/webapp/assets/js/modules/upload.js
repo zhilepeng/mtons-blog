@@ -19,6 +19,15 @@ define(function(require, exports, module) {
 			if (filename && filename.length > 30) {
 				filename = filename.substring(0, 30) + '...';
 			}
+			
+			var i = $(id).attr('file-counter');
+			if (!i){
+				$(id).empty();
+				i = 0;
+			} else {
+				i = parseInt(i);
+			}
+			
 			var template = '<div id="album-file' + i + '" class="uploader-item">' +
 							   '<button type="button" class="close uploader-close" data-action="remove-album"><span>×</span></button>' +
 			                   '<div class="uploader-image-preview"><img src="http://placehold.it/48.png" /></div>' +
@@ -31,12 +40,6 @@ define(function(require, exports, module) {
 			                   '<input type="hidden" name="delayImages" value=""/>' +
 			               '</div>';
 			               
-			var i = $(id).attr('file-counter');
-			if (!i){
-				$(id).empty();
-				i = 0;
-			}
-			
 			i++;
 			
 			$(id).attr('file-counter', i);
