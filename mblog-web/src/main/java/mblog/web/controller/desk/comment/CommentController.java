@@ -67,7 +67,9 @@ public class CommentController extends BaseController {
 			
 			commentService.post(c);
 
-			sendNotify(up.getId(), toId, pid);
+            if(toId != up.getId()) {
+			    sendNotify(up.getId(), toId, pid);
+            }
 			
 			data = Data.success("发表成功!", Data.NOOP);
 		}
