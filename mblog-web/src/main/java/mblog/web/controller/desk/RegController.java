@@ -60,6 +60,7 @@ public class RegController extends BaseController {
 			ret = getView(Views.REG_RESULT);
 			
 		} catch (Exception e) {
+            model.addAttribute("post", post);
 			data = DataExt.failure(e.getMessage());
 		}
 		model.put("data", data);
