@@ -18,8 +18,7 @@
 
 
 ### 相关文档
-[部署手册](http://mblog.mtons.com/doc/1.html)
-[系统配置](http://mblog.mtons.com/doc/2.html)
+[部署手册](http://mblog.mtons.com/doc/1.html)、[系统配置](http://mblog.mtons.com/doc/2.html)
 
 
 ### 捐助
