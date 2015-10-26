@@ -72,7 +72,7 @@ public class UserPO {
 
 	private Date created;  // 注册时间
 
-	private int source; // 注册来源：主要用于第三方登录
+	private int source; // 注册来源：主要用于区别第三方登录
 
 	@Column(name = "last_login")
 	private Date lastLogin;
@@ -85,7 +85,6 @@ public class UserPO {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "mto_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-
 	private List<RolePO> roles = new ArrayList<RolePO>();
 
 	@Column(name = "active_email")
