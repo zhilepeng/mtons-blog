@@ -5,24 +5,24 @@
     <a href="$base/index">
         <img src="$base/assets/images/logo/m90.png" height="72" width="72">
     </a>
-    <h1>注册你的 Mtons 账号</h1>
+    <h1>注册你的 Clannad 账号</h1>
     <a href="$base/login" class="signup-link gapps"><span>已有账号, 登录</span></a>
     <hr>
     <form action="reg" method="post">
         <div id="message">
-			#parse("/default/inc/action_message.vm")
+    		#parse("/default/inc/action_message.vm")
         </div>
         <label for="id_email">用户名:</label>
         <div id="id_email">
-            <input maxlength="18" class="form-control border" name="username" placeholder="用户名" type="text" data-required data-conditional="username" data-description="username" data-describedby="message">
+            <input maxlength="18" class="form-control border" name="username" value="$!post.username" placeholder="用户名" type="text" data-required data-conditional="username" data-description="username" data-describedby="message">
         </div>
         <label for="id_name">昵称:</label>
         <div id="id_name">
-            <input maxlength="9" class="form-control border" name="name" placeholder="昵称" type="text" data-required>
+            <input maxlength="9" class="form-control border" name="name" value="$!post.name" placeholder="昵称" type="text" data-required>
         </div>
         <label for="id_name">邮箱:</label>
         <div id="id_name">
-            <input maxlength="64" class="form-control border" name="email" placeholder="邮箱地址" type="text" data-required data-conditional="email" data-description="email" data-describedby="message">
+            <input maxlength="64" class="form-control border" name="email" value="$!post.email" placeholder="邮箱地址" type="text" data-required data-conditional="email" data-description="email" data-describedby="message">
         </div>
         <label for="id_password">密码:</label>
         <div id="id_password">
