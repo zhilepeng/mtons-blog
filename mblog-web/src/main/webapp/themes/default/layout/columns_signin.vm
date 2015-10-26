@@ -34,7 +34,8 @@
 	
 	${screen_content}
 		
-	<p class="small">Copyright © Mtons（<a href="http://www.miitbeian.gov.cn/" target="_blank">$!{site_icp}</a>)
+	<p class="small">
+		$!{site_copyright} <a href="http://www.miitbeian.gov.cn/" target="_blank">$!{site_icp}
 	</p>
 	
 </body>

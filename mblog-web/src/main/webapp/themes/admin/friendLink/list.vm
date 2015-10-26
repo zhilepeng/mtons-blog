@@ -44,9 +44,16 @@
                 </tr>
                 #end
             </table>
-            #if($shiro.hasPermission("friendLink:edit"))
-                <a class="btn add-role-btn" href="$base/admin/friendLink/edit">添加菜单</a>
-            #end
+            
         </div>
     </div>
+	<footer class="panel-footer">
+		<div class="row">
+			<div class="col-lg-6">
+				#if($shiro.hasPermission("friendLink:edit"))
+                <a class="btn btn-mini btn-success add-role-btn" href="$base/admin/friendLink/edit">添加链接</a>
+				#end
+			</div>
+		</div>
+	</footer>
 </div>
