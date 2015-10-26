@@ -16,6 +16,7 @@ public interface SiteConfig {
     String SITE_DESCRIPTION = "site_description"; // description
     String SITE_METAS = "site_metas"; // 扩展Metas
 
+    String SITE_COPYRIGHT = "site_copyright";
     String SITE_ICP = "site_icp"; // 备案号
 
     String SITE_EDITOR = "site_editor"; // 文本编辑器

@@ -38,6 +38,13 @@
             <textarea rows="3" class="form-control" name="site_metas" placeholder="请输入meta标签">$!{configs['site_metas'].value}</textarea>
         </div>
     </div>
+	<div class="form-group">
+        <label class="col-lg-2 control-label">copyright</label>
+        <div class="col-lg-5">
+            <input type="text" name="site_copyright" class="form-control" value="$!{configs['site_copyright'].value}">
+            <p class="help-block">示例: Copyright © Mtons</p>
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">备案号</label>
         <div class="col-lg-5">
