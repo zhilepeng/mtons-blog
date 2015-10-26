@@ -36,4 +36,4 @@ QQ交流群：378433412
 
 ### 感谢这些代码贡献者
 
-@ORZ豆丁、 @Beldon、 @M豆丁、 @冈崎
+[@ORZ豆丁](http://git.oschina.net/traxex)、[@Beldon](http://git.oschina.net/beldon)、 [@M豆丁](http://git.oschina.net/danke)、 [@朋也](http://git.oschina.net/20110516)
