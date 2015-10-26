@@ -1,6 +1,6 @@
 #set($title = $!{site_name})
 
-#contents('paging')
+#contents(0, 'paging')
     <div class="shadow-box">
     	<!-- tab -->
     	<div class="filter">
