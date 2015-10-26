@@ -46,14 +46,14 @@ public class ContentsDirective extends BaseDirective {
 	public boolean render(RenderHandler handler) throws ResourceNotFoundException, ParseErrorException, MethodInvocationException, IOException {
 		ServletRequest request = handler.getRequest();
 		
-		int group = ServletRequestUtils.getIntParameter(request, "group", 0);
         String ord = ServletRequestUtils.getStringParameter(request, "ord", Consts.order.NEWEST);
         int pn = ServletRequestUtils.getIntParameter(request, "pn", 1);
         
-        String alias = handler.getStringParameter(0);
+        int groupId = handler.getIntParameter(0);
+        String alias = handler.getStringParameter(1);
         
         Paging paging = new Paging(pn, 10);
-		Paging result = postPlanet.paging(paging, group, ord);
+		Paging result = postPlanet.paging(paging, groupId, ord);
 		
 		handler.put(alias, result);
 		handler.doRender();
