@@ -52,6 +52,12 @@
             <p class="help-block">示例: 京ICP备12345678号</p>
         </div>
     </div>
+	<div class="form-group">
+        <label class="col-lg-2 control-label">广告代码</label>
+        <div class="col-lg-8">
+            <textarea rows="3" class="form-control" name="site_advs_right" placeholder="请输入广告代码">$!{configs['site_advs_right'].value}</textarea>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-lg-9 col-lg-offset-3">
             <button type="submit" class="btn btn-primary btn-small">提交</button>

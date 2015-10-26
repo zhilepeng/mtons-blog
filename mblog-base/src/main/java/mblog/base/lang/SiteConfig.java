@@ -18,8 +18,13 @@ public interface SiteConfig {
 
     String SITE_COPYRIGHT = "site_copyright";
     String SITE_ICP = "site_icp"; // 备案号
-
+    
     String SITE_EDITOR = "site_editor"; // 文本编辑器
+    
+    /**
+     * 广告代码配置
+     */
+    String SITE_ADVS_RIGHT = "site_advs_right"; // 右侧广告代码
 
     /**
      * 系统类配置
