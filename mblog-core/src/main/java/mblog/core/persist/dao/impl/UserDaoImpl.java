@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import mblog.core.persist.dao.UserDao;
@@ -52,6 +54,15 @@ public class UserDaoImpl extends BaseRepositoryImpl<UserPO> implements UserDao {
 		}
 		q.desc("id");
 		return q.list();
+	}
+	
+	@Override
+	public List<UserPO> getHotUserByfans(int maxResults) {
+		Criteria c = createCriteria();
+		c.setMaxResults(maxResults);
+		c.addOrder(Order.desc("fans"));
+		return c.list();
+		
 	}
 
 	@Override
@@ -118,5 +129,7 @@ public class UserDaoImpl extends BaseRepositoryImpl<UserPO> implements UserDao {
 		query.setParameterList("ids", userIds);
 		query.executeUpdate();
 	}
+
+	
 
 }
