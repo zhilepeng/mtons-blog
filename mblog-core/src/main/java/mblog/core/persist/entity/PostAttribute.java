@@ -4,6 +4,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -12,8 +14,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "mto_posts_attribute")
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class PostAttribute {
-    @Id
+public class PostAttribute implements Serializable {
+	private static final long serialVersionUID = 7829351358884064647L;
+
+	@Id
     @GeneratedValue(generator = "pkGenerator")
     @GenericGenerator(name = "pkGenerator", strategy = "foreign", parameters = @Parameter(name = "property", value = "post"))
     private long id;
