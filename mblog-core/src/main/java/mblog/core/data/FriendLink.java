@@ -6,8 +6,9 @@ import java.io.Serializable;
  * @author Beldon
  */
 public class FriendLink implements Serializable {
+	private static final long serialVersionUID = 8090260110023930023L;
 
-    private long id;
+	private long id;
     private String siteName;
     private String url;
     private String remark;
