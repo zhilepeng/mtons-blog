@@ -23,6 +23,7 @@ define(function(require, exports, module) {
 			latestUrl : '',
         	hotUrl : '',
 			hotTagUrl : '',
+			hotUserUrl:'',
         	maxResults :6,
             // callback
             onLoadLatest : function (i, data) {},
@@ -95,6 +96,26 @@ define(function(require, exports, module) {
 					}
 				} );
 			}
+			
+			if (opts.hotUserUrl) {
+				J.ajax( {
+					url: opts.hotUserUrl,
+					data: {maxResults : opts.maxResults},
+					cache : true,
+					success: function (ret) {
+						$('#hotuser').empty();
+						if (ret && ret.length > 0) {
+							jQuery.each(ret, function (i, n) {
+								var item = opts.onLoadHotUser.call(that, i, n);
+								$('#hotuser').append(item);
+							});
+						} else {
+							$('#hotuser').append('<li class="cat-item cat-item-6"><span>沒有相关记录</span></li>');
+						}
+					}
+				} );
+			}
+			
         }
     };
 	

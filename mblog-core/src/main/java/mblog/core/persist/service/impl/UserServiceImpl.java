@@ -13,6 +13,7 @@ import mtons.modules.exception.MtonsException;
 import mtons.modules.lang.EntityStatus;
 import mtons.modules.pojos.Paging;
 import mtons.modules.security.MD5;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import mblog.core.data.User;
 import mblog.core.persist.dao.RoleDao;
 import mblog.core.persist.dao.UserDao;
 import mblog.core.persist.entity.AuthMenuPO;
+import mblog.core.persist.entity.FollowPO;
 import mblog.core.persist.entity.RolePO;
 import mblog.core.persist.entity.UserPO;
 import mblog.core.persist.service.NotifyService;
@@ -172,6 +174,19 @@ public class UserServiceImpl implements UserService {
 		return ret;
 	}
 
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> getHotUserByfans(int maxResults){
+		List<User> rets = new ArrayList<>();
+		List<UserPO> list = userDao.getHotUserByfans(maxResults);
+		for (UserPO po : list) {
+			User u = BeanMapUtils.copy(po , 1);
+			rets.add(u);
+		}
+		return rets;
+	}
+	
 	@Override
 	@Transactional(readOnly = true)
 	public User getByUsername(String username) {

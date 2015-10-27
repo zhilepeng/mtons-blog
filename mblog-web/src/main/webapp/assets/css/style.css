@@ -285,6 +285,10 @@ label {font-weight: normal;}
 .user-nav { margin-bottom: 15px;}
 .user-nav .list-group-item i {padding-right: 15px;}
 .user-nav .list-group-item .label {float: right;}
+
+/* 首页热门用户头像样式 */
+.box-list >li .ava img {     margin: -5px -9px; position: relative; width: 34px; height: 34px; margin: 0 auto; }
+
 /* detail 文章详情 */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }
 

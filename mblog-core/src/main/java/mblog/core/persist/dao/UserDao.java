@@ -15,6 +15,7 @@ import mtons.modules.pojos.Paging;
 import java.util.List;
 import java.util.Set;
 
+import mblog.core.data.User;
 import mblog.core.persist.entity.UserPO;
 
 /**
@@ -24,7 +25,9 @@ public interface UserDao extends BaseRepository<UserPO> {
     UserPO getByUsername(String username);
 
     UserPO getByEmail(String email);
-
+    
+    List<UserPO> getHotUserByfans(int maxResults);
+    
     List<UserPO> paging(Paging paging, String key);
 
     List<UserPO> findByIds(Set<Long> ids);
@@ -38,4 +41,6 @@ public interface UserDao extends BaseRepository<UserPO> {
     void identityFans(List<Long> userIds, boolean identity);
 
     void identityFavors(List<Long> userIds, boolean identity);
+
+	
 }
