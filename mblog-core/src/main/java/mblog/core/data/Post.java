@@ -16,6 +16,8 @@ import java.util.List;
 import mblog.core.persist.entity.PostAttribute;
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import mblog.base.lang.Consts;
 
 /**
@@ -29,7 +31,11 @@ public class Post implements Serializable {
 	private int group; // text,image,video
 	private String title;
 	private String summary;
+	
+	@JsonIgnore
 	private String content;
+	
+	@JsonIgnore
 	private String markdown; // markdown 内容
 	private String editor; // 编辑器
 	private String tags; // 标签字符串
@@ -49,6 +55,8 @@ public class Post implements Serializable {
 	private List<Attach> albums;
 	private Attach album;
 	private User author;
+	
+	@JsonIgnore
 	private PostAttribute attribute;
 	
 	public long getId() {
