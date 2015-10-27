@@ -170,9 +170,9 @@
 ## 文章附件显示
 #macro (albShow $att)
 	#if($att.store == 1)
-        <img src="$base/assets/images/spinner-overlay.png" data-original="${att.screenshot}"/>
+        <img src="$base/assets/images/spinner-overlay.gif" data-original="${att.screenshot}"/>
 	#else
-        <img src="$base/assets/images/spinner-overlay.png" data-original="#resource(${att.screenshot})"/>
+        <img src="$base/assets/images/spinner-overlay.gif" data-original="#resource(${att.screenshot})"/>
 	#end
 #end
 
