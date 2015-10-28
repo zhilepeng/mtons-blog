@@ -18,6 +18,8 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.NumericField;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -28,7 +30,9 @@ import java.util.Date;
 @Table(name = "mto_posts")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Indexed(index = "posts")
-public class PostPO {
+public class PostPO implements Serializable {
+	private static final long serialVersionUID = 7144425803920583495L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@DocumentId
