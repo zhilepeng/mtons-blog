@@ -68,11 +68,12 @@ public class AvatarController extends BaseController {
 				// 判断父目录是否存在
 				File f = new File(dest);
 		        if(!f.getParentFile().exists()){
-		            f.mkdirs();
+		            f.getParentFile().mkdirs();
 		        }
 		        // 在目标目录下生成截图
 		        String scalePath = f.getParent() + "/" + profile.getId() + ".jpg";
-
+		        ImageHandleUtils.truncateImage(temp.getAbsolutePath(), scalePath, x.intValue(), y.intValue(), width.intValue());
+		        
 				// 对结果图片进行压缩
 				ImageHandleUtils.scaleImage(scalePath, dest, 100);
 
