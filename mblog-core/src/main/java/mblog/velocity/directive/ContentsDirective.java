@@ -52,7 +52,7 @@ public class ContentsDirective extends BaseDirective {
         int groupId = handler.getIntParameter(0);
         String alias = handler.getStringParameter(1);
         
-        Paging paging = new Paging(pn, 10);
+        Paging paging = new Paging(pn, 12);
 		Paging result = postPlanet.paging(paging, groupId, ord);
 		
 		handler.put(alias, result);
