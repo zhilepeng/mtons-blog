@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	@CacheEvict(value = "usersCaches", key = "#user.getId()")
+	@CacheEvict(value = "usersCaches", key = "#id")
 	public AccountProfile updateEmail(long id, String email) {
 		UserPO po = userDao.get(id);
 
@@ -206,7 +206,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	@CacheEvict(value = "usersCaches", key = "#user.getId()")
+	@CacheEvict(value = "usersCaches", key = "#id")
 	public AccountProfile updateAvatar(long id, String path) {
 		UserPO po = userDao.get(id);
 		if (po != null) {
