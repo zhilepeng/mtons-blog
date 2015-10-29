@@ -16,7 +16,6 @@ import java.util.Set;
 import mblog.core.data.AccountProfile;
 import mblog.core.data.AuthMenu;
 import mblog.core.data.User;
-import mblog.core.persist.entity.UserPO;
 import mtons.modules.pojos.Paging;
 
 /**

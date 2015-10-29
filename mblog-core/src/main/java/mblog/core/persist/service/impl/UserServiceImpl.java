@@ -9,10 +9,14 @@
 */
 package mblog.core.persist.service.impl;
 
-import mtons.modules.exception.MtonsException;
-import mtons.modules.lang.EntityStatus;
-import mtons.modules.pojos.Paging;
-import mtons.modules.security.MD5;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -30,14 +34,15 @@ import mblog.core.data.User;
 import mblog.core.persist.dao.RoleDao;
 import mblog.core.persist.dao.UserDao;
 import mblog.core.persist.entity.AuthMenuPO;
-import mblog.core.persist.entity.FollowPO;
 import mblog.core.persist.entity.RolePO;
 import mblog.core.persist.entity.UserPO;
 import mblog.core.persist.service.NotifyService;
 import mblog.core.persist.service.UserService;
 import mblog.core.persist.utils.BeanMapUtils;
-
-import java.util.*;
+import mtons.modules.exception.MtonsException;
+import mtons.modules.lang.EntityStatus;
+import mtons.modules.pojos.Paging;
+import mtons.modules.security.MD5;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -141,6 +146,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "usersCaches", key = "#user.getId()")
 	public AccountProfile updateEmail(long id, String email) {
 		UserPO po = userDao.get(id);
 
@@ -200,6 +206,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
+	@CacheEvict(value = "usersCaches", key = "#user.getId()")
 	public AccountProfile updateAvatar(long id, String path) {
 		UserPO po = userDao.get(id);
 		if (po != null) {
