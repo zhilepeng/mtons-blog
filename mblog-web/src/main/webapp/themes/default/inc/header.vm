@@ -60,7 +60,7 @@
 					
 					#foreach($m in $menus)
 					<li>
-    					<a href="$base/${m.url}" nav="${m.name}">${m.name}</a>
+    					<a href="$base/${m.url}" nav="${m.name}" target="${m.target}">${m.name}</a>
     				</li>
 					#end
 					
