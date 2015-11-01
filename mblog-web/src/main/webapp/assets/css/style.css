@@ -265,6 +265,8 @@ label {font-weight: normal;}
 .widget-box .box-list li span.last i { background-color: #7f8c8d; border-radius: 50%; font-style: normal; height: 20px; padding: 2px 6px; line-height: 20px; margin: 5px auto; color: #fff; }
 .widget-box .box-list li span.name {width: 135px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .widget-box .box-list li span.nums { float: right; text-align: right; max-width: 33px; height:30px; margin-right: 0; color: #333; display:block; overflow: hidden;}
+/* 首页热门用户头像样式 */
+.widget-box .box-list li img {float: left; margin-right: 6px;position: relative; width: 34px; height: 34px;  }
 
 .box-list li:nth-child(1) span.last i{background-color: #e71f19;}
 .box-list li:nth-child(2) span.last i{background-color: #e76b19;}
@@ -285,9 +287,6 @@ label {font-weight: normal;}
 .user-nav { margin-bottom: 15px;}
 .user-nav .list-group-item i {padding-right: 15px;}
 .user-nav .list-group-item .label {float: right;}
-
-/* 首页热门用户头像样式 */
-.box-list >li .ava img {     margin: -5px -9px; position: relative; width: 34px; height: 34px; margin: 0 auto; }
 
 /* detail 文章详情 */
 .post-title { font-size: 20px; line-height: 30px; padding: 16px 20px; color: #555; }

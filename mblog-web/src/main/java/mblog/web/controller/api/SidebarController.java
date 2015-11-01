@@ -118,7 +118,7 @@ public class SidebarController extends BaseController {
 	@RequestMapping(value="/Userfans.json")
 	public @ResponseBody List<User>  fans(Integer pn) {
 		
-		List<User> rets = userService.getHotUserByfans(12);
+		List<User> rets = userService.getHotUserByfans(5);
          return rets;
 	}
 }
