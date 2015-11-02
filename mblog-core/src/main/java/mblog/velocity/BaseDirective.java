@@ -16,6 +16,7 @@ import org.apache.velocity.runtime.directive.Directive;
 import org.apache.velocity.runtime.parser.node.Node;
 
 import mblog.velocity.handler.RenderHandler;
+import mtons.modules.pojos.Paging;
 
 /**
  * @author langhsu
@@ -39,4 +40,9 @@ public abstract class BaseDirective extends Directive {
     public boolean render(InternalContextAdapter context, Writer writer, Node node) throws IOException, ResourceNotFoundException, ParseErrorException, MethodInvocationException {
 		return render(new RenderHandler(context, writer, node));
 	}
+	
+	public Paging wrapPaing(int pn) {
+		return new Paging(pn, 12);
+	}
+		
 }
