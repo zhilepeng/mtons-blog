@@ -22,7 +22,7 @@
 	</div>
 	<div class="post-frame">
 		<div class="post-content">
-			${ret.attribute.videoBody}
+			$!{ret.attribute.videoBody}
 			${ret.content}
 		</div>
 		<div class="post-footer">
