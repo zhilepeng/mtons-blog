@@ -20,22 +20,23 @@
 
     <bean id="simpleSessionFactory" class="org.apache.shiro.session.mgt.SimpleSessionFactory"/>
     <!--会话Cookie模板-->
-    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="sid"/>
-        <property name="httpOnly" value="true"/>
+    <!--<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">-->
+        <!--<constructor-arg value="sid"/>-->
+        <!--<property name="httpOnly" value="true"/>-->
         <!-- 1800秒 30分钟-->
-        <property name="maxAge" value="1800"/>
-    </bean>
+        <!--<property name="maxAge" value="1800"/>-->
+    <!--</bean>-->
     <!-- 会话管理器 -->
-    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <property name="sessionFactory" ref="simpleSessionFactory"/>
-        <property name="globalSessionTimeout" value="1800000"/>
-        <property name="deleteInvalidSessions" value="true"/>
-        <property name="sessionValidationSchedulerEnabled" value="true"/>
-        <property name="sessionIdCookieEnabled" value="true"/>
-        <property name="sessionIdCookie" ref="sessionIdCookie"/>
-        <property name="sessionValidationInterval" value="1800000" />
-    </bean>
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+    <!--<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">-->
+        <!--<property name="sessionFactory" ref="simpleSessionFactory"/>-->
+        <!--<property name="globalSessionTimeout" value="1800000"/>-->
+        <!--<property name="deleteInvalidSessions" value="true"/>-->
+        <!--<property name="sessionValidationSchedulerEnabled" value="true"/>-->
+        <!--<property name="sessionIdCookieEnabled" value="true"/>-->
+        <!--<property name="sessionIdCookie" ref="sessionIdCookie"/>-->
+        <!--<property name="sessionValidationInterval" value="1800000" />-->
+    <!--</bean>-->
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm">
