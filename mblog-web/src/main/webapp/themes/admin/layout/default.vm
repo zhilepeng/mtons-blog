@@ -34,7 +34,7 @@
     <script src="$base/assets/vendors/treeTable/jquery.treeTable.min.js" type="text/javascript"></script>
 
 	<script src="$base/assets/vendors/pace/pace.min.js"></script>
-	<link href="$base/assets/vendors/pace/themes/pace-theme-barber-shop.css" rel="stylesheet" />
+	<link href="$base/assets/vendors/pace/themes/pace-theme-loading-bar.css" rel="stylesheet" />
 	
 	<!-- Favicons -->
 	<link rel="apple-touch-icon-precomposed" href="http://mtons.com/assets/images/logo/m.png"/>
