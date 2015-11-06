@@ -34,11 +34,11 @@ public class IndexControllerHook extends InterceptorHookSupport {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handler, ModelAndView modelAndView) throws Exception {
 
-        System.out.println(handler.getMethod().getName());
-
-        System.out.println(modelAndView);
-
-        System.out.println("");
+//        System.out.println(handler.getMethod().getName());
+//
+//        System.out.println(modelAndView);
+//
+//        System.out.println("");
 
     }
 
