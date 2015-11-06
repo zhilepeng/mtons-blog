@@ -67,6 +67,7 @@
                 /post/** = user
                 /account/** = user
                 /admin = authc,perms[admin]
+                /admin/ = authc,perms[admin]
                 /admin/index = authc,perms[admin]
                 /admin/posts/**=authc,perms[posts:view]
                 /admin/posts/update**=authc,perms[posts:edit]
