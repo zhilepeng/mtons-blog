@@ -11,6 +11,7 @@ package mblog.core.persist.service.impl;
 
 import mtons.modules.lang.Const;
 import mtons.modules.pojos.Paging;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -195,6 +196,13 @@ public class CommentServiceImpl implements CommentService {
 			Assert.isTrue(po.getAuthorId() == authorId, "认证失败");
 			commentDao.delete(po);
 		}
+	}
+
+	@Transactional
+	@Override
+	public List<CommentPO> findByHql(String hql) {
+		Query query = commentDao.createQuery(hql);
+		return query.list();
 	}
 
 	private void buildUsers(Collection<Comment> posts, Set<Long> uids) {

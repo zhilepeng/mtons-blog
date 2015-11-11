@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 import mblog.core.data.Comment;
+import mblog.core.persist.entity.CommentPO;
 import mtons.modules.pojos.Paging;
 
 /**
@@ -49,4 +50,6 @@ public interface CommentService {
 	 * @param authorId
 	 */
 	void delete(long id, long authorId);
+
+	List<CommentPO> findByHql(String hql);
 }
