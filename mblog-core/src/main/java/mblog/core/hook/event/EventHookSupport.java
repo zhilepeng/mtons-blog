@@ -2,6 +2,7 @@ package mblog.core.hook.event;
 
 import mblog.base.context.SpringContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,9 @@ import java.util.Map;
 public abstract class EventHookSupport<T extends ApplicationEvent> implements EventHook<T> {
     @Autowired
     protected EventHookManager eventHookManager;
-
+    @Autowired
+	private ApplicationContext applicationContext;
+    
     protected Map<String, EventListener> plugins;
 
     /**
@@ -82,7 +85,7 @@ public abstract class EventHookSupport<T extends ApplicationEvent> implements Ev
      * @return
      */
     public Map<String, EventListener> getPlugins(Class clazz) {
-        return SpringContextHolder.getApplicationContext().getBeansOfType(clazz);
+        return applicationContext.getBeansOfType(clazz);
     }
 
     protected void onEvnet(ApplicationEvent event){
