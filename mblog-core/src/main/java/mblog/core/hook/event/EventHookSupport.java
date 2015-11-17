@@ -88,7 +88,7 @@ public abstract class EventHookSupport<T extends ApplicationEvent> implements Ev
         return applicationContext.getBeansOfType(clazz);
     }
 
-    protected void onEvnet(ApplicationEvent event){
+    protected void onEvent(ApplicationEvent event){
         Iterator<Map.Entry<String, EventListener>> it = this.plugins.entrySet().iterator();
         while (it.hasNext()) {
             it.next().getValue().onEvent(event);

@@ -22,7 +22,7 @@ public class FeedsEventHook extends EventHookSupport<FeedsEvent> {
 
     @Override
     public void onApplicationEvent(FeedsEvent event) {
-        super.onEvnet(event);
+        super.onEvent(event);
     }
 
 

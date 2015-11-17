@@ -18,7 +18,7 @@ public class LogEventHook extends EventHookSupport<LogEvent> {
 
     @Override
     public void onApplicationEvent(LogEvent event) {
-        super.onEvnet(event);
+        super.onEvent(event);
     }
 
     public interface LogEventListener extends EventListener<LogEvent> {
