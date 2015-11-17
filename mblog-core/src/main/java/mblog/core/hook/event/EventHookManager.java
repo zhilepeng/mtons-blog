@@ -1,12 +1,18 @@
 package mblog.core.hook.event;
 
-import mblog.base.context.SpringContextHolder;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.util.*;
 
 /**
  * Event钩子管理器
@@ -15,14 +21,17 @@ import java.util.*;
  */
 @Component("eventHookManager")
 public class EventHookManager implements ApplicationListener<ApplicationEvent> {
-    private Map<Class, Set<EventHook>> eventHookMap = new HashMap<>();
+	@Autowired
+	private ApplicationContext applicationContext;
+	
+	private Map<Class, Set<EventHook>> eventHookMap = new HashMap<>();
 
     /**
      * 初始化，获取所有继承EventHook接口的类，并添加到eventHookMap中管理
      */
     @PostConstruct
     public void init() {
-        Map<String, EventHook> map = SpringContextHolder.getApplicationContext().getBeansOfType(EventHook.class);
+        Map<String, EventHook> map = applicationContext.getBeansOfType(EventHook.class);
         Iterator<Map.Entry<String, EventHook>> it = map.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, EventHook> entry = it.next();
