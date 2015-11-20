@@ -1,16 +1,17 @@
 package mblog.core.hook.interceptor;
 
-import mblog.base.context.SpringContextHolder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Iterator;
-import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 拦截类钩子支持类
@@ -18,7 +19,9 @@ import java.util.Map;
  * @author Beldon 2015/10/30
  */
 public abstract class InterceptorHookSupport implements InterceptorHook {
-
+	@Autowired
+	private ApplicationContext applicationContext;
+	
     @Autowired
     protected InterceptorHookManager interceptorHookManager;
 
@@ -55,7 +58,7 @@ public abstract class InterceptorHookSupport implements InterceptorHook {
      * @return
      */
     public Map<String, InterceptorListener> getPlugins(Class clazz) {
-        return SpringContextHolder.getApplicationContext().getBeansOfType(clazz);
+        return applicationContext.getBeansOfType(clazz);
     }
 
     protected void onPreHandle(HttpServletRequest request, HttpServletResponse response, HandlerMethod handler) throws Exception {

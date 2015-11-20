@@ -1,21 +1,29 @@
 package mblog.core.hook.interceptor;
 
-import mblog.base.context.SpringContextHolder;
-import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Beldon 2015/10/30
  */
 @Component
 public class InterceptorHookManager {
-
+	@Autowired
+	private ApplicationContext applicationContext;
+	
     private Map<String, Set<InterceptorHook>> map = new HashMap<>();
 
     /**
@@ -23,7 +31,7 @@ public class InterceptorHookManager {
      */
     @PostConstruct
     private void init() {
-        Map<String, InterceptorHook> map = SpringContextHolder.getApplicationContext().getBeansOfType(InterceptorHook.class);
+        Map<String, InterceptorHook> map = applicationContext.getBeansOfType(InterceptorHook.class);
         Iterator<Map.Entry<String, InterceptorHook>> it = map.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, InterceptorHook> entry = it.next();
