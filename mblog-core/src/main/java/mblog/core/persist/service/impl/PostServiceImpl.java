@@ -283,7 +283,7 @@ public class PostServiceImpl implements PostService {
 			po.setPrivacy(p.getPrivacy());
 
 			// 处理相册
-			if (p.getAlbums() != null) {
+			if (p.getAlbums() != null && !p.getAlbums().isEmpty()) {
 				long lastImageId = attachService.batchPost(po.getId(), p.getAlbums());
 				po.setLastImageId(lastImageId);
 				po.setImages(po.getImages() + p.getAlbums().size());
