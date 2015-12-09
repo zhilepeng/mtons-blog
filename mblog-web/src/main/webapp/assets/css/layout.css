@@ -55,6 +55,15 @@
 .side-left {}
 .side-right { padding: 0 0 0 15px; margin-left: -15px;}
 
+/*注册OR登录*/
+.or {background:#000000;color: #999;display: inline-block;width:26px;height:26x;line-height:26px;position: absolute;z-index: 2;margin: 12px 0px 0px -12px;border-radius: 100px;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+text-align:center;
+font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei; 
+font-weight:bold;font-size:12px; 
+}
+
 /* footer */
 
 footer { background-color: #3a3e47; }
