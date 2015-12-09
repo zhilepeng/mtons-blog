@@ -21,6 +21,9 @@ img { height: auto; max-width: 100%;}
 .img-circle {transition: 0.4s ease-in-out;-moz-transition: 0.4s ease-in-out;-webkit-transition: 0.4s ease-in-out;transform: rotate(0deg);-moz-transform: rotate(0deg);/* -webkit-transform: rotate(0deg); */}
 .img-circle:hover{transform:rotate(-360deg); -moz-transform:rotate(-360deg);-webkit-transform:rotate(-360deg);}
 
+/*热门用户 */
+.hotusers { overflow: hidden; float: left;}
+.hotusers > li { border-radius: 100px; display: inline-block;  width: 50px; margin:10px 10px 10px 10px; }
 
 /* common */
 a { color: #000; text-decoration: none; }
