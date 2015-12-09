@@ -33,7 +33,7 @@
 		<!--Start-->
 		<div class="thumbs clearfix">
 			#foreach($alb in ${row.albums})
-    			#if ($velocityCount <= 3)
+    			#if ($velocityCount <= 6)
     			<div class="media col-xs-4 col-sm-4 col-md-4">
         			<a title="${row.title}" href="#resource(${alb.original})">
 						#albShow($!alb)
