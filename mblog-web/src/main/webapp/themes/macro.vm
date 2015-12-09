@@ -14,6 +14,7 @@
 				</div>
 				<div class="info">
 					<strong>${row.author.name}</strong>
+                    <time>$date.format('yyyy-MM-dd', $row.created)</time>
 					<time>$relDate.format($row.created)</time>
 				</div>
 			</a>
