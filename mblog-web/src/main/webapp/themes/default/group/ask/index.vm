@@ -5,8 +5,8 @@
 	<!-- tab -->
 	<div class="filter">
 		<ul class="">
-			<li><a #if($ord == 'newest') class="active" #end href="?ord=newest">最新的</a></li>
-			<li><a #if($ord == 'hottest') class="active" #end href="?ord=hottest">热门的</a></li>
+			<li><a #if($ord == 'newest') class="active" #end href="?ord=newest"><i class="fa fa-newspaper-o"></i>最新的</a></li>
+			<li><a #if($ord == 'hottest') class="active" #end href="?ord=hottest"><i class="fa fa-fire"></i>热门的</a></li>
 			<!--
 			<li><a href="/blogs/hottest">全部的</a></li>
 			-->
