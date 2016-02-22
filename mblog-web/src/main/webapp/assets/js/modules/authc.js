@@ -13,7 +13,7 @@ define(function(require, exports, module) {
 
     var Authc = {
         isAuthced: function () {
-            return (window.app.LOGIN_TOKEN.length > 0);
+            return (typeof(window.app.LOGIN_TOKEN) != 'undefined' && window.app.LOGIN_TOKEN.length > 0);
         },
         showLogin : function () {
             var that = this;
