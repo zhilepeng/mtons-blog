@@ -20,6 +20,8 @@
 
 ![Mtons演示](http://git.oschina.net/uploads/images/2016/0106/103726_14bf1b29_330414.jpeg "在这里输入图片标题")
 ### 相关文档
+
+[文档地址][输入链接说明](http://mblog.mtons.com/)
 [部署手册](http://mblog.mtons.com/doc/1.html)、[系统配置](http://mblog.mtons.com/doc/2.html)
 
 
