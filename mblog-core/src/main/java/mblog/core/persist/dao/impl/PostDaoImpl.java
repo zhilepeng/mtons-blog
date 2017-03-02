@@ -29,6 +29,7 @@ import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.hibernate.search.SearchFactory;
+import org.hibernate.search.query.dsl.MustJunction;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
 import mblog.base.lang.Consts;
@@ -149,15 +150,24 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Post> search(Paging paging, String q) throws Exception {
-		FullTextSession fullTextSession = Search.getFullTextSession(super.session());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
-	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
 
-		org.apache.lucene.search.Query luceneQuery  = qb.keyword().onFields("title","summary","tags").matching(q).createQuery();
+		FullTextSession fullTextSession = Search.getFullTextSession(super.session());
+		SearchFactory sf = fullTextSession.getSearchFactory();
+		QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
+
+		org.apache.lucene.search.Query luceneQuery  = null;
+
+		MustJunction term = qb.bool().must(qb.keyword().onFields("title","summary","tags").matching(q).createQuery());
+
+		term.must(qb.keyword()
+				.onField("privacy")
+				.matching(EnumPrivacy.OPEN.getIndex()).createQuery());
+
+		luceneQuery = term.createQuery();
 
 		FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
-	    query.setFirstResult(paging.getFirstResult());
-	    query.setMaxResults(paging.getMaxResults());
+		query.setFirstResult(paging.getFirstResult());
+		query.setMaxResults(paging.getMaxResults());
 
 	    StandardAnalyzer standardAnalyzer = new StandardAnalyzer();
 	    SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
@@ -191,9 +201,18 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 	@SuppressWarnings("unchecked")
 	public List<PostPO> searchByTag(Paging paigng, String tag) {
 		FullTextSession fullTextSession = Search.getFullTextSession(super.session());
-	    SearchFactory sf = fullTextSession.getSearchFactory();
-	    QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
-	    org.apache.lucene.search.Query luceneQuery  = qb.phrase().onField("tags").sentence(tag).createQuery();
+		SearchFactory sf = fullTextSession.getSearchFactory();
+		QueryBuilder qb = sf.buildQueryBuilder().forEntity(PostPO.class).get();
+
+		org.apache.lucene.search.Query luceneQuery  = null;
+
+		MustJunction term = qb.bool().must(qb.phrase().onField("tags").sentence(tag).createQuery());
+
+		term.must(qb.keyword()
+				.onField("privacy")
+				.matching(EnumPrivacy.OPEN.getIndex()).createQuery());
+
+		luceneQuery = term.createQuery();
 
 	    FullTextQuery query = fullTextSession.createFullTextQuery(luceneQuery);
 	    query.setFirstResult(paigng.getFirstResult());

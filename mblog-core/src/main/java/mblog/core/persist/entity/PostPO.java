@@ -9,6 +9,7 @@
 */
 package mblog.core.persist.entity;
 
+import mblog.base.lang.EnumPrivacy;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -76,6 +77,11 @@ public class PostPO implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date created;
 
+	/**
+	 * @see EnumPrivacy
+	 */
+	@Field
+	@NumericField
 	private int privacy;  // 私密
 
 	private int images; // 图片统计
