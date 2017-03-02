@@ -1,10 +1,11 @@
 ﻿## MBLOG
 
-> mblog (mtons blog)开源免费的Java博客系统,是一个简单、大气、美观、响应式设计的多人博客系统, 基于MySQL数据库; 具有性能优异、简单实用、安全稳定、支持全文检索的特点。
+> mblog (mtons blog)开源免费的Java多人博客系统
 
 ### 技术选型：
 
 * JDK8
+* 数据库MySQL
 * SSH (Spring、SpringMVC、Hibernate）
 * 安全权限 Shiro
 * 搜索工具 Lucene
@@ -26,7 +27,7 @@
 
 
 
-### 开源协议
+### 开源协议 (Apache License)
 
 如果您的网站使用了 Mblog, 请在网站页面页脚处保留 Mtons相关版权信息链接
 
