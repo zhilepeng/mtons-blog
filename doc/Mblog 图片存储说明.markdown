@@ -49,9 +49,9 @@ server {
         server_name  localhost;
         index index.html index.htm;
 
-        # css/js 的访问指向 项目部署路径中的 {项目部署路径}/dist
-        location /dist {
-            alias /app/mblog-web/dist;
+        # css/js 的访问指向 项目部署路径中的 {项目部署路径}/assets
+        location /assets {
+            alias /app/mblog-web/assets;
         }
 
         # 图片访问由 nginx 直接访问 {store.root}/store
