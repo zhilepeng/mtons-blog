@@ -1,11 +1,11 @@
 ﻿# Mblog 图片存储说明
 ---
 概述：
-
+ - 写在之前
  - 集成在Tomcat目录下
  - 存储在Tomcat目录以外
 
-### 写在说明之前(mtons.properties介绍)
+###1. 写在之前(mtons.properties介绍)
  - `store.root` 图片文件存储目录 `store.repo`=absolute 时有效
  - `store.repo` 图片存储模式, 可选值[absolute / relative]; 设置为absolute系统将图片存在`store.root`配置的目录下,relative存储在部署目录下
  - `resource.domain` 是否开启资源域名, 可选值[true/false]; 设置为true为开启,系统中的图片使用 `resource.host`配置的域名+图片目录进行访问, false 直接使用存储的图片目录访问
@@ -13,12 +13,12 @@
  - 此文以`tomcat`为例, 其他应用服务器同理
  - 此文以`linux`系统为例, 所有的文件路径不带盘符, windows用户请眼光里自带盘符来阅读
 
-###1. 集成在Tomcat目录下
+###2. 集成在Tomcat目录下
 系统默认使用此配置, 不需要更改
 - 优点: 简单、不用改配置
 - 缺点: tomcat被删或tomcat的webapps目录被清空图片也就丢失了, 建议开发调试时使用此种方式, 正式环境不推荐
 
-###2. 存储在Tomcat目录以外
+###3. 存储在Tomcat目录以外
 - 优点: 独立于tomcat等应用服务器以外, 图片的存储安全不受容器影响
 - 确定: 配置复杂点
 
