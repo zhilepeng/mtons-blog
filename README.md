@@ -1,6 +1,4 @@
-﻿## MBLOG
-
-> mblog (mtons blog)开源免费的Java多人博客系统
+﻿### Mblog (mtons blog)开源免费的Java多人博客系统
 
 ### 技术选型：
 
