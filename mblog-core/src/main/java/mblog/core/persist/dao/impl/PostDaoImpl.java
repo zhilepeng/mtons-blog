@@ -109,6 +109,8 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 		Criteria c = createCriteria();
 		
 		c.add(Restrictions.neOrIsNotNull("title", ""));
+		c.add(Restrictions.eq("privacy", EnumPrivacy.OPEN.getIndex()));
+
 		if (ignoreUserId > 0) {
 			c.add(Restrictions.ne("authorId", ignoreUserId));
 		}
@@ -123,6 +125,7 @@ public class PostDaoImpl extends BaseRepositoryImpl<PostPO> implements PostDao {
 		Criteria c = createCriteria();
 		
 		c.add(Restrictions.neOrIsNotNull("title", ""));
+		c.add(Restrictions.eq("privacy", EnumPrivacy.OPEN.getIndex()));
 //		if (ignoreUserId > 0) {
 //			q.add(Restrictions.ne("author.id", ignoreUserId));
 //		}

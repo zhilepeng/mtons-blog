@@ -4,7 +4,7 @@
 	<header class="panel-heading">标签管理</header>
 	<div class="panel-body">
     	<div class="filter">
-    		<form id="qForm" method="post">
+    		<form id="qForm" action="list" method="post">
     			<input type="hidden" name="pn" value="${page.pageNo}" />
     			<div class="pull-left" style="width: 150px;">
     				<select name="order" class="input-small inline form-control" style="width:130px" data-select="$!{order}">
